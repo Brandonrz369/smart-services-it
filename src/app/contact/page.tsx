@@ -2,46 +2,25 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { useForm, ValidationError } from '@formspree/react';
 import FadeIn from '@/components/FadeIn';
 
 export default function ContactPage() {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [formState, handleSubmit] = useForm("xzzeddgr");
   
   useEffect(() => {
     setIsLoaded(true);
   }, []);
   
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setFormStatus('submitting');
-    
-    const form = e.currentTarget;
-    const formData = new FormData(form);
-    
-    try {
-      // Submit to Formspree
-      const response = await fetch('https://formspree.io/f/xzzeddgr', {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
-      });
-      
-      if (response.ok) {
-        // Success
-        setFormStatus('success');
-      } else {
-        // Error
-        console.error('Form submission failed');
-        setFormStatus('error');
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      setFormStatus('error');
+  useEffect(() => {
+    if (formState.succeeded) {
+      console.log('Form successfully submitted to Formspree!');
     }
-  };
+    if (formState.errors && formState.errors.length > 0) {
+      console.error('Form submission errors:', formState.errors);
+    }
+  }, [formState]);
   
   return (
     <div className={`min-h-screen bg-background text-foreground font-sans transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
@@ -147,7 +126,7 @@ export default function ContactPage() {
               <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-md">
                 <h2 className="text-2xl font-bold mb-6">Send Us a Message</h2>
                 
-                {formStatus === 'success' ? (
+                {formState.succeeded ? (
                   <div className="bg-green-50 border border-green-200 rounded-lg p-6 text-center">
                     <div className="text-green-500 mx-auto mb-4">
                       <svg className="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -159,28 +138,10 @@ export default function ContactPage() {
                       Thank you for contacting LB Computer Help. We&apos;ll get back to you as soon as possible.
                     </p>
                     <button 
-                      onClick={() => setFormStatus('idle')}
+                      onClick={() => window.location.reload()}
                       className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition duration-300"
                     >
                       Send Another Message
-                    </button>
-                  </div>
-                ) : formStatus === 'error' ? (
-                  <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
-                    <div className="text-red-500 mx-auto mb-4">
-                      <svg className="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
-                    <h3 className="text-xl font-bold text-red-800 mb-2">Oops! Something went wrong</h3>
-                    <p className="text-red-700 mb-4">
-                      We couldn&apos;t send your message. Please try again or contact us directly at (213) 349-6790.
-                    </p>
-                    <button 
-                      onClick={() => setFormStatus('idle')}
-                      className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition duration-300"
-                    >
-                      Try Again
                     </button>
                   </div>
                 ) : (
@@ -277,12 +238,12 @@ export default function ContactPage() {
                     
                     <button
                       type="submit"
-                      disabled={formStatus === 'submitting'}
+                      disabled={formState.submitting}
                       className={`w-full py-3 px-4 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition duration-300 ${
-                        formStatus === 'submitting' ? 'opacity-75 cursor-not-allowed' : ''
+                        formState.submitting ? 'opacity-75 cursor-not-allowed' : ''
                       }`}
                     >
-                      {formStatus === 'submitting' ? (
+                      {formState.submitting ? (
                         <span className="flex items-center justify-center">
                           <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
@@ -294,6 +255,30 @@ export default function ContactPage() {
                         'Send Message'
                       )}
                     </button>
+                    
+                    {formState.errors.map((error) => (
+                      <div key={error.code} className="text-red-500 text-sm mt-1">
+                        {error.message}
+                      </div>
+                    ))}
+                    <ValidationError 
+                      prefix="Name" 
+                      field="name"
+                      errors={formState.errors}
+                      className="text-red-500 text-sm mt-1"
+                    />
+                    <ValidationError 
+                      prefix="Email" 
+                      field="email"
+                      errors={formState.errors}
+                      className="text-red-500 text-sm mt-1"
+                    />
+                    <ValidationError 
+                      prefix="Message" 
+                      field="message"
+                      errors={formState.errors}
+                      className="text-red-500 text-sm mt-1"
+                    />
                   </form>
                 )}
               </div>

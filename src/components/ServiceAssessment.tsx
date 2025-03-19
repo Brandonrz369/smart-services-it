@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useForm, ValidationError } from '@formspree/react';
 
 // Types
 interface Question {
@@ -250,38 +251,34 @@ export default function ServiceAssessment() {
     });
   };
 
+  // Initialize Formspree
+  const [formState, submitToFormspree] = useForm("xzzeddgr");
+  
   // Handle contact form submit
   const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Combine contact info with assessment answers
     const completeData = {
-      ...state.answers,
-      contactInfo
+      assessment_answers: state.answers,
+      name: contactInfo.name,
+      email: contactInfo.email,
+      phone: contactInfo.phone
     };
     
-    try {
-      // Send data to Formspree
-      const response = await fetch('https://formspree.io/f/xzzeddgr', {
-        method: 'POST',
-        body: JSON.stringify(completeData),
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
-      });
-      
-      if (!response.ok) {
-        throw new Error('Form submission failed');
-      }
-      
+    console.log('Submitting data to Formspree:', completeData);
+    
+    // Send data to Formspree using the hook
+    await submitToFormspree(completeData);
+    
+    // If submission was successful, proceed
+    if (formState.succeeded) {
       console.log('Assessment data sent successfully!');
-    } catch (error) {
-      console.error('Error submitting assessment:', error);
-      // We still show results even if submission fails
+    } else if (formState.errors && formState.errors.length > 0) {
+      console.error('Error submitting assessment:', formState.errors);
     }
     
-    // Show the final results
+    // Show the final results even if submission fails
     setShowResults(true);
   };
 
@@ -497,10 +494,25 @@ export default function ServiceAssessment() {
               
               <button
                 type="submit"
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors"
+                disabled={formState.submitting}
+                className={`w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors ${
+                  formState.submitting ? 'opacity-75 cursor-not-allowed' : ''
+                }`}
               >
-                Get My Recommendations
+                {formState.submitting ? 'Submitting...' : 'Get My Recommendations'}
               </button>
+              
+              {formState.errors.map((error) => (
+                <div key={error.code} className="text-red-500 text-sm mt-1">
+                  {error.message}
+                </div>
+              ))}
+              <ValidationError 
+                prefix="Email" 
+                field="email"
+                errors={formState.errors}
+                className="text-red-500 text-sm mt-1"
+              />
             </form>
           </div>
         );
