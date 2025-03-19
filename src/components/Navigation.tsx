@@ -27,11 +27,12 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Force a specific, very visible style for non-home pages to confirm changes are working
   const navBackgroundColor = () => {
     if (isHomePage) {
       return isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4';
     } else {
-      return 'bg-white shadow-md py-2';
+      return 'bg-blue-50 shadow-md py-3 border-b-2 border-blue-200';
     }
   };
 
