@@ -18,7 +18,7 @@ export default function TypewriterEffect({
   speed = 50,
   delay = 1500,
   className = '',
-  cursorClassName = 'border-r-2 border-blue-500 ml-1 animate-blink',
+  cursorClassName = 'border-r-2 border-secondary-500 ml-1 animate-blink h-6 inline-block',
   repeat = false,
   onComplete,
 }: TypewriterEffectProps) {
@@ -40,7 +40,7 @@ export default function TypewriterEffect({
   }, [texts, textIndex]);
 
   useEffect(() => {
-    if (!inView || isComplete) return;
+    if (!inView || isComplete || typeof window === 'undefined') return;
     
     const handleTyping = () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import FadeIn from '@/components/FadeIn';
 
 const blogPosts = [
@@ -162,12 +163,14 @@ export default function BlogPage() {
                   <Link href={`/blog/${post.id}`} className="block h-full">
                     <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
                       <div className="relative h-48 bg-gray-200">
-                        {/* Placeholder for blog post image */}
-                        <div className="absolute inset-0 flex items-center justify-center text-gray-500">
-                          <svg className="h-12 w-12" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                          </svg>
-                        </div>
+                        {/* Blog post image */}
+                        <Image 
+                          src={post.imageUrl} 
+                          alt={post.title}
+                          className="object-cover"
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
                         <div className="absolute top-4 left-4">
                           <span className="bg-blue-600 text-white text-xs px-3 py-1 rounded-full font-medium">
                             {post.category}

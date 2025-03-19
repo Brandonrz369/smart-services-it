@@ -25,7 +25,16 @@ export default function FloatingShapes({
   const [shapes, setShapes] = useState<ShapeProps[]>([]);
 
   useEffect(() => {
-    const colors = ['#3b82f6', '#6366f1', '#a855f7', '#ec4899', '#2563eb']; // Using hex values instead of Tailwind classes
+    // Use our defined color palette
+    const colors = [
+      'var(--primary-300)',
+      'var(--primary-400)',
+      'var(--primary-500)',
+      'var(--primary-600)',
+      'var(--primary-700)',
+      'var(--secondary-300)',
+      'var(--secondary-400)'
+    ];
     const types: Array<'circle' | 'square' | 'triangle'> = ['circle', 'square', 'triangle'];
     
     const generatedShapes: ShapeProps[] = [];
@@ -49,8 +58,8 @@ export default function FloatingShapes({
     const { size, x, y, rotation, delay, type, color } = shape;
     const opacity = Math.random() * 0.3 + 0.1;
     
+    // Remove key from the props object
     const commonProps = {
-      key: index,
       className: `absolute backdrop-blur-sm`,
       style: {
         width: `${size}px`,
@@ -78,12 +87,13 @@ export default function FloatingShapes({
     
     switch (type) {
       case 'circle':
-        return <motion.div {...commonProps} className={`${commonProps.className} rounded-full`} />;
+        return <motion.div key={index} {...commonProps} className={`${commonProps.className} rounded-full`} />;
       case 'square':
-        return <motion.div {...commonProps} className={`${commonProps.className} rounded-md`} />;
+        return <motion.div key={index} {...commonProps} className={`${commonProps.className} rounded-md`} />;
       case 'triangle':
         return (
           <motion.div
+            key={index}
             {...commonProps}
             className={`${commonProps.className} triangle`}
             style={{
