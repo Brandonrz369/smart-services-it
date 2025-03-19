@@ -1,0 +1,78 @@
+LB Computer Help AI Website Generation Instructions:
+
+**Company Overview:**
+LB Computer Help provides comprehensive IT support and repair services across Los Angeles County, emphasizing reliable, personalized, and efficient service. The business operates under a dual model, serving both residential/small business customers and larger clients requiring managed services (MSP).
+
+**Contact Information:**
+- Phone/Text: (213) 349-6790
+- Email: support@lbcomputerhelp.com
+- Address: 927 Magnolia Ave #2, Long Beach, CA 90813
+- Hours: Mon-Fri 6 AM - 6 PM, Sat 6 AM - 6 PM, Sun Closed
+- Website: www.lbcomputerhelp.com
+
+**Core Service Offerings:**
+
+1. **Computer Repairs & IT Support:**
+   - Laptop Screen Replacement (MacBook, Dell, HP, Lenovo)
+   - Battery Replacements
+   - Keyboard and Small-Parts Repairs
+   - Software Troubleshooting and OS Reinstallation
+   - Virus/Malware Removal
+   - Data Recovery and Backup Solutions
+   - Network Setup, Configuration, and Wi-Fi Optimization
+
+2. **Smartphones & Tablets:**
+   - Screen, Glass, Camera, and Lens Repairs
+   - Charging Port and Battery Issues
+   - General Diagnostic Services
+
+3. **Smartwatches and Earbuds:**
+   - Screen Repairs and Battery Replacements for Apple Watches
+   - Custom modifications (e.g., AirPod Max Lightning to USB-C conversions)
+
+4. **Managed Services Provider (MSP) Offerings:**
+   - Complete IT Infrastructure Management (including Microsoft 365, Security Solutions)
+   - Ongoing Proactive Monitoring
+   - Strategic IT Planning and Implementation
+   - Advanced security, strategic IT planning, cloud service implementation, business continuity planning, compliance management
+
+**Target Customer Segments:**
+- Residential Computer Users (50%)
+- Small Business Owners (20%)
+- MSP Transition Clients (20%)
+- Smart Home Adopters (10%)
+
+**Key Business Differentiators:**
+- Personalized service with direct technician access
+- Mobile, in-home, and rapid response service
+- Transparent, straightforward approach
+- Professionalism, expertise, and friendly service approach
+
+**Warranty Information:**
+- 90-day warranty on all parts and labor
+
+**Testimonials and Customer Reviews:**
+- 23 total reviews, 5-star average
+- Clients include residential users, boutique law firms (Visionary Law Group), small businesses
+- Emphasized qualities: expertise, rapid solutions, professional demeanor, transparency, clear communication, and excellent customer service
+
+**Technical Capabilities Highlights:**
+- Proven experience with various platforms (Apple, Windows, Microsoft, Samsung, Lenovo)
+- Expertise in data confidentiality and security
+- Sophisticated MSP project capabilities (complete migrations, vendor management, detailed documentation)
+- Specialization in comprehensive system diagnostics and preventive maintenance
+
+**Geographic Coverage:**
+Serving Long Beach and all of Los Angeles County, including neighborhoods like Lakewood, Signal Hill, Seal Beach, Los Alamitos, Carson, Belmont Shore, Naples, Bixby Knolls, Alamitos Beach, California Heights, Wrigley, Downtown Long Beach, and surrounding areas.
+
+**Key Pages & Content:**
+- Home: Clear overview, service categories, testimonials
+- Services: Detailed descriptions, FAQs
+- About: Company story, mission, approach
+- Contact: Clear communication channels, location, and form
+
+**Business Identity and Values:**
+- Reliability, Efficiency, Technical Expertise, and Customer-Centric Service
+
+
+
