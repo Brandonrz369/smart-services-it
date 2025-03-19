@@ -695,7 +695,10 @@ export default function ServiceAssessment() {
             </AnimatePresence>
           </div>
         ) : (
-          <Results />
+          // Use showResults to conditionally render with additional styling if needed
+          <div className={showResults ? "fade-in" : ""}>
+            <Results />
+          </div>
         )}
       </div>
     </div>
