@@ -251,35 +251,41 @@ export default function ServiceAssessment() {
     });
   };
 
-  // Initialize Formspree
-  const [formState, submitToFormspree] = useForm("xzzeddgr");
-  
   // Handle contact form submit
   const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Combine contact info with assessment answers
-    const completeData = {
-      assessment_answers: state.answers,
-      name: contactInfo.name,
-      email: contactInfo.email,
-      phone: contactInfo.phone
-    };
-    
-    console.log('Submitting data to Formspree:', completeData);
-    
-    // Send data to Formspree using the hook
-    await submitToFormspree(completeData);
-    
-    // If submission was successful, proceed
-    if (formState.succeeded) {
-      console.log('Assessment data sent successfully!');
-    } else if (formState.errors && formState.errors.length > 0) {
-      console.error('Error submitting assessment:', formState.errors);
+    try {
+      // Get form data
+      const form = e.target as HTMLFormElement;
+      const formData = new FormData(form);
+      
+      // Add assessment answers to form data
+      formData.append('assessment_answers', JSON.stringify(state.answers));
+      
+      console.log('Submitting data to Formspree');
+      
+      // Send data directly to Formspree
+      const response = await fetch('https://formspree.io/f/xzzeddgr', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      
+      if (response.ok) {
+        console.log('Assessment data sent successfully!');
+      } else {
+        console.error('Error submitting assessment');
+      }
+      
+      // Show the results regardless of submission success
+      setShowResults(true);
+    } catch (error) {
+      console.error('Error submitting data:', error);
+      setShowResults(true); // Still show results even if there was an error
     }
-    
-    // Show the final results even if submission fails
-    setShowResults(true);
   };
 
   // Generate recommendations based on answers
@@ -494,25 +500,10 @@ export default function ServiceAssessment() {
               
               <button
                 type="submit"
-                disabled={formState.submitting}
-                className={`w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors ${
-                  formState.submitting ? 'opacity-75 cursor-not-allowed' : ''
-                }`}
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors"
               >
-                {formState.submitting ? 'Submitting...' : 'Get My Recommendations'}
+                Get My Recommendations
               </button>
-              
-              {formState.errors.map((error) => (
-                <div key={error.code} className="text-red-500 text-sm mt-1">
-                  {error.message}
-                </div>
-              ))}
-              <ValidationError 
-                prefix="Email" 
-                field="email"
-                errors={formState.errors}
-                className="text-red-500 text-sm mt-1"
-              />
             </form>
           </div>
         );

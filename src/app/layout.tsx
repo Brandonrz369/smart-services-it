@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
-import FormspreeProvider from '@/components/FormspreeProvider';
+// No provider needed for direct form submissions
 import "./globals.css";
 
 const geistSans = Geist({
@@ -30,12 +30,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <FormspreeProvider project="xzzeddgr">
-          <main className="min-h-screen">
-            {children}
-          </main>
-          
-          <footer className="bg-gray-900 text-white relative z-10">
+        <main className="min-h-screen">
+          {children}
+        </main>
+        
+        <footer className="bg-gray-900 text-white relative z-10">
           <div className="container mx-auto px-4 md:px-8 py-12">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               <div>
@@ -101,8 +100,7 @@ export default function RootLayout({
               </div>
             </div>
           </div>
-          </footer>
-        </FormspreeProvider>
+        </footer>
       </body>
     </html>
   );
