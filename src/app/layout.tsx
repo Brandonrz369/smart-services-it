@@ -31,8 +31,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <div className="fixed top-0 left-0 right-0 z-50 bg-red-500 text-white py-2 text-center font-bold">
+          Navigation Indicator - You should see this on all pages!
+        </div>
         <Navigation />
-        <main className="min-h-screen pt-16">
+        <main className="min-h-screen pt-28">
           {children}
         </main>
         

@@ -12,8 +12,15 @@ export default function Navigation() {
   useEffect(() => {
     if (typeof window === 'undefined') return;
     
-    // Check if current page is home page
-    setIsHomePage(window.location.pathname === '/' || window.location.pathname === '');
+    // Check if current page is home page with logging for debugging
+    const path = window.location.pathname;
+    console.log("Current path:", path);
+    const isHome = path === '/' || path === '';
+    console.log("Is home page:", isHome);
+    setIsHomePage(isHome);
+    
+    // Force to always show non-home styling for testing
+    // setIsHomePage(false);
     
     const handleScroll = () => {
       if (window.scrollY > 100) {
@@ -22,6 +29,9 @@ export default function Navigation() {
         setIsScrolled(false);
       }
     };
+    
+    // Immediate check for scroll position
+    handleScroll();
     
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -32,7 +42,7 @@ export default function Navigation() {
     if (isHomePage) {
       return isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4';
     } else {
-      return 'bg-blue-50 shadow-md py-3 border-b-2 border-blue-200';
+      return 'bg-red-100 shadow-md py-3 border-b-4 border-red-500';
     }
   };
 
