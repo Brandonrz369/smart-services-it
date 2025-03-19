@@ -174,7 +174,7 @@ export default function ContactPage() {
                     </div>
                     <h3 className="text-xl font-bold text-red-800 mb-2">Oops! Something went wrong</h3>
                     <p className="text-red-700 mb-4">
-                      We couldn't send your message. Please try again or contact us directly at (213) 349-6790.
+                      We couldn&apos;t send your message. Please try again or contact us directly at (213) 349-6790.
                     </p>
                     <button 
                       onClick={() => setFormStatus('idle')}
@@ -310,7 +310,7 @@ export default function ContactPage() {
               <h2 className="text-3xl font-bold mb-4">Schedule an Appointment</h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
                 Book a time for IT support or consultation directly using our online calendar. 
-                Select a time that works for you, and we'll confirm your appointment.
+                Select a time that works for you, and we&apos;ll confirm your appointment.
               </p>
             </div>
             
