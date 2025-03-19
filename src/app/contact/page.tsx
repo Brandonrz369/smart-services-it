@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { useForm, ValidationError } from '@formspree/react';
 import FadeIn from '@/components/FadeIn';
 
 export default function ContactPage() {

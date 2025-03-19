@@ -162,7 +162,7 @@ export default function ServiceAssessment() {
     progress: 0
   });
 
-  const [showResults, setShowResults] = useState(false);
+  const [, setShowResults] = useState(false);
   const [contactInfo, setContactInfo] = useState({
     name: '',
     email: '',
