@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useForm, ValidationError } from '@formspree/react';
 
 // Types
 interface Question {
@@ -163,12 +162,13 @@ export default function ServiceAssessment() {
     progress: 0
   });
 
-  const [, setShowResults] = useState(false);
+  const [showResults, setShowResults] = useState(false);
   const [contactInfo, setContactInfo] = useState({
     name: '',
     email: '',
     phone: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Find current question
   const currentQuestion = assessment.questions.find(q => q.id === state.currentQuestionId);
@@ -254,6 +254,7 @@ export default function ServiceAssessment() {
   // Handle contact form submit
   const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
     
     try {
       // Get form data
@@ -262,8 +263,6 @@ export default function ServiceAssessment() {
       
       // Add assessment answers to form data
       formData.append('assessment_answers', JSON.stringify(state.answers));
-      
-      console.log('Submitting data to Formspree');
       
       // Send data directly to Formspree
       const response = await fetch('https://formspree.io/f/xzzeddgr', {
@@ -276,15 +275,17 @@ export default function ServiceAssessment() {
       
       if (response.ok) {
         console.log('Assessment data sent successfully!');
+        setShowResults(true);
       } else {
         console.error('Error submitting assessment');
+        // Still show results even if submission fails
+        setShowResults(true);
       }
-      
-      // Show the results regardless of submission success
-      setShowResults(true);
     } catch (error) {
       console.error('Error submitting data:', error);
       setShowResults(true); // Still show results even if there was an error
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -500,9 +501,12 @@ export default function ServiceAssessment() {
               
               <button
                 type="submit"
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors"
+                disabled={isSubmitting}
+                className={`w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors ${
+                  isSubmitting ? 'opacity-75 cursor-not-allowed' : ''
+                }`}
               >
-                Get My Recommendations
+                {isSubmitting ? 'Submitting...' : 'Get My Recommendations'}
               </button>
             </form>
           </div>
