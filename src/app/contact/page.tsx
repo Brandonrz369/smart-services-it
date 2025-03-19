@@ -12,15 +12,35 @@ export default function ContactPage() {
     setIsLoaded(true);
   }, []);
   
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormStatus('submitting');
     
-    // This would be connected to your form submission backend
-    // For demo purposes, we're just simulating a submission
-    setTimeout(() => {
-      setFormStatus('success');
-    }, 1500);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    
+    try {
+      // Submit to Formspree
+      const response = await fetch('https://formspree.io/f/xzzeddgr', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      
+      if (response.ok) {
+        // Success
+        setFormStatus('success');
+      } else {
+        // Error
+        console.error('Form submission failed');
+        setFormStatus('error');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setFormStatus('error');
+    }
   };
   
   return (
@@ -145,6 +165,24 @@ export default function ContactPage() {
                       Send Another Message
                     </button>
                   </div>
+                ) : formStatus === 'error' ? (
+                  <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
+                    <div className="text-red-500 mx-auto mb-4">
+                      <svg className="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <h3 className="text-xl font-bold text-red-800 mb-2">Oops! Something went wrong</h3>
+                    <p className="text-red-700 mb-4">
+                      We couldn't send your message. Please try again or contact us directly at (213) 349-6790.
+                    </p>
+                    <button 
+                      onClick={() => setFormStatus('idle')}
+                      className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition duration-300"
+                    >
+                      Try Again
+                    </button>
+                  </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -261,6 +299,33 @@ export default function ContactPage() {
               </div>
             </FadeIn>
           </div>
+        </div>
+      </section>
+      
+      {/* Booking Calendar Section */}
+      <section className="py-16 px-4 md:px-8 bg-blue-50">
+        <div className="max-w-6xl mx-auto">
+          <FadeIn>
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold mb-4">Schedule an Appointment</h2>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                Book a time for IT support or consultation directly using our online calendar. 
+                Select a time that works for you, and we'll confirm your appointment.
+              </p>
+            </div>
+            
+            <div className="bg-white p-4 rounded-xl shadow-lg">
+              <div className="h-[600px] md:h-[700px]">
+                {/* Replace with your Calendly link */}
+                <iframe
+                  src="https://calendly.com/d/gvz-tgn-rjg/lb-computer-help-consultation"
+                  width="100%"
+                  height="100%"
+                  frameBorder="0"
+                ></iframe>
+              </div>
+            </div>
+          </FadeIn>
         </div>
       </section>
       

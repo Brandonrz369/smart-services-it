@@ -80,19 +80,38 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      alert("Thank you for your message! We'll get back to you shortly.");
+    // Get form data
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+    
+    try {
+      // Submit to Formspree
+      const response = await fetch('https://formspree.io/f/xzzeddgr', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
       
-      // Reset form fields
-      const form = e.target as HTMLFormElement;
-      form.reset();
-    }, 1500);
+      if (response.ok) {
+        // Success
+        setIsSubmitting(false);
+        alert("Thank you for your message! We'll get back to you shortly.");
+        form.reset();
+      } else {
+        // Error
+        const data = await response.json();
+        throw new Error(data.error || 'Form submission failed');
+      }
+    } catch (error) {
+      setIsSubmitting(false);
+      alert(`Error: ${error instanceof Error ? error.message : 'Something went wrong'}`);
+    }
   };
   
   const testimonials = [

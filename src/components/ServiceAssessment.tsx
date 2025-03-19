@@ -251,7 +251,7 @@ export default function ServiceAssessment() {
   };
 
   // Handle contact form submit
-  const handleContactSubmit = (e: React.FormEvent) => {
+  const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Combine contact info with assessment answers
@@ -260,8 +260,26 @@ export default function ServiceAssessment() {
       contactInfo
     };
     
-    // Here you would typically send this data to your backend
-    console.log('Complete assessment data:', completeData);
+    try {
+      // Send data to Formspree
+      const response = await fetch('https://formspree.io/f/xzzeddgr', {
+        method: 'POST',
+        body: JSON.stringify(completeData),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      });
+      
+      if (!response.ok) {
+        throw new Error('Form submission failed');
+      }
+      
+      console.log('Assessment data sent successfully!');
+    } catch (error) {
+      console.error('Error submitting assessment:', error);
+      // We still show results even if submission fails
+    }
     
     // Show the final results
     setShowResults(true);
