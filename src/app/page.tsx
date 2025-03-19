@@ -245,46 +245,6 @@ export default function Home() {
 
   return (
     <div className={`min-h-screen bg-background text-foreground font-sans transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
-      {/* Sticky Header */}
-      <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'}`}>
-        <div className="container mx-auto px-4 flex justify-between items-center">
-          <span className={`font-bold text-xl ${isScrolled ? 'text-blue-600' : 'text-white'}`}>LB Computer Help</span>
-          <nav className="hidden md:flex items-center gap-8">
-            <a 
-              href="#services" 
-              className={`${isScrolled ? 'text-gray-700' : 'text-white'} hover:text-blue-500 transition-colors font-medium`}
-            >
-              Services
-            </a>
-            <Link 
-              href="/blog" 
-              className={`${isScrolled ? 'text-gray-700' : 'text-white'} hover:text-blue-500 transition-colors font-medium`}
-            >
-              Blog
-            </Link>
-            <Link 
-              href="/emergency" 
-              className={`${isScrolled ? 'text-gray-700' : 'text-white'} hover:text-orange-400 transition-colors font-medium text-orange-300`}
-            >
-              Emergency
-            </Link>
-            <a 
-              href="#about" 
-              className={`${isScrolled ? 'text-gray-700' : 'text-white'} hover:text-blue-500 transition-colors font-medium`}
-            >
-              About
-            </a>
-            <a 
-              href="#contact" 
-              className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium ml-2"
-            >
-              Contact
-            </a>
-          </nav>
-          <SimpleMobileNav isScrolled={isScrolled} />
-        </div>
-      </div>
-      
       {/* Floating CTA for mobile */}
       <div className="floating-cta md:hidden">
         <a 

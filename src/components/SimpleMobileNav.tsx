@@ -4,10 +4,10 @@ import { useState } from 'react';
 import Link from 'next/link';
 
 interface MobileNavProps {
-  isScrolled: boolean;
+  isScrolled?: boolean;
 }
 
-export default function SimpleMobileNav({ isScrolled }: MobileNavProps) {
+export default function SimpleMobileNav({ isScrolled = false }: MobileNavProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -49,13 +49,13 @@ export default function SimpleMobileNav({ isScrolled }: MobileNavProps) {
             <nav className="p-4">
               <ul className="space-y-4">
                 <li>
-                  <a 
-                    href="#services" 
+                  <Link 
+                    href="/#services" 
                     className="block py-2 px-4 text-lg font-medium text-gray-800 hover:bg-primary-50 hover:text-primary-600 rounded-lg"
                     onClick={() => setIsOpen(false)}
                   >
                     Services
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <Link 
@@ -76,22 +76,22 @@ export default function SimpleMobileNav({ isScrolled }: MobileNavProps) {
                   </Link>
                 </li>
                 <li>
-                  <a 
-                    href="#about" 
+                  <Link 
+                    href="/#about" 
                     className="block py-2 px-4 text-lg font-medium text-gray-800 hover:bg-primary-50 hover:text-primary-600 rounded-lg"
                     onClick={() => setIsOpen(false)}
                   >
                     About
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a 
-                    href="#contact" 
+                  <Link 
+                    href="/contact" 
                     className="block py-2 px-4 text-lg font-medium text-gray-800 hover:bg-primary-50 hover:text-primary-600 rounded-lg"
                     onClick={() => setIsOpen(false)}
                   >
                     Contact
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </nav>
