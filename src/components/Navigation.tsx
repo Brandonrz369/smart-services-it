@@ -31,7 +31,7 @@ export default function Navigation() {
     if (isHomePage) {
       return isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4';
     } else {
-      return 'bg-blue-600 py-4';
+      return 'bg-white shadow-md py-2';
     }
   };
 
@@ -39,7 +39,7 @@ export default function Navigation() {
     if (isHomePage) {
       return isScrolled ? 'text-blue-600' : 'text-white';
     } else {
-      return 'text-white';
+      return 'text-blue-600';
     }
   };
 
@@ -47,7 +47,7 @@ export default function Navigation() {
     if (isHomePage) {
       return isScrolled ? 'text-gray-700' : 'text-white';
     } else {
-      return 'text-white';
+      return 'text-gray-700';
     }
   };
 
