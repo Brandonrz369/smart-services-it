@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
 import Navigation from "@/components/Navigation";
+import ChatBot from "@/components/ChatBot";
 // No provider needed for direct form submissions
 import "./globals.css";
 
@@ -35,6 +36,8 @@ export default function RootLayout({
         <main className="min-h-screen pt-20">
           {children}
         </main>
+        
+        <ChatBot />
         
         <footer className="bg-gray-900 text-white relative z-10">
           <div className="container mx-auto px-4 md:px-8 py-12">
