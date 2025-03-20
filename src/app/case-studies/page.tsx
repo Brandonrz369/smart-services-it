@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import FadeIn from '@/components/FadeIn';
 import RevealText from '@/components/RevealText';
 
@@ -174,10 +175,19 @@ export default function CaseStudiesPage() {
                   <Link href={`/case-studies/${study.id}`} className="block">
                     <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 h-full">
                       <div className="relative h-64">
-                        <img
+                        <Image
                           src={study.image}
                           alt={study.title}
-                          className="absolute inset-0 w-full h-full object-cover"
+                          className="object-cover"
+                          fill
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                          onError={(e) => {
+                            // Fallback for missing or incorrectly formatted images
+                            const target = e.target as HTMLImageElement;
+                            target.src = '/images/case-studies-placeholder/placeholder.svg';
+                            target.style.objectFit = 'contain';
+                            target.style.padding = '20px';
+                          }}
                         />
                         <div className="absolute top-4 left-4">
                           <span className="bg-blue-600 text-white text-sm px-3 py-1 rounded-full font-medium">
@@ -252,10 +262,19 @@ export default function CaseStudiesPage() {
                   <Link href={`/case-studies/${study.id}`} className="block h-full">
                     <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 h-full flex flex-col border border-gray-100">
                       <div className="relative h-48">
-                        <img
+                        <Image
                           src={study.image}
                           alt={study.title}
-                          className="absolute inset-0 w-full h-full object-cover"
+                          className="object-cover"
+                          fill
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                          onError={(e) => {
+                            // Fallback for missing or incorrectly formatted images
+                            const target = e.target as HTMLImageElement;
+                            target.src = '/images/case-studies-placeholder/placeholder.svg';
+                            target.style.objectFit = 'contain';
+                            target.style.padding = '20px';
+                          }}
                         />
                         <div className="absolute top-3 left-3">
                           <span className="bg-blue-600 text-white text-xs px-2 py-1 rounded-full font-medium">

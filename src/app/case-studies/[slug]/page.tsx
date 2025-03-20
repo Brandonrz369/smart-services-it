@@ -333,6 +333,13 @@ export default function CaseStudyDetailPage() {
                     className="object-contain h-full w-full"
                     width={80}
                     height={40}
+                    onError={(e) => {
+                      // Fallback for missing or incorrectly formatted images
+                      const target = e.target as HTMLImageElement;
+                      target.src = '/images/case-studies-placeholder/placeholder.svg';
+                      target.style.objectFit = 'contain';
+                      target.style.padding = '5px';
+                    }}
                   />
                 ) : (
                   <div className="text-blue-600 font-bold">
@@ -401,6 +408,13 @@ export default function CaseStudyDetailPage() {
                             className="object-cover hover:scale-105 transition-transform duration-300"
                             fill
                             sizes="(max-width: 768px) 100vw, 30vw"
+                            onError={(e) => {
+                              // Fallback for missing or incorrectly formatted images
+                              const target = e.target as HTMLImageElement;
+                              target.src = '/images/case-studies-placeholder/placeholder.svg';
+                              target.style.objectFit = 'contain';
+                              target.style.padding = '20px';
+                            }}
                           />
                         </div>
                       ))}
@@ -532,6 +546,13 @@ export default function CaseStudyDetailPage() {
                           className="object-cover"
                           fill
                           sizes="(max-width: 768px) 100vw, 30vw"
+                          onError={(e) => {
+                            // Fallback for missing or incorrectly formatted images
+                            const target = e.target as HTMLImageElement;
+                            target.src = '/images/case-studies-placeholder/placeholder.svg';
+                            target.style.objectFit = 'contain';
+                            target.style.padding = '20px';
+                          }}
                         />
                         <div className="absolute top-3 left-3">
                           <span className="bg-blue-600 text-white text-xs px-2 py-1 rounded-full font-medium">
