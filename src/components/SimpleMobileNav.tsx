@@ -9,7 +9,18 @@ interface MobileNavProps {
 
 export default function SimpleMobileNav({}: MobileNavProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [servicesExpanded, setServicesExpanded] = useState(false);
+  const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({
+    services: false,
+    resources: false,
+    company: false
+  });
+  
+  const toggleSection = (section: string) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [section]: !prev[section]
+    }));
+  };
 
   return (
     <div className="md:hidden">
@@ -54,12 +65,12 @@ export default function SimpleMobileNav({}: MobileNavProps) {
                   <div>
                     <button 
                       className="flex items-center justify-between w-full py-2 px-4 text-lg font-medium text-gray-800 hover:bg-blue-50 hover:text-blue-600 rounded-lg"
-                      onClick={() => setServicesExpanded(!servicesExpanded)}
+                      onClick={() => toggleSection('services')}
                       type="button"
                     >
                       <span>Services</span>
                       <svg 
-                        className={`h-5 w-5 transform transition-transform ${servicesExpanded ? 'rotate-180' : ''}`} 
+                        className={`h-5 w-5 transform transition-transform ${expandedSections.services ? 'rotate-180' : ''}`} 
                         fill="none" 
                         viewBox="0 0 24 24" 
                         stroke="currentColor"
@@ -68,7 +79,7 @@ export default function SimpleMobileNav({}: MobileNavProps) {
                       </svg>
                     </button>
                     
-                    {servicesExpanded && (
+                    {expandedSections.services && (
                       <div className="ml-4 mt-2 border-l-2 border-blue-100 pl-4">
                         <Link 
                           href="/#services" 
@@ -96,55 +107,107 @@ export default function SimpleMobileNav({}: MobileNavProps) {
                   </div>
                 </li>
                 
+                {/* Resources Dropdown */}
                 <li>
-                  <Link 
-                    href="/case-studies" 
-                    className="block py-2 px-4 text-lg font-medium text-gray-800 hover:bg-primary-50 hover:text-primary-600 rounded-lg"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Case Studies
-                  </Link>
+                  <div>
+                    <button 
+                      className="flex items-center justify-between w-full py-2 px-4 text-lg font-medium text-gray-800 hover:bg-blue-50 hover:text-blue-600 rounded-lg"
+                      onClick={() => toggleSection('resources')}
+                      type="button"
+                    >
+                      <span>Resources</span>
+                      <svg 
+                        className={`h-5 w-5 transform transition-transform ${expandedSections.resources ? 'rotate-180' : ''}`} 
+                        fill="none" 
+                        viewBox="0 0 24 24" 
+                        stroke="currentColor"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    
+                    {expandedSections.resources && (
+                      <div className="ml-4 mt-2 border-l-2 border-blue-100 pl-4">
+                        <Link 
+                          href="/case-studies" 
+                          className="block py-2 px-4 text-base font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          Case Studies
+                        </Link>
+                        <Link 
+                          href="/blog" 
+                          className="block py-2 px-4 text-base font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          Blog
+                        </Link>
+                        <Link 
+                          href="/web-tools" 
+                          className="block py-2 px-4 text-base font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          Web Tools
+                        </Link>
+                      </div>
+                    )}
+                  </div>
                 </li>
+                
+                {/* Company Dropdown */}
                 <li>
-                  <Link 
-                    href="/blog" 
-                    className="block py-2 px-4 text-lg font-medium text-gray-800 hover:bg-primary-50 hover:text-primary-600 rounded-lg"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Blog
-                  </Link>
+                  <div>
+                    <button 
+                      className="flex items-center justify-between w-full py-2 px-4 text-lg font-medium text-gray-800 hover:bg-blue-50 hover:text-blue-600 rounded-lg"
+                      onClick={() => toggleSection('company')}
+                      type="button"
+                    >
+                      <span>Company</span>
+                      <svg 
+                        className={`h-5 w-5 transform transition-transform ${expandedSections.company ? 'rotate-180' : ''}`} 
+                        fill="none" 
+                        viewBox="0 0 24 24" 
+                        stroke="currentColor"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    
+                    {expandedSections.company && (
+                      <div className="ml-4 mt-2 border-l-2 border-blue-100 pl-4">
+                        <Link 
+                          href="/#about" 
+                          className="block py-2 px-4 text-base font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          About Us
+                        </Link>
+                        <Link 
+                          href="/contact" 
+                          className="block py-2 px-4 text-base font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          Contact
+                        </Link>
+                      </div>
+                    )}
+                  </div>
                 </li>
-                <li>
-                  <Link 
-                    href="/web-tools" 
-                    className="block py-2 px-4 text-lg font-medium text-gray-800 hover:bg-primary-50 hover:text-primary-600 rounded-lg"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Web Tools
-                  </Link>
-                </li>
+                
+                {/* Emergency Button */}
                 <li>
                   <Link 
                     href="/emergency" 
-                    className="block py-2 px-4 text-lg font-medium text-secondary-500 hover:bg-secondary-50 hover:text-secondary-600 rounded-lg"
+                    className="block py-2 px-4 text-lg font-medium text-orange-500 hover:bg-orange-50 rounded-lg border border-orange-400"
                     onClick={() => setIsOpen(false)}
                   >
-                    Emergency
+                    Emergency Support
                   </Link>
                 </li>
-                <li>
-                  <Link 
-                    href="/#about" 
-                    className="block py-2 px-4 text-lg font-medium text-gray-800 hover:bg-primary-50 hover:text-primary-600 rounded-lg"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    About
-                  </Link>
-                </li>
-                <li>
+                <li className="mt-4">
                   <Link 
                     href="/contact" 
-                    className="block py-2 px-4 text-lg font-medium text-gray-800 hover:bg-primary-50 hover:text-primary-600 rounded-lg"
+                    className="block py-2 px-4 text-lg font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg text-center"
                     onClick={() => setIsOpen(false)}
                   >
                     Contact

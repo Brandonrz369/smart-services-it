@@ -9,6 +9,7 @@ const servicesDetail = [
     title: "Laptop & Desktop Repair",
     description: "Professional diagnostics and repairs at your home or office.",
     icon: "💻",
+    image: "/images/services/computer-repair.jpg",
     features: [
       "Screen Replacement",
       "Hardware Upgrades",
@@ -30,6 +31,7 @@ const servicesDetail = [
     title: "Managed IT Services (MSP)",
     description: "Complete IT management for businesses of all sizes.",
     icon: "🏢",
+    image: "/images/services/managed-it.jpg",
     features: [
       "IT Infrastructure Management",
       "Proactive Monitoring",
@@ -51,6 +53,7 @@ const servicesDetail = [
     title: "Mobile Device Repair",
     description: "Expert repairs for smartphones and tablets.",
     icon: "📱",
+    image: "/images/services/mobile-repair.jpg",
     features: [
       "Screen & Glass Repairs",
       "Battery Replacements",
@@ -72,6 +75,7 @@ const servicesDetail = [
     title: "Network & Server Solutions",
     description: "Business-grade networking and server management.",
     icon: "🔧",
+    image: "/images/services/network-support.jpg",
     features: [
       "Server Setup & Maintenance",
       "Network Security",
@@ -93,6 +97,7 @@ const servicesDetail = [
     title: "Data Recovery & Backup",
     description: "Secure solutions for critical business and personal data.",
     icon: "💾",
+    image: "/images/services/data-recovery.jpg",
     features: [
       "Hard Drive Recovery",
       "Cloud Backup Solutions",
@@ -114,6 +119,7 @@ const servicesDetail = [
     title: "Smart Home & Devices",
     description: "Setup and support for all your connected devices.",
     icon: "🏠",
+    image: "/images/services/remote-support.jpg",
     features: [
       "Smart Watch Repairs",
       "Earbud/Headphone Fixes",
@@ -135,6 +141,7 @@ const servicesDetail = [
     title: "Business IT Consulting",
     description: "Strategic technology guidance for your organization.",
     icon: "📊",
+    image: "/images/services/it-consulting.jpg",
     features: [
       "IT Strategy Development",
       "Technology Assessment",
