@@ -23,13 +23,13 @@ export default function ServiceCard({
   const [isHovered, setIsHovered] = useState(false);
 
   const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
   };
 
   const featureVariants = {
-    hidden: { opacity: 0, height: 0 },
-    visible: { opacity: 1, height: 'auto' },
+    hidden: { opacity: 0, height: 0, marginTop: 0 },
+    visible: { opacity: 1, height: 'auto', marginTop: 16 },
   };
 
   return (
@@ -46,10 +46,9 @@ export default function ServiceCard({
       <LazyMotion features={domAnimation}>
         <m.div 
           className="service-icon text-4xl mb-4"
-          initial={{ scale: 0.8, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.3 }}
+          initial={{ opacity: 1 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.2 }}
         >
           {icon}
         </m.div>

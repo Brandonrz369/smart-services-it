@@ -456,8 +456,7 @@ export default function Home() {
             }).map((service, index) => (
               <div 
                 key={index} 
-                className={`${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-                style={{ transitionDelay: `${300 + index * 100}ms`, transition: 'all 0.5s ease' }}
+                className="opacity-100"
               >
                 <ServiceCard 
                   icon={service.icon}

@@ -146,7 +146,9 @@ export default function TestimonialCarousel({
                 </div>
               )}
             </div>
-            <p className="text-gray-700 italic mb-6 text-base md:text-lg">&ldquo;{testimonials[current].text}&rdquo;</p>
+            <div className="h-32 md:h-36 overflow-y-auto flex items-center mb-6">
+              <p className="text-gray-700 italic text-base md:text-lg">&ldquo;{testimonials[current].text}&rdquo;</p>
+            </div>
             <div>
               {testimonials[current].image && (
                 <div className="w-16 h-16 rounded-full overflow-hidden mx-auto mb-3">
