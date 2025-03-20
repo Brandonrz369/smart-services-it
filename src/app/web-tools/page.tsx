@@ -322,6 +322,7 @@ const WebTools = () => {
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
+                    type="button"
                     className={`px-3 py-2 text-sm font-medium rounded-md transition-colors m-1 ${
                       activeTab === tab.id 
                         ? 'bg-white text-blue-700' 
@@ -443,6 +444,7 @@ const WebTools = () => {
                   <div className="pt-2">
                     <button
                       onClick={generatePassword}
+                      type="button"
                       className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md shadow-sm transition-colors"
                     >
                       Generate Password
@@ -557,6 +559,7 @@ const WebTools = () => {
                     <button
                       key={caseType.id}
                       onClick={() => setSelectedCase(caseType.id)}
+                      type="button"
                       className={`py-2 px-3 text-sm font-medium rounded ${
                         selectedCase === caseType.id
                           ? 'bg-blue-600 text-white'
@@ -572,6 +575,7 @@ const WebTools = () => {
                   <button
                     onClick={convertTextCase}
                     disabled={!inputText}
+                    type="button"
                     className={`w-full font-medium py-2 px-4 rounded-md shadow-sm transition-colors ${
                       !inputText
                         ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
@@ -643,6 +647,7 @@ const WebTools = () => {
                         <button
                           key={format.id}
                           onClick={() => setColorFormat(format.id)}
+                          type="button"
                           className={`py-2 px-3 text-sm font-medium rounded ${
                             colorFormat === format.id
                               ? 'bg-blue-600 text-white'
@@ -679,6 +684,7 @@ const WebTools = () => {
                   <div className="pt-2">
                     <button
                       onClick={convertColor}
+                      type="button"
                       className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md shadow-sm transition-colors"
                     >
                       Convert Color
@@ -797,6 +803,7 @@ const WebTools = () => {
                 <button
                   onClick={fetchIpInfo}
                   disabled={isLoadingIp}
+                  type="button"
                   className={`inline-flex items-center py-3 px-6 rounded-lg font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
                     isLoadingIp 
                       ? 'bg-gray-300 text-gray-500 cursor-not-allowed' 
@@ -946,6 +953,7 @@ const WebTools = () => {
                 <button
                   onClick={runSpeedTest}
                   disabled={isRunningTest}
+                  type="button"
                   className={`inline-flex items-center py-3 px-8 rounded-lg font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
                     isRunningTest 
                       ? 'bg-gray-300 text-gray-500 cursor-not-allowed' 

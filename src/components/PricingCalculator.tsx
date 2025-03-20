@@ -456,6 +456,7 @@ export default function PricingCalculator() {
               ? 'bg-blue-600 text-white shadow-md'
               : 'bg-gray-50 text-gray-700 hover:text-gray-900 hover:bg-gray-100'
           }`}
+          type="button"
         >
           Managed IT Services
         </button>
@@ -466,6 +467,7 @@ export default function PricingCalculator() {
               ? 'bg-orange-500 text-white shadow-md'
               : 'bg-gray-50 text-gray-700 hover:text-gray-900 hover:bg-gray-100'
           }`}
+          type="button"
         >
           On-Demand Support
         </button>
