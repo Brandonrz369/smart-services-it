@@ -41,11 +41,11 @@ const caseStudies = [
       'Traffic prioritization (QoS)',
       'Network monitoring and analytics'
     ],
-    featuredImage: '/images/case-studies-placeholder/placeholder.svg',
+    featuredImage: '/images/case-studies/retail-network.jpg',
     galleryImages: [
-      '/images/case-studies-placeholder/placeholder.svg',
-      '/images/case-studies-placeholder/placeholder.svg',
-      '/images/case-studies-placeholder/placeholder.svg'
+      '/images/case-studies/retail-network-1.jpg',
+      '/images/case-studies/retail-network-2.jpg',
+      '/images/case-studies/retail-network-3.jpg'
     ],
     logo: '/images/case-studies/retail-logo.png',
     featured: true
@@ -84,11 +84,11 @@ const caseStudies = [
       'SharePoint Online with custom security policies',
       'Azure Multi-Factor Authentication'
     ],
-    featuredImage: '/images/case-studies-placeholder/placeholder.svg',
+    featuredImage: '/images/case-studies/accounting-cloud.jpg',
     galleryImages: [
-      '/images/case-studies-placeholder/placeholder.svg',
-      '/images/case-studies-placeholder/placeholder.svg',
-      '/images/case-studies-placeholder/placeholder.svg'
+      '/images/case-studies/accounting-cloud-1.jpg',
+      '/images/case-studies/accounting-cloud-2.jpg',
+      '/images/case-studies/accounting-cloud-3.jpg'
     ],
     logo: '/images/case-studies/accounting-logo.png',
     featured: true
@@ -127,11 +127,11 @@ const caseStudies = [
       'Multi-factor authentication',
       'Security awareness training platform'
     ],
-    featuredImage: '/images/case-studies-placeholder/placeholder.svg',
+    featuredImage: '/images/case-studies/healthcare-security.jpg',
     galleryImages: [
-      '/images/case-studies-placeholder/placeholder.svg',
-      '/images/case-studies-placeholder/placeholder.svg',
-      '/images/case-studies-placeholder/placeholder.svg'
+      '/images/case-studies/healthcare-security-1.jpg',
+      '/images/case-studies/healthcare-security-2.jpg',
+      '/images/case-studies/healthcare-security-3.jpg'
     ],
     logo: '/images/case-studies/healthcare-logo.png',
     featured: false
@@ -356,6 +356,11 @@ export default function CaseStudyDetailPage() {
                   <Link key={study.id} href={`/case-studies/${study.id}`} className="block">
                     <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 h-full border border-gray-100">
                       <div className="relative h-40 bg-gray-200">
+                        <img 
+                          src={study.featuredImage}
+                          alt={study.title}
+                          className="w-full h-full object-cover"
+                        />
                         <div className="absolute top-3 left-3">
                           <span className="bg-blue-600 text-white text-xs px-2 py-1 rounded-full font-medium">
                             {study.industry}
