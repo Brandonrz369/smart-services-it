@@ -119,7 +119,7 @@ export default function BookingPage() {
                   <h2 className="text-2xl font-bold mb-6">Schedule Your Appointment</h2>
                   <div className="h-[700px]">
                     <CalendlyWidget 
-                      url="https://calendly.com/d/gvz-tgn-rjg/lb-computer-help-consultation" 
+                      url="https://calendly.com/lbcomputerhelp-support" 
                       styles={{ height: "100%", width: "100%" }}
                       prefill={{
                         customAnswers: {

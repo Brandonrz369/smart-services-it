@@ -316,7 +316,7 @@ export default function ContactPage() {
             <div className="bg-white p-4 rounded-xl shadow-lg">
               <div className="h-[600px] md:h-[700px]">
                 <CalendlyWidget 
-                  url="https://calendly.com/d/gvz-tgn-rjg/lb-computer-help-consultation" 
+                  url="https://calendly.com/lbcomputerhelp-support" 
                   styles={{ height: "100%", width: "100%" }}
                   prefill={{
                     name: "",
