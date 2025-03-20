@@ -138,6 +138,140 @@ const caseStudies = [
   }
 ];
 
+// Complete the case studies with manufacturing, law firm, and real estate that are missing from the mock data
+const fullCaseStudies = [
+  ...caseStudies,
+  {
+    id: 'manufacturing-erp-integration',
+    title: 'Manufacturing ERP Integration',
+    industry: 'Manufacturing',
+    client: 'Advanced Manufacturing Solutions',
+    location: 'Torrance, CA',
+    challenge: 'A manufacturing company with 120 employees struggled with disconnected systems causing inventory management and production planning issues. Legacy systems operated in isolation, leading to data duplication, inconsistencies, and inefficient workflows that impacted production schedules and customer delivery timelines.',
+    approach: [
+      'Performed comprehensive assessment of existing manufacturing systems and workflows',
+      'Designed custom integration solution connecting production floor systems with inventory management',
+      'Developed real-time data exchange between ERP, MRP, and warehouse management systems',
+      'Implemented phased deployment strategy to minimize production disruption',
+      'Provided comprehensive staff training on the integrated systems'
+    ],
+    solution: 'We designed and implemented a custom ERP integration solution that connected previously isolated systems for a unified flow of information. This included real-time data synchronization between production floor equipment, inventory management, and sales order processing. The solution featured custom API development, automated data validation, and a centralized dashboard for cross-department visibility.',
+    results: [
+      '27% increase in production efficiency through improved scheduling and resource allocation',
+      '42% reduction in inventory errors and associated costs',
+      'Real-time visibility across departments improved decision-making capabilities',
+      '35% decrease in order fulfillment time',
+      'Elimination of manual data re-entry, reducing administrative overhead'
+    ],
+    testimonial: {
+      quote: "The integration has transformed our operations by eliminating the information silos that were holding us back. We now have real-time visibility across our entire production process, and the improvements in efficiency and accuracy have been dramatic.",
+      author: "Thomas Wilson",
+      title: "Operations Director, Advanced Manufacturing Solutions"
+    },
+    keyTechnologies: [
+      'Custom API development',
+      'ERP/MRP system integration',
+      'Real-time data synchronization',
+      'IoT sensors for production tracking',
+      'Centralized business intelligence dashboard'
+    ],
+    featuredImage: '/images/case-studies/manufacturing-erp.jpg',
+    galleryImages: [
+      '/images/case-studies/manufacturing-erp-1.jpg',
+      '/images/case-studies/manufacturing-erp-2.jpg',
+      '/images/case-studies/manufacturing-erp-3.jpg'
+    ],
+    logo: '/images/case-studies/manufacturing-logo.png',
+    featured: false
+  },
+  {
+    id: 'law-firm-disaster-recovery',
+    title: 'Law Firm Disaster Recovery Implementation',
+    industry: 'Legal',
+    client: 'Pacific Law Partners',
+    location: 'Los Angeles, CA',
+    challenge: 'A law firm with 35 attorneys experienced critical data loss after hardware failure with inadequate backup systems. They lost access to case files and important legal documents, disrupting ongoing cases and creating potential liability issues. The firm needed an immediate solution to recover data and implement robust protection against future incidents.',
+    approach: [
+      'Conducted emergency data recovery operations on failed storage systems',
+      'Designed comprehensive business continuity and disaster recovery plan',
+      'Implemented automated backup solution with multi-site replication',
+      'Established regular recovery testing protocols and documentation',
+      'Provided staff training on data protection procedures'
+    ],
+    solution: 'We deployed a comprehensive disaster recovery solution featuring automated backups with both onsite and cloud-based redundancy. The system includes incremental backups every 15 minutes with point-in-time recovery capability, offsite replication to secure data centers, and automated testing to verify backup integrity. We also established quarterly recovery drills to ensure all systems can be restored within the required timeframes.',
+    results: [
+      'Successfully recovered 98% of critical data from failed systems',
+      'Achieved 15-minute recovery time objective for critical systems',
+      '100% data protection coverage across all practice areas',
+      'Implemented quarterly recovery testing protocols with documented procedures',
+      'Eliminated risk of single-point failure with multi-site redundancy'
+    ],
+    testimonial: {
+      quote: "After experiencing a devastating data loss, the new disaster recovery system has given us peace of mind. The recovery process was remarkably efficient, and we now have confidence that our critical client data is protected regardless of what happens.",
+      author: "Jennifer Martinez",
+      title: "Managing Partner, Pacific Law Partners"
+    },
+    keyTechnologies: [
+      'Multi-site backup replication',
+      'Point-in-time recovery capability',
+      'Automated backup verification',
+      'Immutable backup technology for ransomware protection',
+      'Recovery time orchestration'
+    ],
+    featuredImage: '/images/case-studies/law-firm-recovery.jpg',
+    galleryImages: [
+      '/images/case-studies/law-firm-recovery-1.jpg',
+      '/images/case-studies/law-firm-recovery-2.jpg',
+      '/images/case-studies/law-firm-recovery-3.jpg'
+    ],
+    logo: '/images/case-studies/law-firm-logo.png',
+    featured: false
+  },
+  {
+    id: 'real-estate-mobile-workforce',
+    title: 'Real Estate Mobile Workforce Solution',
+    industry: 'Real Estate',
+    client: 'Coastal Properties Group',
+    location: 'Long Beach, CA',
+    challenge: 'A growing real estate agency with 40 agents needed to equip their mobile workforce with secure, reliable access to property systems and documents while in the field. Agents were struggling with inconsistent access to MLS listings, client information, and document signing tools, resulting in delays and lost opportunities.',
+    approach: [
+      'Assessed existing workflows and identified key mobile functionality requirements',
+      'Designed comprehensive mobile solution with secure access to critical systems',
+      'Implemented mobile device management for security and compliance',
+      'Integrated e-signature and document management platforms',
+      'Developed custom training program for agent onboarding'
+    ],
+    solution: 'We deployed a comprehensive mobile workforce solution that provides agents with secure access to all critical systems from any location. The solution includes managed mobile devices with advanced security controls, seamless integration with the agency\'s CRM system, document management with e-signature capabilities, and real-time synchronization of property data. A centralized management console allows IT staff to monitor, support, and secure all devices remotely.',
+    results: [
+      '89% faster document processing for offers and contracts',
+      '65% increase in agent responsiveness to client inquiries',
+      'Secure compliance with real estate regulations for remote transactions',
+      '47% reduction in lead response time',
+      '31% increase in agent productivity through improved mobile workflows'
+    ],
+    testimonial: {
+      quote: "This mobile solution has completely transformed how our agents work. They can now handle every aspect of the client relationship while in the field - from accessing property information to closing deals. The increased efficiency and responsiveness has given us a significant competitive advantage.",
+      author: "David Rodriguez",
+      title: "Broker/Owner, Coastal Properties Group"
+    },
+    keyTechnologies: [
+      'Mobile device management (MDM)',
+      'Secure document management',
+      'E-signature integration',
+      'CRM mobile synchronization',
+      'Location-based property data access'
+    ],
+    featuredImage: '/images/case-studies/real-estate-mobile.jpg',
+    galleryImages: [
+      '/images/case-studies/real-estate-mobile-1.jpg',
+      '/images/case-studies/real-estate-mobile-2.jpg',
+      '/images/case-studies/real-estate-mobile-3.jpg'
+    ],
+    logo: '/images/case-studies/real-estate-logo.png',
+    featured: false
+  }
+];
+
 export default function CaseStudyDetailPage() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [caseStudy, setCaseStudy] = useState<typeof caseStudies[0] | null>(null);
@@ -145,8 +279,8 @@ export default function CaseStudyDetailPage() {
   const slug = params.slug;
   
   useEffect(() => {
-    // Find the case study by slug
-    const study = caseStudies.find(s => s.id === slug);
+    // Find the case study by slug from the full list
+    const study = fullCaseStudies.find(s => s.id === slug);
     if (study) {
       setCaseStudy(study);
     }
@@ -190,10 +324,18 @@ export default function CaseStudyDetailPage() {
             </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">{caseStudy.title}</h1>
             <div className="flex items-center gap-4 mb-6">
-              <div className="relative h-12 w-12 bg-white rounded-md overflow-hidden flex items-center justify-center">
-                <div className="text-blue-600 font-bold">
-                  {caseStudy.client.split(' ').map((word: string) => word[0]).join('')}
-                </div>
+              <div className="relative h-12 w-24 bg-white rounded-md overflow-hidden flex items-center justify-center p-1">
+                {caseStudy.logo ? (
+                  <img 
+                    src={caseStudy.logo} 
+                    alt={`${caseStudy.client} logo`}
+                    className="object-contain h-full w-full"
+                  />
+                ) : (
+                  <div className="text-blue-600 font-bold">
+                    {caseStudy.client.split(' ').map((word: string) => word[0]).join('')}
+                  </div>
+                )}
               </div>
               <div>
                 <div className="font-semibold">{caseStudy.client}</div>
@@ -238,6 +380,29 @@ export default function CaseStudyDetailPage() {
                   <p className="text-gray-700">{caseStudy.solution}</p>
                 </div>
               </FadeIn>
+              
+              {/* Image Gallery */}
+              {caseStudy.galleryImages && caseStudy.galleryImages.length > 0 && (
+                <FadeIn delay={0.35} direction="up">
+                  <div className="mb-8">
+                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Project Gallery</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      {caseStudy.galleryImages.map((image, index) => (
+                        <div 
+                          key={index}
+                          className="relative aspect-[4/3] rounded-lg overflow-hidden border border-gray-200 shadow-md"
+                        >
+                          <img 
+                            src={image} 
+                            alt={`${caseStudy.title} - Gallery image ${index + 1}`}
+                            className="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </FadeIn>
+              )}
               
               <FadeIn delay={0.4} direction="up">
                 <div className="bg-blue-600 text-white rounded-xl p-8 mb-8">
@@ -352,7 +517,7 @@ export default function CaseStudyDetailPage() {
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-                {caseStudies.filter(s => s.id !== slug).slice(0, 3).map((study) => (
+                {fullCaseStudies.filter(s => s.id !== slug).slice(0, 3).map((study) => (
                   <Link key={study.id} href={`/case-studies/${study.id}`} className="block">
                     <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 h-full border border-gray-100">
                       <div className="relative h-40 bg-gray-200">
