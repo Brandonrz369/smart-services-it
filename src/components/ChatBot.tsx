@@ -118,8 +118,13 @@ export default function ChatBot() {
       // Check for quick responses first
       const lowerInput = userInput.toLowerCase().trim();
       
+      // Special test command to force API call
+      if (lowerInput === "testapi") {
+        // Force API call to test OpenAI connection
+        console.log("Forcing API call test");
+      }
       // Check for exact matches first
-      if (quickResponses[lowerInput]) {
+      else if (quickResponses[lowerInput]) {
         responseText = quickResponses[lowerInput];
       } else {
         // Check for partial matches with word boundaries
