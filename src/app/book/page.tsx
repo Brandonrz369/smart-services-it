@@ -147,13 +147,13 @@ export default function BookingPage() {
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <h3 className="text-lg font-bold text-gray-900 mb-2">What happens after I book?</h3>
               <p className="text-gray-600">
-                After booking, you'll receive a confirmation email with appointment details. Our team will reach out if any additional information is needed before your scheduled time.
+                After booking, you&apos;ll receive a confirmation email with appointment details. Our team will reach out if any additional information is needed before your scheduled time.
               </p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <h3 className="text-lg font-bold text-gray-900 mb-2">How do I prepare for my appointment?</h3>
               <p className="text-gray-600">
-                Make a list of issues you're experiencing, have any relevant device information ready, and ensure we can access the systems that need service.
+                Make a list of issues you&apos;re experiencing, have any relevant device information ready, and ensure we can access the systems that need service.
               </p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-sm">
@@ -165,7 +165,7 @@ export default function BookingPage() {
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <h3 className="text-lg font-bold text-gray-900 mb-2">Do you offer remote support?</h3>
               <p className="text-gray-600">
-                Yes, many issues can be resolved with remote support. During your scheduled time, we'll guide you through establishing a secure remote connection if needed.
+                Yes, many issues can be resolved with remote support. During your scheduled time, we&apos;ll guide you through establishing a secure remote connection if needed.
               </p>
             </div>
           </div>
@@ -178,7 +178,7 @@ export default function BookingPage() {
           <FadeIn>
             <h2 className="text-2xl font-bold mb-4">Need Urgent IT Support?</h2>
             <p className="text-lg mb-6 text-red-100 max-w-2xl mx-auto">
-              Don't wait for a scheduled appointment if you have a critical IT emergency.
+              Don&apos;t wait for a scheduled appointment if you have a critical IT emergency.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link 

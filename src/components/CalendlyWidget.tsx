@@ -80,6 +80,13 @@ export default function CalendlyWidget({
 // Add TypeScript global type definition
 declare global {
   interface Window {
-    Calendly: any;
+    Calendly: {
+      initInlineWidget: (config: {
+        url: string;
+        parentElement: HTMLElement | null;
+        prefill?: CalendlyWidgetProps['prefill'];
+        utm?: CalendlyWidgetProps['utm'];
+      }) => void;
+    };
   }
 }
