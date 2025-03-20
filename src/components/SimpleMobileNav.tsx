@@ -95,6 +95,15 @@ export default function SimpleMobileNav({}: MobileNavProps) {
                 </li>
                 <li>
                   <Link 
+                    href="/book" 
+                    className="block py-2 px-4 text-lg font-medium text-gray-800 hover:bg-primary-50 hover:text-primary-600 rounded-lg"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Book Appointment
+                  </Link>
+                </li>
+                <li>
+                  <Link 
                     href="/emergency" 
                     className="block py-2 px-4 text-lg font-medium text-secondary-500 hover:bg-secondary-50 hover:text-secondary-600 rounded-lg"
                     onClick={() => setIsOpen(false)}

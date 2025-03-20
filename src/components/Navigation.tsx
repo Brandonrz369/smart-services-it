@@ -136,6 +136,12 @@ export default function Navigation() {
               Web Tools
             </Link>
             <Link 
+              href="/book" 
+              className={`${linkTextColor()} hover:text-blue-500 transition-colors font-medium`}
+            >
+              Book Appointment
+            </Link>
+            <Link 
               href="/emergency" 
               className={`${linkTextColor()} hover:text-orange-400 transition-colors font-medium text-orange-300`}
             >

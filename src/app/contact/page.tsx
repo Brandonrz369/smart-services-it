@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import FadeIn from '@/components/FadeIn';
+import CalendlyWidget from '@/components/CalendlyWidget';
 
 export default function ContactPage() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -314,13 +315,21 @@ export default function ContactPage() {
             
             <div className="bg-white p-4 rounded-xl shadow-lg">
               <div className="h-[600px] md:h-[700px]">
-                {/* Replace with your Calendly link */}
-                <iframe
-                  src="https://calendly.com/d/gvz-tgn-rjg/lb-computer-help-consultation"
-                  width="100%"
-                  height="100%"
-                  frameBorder="0"
-                ></iframe>
+                <CalendlyWidget 
+                  url="https://calendly.com/d/gvz-tgn-rjg/lb-computer-help-consultation" 
+                  styles={{ height: "100%", width: "100%" }}
+                  prefill={{
+                    name: "",
+                    email: "", 
+                    customAnswers: {
+                      a1: "Website Booking"
+                    }
+                  }}
+                  utm={{
+                    utmSource: "website",
+                    utmMedium: "contact-page"
+                  }}
+                />
               </div>
             </div>
           </FadeIn>
