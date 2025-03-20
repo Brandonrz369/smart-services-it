@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import SimpleMobileNav from './SimpleMobileNav';
 
@@ -8,6 +8,8 @@ export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHomePage, setIsHomePage] = useState(false);
   const [isEmergencyVisible, setIsEmergencyVisible] = useState(true);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const servicesRef = useRef<HTMLDivElement>(null);
   
   // Check if we're on home page and handle scroll event
   useEffect(() => {
@@ -61,6 +63,20 @@ export default function Navigation() {
       return 'text-gray-700';
     }
   };
+  
+  // Handle clicks outside the services dropdown
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (servicesRef.current && !servicesRef.current.contains(event.target as Node)) {
+        setIsServicesOpen(false);
+      }
+    };
+    
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [servicesRef]);
 
   return (
     <div className="fixed top-0 left-0 right-0 z-40 transition-all duration-300">
@@ -105,18 +121,49 @@ export default function Navigation() {
             LB Computer Help
           </Link>
           <nav className="hidden md:flex items-center gap-6">
-            <Link 
-              href="/#services" 
-              className={`${linkTextColor()} hover:text-blue-500 transition-colors font-medium`}
-            >
-              Services
-            </Link>
-            <Link 
-              href="/services" 
-              className={`${linkTextColor()} hover:text-blue-500 transition-colors font-medium`}
-            >
-              Services & Pricing
-            </Link>
+            {/* Services Dropdown */}
+            <div className="relative" ref={servicesRef}>
+              <button
+                className={`flex items-center ${linkTextColor()} hover:text-blue-500 transition-colors font-medium`}
+                onClick={() => setIsServicesOpen(!isServicesOpen)}
+                type="button"
+              >
+                Services
+                <svg className={`ml-1 h-4 w-4 transition-transform ${isServicesOpen ? 'rotate-180' : ''}`} 
+                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </button>
+              
+              {isServicesOpen && (
+                <div className="absolute top-full left-0 mt-1 w-56 bg-white rounded-lg shadow-lg overflow-hidden z-50">
+                  <div className="py-1">
+                    <Link 
+                      href="/#services" 
+                      className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+                      onClick={() => setIsServicesOpen(false)}
+                    >
+                      Services Overview
+                    </Link>
+                    <Link 
+                      href="/services" 
+                      className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+                      onClick={() => setIsServicesOpen(false)}
+                    >
+                      Services & Pricing
+                    </Link>
+                    <Link 
+                      href="/book" 
+                      className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+                      onClick={() => setIsServicesOpen(false)}
+                    >
+                      Book Appointment
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+            
             <Link 
               href="/case-studies" 
               className={`${linkTextColor()} hover:text-blue-500 transition-colors font-medium`}
@@ -134,12 +181,6 @@ export default function Navigation() {
               className={`${linkTextColor()} hover:text-blue-500 transition-colors font-medium`}
             >
               Web Tools
-            </Link>
-            <Link 
-              href="/book" 
-              className={`${linkTextColor()} hover:text-blue-500 transition-colors font-medium`}
-            >
-              Book Appointment
             </Link>
             <Link 
               href="/emergency" 

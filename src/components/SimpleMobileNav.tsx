@@ -9,6 +9,7 @@ interface MobileNavProps {
 
 export default function SimpleMobileNav({}: MobileNavProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [servicesExpanded, setServicesExpanded] = useState(false);
 
   return (
     <div className="md:hidden">
@@ -48,24 +49,53 @@ export default function SimpleMobileNav({}: MobileNavProps) {
 
             <nav className="p-4">
               <ul className="space-y-4">
+                {/* Services Dropdown */}
                 <li>
-                  <Link 
-                    href="/#services" 
-                    className="block py-2 px-4 text-lg font-medium text-gray-800 hover:bg-primary-50 hover:text-primary-600 rounded-lg"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Services
-                  </Link>
+                  <div>
+                    <button 
+                      className="flex items-center justify-between w-full py-2 px-4 text-lg font-medium text-gray-800 hover:bg-blue-50 hover:text-blue-600 rounded-lg"
+                      onClick={() => setServicesExpanded(!servicesExpanded)}
+                      type="button"
+                    >
+                      <span>Services</span>
+                      <svg 
+                        className={`h-5 w-5 transform transition-transform ${servicesExpanded ? 'rotate-180' : ''}`} 
+                        fill="none" 
+                        viewBox="0 0 24 24" 
+                        stroke="currentColor"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    
+                    {servicesExpanded && (
+                      <div className="ml-4 mt-2 border-l-2 border-blue-100 pl-4">
+                        <Link 
+                          href="/#services" 
+                          className="block py-2 px-4 text-base font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          Services Overview
+                        </Link>
+                        <Link 
+                          href="/services" 
+                          className="block py-2 px-4 text-base font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          Services & Pricing
+                        </Link>
+                        <Link 
+                          href="/book" 
+                          className="block py-2 px-4 text-base font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          Book Appointment
+                        </Link>
+                      </div>
+                    )}
+                  </div>
                 </li>
-                <li>
-                  <Link 
-                    href="/services" 
-                    className="block py-2 px-4 text-lg font-medium text-gray-800 hover:bg-primary-50 hover:text-primary-600 rounded-lg"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Services & Pricing
-                  </Link>
-                </li>
+                
                 <li>
                   <Link 
                     href="/case-studies" 
@@ -91,15 +121,6 @@ export default function SimpleMobileNav({}: MobileNavProps) {
                     onClick={() => setIsOpen(false)}
                   >
                     Web Tools
-                  </Link>
-                </li>
-                <li>
-                  <Link 
-                    href="/book" 
-                    className="block py-2 px-4 text-lg font-medium text-gray-800 hover:bg-primary-50 hover:text-primary-600 rounded-lg"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Book Appointment
                   </Link>
                 </li>
                 <li>
