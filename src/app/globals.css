@@ -1,5 +1,20 @@
 @import "tailwindcss";
 
+/* Global cursor style */
+* {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='%23f97316'%3E%3Cpath d='M15 12L7 20L7 4L15 12Z' fill='%23f97316' stroke='white' stroke-width='1'/%3E%3C/svg%3E") 0 0, auto;
+}
+
+/* Custom cursor for clickable elements */
+a, button, [role="button"], input[type="submit"], input[type="button"], input[type="checkbox"], input[type="radio"], select {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='%23f97316'%3E%3Cpath d='M7 2L19 2L19 14L14 14L12 19L10 14L7 14L7 2Z' fill='%23f97316' stroke='white' stroke-width='1'/%3E%3C/svg%3E") 0 0, pointer;
+}
+
+/* Text input cursor */
+input[type="text"], input[type="email"], input[type="password"], input[type="search"], textarea {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='%23f97316'%3E%3Cpath d='M17 3L21 3L21 21L3 21L3 17L17 17L17 3Z' fill='%23f97316' stroke='white' stroke-width='1'/%3E%3C/svg%3E") 0 0, text;
+}
+
 :root {
   /* Core colors */
   --background: #ffffff;
@@ -166,13 +181,13 @@ body {
 
 @keyframes pulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); /* Using primary blue */
+    box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.4); /* Using orange */
   }
   70% {
-    box-shadow: 0 0 0 20px rgba(37, 99, 235, 0);
+    box-shadow: 0 0 0 20px rgba(249, 115, 22, 0);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+    box-shadow: 0 0 0 0 rgba(249, 115, 22, 0);
   }
 }
 
