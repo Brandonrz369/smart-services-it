@@ -54,7 +54,8 @@ Booking information:
 const AI_PROVIDER = process.env.AI_PROVIDER || 'openai';
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
-const OPENAI_MODEL = process.env.OPENAI_MODEL || 'gpt-4o';
+// Use environment variable with fallback to GPT-4
+const OPENAI_MODEL = process.env.OPENAI_MODEL || 'gpt-4';
 
 // Use the selected AI provider to generate a response
 async function getAIResponse(message: string) {
@@ -120,40 +121,67 @@ async function getAnthropicResponse(message: string) {
 
 // Function to call OpenAI API
 async function getOpenAIResponse(message: string) {
-  const response = await fetch('https://api.openai.com/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${OPENAI_API_KEY}`
-    },
-    body: JSON.stringify({
-      model: OPENAI_MODEL,
-      max_tokens: 300,
-      messages: [
-        {
-          role: 'system',
-          content: `You are an AI assistant for LB Computer Help, an IT support and computer repair business. 
-          You help website visitors with information about our services, scheduling, and basic technical advice. 
-          Be friendly, professional, and concise. Use these details about our business:
-          
-          ${COMPANY_CONTEXT}
-          
-          Keep responses under 3 sentences when possible. If you don't know something, suggest the visitor call or email us.`
-        },
-        {
-          role: 'user',
-          content: message
-        }
-      ]
-    })
-  });
+  console.log(`Calling OpenAI API with model: ${OPENAI_MODEL}`);
+  
+  try {
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: OPENAI_MODEL,
+        max_tokens: 500,
+        temperature: 0.7,
+        messages: [
+          {
+            role: 'system',
+            content: `You are an AI assistant for LB Computer Help, an IT support and computer repair business.
+            You help website visitors with information about our services, scheduling, and basic technical advice.
+            Be friendly, helpful, professional and informative.
+            
+            IMPORTANT: You must ALWAYS give a complete and useful response to the user's question. Never respond with a generic message.
+            
+            Use these details about our business:
+            
+            ${COMPANY_CONTEXT}
+            
+            If asked about scheduling or booking, direct customers to our online booking page or suggest they call our office.
+            
+            If you don't know something specific, acknowledge that and suggest the visitor call or email us rather than providing inaccurate information.`
+          },
+          {
+            role: 'user',
+            content: message
+          }
+        ]
+      })
+    });
 
-  if (!response.ok) {
-    throw new Error(`OpenAI API error: ${response.statusText}`);
+    console.log(`OpenAI API response status: ${response.status}`);
+    
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error(`OpenAI API error: ${response.status} ${response.statusText}`, errorText);
+      throw new Error(`OpenAI API error: ${response.statusText} (${response.status})`);
+    }
+
+    const data = await response.json();
+    
+    // Verify we got a proper response
+    if (!data.choices || !data.choices[0] || !data.choices[0].message || !data.choices[0].message.content) {
+      console.error('Unexpected OpenAI API response format:', JSON.stringify(data));
+      throw new Error('Unexpected response format from OpenAI API');
+    }
+    
+    const content = data.choices[0].message.content.trim();
+    console.log(`OpenAI responded with: "${content.substring(0, 50)}..."`);
+    return content;
+  } catch (error) {
+    console.error('Error in OpenAI API call:', error);
+    throw error;
   }
-
-  const data = await response.json();
-  return data.choices[0].message.content;
 }
 
 // Fallback function for mock responses

@@ -13,8 +13,10 @@ export default function ChatBot() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputText, setInputText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [errorCount, setErrorCount] = useState(0);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const chatHistoryRef = useRef<Message[]>([]);
 
   // Initial greeting when chat opens
   useEffect(() => {
@@ -45,47 +47,209 @@ export default function ChatBot() {
     
     if (!inputText.trim()) return;
     
+    const userInput = inputText.trim();
+    
     // Add user message
     const userMessage: Message = {
-      text: inputText,
+      text: userInput,
       sender: 'user',
       timestamp: new Date()
     };
     
-    setMessages(prev => [...prev, userMessage]);
+    // Update UI with user message
+    setMessages(prev => {
+      const newMessages = [...prev, userMessage];
+      chatHistoryRef.current = newMessages;
+      return newMessages;
+    });
+    
     setInputText('');
     setIsTyping(true);
     
+    // Auto-fallback responses for quick replies to common questions
+    const quickResponses: Record<string, string> = {
+      // Greetings
+      'hi': "Hello! I'm the LB Computer Help support assistant. How can I help you today?",
+      'hello': "Hello! I'm the LB Computer Help support assistant. How can I help you today?",
+      'hey': "Hello! I'm the LB Computer Help support assistant. How can I help you today?",
+      'good morning': "Good morning! I'm the LB Computer Help support assistant. How can I help you today?",
+      'good afternoon': "Good afternoon! I'm the LB Computer Help support assistant. How can I help you today?",
+      'good evening': "Good evening! I'm the LB Computer Help support assistant. How can I help you today?",
+      
+      // General info
+      'help': "I can help with information about our IT services, pricing, scheduling appointments, and basic technical advice. What do you need assistance with?",
+      'who are you': "I'm the LB Computer Help AI assistant. I can provide information about our services, help troubleshoot common issues, or schedule a consultation. How can I assist you today?",
+      'about': "LB Computer Help is a leading IT support and computer repair company in Long Beach, CA. We've been serving businesses and individuals since 2010 with a wide range of tech services.",
+      
+      // Services 
+      'services': "We offer computer repair, managed IT services, network setup & support, data recovery, mobile device repair, and cloud solutions. Which service are you interested in?",
+      'computer repair': "Our computer repair services include hardware diagnostics, software troubleshooting, virus removal, screen replacement, and hardware upgrades. Our technicians are certified and experienced with all major brands.",
+      'laptop repair': "We offer comprehensive laptop repair including screen replacement, keyboard fixes, battery replacement, virus removal, data recovery, and performance optimization.",
+      'virus removal': "Our virus and malware removal service includes thorough system scanning, removal of malicious software, system cleanup, and security recommendations to prevent future infections.",
+      'data recovery': "Our data recovery services can retrieve lost files from corrupted drives, accidentally formatted storage, and even physically damaged devices. We have specialized tools and a high success rate.",
+      'network': "Our networking services include setup and troubleshooting for home and business networks, WiFi optimization, network security, and VPN configuration.",
+      'cloud': "We offer cloud services including Microsoft 365 implementation, cloud backup solutions, cloud migration, and ongoing cloud infrastructure management.",
+      'managed it': "Our managed IT services include 24/7 monitoring, regular maintenance, security management, help desk support, and strategic IT planning for a fixed monthly fee.",
+      'mobile repair': "We repair smartphones and tablets, including screen replacement, battery service, charging port fixes, and data recovery/transfer between devices.",
+      
+      // Pricing
+      'pricing': "Our computer repair services range from $75-150/hour depending on complexity. Managed IT services start at $299/month. Data recovery starts at $150. Would you like pricing for a specific service?",
+      'rates': "Our standard rate for computer repair is $75-150/hour depending on the complexity. For businesses, we offer managed IT packages starting at $299/month for up to 10 devices.",
+      'cost': "Our services start at $75/hour for basic computer repair. For businesses, we recommend our managed IT packages which provide comprehensive support starting at $299/month.",
+      
+      // Booking
+      'appointment': "You can schedule an appointment through our online booking system at lbcomputerhelp.com/book, or call us at (213) 349-6790. Would you like me to direct you to our booking page?",
+      'schedule': "To schedule an appointment, you can use our online booking system or call (213) 349-6790. We typically offer same-day appointments for urgent issues.",
+      'book': "You can book an appointment through our website at lbcomputerhelp.com/book or call our office at (213) 349-6790. For urgent matters, calling is recommended.",
+      'urgent': "For urgent IT issues, please call us directly at (213) 349-6790. We offer emergency support and can often provide same-day service.",
+      
+      // Contact
+      'phone': "You can reach us by phone at (213) 349-6790 during our business hours: Monday-Friday 6AM-6PM and Saturday 6AM-6PM.",
+      'email': "You can email us at support@lbcomputerhelp.com. We typically respond to all inquiries within 1 business hour during operating hours.",
+      'contact': "The best ways to contact us are by phone at (213) 349-6790 or email at support@lbcomputerhelp.com. For urgent matters, calling is recommended.",
+      'location': "We're located at 927 Magnolia Ave #2, Long Beach, CA 90813. We also offer on-site services throughout Long Beach and Los Angeles County.",
+      'address': "Our office is located at 927 Magnolia Ave #2, Long Beach, CA 90813. We're easily accessible from downtown Long Beach and provide service throughout the LA metro area.",
+      'hours': "Our business hours are Monday-Friday 6AM-6PM and Saturday 6AM-6PM. We're closed on Sundays."
+    };
+    
     try {
-      // Call our API endpoint
-      const response = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: inputText })
-      });
+      let responseText = '';
       
-      if (!response.ok) throw new Error('Failed to get response');
+      // Check for quick responses first
+      const lowerInput = userInput.toLowerCase().trim();
       
-      const data = await response.json();
-      const botResponse: Message = {
-        text: data.message,
-        sender: 'bot',
-        timestamp: new Date()
-      };
+      // Check for exact matches first
+      if (quickResponses[lowerInput]) {
+        responseText = quickResponses[lowerInput];
+      } else {
+        // Check for partial matches with word boundaries
+        for (const [key, response] of Object.entries(quickResponses)) {
+          // Check if the key is a whole word within the input (surrounded by spaces or at the beginning/end)
+          const keyPattern = new RegExp(`(^|\\s)${key}(\\s|$|\\?|\\.|,)`, 'i');
+          if (keyPattern.test(lowerInput)) {
+            responseText = response;
+            break;
+          }
+        }
+        
+        // If still no match, check for similar words (like plurals, etc.)
+        if (!responseText) {
+          const similarMatches = {
+            'services': ['service', 'offering', 'offerings'],
+            'pricing': ['price', 'prices', 'charge', 'charges', 'fee', 'fees'],
+            'hours': ['hour', 'time', 'schedule', 'open', 'closed', 'closing'],
+            'appointment': ['appointments', 'booking', 'bookings', 'reservation', 'reservations'],
+            'contact': ['reach', 'call', 'calling', 'contacting'],
+            'location': ['located', 'office', 'address', 'where'],
+            'repair': ['repairs', 'fix', 'fixes', 'fixing'],
+            'network': ['networking', 'wifi', 'internet', 'connection', 'router']
+          };
+          
+          for (const [primaryKey, alternateKeys] of Object.entries(similarMatches)) {
+            if (quickResponses[primaryKey] && alternateKeys.some(alt => 
+              lowerInput.includes(` ${alt} `) || 
+              lowerInput.startsWith(`${alt} `) || 
+              lowerInput.endsWith(` ${alt}`) ||
+              lowerInput === alt
+            )) {
+              responseText = quickResponses[primaryKey];
+              break;
+            }
+          }
+        }
+      }
       
-      setMessages(prev => [...prev, botResponse]);
+      // If no quick response matched, call the API
+      if (!responseText) {
+        // Call our API endpoint
+        const response = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: userInput })
+        });
+        
+        if (!response.ok) {
+          throw new Error(`API error: ${response.status} ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        
+        if (!data.message) {
+          throw new Error('Empty response from API');
+        }
+        
+        responseText = data.message;
+      }
+      
+      // Add bot response after a small delay to simulate typing
+      setTimeout(() => {
+        const botResponse: Message = {
+          text: responseText,
+          sender: 'bot',
+          timestamp: new Date()
+        };
+        
+        setMessages(prev => {
+          const newMessages = [...prev, botResponse];
+          chatHistoryRef.current = newMessages;
+          return newMessages;
+        });
+        
+        setIsTyping(false);
+        setErrorCount(0); // Reset error count on success
+      }, 500);
       
     } catch (error) {
       console.error('Error getting AI response:', error);
-      const errorMessage: Message = {
-        text: "I'm sorry, I'm having trouble connecting right now. Please try again later or contact our support team directly.",
+      
+      // Increment error count
+      setErrorCount(prev => prev + 1);
+      
+      // Different message based on error count
+      let errorMessage = "";
+      
+      if (errorCount >= 3) {
+        // Critical error - suggest direct contact
+        errorMessage = "I'm sorry, we're experiencing technical difficulties with our chat system. Please call us directly at (213) 349-6790 for immediate assistance, or email support@lbcomputerhelp.com.";
+      } else if (errorCount === 2) {
+        // Second error - try to answer based on keywords in the user's question
+        const lowerInput = userInput.toLowerCase();
+        
+        // Try to extract keywords and provide canned responses based on the most likely topic
+        if (lowerInput.includes('price') || lowerInput.includes('cost') || lowerInput.includes('fee')) {
+          errorMessage = "While I'm having some technical difficulties, I can tell you that our computer repair services range from $75-150/hour depending on complexity. Managed IT services start at $299/month. For a detailed quote, please call us at (213) 349-6790.";
+        } else if (lowerInput.includes('location') || lowerInput.includes('address') || lowerInput.includes('where')) {
+          errorMessage = "While I'm having some technical difficulties, I can tell you that we're located at 927 Magnolia Ave #2, Long Beach, CA 90813. We also offer on-site services throughout Long Beach and LA County.";
+        } else if (lowerInput.includes('appointment') || lowerInput.includes('schedule') || lowerInput.includes('book')) {
+          errorMessage = "I apologize for the technical difficulties. You can book an appointment through our online system at lbcomputerhelp.com/book or by calling (213) 349-6790.";
+        } else {
+          // Generic second error message
+          errorMessage = "I'm still having trouble connecting. For immediate assistance, please call us at (213) 349-6790 or email support@lbcomputerhelp.com. Alternatively, you can try asking a simpler question.";
+        }
+      } else {
+        // First error - generic message
+        errorMessage = "I'm having trouble connecting right now. Let me try to get back on track. Please try your question again, or you can contact our team directly at (213) 349-6790.";
+      }
+      
+      // Add error message
+      const errorResponse: Message = {
+        text: errorMessage,
         sender: 'bot',
         timestamp: new Date()
       };
       
-      setMessages(prev => [...prev, errorMessage]);
-    } finally {
+      setMessages(prev => {
+        const newMessages = [...prev, errorResponse];
+        chatHistoryRef.current = newMessages;
+        return newMessages;
+      });
+      
       setIsTyping(false);
+      
+      // Reset error count after a critical error to give the system another chance
+      if (errorCount >= 3) {
+        setTimeout(() => setErrorCount(0), 60000); // Reset after 1 minute
+      }
     }
   };
 
