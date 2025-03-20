@@ -22,7 +22,7 @@ export default function ChatBot() {
   useEffect(() => {
     if (isOpen && messages.length === 0) {
       const greeting: Message = {
-        text: "👋 Hi there! I'm the LB Computer Help AI assistant. I can answer questions about our services, help troubleshoot common issues, or schedule a consultation. How can I help you today?",
+        text: "👋 Hi there! I'm the LB Computer Help AI assistant. I can answer questions about our services, help troubleshoot common tech issues, or schedule a consultation with our experts. How can I help you today?",
         sender: 'bot',
         timestamp: new Date()
       };
