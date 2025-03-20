@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import CalendlyWidget from '@/components/CalendlyWidget';
 import FadeIn from '@/components/FadeIn';
 
 export default function BookingPage() {
@@ -118,10 +117,15 @@ export default function BookingPage() {
                 <div className="bg-white border border-gray-200 p-6 rounded-xl shadow-lg">
                   <h2 className="text-2xl font-bold mb-6">Schedule Your Appointment</h2>
                   <div className="h-[700px]">
-                    <CalendlyWidget 
-                      url="https://calendly.com/lbcomputerhelp-support/30min?hide_gdpr_banner=1&background_color=ffffff&text_color=333333&primary_color=2563eb"
-                      height="650px"
+                    {/* Direct iframe solution for more reliable embedding */}
+                    <iframe 
+                      src="https://calendly.com/lbcomputerhelp-support/30min?embed=true&hide_gdpr_banner=1&background_color=ffffff&text_color=333333&primary_color=2563eb"
                       width="100%"
+                      height="650px"
+                      frameBorder="0"
+                      title="Schedule Appointment"
+                      className="min-h-[650px]"
+                      allow="camera; microphone; autoplay; encrypted-media; fullscreen;"
                     />
                   </div>
                 </div>
