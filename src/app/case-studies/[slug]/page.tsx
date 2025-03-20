@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import FadeIn from '@/components/FadeIn';
 
 // Mock case study data - In a real app, this would be fetched from a CMS or API
@@ -326,10 +327,12 @@ export default function CaseStudyDetailPage() {
             <div className="flex items-center gap-4 mb-6">
               <div className="relative h-12 w-24 bg-white rounded-md overflow-hidden flex items-center justify-center p-1">
                 {caseStudy.logo ? (
-                  <img 
+                  <Image 
                     src={caseStudy.logo} 
                     alt={`${caseStudy.client} logo`}
                     className="object-contain h-full w-full"
+                    width={80}
+                    height={40}
                   />
                 ) : (
                   <div className="text-blue-600 font-bold">
@@ -392,10 +395,12 @@ export default function CaseStudyDetailPage() {
                           key={index}
                           className="relative aspect-[4/3] rounded-lg overflow-hidden border border-gray-200 shadow-md"
                         >
-                          <img 
+                          <Image 
                             src={image} 
                             alt={`${caseStudy.title} - Gallery image ${index + 1}`}
-                            className="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                            className="object-cover hover:scale-105 transition-transform duration-300"
+                            fill
+                            sizes="(max-width: 768px) 100vw, 30vw"
                           />
                         </div>
                       ))}
@@ -521,10 +526,12 @@ export default function CaseStudyDetailPage() {
                   <Link key={study.id} href={`/case-studies/${study.id}`} className="block">
                     <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 h-full border border-gray-100">
                       <div className="relative h-40 bg-gray-200">
-                        <img 
+                        <Image 
                           src={study.featuredImage}
                           alt={study.title}
-                          className="w-full h-full object-cover"
+                          className="object-cover"
+                          fill
+                          sizes="(max-width: 768px) 100vw, 30vw"
                         />
                         <div className="absolute top-3 left-3">
                           <span className="bg-blue-600 text-white text-xs px-2 py-1 rounded-full font-medium">
