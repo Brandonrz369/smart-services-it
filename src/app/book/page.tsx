@@ -119,17 +119,9 @@ export default function BookingPage() {
                   <h2 className="text-2xl font-bold mb-6">Schedule Your Appointment</h2>
                   <div className="h-[700px]">
                     <CalendlyWidget 
-                      url="https://calendly.com/lbcomputerhelp-support" 
-                      styles={{ height: "100%", width: "100%" }}
-                      prefill={{
-                        customAnswers: {
-                          a1: "Dedicated Booking Page"
-                        }
-                      }}
-                      utm={{
-                        utmSource: "website",
-                        utmMedium: "booking-page"
-                      }}
+                      url="https://calendly.com/lbcomputerhelp-support/30min?hide_gdpr_banner=1&background_color=ffffff&text_color=333333&primary_color=2563eb"
+                      height="650px"
+                      width="100%"
                     />
                   </div>
                 </div>

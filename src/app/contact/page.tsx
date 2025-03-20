@@ -316,19 +316,9 @@ export default function ContactPage() {
             <div className="bg-white p-4 rounded-xl shadow-lg">
               <div className="h-[600px] md:h-[700px]">
                 <CalendlyWidget 
-                  url="https://calendly.com/lbcomputerhelp-support" 
-                  styles={{ height: "100%", width: "100%" }}
-                  prefill={{
-                    name: "",
-                    email: "", 
-                    customAnswers: {
-                      a1: "Website Booking"
-                    }
-                  }}
-                  utm={{
-                    utmSource: "website",
-                    utmMedium: "contact-page"
-                  }}
+                  url="https://calendly.com/lbcomputerhelp-support/30min?hide_gdpr_banner=1&background_color=ffffff&text_color=333333&primary_color=2563eb"
+                  height="650px"
+                  width="100%"
                 />
               </div>
             </div>

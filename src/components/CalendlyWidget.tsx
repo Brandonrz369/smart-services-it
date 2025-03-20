@@ -1,92 +1,76 @@
 'use client';
 
-import { useEffect } from 'react';
-import Script from 'next/script';
+import { useEffect, useRef } from 'react';
+
+// Add TypeScript declaration for the Calendly global object
+declare global {
+  interface Window {
+    Calendly?: {
+      initInlineWidget: (options: {
+        url: string;
+        parentElement: HTMLElement;
+        prefill?: Record<string, any>;
+        utm?: Record<string, string>;
+      }) => void;
+    };
+  }
+}
 
 interface CalendlyWidgetProps {
   url: string;
-  styles?: {
-    height?: string;
-    minWidth?: string;
-    width?: string;
-  };
-  prefill?: {
-    name?: string;
-    email?: string;
-    customAnswers?: {
-      [key: string]: string;
-    };
-  };
-  utm?: {
-    utmCampaign?: string;
-    utmSource?: string;
-    utmMedium?: string;
-    utmContent?: string;
-    utmTerm?: string;
-  };
+  height?: string;
+  width?: string;
 }
 
 export default function CalendlyWidget({
   url,
-  styles = { height: '630px', width: '100%' },
-  prefill,
-  utm
+  height = '630px',
+  width = '100%'
 }: CalendlyWidgetProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    // Initialize Calendly when component mounts
-    const initCalendly = () => {
-      if (window.Calendly) {
-        window.Calendly.initInlineWidget({
-          url,
-          parentElement: document.getElementById('calendly-widget'),
-          prefill,
-          utm,
-        });
-      }
-    };
-
-    // Check if Calendly is already loaded
-    if (window.Calendly) {
-      initCalendly();
-    } else {
-      // Wait for Calendly script to load
-      window.addEventListener('calendly:load', initCalendly);
-    }
-
-    // Cleanup
+    // Load the Calendly script
+    const script = document.createElement('script');
+    script.src = 'https://assets.calendly.com/assets/external/widget.js';
+    script.async = true;
+    document.body.appendChild(script);
+    
+    // Clean up on unmount
     return () => {
-      window.removeEventListener('calendly:load', initCalendly);
+      document.body.removeChild(script);
+      // Remove any Calendly-related elements
+      const calendlyElements = document.querySelectorAll('[data-calendly]');
+      calendlyElements.forEach(el => el.remove());
     };
-  }, [url, prefill, utm]);
+  }, []);
+
+  useEffect(() => {
+    // Initialize Calendly when the script is loaded
+    if (containerRef.current && window.Calendly) {
+      window.Calendly.initInlineWidget({
+        url: url,
+        parentElement: containerRef.current,
+        prefill: {},
+        utm: {
+          utmSource: 'website',
+          utmMedium: 'direct',
+          utmCampaign: 'booking_page'
+        }
+      });
+    }
+  }, [url]);
 
   return (
-    <>
-      <Script
-        src="https://assets.calendly.com/assets/external/widget.js"
-        strategy="lazyOnload"
-        onLoad={() => {
-          window.dispatchEvent(new Event('calendly:load'));
-        }}
-      />
-      <div 
-        id="calendly-widget" 
-        style={styles}
-        className="calendly-inline-widget"
-      />
-    </>
+    <div 
+      ref={containerRef} 
+      className="calendly-inline-widget" 
+      data-testid="calendly-embed"
+      style={{
+        minWidth: '320px',
+        height: height,
+        width: width
+      }}
+    />
   );
-}
-
-// Add TypeScript global type definition
-declare global {
-  interface Window {
-    Calendly: {
-      initInlineWidget: (config: {
-        url: string;
-        parentElement: HTMLElement | null;
-        prefill?: CalendlyWidgetProps['prefill'];
-        utm?: CalendlyWidgetProps['utm'];
-      }) => void;
-    };
-  }
 }
