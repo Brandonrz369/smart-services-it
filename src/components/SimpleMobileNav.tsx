@@ -7,7 +7,7 @@ interface MobileNavProps {
   isScrolled?: boolean;
 }
 
-export default function SimpleMobileNav({ isScrolled = false }: MobileNavProps) {
+export default function SimpleMobileNav({}: MobileNavProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -19,9 +19,9 @@ export default function SimpleMobileNav({ isScrolled = false }: MobileNavProps) 
         aria-label="Toggle menu"
       >
         <div className="w-6 flex flex-col gap-1">
-          <span className={`block h-0.5 rounded transition-all duration-300 ${isScrolled ? 'bg-gray-800' : 'bg-white'}`} />
-          <span className={`block h-0.5 rounded transition-all duration-300 ${isScrolled ? 'bg-gray-800' : 'bg-white'}`} />
-          <span className={`block h-0.5 rounded transition-all duration-300 ${isScrolled ? 'bg-gray-800' : 'bg-white'}`} />
+          <span className="block h-0.5 rounded transition-all duration-300 bg-gray-800" />
+          <span className="block h-0.5 rounded transition-all duration-300 bg-gray-800" />
+          <span className="block h-0.5 rounded transition-all duration-300 bg-gray-800" />
         </div>
       </button>
 
@@ -59,11 +59,38 @@ export default function SimpleMobileNav({ isScrolled = false }: MobileNavProps) 
                 </li>
                 <li>
                   <Link 
+                    href="/services" 
+                    className="block py-2 px-4 text-lg font-medium text-gray-800 hover:bg-primary-50 hover:text-primary-600 rounded-lg"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Services & Pricing
+                  </Link>
+                </li>
+                <li>
+                  <Link 
+                    href="/case-studies" 
+                    className="block py-2 px-4 text-lg font-medium text-gray-800 hover:bg-primary-50 hover:text-primary-600 rounded-lg"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Case Studies
+                  </Link>
+                </li>
+                <li>
+                  <Link 
                     href="/blog" 
                     className="block py-2 px-4 text-lg font-medium text-gray-800 hover:bg-primary-50 hover:text-primary-600 rounded-lg"
                     onClick={() => setIsOpen(false)}
                   >
                     Blog
+                  </Link>
+                </li>
+                <li>
+                  <Link 
+                    href="/web-tools" 
+                    className="block py-2 px-4 text-lg font-medium text-gray-800 hover:bg-primary-50 hover:text-primary-600 rounded-lg"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Web Tools
                   </Link>
                 </li>
                 <li>

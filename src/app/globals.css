@@ -89,6 +89,11 @@ body {
   display: inline-block;
 }
 
+/* Orange cursor in hero section */
+#hero {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='%23f97316'><path d='M13,3 L17,9 L21,3 L13,3 Z M13,17 L17,11 L21,17 L13,17 Z' fill='%23f97316'></path></svg>"), auto;
+}
+
 .hero-title .accent {
   color: var(--secondary);
   position: relative;

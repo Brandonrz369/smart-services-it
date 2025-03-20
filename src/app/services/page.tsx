@@ -1,9 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-// import { motion } from 'framer-motion';
-// import FadeIn from '@/components/FadeIn';
-// import RevealText from '@/components/RevealText';
+import Link from 'next/link';
+import PricingCalculator from '@/components/PricingCalculator';
 
 const servicesDetail = [
   {
@@ -190,6 +189,7 @@ export default function ServicesPage() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [categoryFilter, setCategoryFilter] = useState('all');
   const [activeService, setActiveService] = useState<ServiceDetail | null>(null);
+  const [showPricingCalculator, setShowPricingCalculator] = useState(false);
   
   useEffect(() => {
     setIsLoaded(true);
@@ -239,6 +239,33 @@ export default function ServicesPage() {
             </div>
           </div>
           
+          {/* Interactive Pricing Calculator */}
+          <div className="mb-10">
+            <div className="flex flex-col md:flex-row items-center justify-between bg-blue-50 rounded-xl p-6 mb-6 border border-blue-100">
+              <div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Need help estimating costs?</h3>
+                <p className="text-gray-600 mb-4 md:mb-0">
+                  Use our interactive pricing calculator to get instant estimates for our services.
+                </p>
+              </div>
+              <button
+                onClick={() => setShowPricingCalculator(!showPricingCalculator)}
+                className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition-colors inline-flex items-center"
+              >
+                {showPricingCalculator ? 'Hide Calculator' : 'Show Pricing Calculator'}
+                <svg className={`ml-2 h-5 w-5 transition-transform ${showPricingCalculator ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+            </div>
+            
+            {showPricingCalculator && (
+              <div className="mb-10">
+                <PricingCalculator />
+              </div>
+            )}
+          </div>
+      
           {/* Services Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
             {filteredServices.map((service, index) => (
@@ -394,6 +421,26 @@ export default function ServicesPage() {
               <p className="text-gray-600">We accept all major credit cards, cash, and digital payment methods like PayPal and Venmo. For businesses, we can also accommodate purchase orders and net payment terms with approved credit.</p>
             </div>
           </div>
+        </div>
+      </section>
+      
+      {/* Case Studies Section */}
+      <section className="py-16 px-4 md:px-8 bg-gray-100 border-t border-gray-200">
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">See Our Services in Action</h2>
+          <p className="text-lg text-gray-600 mb-10 max-w-3xl mx-auto">
+            Check out our client success stories to see real-world examples of how our services have helped businesses overcome challenges and achieve their goals.
+          </p>
+          
+          <Link 
+            href="/case-studies"
+            className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition duration-300 shadow-md"
+          >
+            View Client Case Studies
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+            </svg>
+          </Link>
         </div>
       </section>
       

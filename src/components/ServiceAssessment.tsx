@@ -162,7 +162,6 @@ export default function ServiceAssessment() {
     progress: 0
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [showResults, setShowResults] = useState(false);
   const [contactInfo, setContactInfo] = useState({
     name: '',

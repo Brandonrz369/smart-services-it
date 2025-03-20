@@ -9,10 +9,10 @@ import FloatingShapes from '@/components/FloatingShapes';
 import TypewriterEffect from '@/components/TypewriterEffect';
 import ServiceCard from '@/components/ServicesCard';
 // import StatsSection from '@/components/StatsSection';
-import TestimonialCarousel from '@/components/TestimonialCarousel';
+import TestimonialCarousel, { Testimonial } from '@/components/TestimonialCarousel';
 import RevealText from '@/components/RevealText';
 import ParallaxEffect from '@/components/ParallaxEffect';
-import SimpleMobileNav from '@/components/SimpleMobileNav';
+// Removed unused import: import SimpleMobileNav from '@/components/SimpleMobileNav';
 import ServiceAssessmentModal from '@/components/ServiceAssessmentModal';
 
 // Schema markup for SEO
@@ -56,7 +56,6 @@ export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [serviceFilter, setServiceFilter] = useState('all');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isAssessmentOpen, setIsAssessmentOpen] = useState(false);
   
   // Handle page load animation
@@ -64,21 +63,21 @@ export default function Home() {
     setIsLoaded(true);
   }, []);
   
-  // Basic scroll handler for header transparency
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    
-    const handleScroll = () => {
-      if (window.scrollY > 100) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-    
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  // Removed scroll handler since it's not being used in the component
+  // useEffect(() => {
+  //   if (typeof window === 'undefined') return;
+  //   
+  //   const handleScroll = () => {
+  //     if (window.scrollY > 100) {
+  //       setIsScrolled(true);
+  //     } else {
+  //       setIsScrolled(false);
+  //     }
+  //   };
+  //   
+  //   window.addEventListener('scroll', handleScroll);
+  //   return () => window.removeEventListener('scroll', handleScroll);
+  // }, []);
   
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -114,31 +113,36 @@ export default function Home() {
     }
   };
   
-  const testimonials = [
+  const testimonials: Testimonial[] = [
     {
       text: "I am beyond impressed with the service I received from Brandon at LB Computer Help. He went above and beyond to find the perfect router for our office that could prioritize our fax machine and phones. Since the new setup, we've already noticed a significant improvement in call quality.",
       name: "Alondra S.",
-      role: "Office Manager"
+      role: "Office Manager",
+      source: "google"
     },
     {
       text: "As a boutique law firm handling sensitive client information daily, finding reliable IT support is critical. When we experienced a server failure before a major trial, Brandon responded immediately. The recovery was completed ahead of schedule, allowing our legal team to access critical documents well before our court deadline.",
       name: "Jonathan H.",
-      role: "Visionary Law Group"
+      role: "Visionary Law Group",
+      source: "yelp"
     },
     {
       text: "Brandon was super kind and helpful! He fixed my printer issues which I was having for about 3 weeks in just 30 minutes! He not only was super helpful but also walked me through the process so I can fix it on my own next time.",
       name: "Emma R.",
-      role: "Residential Client"
+      role: "Residential Client",
+      source: "facebook"
     },
     {
       text: "I had such a great experience with LB Computer Help! My laptop was running super slow, and I needed it fixed ASAP. They were able to diagnose the issue quickly and optimize my system, making it run like new again. The service was fast, professional, and hassle-free.",
       name: "Judith C.",
-      role: "Small Business Owner"
+      role: "Small Business Owner",
+      source: "nextdoor"
     },
     {
       text: "I'm so impressed with their data recovery service. After my hard drive failed, I thought all my files were gone for good, but they managed to recover everything quickly. I'm so relieved to have my data back.",
       name: "Luke T.",
-      role: "Photographer"
+      role: "Photographer",
+      source: "thumbtack"
     }
   ];
 
@@ -258,7 +262,7 @@ export default function Home() {
         </a>
       </div>
       {/* Hero Section */}
-      <header id="hero" className="relative h-screen flex flex-col items-center justify-center text-center px-4 md:px-8 overflow-hidden">
+      <header id="hero" className="relative h-screen flex flex-col items-center justify-center text-center px-4 md:px-8 overflow-hidden -mt-16">
                 <Image 
           src="/images/hero-background.jpg" 
           alt="Technology Background" 
@@ -292,34 +296,67 @@ export default function Home() {
           </FadeIn>
           
           <FadeIn direction="up" delay={0.6} duration={0.8}>
-            <div className="h-16 text-xl md:text-2xl mb-10 font-medium">
-              <div className="typewriter-bg text-white">
-                <TypewriterEffect 
-                  texts={[
-                    "Professional IT Support & Repair",
-                    "Managed Services for Businesses",
-                    "Expert Computer & Mobile Device Repair",
-                    "On-Site Support for Home & Office"
-                  ]}
-                  speed={40}
-                  delay={2000}
-                  repeat={true}
-                />
+            <div className="max-w-3xl mx-auto bg-black/40 backdrop-blur-sm p-6 rounded-xl border border-white/20 mb-6">
+              <p className="text-white text-base md:text-xl mb-4">Fast, reliable, and affordable computer repairs, IT services, and technical support for homes and businesses - from your trusted local provider.</p>
+              
+              <div className="h-12 md:h-16 text-lg md:text-2xl mb-4 md:mb-6 font-medium">
+                <div className="typewriter-bg text-white">
+                  <TypewriterEffect 
+                    texts={[
+                      "Professional IT Support & Repair",
+                      "Managed Services for Businesses",
+                      "Expert Computer & Mobile Device Repair",
+                      "On-Site Support for Home & Office"
+                    ]}
+                    speed={40}
+                    delay={2000}
+                    repeat={true}
+                  />
+                </div>
+              </div>
+              
+              <div className="flex flex-col sm:flex-row gap-3 justify-center mb-4">
+                <motion.a 
+                  href="tel:2133496790" 
+                  className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 shadow-md text-sm md:text-base"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                  </svg>
+                  (213) 349-6790
+                </motion.a>
+                <motion.a
+                  href="/services" 
+                  className="bg-white text-blue-700 hover:bg-gray-100 font-semibold py-2 px-4 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 shadow-md text-sm md:text-base"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clipRule="evenodd" />
+                  </svg>
+                  View Services & Pricing
+                </motion.a>
+              </div>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 bg-black/40 p-3 rounded-lg">
+                <div className="flex items-center justify-center">
+                  <span className="text-green-400 mr-1 flex items-center justify-center">✓</span>
+                  <span className="text-white text-xs md:text-sm">Same-Day Service</span>
+                </div>
+                <div className="flex items-center justify-center">
+                  <span className="text-green-400 mr-1 flex items-center justify-center">✓</span>
+                  <span className="text-white text-xs md:text-sm">Transparent Pricing</span>
+                </div>
+                <div className="flex items-center justify-center">
+                  <span className="text-green-400 mr-1 flex items-center justify-center">✓</span>
+                  <span className="text-white text-xs md:text-sm">Guaranteed</span>
+                </div>
               </div>
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.a 
-                href="tel:2133496790" 
-                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 shadow-md"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                </svg>
-                (213) 349-6790
-              </motion.a>
+            <div className="flex justify-center">
               <motion.button
                 onClick={() => setIsAssessmentOpen(true)}
                 className="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 shadow-md"
@@ -537,7 +574,7 @@ export default function Home() {
             </div>
           </div>
           
-          <div className="text-center mt-12">
+          <div className="text-center mt-12 space-y-4">
             <a 
               href="#contact" 
               className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl"
@@ -547,6 +584,17 @@ export default function Home() {
                 <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
               </svg>
             </a>
+            <div>
+              <Link 
+                href="/case-studies" 
+                className="inline-flex items-center justify-center gap-2 text-white hover:text-blue-200 font-medium transition-all duration-300"
+              >
+                View Client Success Stories
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
