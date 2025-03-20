@@ -58,10 +58,10 @@ const OPENAI_MODEL = process.env.OPENAI_MODEL || 'gpt-4o';
 
 // Use the selected AI provider to generate a response
 async function getAIResponse(message: string) {
-  // Check if we're in development mode - use mock responses to save API costs
-  if (process.env.NODE_ENV === 'development') {
-    return getMockResponse(message);
-  }
+  // Always use the actual API for now to debug
+  // if (process.env.NODE_ENV === 'development') {
+  //   return getMockResponse(message);
+  // }
   
   try {
     // Based on the configured provider, call the appropriate API
@@ -194,16 +194,30 @@ function getMockResponse(input: string) {
 // Main API handler
 export async function POST(req: NextRequest) {
   try {
+    console.log('Chat API called with OpenAI key:', OPENAI_API_KEY ? "Key is present" : "No API key");
+    console.log('AI provider:', AI_PROVIDER);
+    console.log('OpenAI model:', OPENAI_MODEL);
+    
     const { message } = await req.json();
+    console.log('Received message:', message);
     
     // Get response from AI (or mock in development)
-    const response = await getAIResponse(message);
+    let response;
+    try {
+      response = await getAIResponse(message);
+      console.log('AI response received:', response.substring(0, 50) + '...');
+    } catch (aiError) {
+      console.error('AI provider error:', aiError);
+      // Fallback to mock response if AI fails
+      response = getMockResponse(message);
+      console.log('Falling back to mock response');
+    }
     
     return NextResponse.json({ message: response }, { status: 200 });
   } catch (error) {
     console.error('Chat API error:', error);
     return NextResponse.json(
-      { error: 'Failed to process chat message. Please try again later.' },
+      { error: 'Failed to process chat message. Please try again later.', details: error instanceof Error ? error.message : String(error) },
       { status: 500 }
     );
   }
