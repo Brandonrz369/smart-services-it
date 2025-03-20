@@ -5,7 +5,7 @@ const nextConfig = {
     unoptimized: false,
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    contentSecurityPolicy: "default-src 'self'; script-src 'self' assets.calendly.com; connect-src 'self' calendly.com *.calendly.com; frame-src 'self' calendly.com *.calendly.com; img-src 'self' data: calendly.com *.calendly.com;",
   }
 };
 
