@@ -128,7 +128,9 @@ export default function ChatBot() {
               </div>
               <div>
                 <p className="font-bold">IT Support Assistant</p>
-                <p className="text-xs text-white/80">Powered by Claude AI</p>
+                <p className="text-xs text-white/80">
+                  Powered by Claude AI
+                </p>
               </div>
             </div>
             <button 
