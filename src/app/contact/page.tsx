@@ -47,6 +47,7 @@ export default function ContactPage() {
       {/* Contact Banner */}
       <div className="relative py-24 bg-gradient-to-r from-blue-800 to-blue-600 text-white">
         <div className="absolute inset-0 bg-black opacity-30"></div>
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/images/contact-background.jpg')", mixBlendMode: "overlay", opacity: 0.4 }}></div>
         <div className="relative z-10 container mx-auto px-4 md:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
           <p className="text-xl max-w-3xl mx-auto">

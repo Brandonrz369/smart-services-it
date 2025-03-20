@@ -13,7 +13,7 @@ const caseStudies = [
     challenge: 'A multi-location retail chain was experiencing frequent network outages and slow POS transactions.',
     solution: 'Complete network infrastructure redesign with redundant connections and real-time monitoring.',
     results: ['99.9% uptime since implementation', '68% faster transaction processing', '35% reduction in IT support calls'],
-    image: '/images/case-studies-placeholder/placeholder.svg',
+    image: '/images/case-studies/retail-network.jpg',
     logo: '/images/case-studies/retail-logo.png',
     featured: true
   },
@@ -24,7 +24,7 @@ const caseStudies = [
     challenge: 'Growing accounting firm needed to enable secure remote work while maintaining compliance requirements.',
     solution: 'Phased migration to Microsoft 365 with enhanced security controls and custom compliance policies.',
     results: ['100% remote work capability', '40% reduction in IT infrastructure costs', 'Passed security audit with zero findings'],
-    image: '/images/case-studies-placeholder/placeholder.svg',
+    image: '/images/case-studies/accounting-cloud.jpg',
     logo: '/images/case-studies/accounting-logo.png',
     featured: true
   },
@@ -35,7 +35,7 @@ const caseStudies = [
     challenge: 'Medical office needed to strengthen data security and achieve HIPAA compliance.',
     solution: 'Implemented zero-trust security model with endpoint protection and staff security awareness training.',
     results: ['Achieved HIPAA compliance', '95% reduction in security incidents', 'Enhanced patient data protection'],
-    image: '/images/case-studies-placeholder/placeholder.svg',
+    image: '/images/case-studies/healthcare-security.jpg',
     logo: '/images/case-studies/healthcare-logo.png',
     featured: false
   },
@@ -46,7 +46,7 @@ const caseStudies = [
     challenge: 'Manufacturing company struggled with disconnected systems causing inventory and production issues.',
     solution: 'Custom ERP integration connecting production floor systems with inventory management and sales.',
     results: ['27% increase in production efficiency', '42% reduction in inventory errors', 'Real-time visibility across departments'],
-    image: '/images/case-studies-placeholder/placeholder.svg',
+    image: '/images/case-studies/manufacturing-erp.jpg',
     logo: '/images/case-studies/manufacturing-logo.png',
     featured: false
   },
@@ -57,7 +57,7 @@ const caseStudies = [
     challenge: 'Law firm experienced critical data loss after hardware failure with inadequate backup systems.',
     solution: 'Comprehensive disaster recovery solution with automated backups, offsite replication, and rapid recovery testing.',
     results: ['15-minute recovery time objective achieved', '100% data protection coverage', 'Quarterly recovery testing protocols'],
-    image: '/images/case-studies-placeholder/placeholder.svg',
+    image: '/images/case-studies/law-firm-recovery.jpg',
     logo: '/images/case-studies/law-firm-logo.png',
     featured: false
   },
@@ -68,7 +68,7 @@ const caseStudies = [
     challenge: 'Real estate agency needed to equip agents with secure, reliable mobile access to property systems.',
     solution: 'Deployed managed mobile device solution with secure access to CRM, document management, and e-signature platforms.',
     results: ['89% faster document processing', '65% increase in agent responsiveness', 'Secure compliance with real estate regulations'],
-    image: '/images/case-studies-placeholder/placeholder.svg',
+    image: '/images/case-studies/real-estate-mobile.jpg',
     logo: '/images/case-studies/real-estate-logo.png',
     featured: false
   }
