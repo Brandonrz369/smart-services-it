@@ -9,7 +9,7 @@ declare global {
       initInlineWidget: (options: {
         url: string;
         parentElement: HTMLElement;
-        prefill?: Record<string, any>;
+        prefill?: Record<string, string | number | boolean | null | undefined>;
         utm?: Record<string, string>;
       }) => void;
     };
