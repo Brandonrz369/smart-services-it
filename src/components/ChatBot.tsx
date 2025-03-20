@@ -118,47 +118,63 @@ export default function ChatBot() {
       // Check for quick responses first
       const lowerInput = userInput.toLowerCase().trim();
       
-      // Special test command to force API call
-      if (lowerInput === "testapi") {
+      // Special test commands to force API call
+      if (lowerInput === "testapi" || lowerInput.includes("forceapi")) {
         // Force API call to test OpenAI connection
         console.log("Forcing API call test");
+      }
+      // Skip pattern matching for complex questions (longer than 80 characters)
+      else if (userInput.length > 80) {
+        console.log("Question too complex for quick responses, using AI API");
       }
       // Check for exact matches first
       else if (quickResponses[lowerInput]) {
         responseText = quickResponses[lowerInput];
       } else {
-        // Check for partial matches with word boundaries
-        for (const [key, response] of Object.entries(quickResponses)) {
-          // Check if the key is a whole word within the input (surrounded by spaces or at the beginning/end)
-          const keyPattern = new RegExp(`(^|\\s)${key}(\\s|$|\\?|\\.|,)`, 'i');
-          if (keyPattern.test(lowerInput)) {
-            responseText = response;
-            break;
-          }
-        }
+        // Check if this is a question about a specific technology topic
+        const complexTopics = ["zero-trust", "zero trust", "security model", "infrastructure", "implementation steps", "challenges"];
+        const isComplexTopic = complexTopics.some(topic => lowerInput.includes(topic));
         
-        // If still no match, check for similar words (like plurals, etc.)
-        if (!responseText) {
-          const similarMatches = {
-            'services': ['service', 'offering', 'offerings'],
-            'pricing': ['price', 'prices', 'charge', 'charges', 'fee', 'fees'],
-            'hours': ['hour', 'time', 'schedule', 'open', 'closed', 'closing'],
-            'appointment': ['appointments', 'booking', 'bookings', 'reservation', 'reservations'],
-            'contact': ['reach', 'call', 'calling', 'contacting'],
-            'location': ['located', 'office', 'address', 'where'],
-            'repair': ['repairs', 'fix', 'fixes', 'fixing'],
-            'network': ['networking', 'wifi', 'internet', 'connection', 'router']
-          };
-          
-          for (const [primaryKey, alternateKeys] of Object.entries(similarMatches)) {
-            if (quickResponses[primaryKey] && alternateKeys.some(alt => 
-              lowerInput.includes(` ${alt} `) || 
-              lowerInput.startsWith(`${alt} `) || 
-              lowerInput.endsWith(` ${alt}`) ||
-              lowerInput === alt
-            )) {
-              responseText = quickResponses[primaryKey];
+        if (isComplexTopic) {
+          console.log("Detected complex technical topic, using AI API");
+        } else {
+          // Check for partial matches with word boundaries (only for simple queries)
+          for (const [key, response] of Object.entries(quickResponses)) {
+            // Check if the key is a whole word within the input (surrounded by spaces or at the beginning/end)
+            // But only if the key is a significant part of the question (to avoid matching just 'cloud' in a complex question)
+            const keyPattern = new RegExp(`(^|\\s)${key}(\\s|$|\\?|\\.|,)`, 'i');
+            if (keyPattern.test(lowerInput) && key.length > 3 && lowerInput.length / key.length < 5) {
+              responseText = response;
               break;
+            }
+          }
+          
+          // If still no match, check for similar words (like plurals, etc.)
+          if (!responseText) {
+            const similarMatches = {
+              'services': ['service', 'offering', 'offerings'],
+              'pricing': ['price', 'prices', 'charge', 'charges', 'fee', 'fees'],
+              'hours': ['hour', 'time', 'schedule', 'open', 'closed', 'closing'],
+              'appointment': ['appointments', 'booking', 'bookings', 'reservation', 'reservations'],
+              'contact': ['reach', 'call', 'calling', 'contacting'],
+              'location': ['located', 'office', 'address', 'where'],
+              'repair': ['repairs', 'fix', 'fixes', 'fixing'],
+              'network': ['networking', 'wifi', 'internet', 'connection', 'router']
+            };
+            
+            // Only use this for short queries
+            if (lowerInput.length < 50) {
+              for (const [primaryKey, alternateKeys] of Object.entries(similarMatches)) {
+                if (quickResponses[primaryKey] && alternateKeys.some(alt => 
+                  lowerInput.includes(` ${alt} `) || 
+                  lowerInput.startsWith(`${alt} `) || 
+                  lowerInput.endsWith(` ${alt}`) ||
+                  lowerInput === alt
+                )) {
+                  responseText = quickResponses[primaryKey];
+                  break;
+                }
+              }
             }
           }
         }
