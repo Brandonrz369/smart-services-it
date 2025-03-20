@@ -122,76 +122,52 @@ async function getAnthropicResponse(message: string) {
 // Function to call OpenAI API
 async function getOpenAIResponse(message: string) {
   console.log(`Calling OpenAI API with model: ${OPENAI_MODEL}`);
-  console.log(`OpenAI API key length: ${OPENAI_API_KEY ? OPENAI_API_KEY.length : 0}`);
-  console.log(`OpenAI API key starting with: ${OPENAI_API_KEY ? OPENAI_API_KEY.substring(0, 10) + '...' : 'not present'}`);
-  
-  // Quick test to make sure we're not sending an empty API key
-  if (!OPENAI_API_KEY) {
-    throw new Error('OpenAI API key is missing');
-  }
   
   try {
-    const apiPayload = {
-      model: OPENAI_MODEL,
-      max_tokens: 500,
-      temperature: 0.7,
-      messages: [
-        {
-          role: 'system',
-          content: `You are an AI assistant for LB Computer Help, an IT support and computer repair business.
-          You help website visitors with information about our services, scheduling, and basic technical advice.
-          Be friendly, helpful, professional and informative.
-          
-          IMPORTANT: You must ALWAYS give a complete and useful response to the user's question. Never respond with a generic message.
-          
-          Use these details about our business:
-          
-          ${COMPANY_CONTEXT}
-          
-          If asked about scheduling or booking, direct customers to our online booking page or suggest they call our office.
-          
-          If you don't know something specific, acknowledge that and suggest the visitor call or email us rather than providing inaccurate information.`
-        },
-        {
-          role: 'user',
-          content: message
-        }
-      ]
-    };
-    
-    console.log('Making API request with payload:', JSON.stringify(apiPayload).substring(0, 200) + '...');
-    
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${OPENAI_API_KEY}`
       },
-      body: JSON.stringify(apiPayload)
+      body: JSON.stringify({
+        model: OPENAI_MODEL,
+        max_tokens: 500,
+        temperature: 0.7,
+        messages: [
+          {
+            role: 'system',
+            content: `You are an AI assistant for LB Computer Help, an IT support and computer repair business.
+            You help website visitors with information about our services, scheduling, and basic technical advice.
+            Be friendly, helpful, professional and informative.
+            
+            IMPORTANT: You must ALWAYS give a complete and useful response to the user's question. Never respond with a generic message.
+            
+            Use these details about our business:
+            
+            ${COMPANY_CONTEXT}
+            
+            If asked about scheduling or booking, direct customers to our online booking page or suggest they call our office.
+            
+            If you don't know something specific, acknowledge that and suggest the visitor call or email us rather than providing inaccurate information.`
+          },
+          {
+            role: 'user',
+            content: message
+          }
+        ]
+      })
     });
 
     console.log(`OpenAI API response status: ${response.status}`);
     
     if (!response.ok) {
-      let errorText = '';
-      try {
-        errorText = await response.text();
-      } catch (e) {
-        errorText = 'Could not extract error text';
-      }
+      const errorText = await response.text();
       console.error(`OpenAI API error: ${response.status} ${response.statusText}`, errorText);
-      throw new Error(`OpenAI API error: ${response.statusText} (${response.status}). Details: ${errorText}`);
+      throw new Error(`OpenAI API error: ${response.statusText} (${response.status})`);
     }
 
-    let data;
-    try {
-      data = await response.json();
-    } catch (error) {
-      console.error('Error parsing JSON response:', error);
-      throw new Error('Could not parse JSON response from OpenAI API');
-    }
-    
-    console.log('Raw API response:', JSON.stringify(data).substring(0, 200) + '...');
+    const data = await response.json();
     
     // Verify we got a proper response
     if (!data.choices || !data.choices[0] || !data.choices[0].message || !data.choices[0].message.content) {
@@ -253,33 +229,10 @@ export async function POST(req: NextRequest) {
     const { message } = await req.json();
     console.log('Received message:', message);
 
-    // For testing - if the message contains special test commands
+    // For testing - if the message is "test", return a successful test message
     if (message === "test") {
       console.log('Received test message, returning test response');
       return NextResponse.json({ message: "Chatbot API is working correctly. Test successful!" }, { status: 200 });
-    }
-    
-    // Additional test commands for troubleshooting
-    if (message === "testapi" || message.includes("forceapi")) {
-      console.log('Received API force test message');
-      return NextResponse.json({ 
-        message: "API TEST: This is a direct response from the API endpoint. If you see this message, the API route is working but OpenAI integration might have issues." 
-      }, { status: 200 });
-    }
-    
-    // Test environment variables
-    if (message === "testvars") {
-      console.log('Testing environment variables');
-      const envStatus = {
-        hasOpenAIKey: !!OPENAI_API_KEY,
-        openAIKeyLength: OPENAI_API_KEY ? OPENAI_API_KEY.length : 0,
-        aiProvider: AI_PROVIDER,
-        openAIModel: OPENAI_MODEL,
-        nodeEnv: process.env.NODE_ENV
-      };
-      return NextResponse.json({ 
-        message: `API Environment Test: ${JSON.stringify(envStatus, null, 2)}` 
-      }, { status: 200 });
     }
     
     // Get response from AI (or mock in development)
@@ -289,18 +242,6 @@ export async function POST(req: NextRequest) {
       console.log('AI response received:', response.substring(0, 50) + '...');
     } catch (aiError) {
       console.error('AI provider error:', aiError);
-      
-      // Enhanced error handling with details
-      const errorDetails = aiError instanceof Error ? aiError.message : String(aiError);
-      console.error('Detailed error:', errorDetails);
-      
-      // For troubleshooting requests, return the actual error
-      if (message.includes("debugapi")) {
-        return NextResponse.json({
-          message: `API ERROR DETAILS: ${errorDetails}. Provider: ${AI_PROVIDER}, Model: ${OPENAI_MODEL}, Key present: ${!!OPENAI_API_KEY}`
-        }, { status: 200 });
-      }
-      
       // Fallback to mock response if AI fails
       response = getMockResponse(message);
       console.log('Falling back to mock response');

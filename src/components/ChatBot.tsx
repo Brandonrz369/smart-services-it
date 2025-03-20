@@ -119,9 +119,9 @@ export default function ChatBot() {
       const lowerInput = userInput.toLowerCase().trim();
       
       // Special test commands to force API call
-      if (lowerInput === "testapi" || lowerInput.includes("forceapi") || lowerInput === "testvars" || lowerInput.includes("debugapi")) {
+      if (lowerInput === "testapi" || lowerInput.includes("forceapi")) {
         // Force API call to test OpenAI connection
-        console.log("Forcing API call test with special command: " + lowerInput);
+        console.log("Forcing API call test");
       }
       // Skip pattern matching for complex questions (longer than 80 characters)
       else if (userInput.length > 80) {
