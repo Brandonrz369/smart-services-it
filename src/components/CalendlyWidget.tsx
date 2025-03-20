@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 interface CalendlyWidgetProps {
   url: string;
@@ -16,21 +16,35 @@ export default function CalendlyWidget({
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
   
-  // Convert Calendly URL to iframe embed URL if needed
+  // Convert Calendly URL to iframe embed URL by adding embed=true
   const getEmbedUrl = (originalUrl: string) => {
-    // If it already has /scheduled in it, it's likely an embed URL
-    if (originalUrl.includes('/scheduled')) {
-      return originalUrl;
-    }
+    // Handle null case
+    if (!originalUrl) return '';
     
-    // Otherwise, we need to convert it to an embed URL
-    // Remove any query parameters
-    const baseUrl = originalUrl.split('?')[0];
-    // Add the embed parameter
-    return `${baseUrl}?embed=true&hide_gdpr_banner=1&background_color=ffffff&text_color=333333&primary_color=2563eb`;
+    try {
+      // Create a URL object to properly handle the URL
+      const urlObj = new URL(originalUrl);
+      
+      // Set the embed parameter and other styling parameters
+      urlObj.searchParams.set('embed', 'true');
+      urlObj.searchParams.set('hide_gdpr_banner', '1');
+      urlObj.searchParams.set('background_color', 'ffffff');
+      urlObj.searchParams.set('text_color', '333333');
+      urlObj.searchParams.set('primary_color', '2563eb');
+      
+      return urlObj.toString();
+    } catch (e) {
+      // If URL parsing fails, fall back to the original method
+      console.error('Error parsing Calendly URL:', e);
+      
+      // Remove any query parameters and add our own
+      const baseUrl = originalUrl.split('?')[0];
+      return `${baseUrl}?embed=true&hide_gdpr_banner=1&background_color=ffffff&text_color=333333&primary_color=2563eb`;
+    }
   };
   
-  const embedUrl = getEmbedUrl(url);
+  // Safe URL handling
+  const embedUrl = url ? getEmbedUrl(url) : '';
   
   // Handle iframe load event
   const handleIframeLoad = () => {
