@@ -1,17 +1,41 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+
 export default function SimpleContactForm() {
+  const [isMobile, setIsMobile] = useState(false);
+  
+  // Detect mobile devices
+  useEffect(() => {
+    const checkMobile = () => {
+      const userAgent = 
+        typeof window.navigator === "undefined" ? "" : navigator.userAgent;
+      
+      const mobile = Boolean(
+        userAgent.match(
+          /Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i
+        )
+      );
+      
+      setIsMobile(mobile);
+    };
+    
+    checkMobile();
+  }, []);
+  
   return (
     <div className="bg-white rounded-lg shadow-md p-6">
       <h2 className="text-xl font-bold text-gray-800 mb-4">Contact Us</h2>
       
+      {/* Super-simple form that works on all devices */}
       <form
         action="https://formspree.io/f/xzzeddgr"
         method="POST"
-        target="_blank"
       >
-        {/* Redirect back to our site after submission */}
-        <input type="hidden" name="_next" value="https://lbcomputerhelp.com/thanks" />
+        {/* If mobile, open in same window */}
+        {!isMobile && (
+          <input type="hidden" name="_next" value="https://lbcomputerhelp.com/thanks" />
+        )}
         
         <div className="mb-4">
           <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
