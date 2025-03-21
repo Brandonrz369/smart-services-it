@@ -243,15 +243,17 @@ export default function Home() {
       </div>
       {/* Hero Section */}
       <header id="hero" className="relative h-screen flex flex-col items-center justify-center text-center px-4 md:px-8 overflow-hidden -mt-16">
-                <Image 
-          src="/images/hero-background.jpg" 
-          alt="Technology Background" 
-          className="absolute inset-0 object-cover z-0 !static md:!absolute h-screen md:h-auto w-screen md:w-auto" 
-          fill
-          sizes="100vw"
-          priority
-          quality={90}
-        />
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <Image 
+            src="/images/hero-background.jpg" 
+            alt="Technology Background" 
+            className="object-cover w-full h-full" 
+            fill
+            sizes="100vw"
+            priority
+            quality={90}
+          />
+        </div>
         <div className="absolute inset-0 bg-blue-900/80 z-0"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1)_0,rgba(0,0,0,0)_70%)] z-0"></div>
         <FloatingShapes count={8} className="z-0 opacity-30" />
@@ -285,8 +287,8 @@ export default function Home() {
                     texts={[
                       "Professional IT Support",
                       "Managed IT Services",
-                      "Computer & Mobile Repair",
-                      "Home & Office Support"
+                      "Computer Repair",
+                      "Business IT Solutions"
                     ]}
                     speed={40}
                     delay={2000}
