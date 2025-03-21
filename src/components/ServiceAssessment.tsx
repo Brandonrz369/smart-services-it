@@ -276,7 +276,7 @@ export default function ServiceAssessment() {
       
       // Create a simple object with all form data
       console.log('Preparing IT assessment data...');
-      const formObject: Record<string, any> = {};
+      const formObject: Record<string, string | File | string[]> = {};
       formData.forEach((value, key) => {
         formObject[key] = value;
       });

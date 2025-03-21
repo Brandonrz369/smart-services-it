@@ -73,7 +73,7 @@ export default function Home() {
       // Submit to Formspree
       // Convert FormData to a simple object
       console.log('Preparing homepage form data...');
-      const formObject: Record<string, any> = {};
+      const formObject: Record<string, string | File> = {};
       formData.forEach((value, key) => {
         formObject[key] = value;
       });
