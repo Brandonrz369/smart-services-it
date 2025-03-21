@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useFormspree } from '@formspree/react';
+import { useForm } from '@formspree/react';
 
 // Pricing data
 const pricingData = {
@@ -105,7 +105,7 @@ const pricingData = {
 
 export default function PricingCalculator() {
   // Set up Formspree integration
-  const [formState, submitToFormspree] = useFormspree("xzzeddgr");
+  const [formState, handleSubmit] = useForm<Record<string, any>>("xzzeddgr");
   
   // Simple state management with no dependencies
   const [calculatorType, setCalculatorType] = useState('managed');
@@ -183,13 +183,17 @@ export default function PricingCalculator() {
       ...formData
     };
     
-    // Submit to Formspree
-    await submitToFormspree(formSubmissionData);
-    
-    console.log('Quote request submitted:', formSubmissionData);
-    
-    // Show success message
-    setQuoteSubmitted(true);
+    try {
+      // Submit to Formspree
+      await handleSubmit(formSubmissionData);
+      
+      console.log('Quote request submitted:', formSubmissionData);
+      
+      // Show success message
+      setQuoteSubmitted(true);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
   };
   
   // Calculate pricing
