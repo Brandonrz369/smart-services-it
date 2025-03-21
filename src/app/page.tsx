@@ -191,21 +191,40 @@ export default function Home() {
             <div className="text-white">
               <FadeIn direction="up">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-5">
-                  Expert IT Services <br />
-                  <TypewriterEffect texts={["for Your Business", "When You Need Them", "You Can Trust"]} />
+                  LB Computer Help <br />
+                  <TypewriterEffect texts={["Computer Repair", "Network Support", "Managed IT Services"]} />
                 </h1>
                 <p className="text-lg md:text-xl opacity-90 mb-8">
-                  IT solutions for businesses and individuals in Long Beach. From on-site repairs to managed services, we've got your technology covered.
+                  Fast, reliable, and affordable computer repairs, IT services, and technical support for homes and businesses - from your trusted local provider.
                 </p>
               </FadeIn>
               
               <FadeIn direction="up" delay={0.2}>
+                <a 
+                  href="tel:2133496790" 
+                  className="inline-block text-2xl font-bold text-white mb-6 hover:text-orange-300 transition-colors"
+                >
+                  (213) 349-6790
+                </a>
+                
+                <div className="mb-8">
+                  <p className="flex items-center text-white mb-2">
+                    <span className="text-green-400 mr-2">✓</span>Same-Day Service
+                  </p>
+                  <p className="flex items-center text-white mb-2">
+                    <span className="text-green-400 mr-2">✓</span>Transparent Pricing
+                  </p>
+                  <p className="flex items-center text-white">
+                    <span className="text-green-400 mr-2">✓</span>Guaranteed
+                  </p>
+                </div>
+
                 <div className="flex flex-wrap gap-4 sm:flex-row">
                   <Link 
                     href="/services" 
                     className="px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transform hover:scale-105 transition-all duration-300 shadow-lg flex items-center"
                   >
-                    Our Services
+                    View Services & Pricing
                     <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
