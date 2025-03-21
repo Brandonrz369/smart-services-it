@@ -21,16 +21,14 @@ export default function ContactPage() {
       const form = e.currentTarget;
       const formData = new FormData(form);
       
-      // Using a new dedicated form for contact form
+      // Restore original working endpoint
       console.log('Submitting contact form to Formspree...');
-      const response = await fetch('https://formspree.io/f/xkngdddj', {
+      const response = await fetch('https://formspree.io/f/xzzeddgr', {
         method: 'POST',
         body: formData,
         headers: {
           'Accept': 'application/json'
-          // Remove Content-Type header - let the browser set it with boundary parameter
-        },
-        mode: 'cors' // Explicitly set CORS mode
+        }
       });
       console.log('Formspree response status:', response.status);
       

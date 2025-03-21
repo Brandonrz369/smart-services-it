@@ -274,16 +274,14 @@ export default function ServiceAssessment() {
       // Show results immediately
       setShowResults(true);
       
-      // Send data directly to new Formspree endpoint - IT assessment specific form
+      // Go back to the original working Formspree endpoint
       console.log('Submitting IT assessment to Formspree...');
-      const response = await fetch('https://formspree.io/f/mqkrjjng', {
+      const response = await fetch('https://formspree.io/f/xzzeddgr', {
         method: 'POST',
         body: formData,
         headers: {
           'Accept': 'application/json'
-          // Remove Content-Type header - let the browser set it with boundary parameter
-        },
-        mode: 'cors' // Explicitly set CORS mode
+        }
       });
       console.log('Formspree response status:', response.status);
       

@@ -71,16 +71,14 @@ export default function Home() {
     
     try {
       // Submit to Formspree
-      // Using new dedicated form for homepage inquiries
+      // Restore original working endpoint
       console.log('Submitting homepage form to Formspree...');
-      const response = await fetch('https://formspree.io/f/xgegvazj', {
+      const response = await fetch('https://formspree.io/f/xzzeddgr', {
         method: 'POST',
         body: formData,
         headers: {
           'Accept': 'application/json'
-          // Remove Content-Type header - let the browser set it with boundary parameter
-        },
-        mode: 'cors' // Explicitly set CORS mode
+        }
       });
       console.log('Formspree response status:', response.status);
       
