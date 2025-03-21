@@ -264,6 +264,16 @@ export default function ServiceAssessment() {
       // Add assessment answers to form data
       formData.append('assessment_answers', JSON.stringify(state.answers));
       
+      // Update state to completed immediately to show results
+      setState({
+        ...state,
+        completed: true,
+        progress: 100
+      });
+      
+      // Show results immediately
+      setShowResults(true);
+      
       // Send data directly to Formspree
       const response = await fetch('https://formspree.io/f/xzzeddgr', {
         method: 'POST',
@@ -275,17 +285,12 @@ export default function ServiceAssessment() {
       
       if (response.ok) {
         console.log('Assessment data sent successfully!');
-        setShowResults(true);
-        // Show success message to user
-        alert("Your assessment has been submitted successfully! Here are your recommendations.");
+        // Don't show alert - too disruptive on mobile
       } else {
         console.error('Error submitting assessment');
-        // Still show results even if submission fails
-        setShowResults(true);
       }
     } catch (error) {
       console.error('Error submitting data:', error);
-      setShowResults(true); // Still show results even if there was an error
     } finally {
       setIsSubmitting(false);
     }
