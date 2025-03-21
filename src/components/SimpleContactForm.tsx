@@ -1,10 +1,6 @@
 'use client';
 
-// No state needed for this component
-
 export default function SimpleContactForm() {
-  // This is a traditional HTML form that posts directly to FormSpree
-  // No JavaScript submission, no fetch, no CORS issues
   return (
     <div className="bg-white rounded-lg shadow-md p-6">
       <h2 className="text-xl font-bold text-gray-800 mb-4">Contact Us</h2>
@@ -12,6 +8,7 @@ export default function SimpleContactForm() {
       <form
         action="https://formspree.io/f/xzzeddgr"
         method="POST"
+        target="_blank"
       >
         {/* Redirect back to our site after submission */}
         <input type="hidden" name="_next" value="https://lbcomputerhelp.com/thanks" />
