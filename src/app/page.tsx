@@ -8,11 +8,9 @@ import FadeIn from '@/components/FadeIn';
 import FloatingShapes from '@/components/FloatingShapes';
 import TypewriterEffect from '@/components/TypewriterEffect';
 import ServiceCard from '@/components/ServicesCard';
-// import StatsSection from '@/components/StatsSection';
 import TestimonialCarousel, { Testimonial } from '@/components/TestimonialCarousel';
 import RevealText from '@/components/RevealText';
 import ParallaxEffect from '@/components/ParallaxEffect';
-// Removed unused import: import SimpleMobileNav from '@/components/SimpleMobileNav';
 import ServiceAssessmentModal from '@/components/ServiceAssessmentModal';
 
 // Schema markup for SEO
@@ -62,22 +60,6 @@ export default function Home() {
   useEffect(() => {
     setIsLoaded(true);
   }, []);
-  
-  // Removed scroll handler since it's not being used in the component
-  // useEffect(() => {
-  //   if (typeof window === 'undefined') return;
-  //   
-  //   const handleScroll = () => {
-  //     if (window.scrollY > 100) {
-  //       setIsScrolled(true);
-  //     } else {
-  //       setIsScrolled(false);
-  //     }
-  //   };
-  //   
-  //   window.addEventListener('scroll', handleScroll);
-  //   return () => window.removeEventListener('scroll', handleScroll);
-  // }, []);
   
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -245,8 +227,6 @@ export default function Home() {
     }
   ];
 
-  // Stats - removed from display as requested
-
   return (
     <div className={`min-h-screen bg-background text-foreground font-sans transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
       {/* Floating CTA for mobile */}
@@ -279,7 +259,7 @@ export default function Home() {
         <div className="relative z-10 max-w-5xl mx-auto">
           <FadeIn direction="down" delay={0.3} duration={0.8}>
             <motion.h1 
-              className="text-4xl md:text-6xl mb-8"
+              className="text-4xl md:text-6xl mb-8 whitespace-normal w-full text-center"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ 
@@ -289,9 +269,9 @@ export default function Home() {
                 duration: 0.8
               }}
             >
-              <span className="hero-title">
+              <div className="hero-title">
                 LB Computer Help
-              </span>
+              </div>
             </motion.h1>
           </FadeIn>
           
@@ -685,8 +665,6 @@ export default function Home() {
         </div>
       </section>
 
-{/* Stats Section removed as requested */}
-
       {/* Areas Served */}
       <section className="py-20 px-4 md:px-8 bg-white">
         <div className="max-w-6xl mx-auto">
@@ -1019,8 +997,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Remove spacer div as it was causing the white bar */}
       
       {/* Schema.org markup for search engines */}
       <BusinessJsonLd />

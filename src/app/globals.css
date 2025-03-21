@@ -101,10 +101,9 @@ body {
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   letter-spacing: -1px;
   position: relative;
-}
-
-.hero-title span {
   display: inline-block;
+  font-size: inherit;
+  width: 100%;
 }
 
 /* Orange cursor in hero section */
