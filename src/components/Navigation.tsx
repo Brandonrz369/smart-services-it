@@ -157,22 +157,22 @@ export default function Navigation() {
       {isEmergencyVisible && (
         <div className="bg-gradient-to-r from-blue-800 via-blue-700 to-blue-600 py-1">
           <div className="container mx-auto px-4">
-            <div className="flex flex-col sm:flex-row items-center justify-between">
-              <div className="flex items-center mb-1 sm:mb-0 w-full sm:w-auto justify-center sm:justify-start">
-                <div className="bg-white/20 rounded-full px-2 py-0.5 text-white text-xs mr-2 text-[10px] sm:text-xs">24/7 SUPPORT</div>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <div className="bg-white/20 rounded-full px-2 py-0.5 text-white text-xs mr-2 text-[10px] sm:text-xs whitespace-nowrap">24/7 SUPPORT</div>
                 <a href="tel:2133496790" className="text-white text-[10px] sm:text-sm hover:underline flex items-center whitespace-nowrap">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-2.5 w-2.5 sm:h-3 sm:w-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                   </svg>
                   (213) 349-6790
                 </a>
               </div>
-              <div className="flex items-center w-full sm:w-auto justify-center sm:justify-start">
+              <div className="flex items-center">
                 <Link href="/emergency" className="text-white text-[10px] sm:text-xs hover:underline flex items-center mr-3 whitespace-nowrap">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-2.5 w-2.5 sm:h-3 sm:w-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
-                  Emergency Service
+                  Emergency Services
                 </Link>
                 <button 
                   onClick={() => setIsEmergencyVisible(false)} 

@@ -246,7 +246,7 @@ export default function Home() {
                 <Image 
           src="/images/hero-background.jpg" 
           alt="Technology Background" 
-          className="absolute inset-0 object-cover z-0" 
+          className="absolute inset-0 object-cover z-0 !static md:!absolute h-screen md:h-auto w-screen md:w-auto" 
           fill
           sizes="100vw"
           priority
@@ -353,7 +353,7 @@ export default function Home() {
         </div>
         
         <motion.div 
-          className="absolute bottom-28 left-1/2 z-10 hidden md:block"
+          className="absolute bottom-28 left-1/2 z-10 block"
           initial={{ y: -10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.5 }}
@@ -691,10 +691,10 @@ export default function Home() {
               ].map((area, index) => (
                 <div key={index} className="text-center">
                   <div className="inline-flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-blue-600 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 flex-shrink-0 text-blue-600 mr-1" viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-gray-700">{area}</span>
+                    <span className="text-gray-700 text-sm md:text-base">{area}</span>
                   </div>
                 </div>
               ))}
