@@ -23,7 +23,7 @@ export default function ContactPage() {
       
       // Convert FormData to a simple object
       console.log('Preparing contact form data...');
-      const formObject = {};
+      const formObject: Record<string, any> = {};
       formData.forEach((value, key) => {
         formObject[key] = value;
       });
