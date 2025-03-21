@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { useForm } from '@formspree/react';
 
 // Pricing data
 const pricingData = {
@@ -104,9 +103,6 @@ const pricingData = {
 };
 
 export default function PricingCalculator() {
-  // Set up Formspree integration
-  const [formState, handleSubmit] = useForm<Record<string, any>>("xzzeddgr");
-  
   // Simple state management with no dependencies
   const [calculatorType, setCalculatorType] = useState('managed');
   const [selectedPlan, setSelectedPlan] = useState(0);
@@ -114,6 +110,8 @@ export default function PricingCalculator() {
   const [additionalServices, setAdditionalServices] = useState<number[]>([]);
   const [showQuoteForm, setShowQuoteForm] = useState(false);
   const [quoteSubmitted, setQuoteSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formError, setFormError] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -170,8 +168,10 @@ export default function PricingCalculator() {
   };
   
   // Handle form submission
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setFormError(false);
     
     // Prepare data for Formspree
     const formSubmissionData = {
@@ -183,10 +183,35 @@ export default function PricingCalculator() {
       ...formData
     };
     
-    // Submit to Formspree
-    handleSubmit(formSubmissionData);
-    
-    console.log('Quote request submitted:', formSubmissionData);
+    try {
+      // Submit directly to Formspree
+      console.log('Submitting pricing quote to Formspree...');
+      const response = await fetch('https://formspree.io/f/xzzeddgr', {
+        method: 'POST',
+        body: JSON.stringify(formSubmissionData),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      });
+      
+      console.log('Formspree response status:', response.status);
+      
+      if (response.ok) {
+        // Success
+        setQuoteSubmitted(true);
+        console.log('Quote request submitted successfully');
+      } else {
+        // Error
+        setFormError(true);
+        console.error('Error submitting form:', await response.text());
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setFormError(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   
   // Calculate pricing
@@ -226,7 +251,7 @@ export default function PricingCalculator() {
   if (showQuoteForm) {
     return (
       <div className="bg-white shadow-lg rounded-lg p-6 max-w-4xl mx-auto">
-        {formState.succeeded || quoteSubmitted ? (
+        {quoteSubmitted ? (
           <div className="text-center py-8">
             <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -284,11 +309,11 @@ export default function PricingCalculator() {
             )}
             
             <form onSubmit={handleFormSubmit}>
-              {formState.errors ? (
+              {formError && (
                 <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md text-red-700">
-                  <p className="font-medium">There was a problem submitting your form</p>
+                  <p className="font-medium">There was a problem submitting your form. Please try again.</p>
                 </div>
-              ) : null}
+              )}
             
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div>
@@ -374,9 +399,9 @@ export default function PricingCalculator() {
                 <button
                   type="submit"
                   className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-                  disabled={formState.submitting}
+                  disabled={isSubmitting}
                 >
-                  {formState.submitting ? 'Submitting...' : 'Submit Quote Request'}
+                  {isSubmitting ? 'Submitting...' : 'Submit Quote Request'}
                 </button>
               </div>
             </form>
