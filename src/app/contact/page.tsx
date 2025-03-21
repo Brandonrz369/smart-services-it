@@ -21,13 +21,21 @@ export default function ContactPage() {
       const form = e.currentTarget;
       const formData = new FormData(form);
       
-      // Restore original working endpoint
-      console.log('Submitting contact form to Formspree...');
+      // Convert FormData to a simple object
+      console.log('Preparing contact form data...');
+      const formObject = {};
+      formData.forEach((value, key) => {
+        formObject[key] = value;
+      });
+      
+      // Send as JSON instead of FormData
+      console.log('Submitting contact form to Formspree as JSON...');
       const response = await fetch('https://formspree.io/f/xzzeddgr', {
         method: 'POST',
-        body: formData,
+        body: JSON.stringify(formObject),
         headers: {
-          'Accept': 'application/json'
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
         }
       });
       console.log('Formspree response status:', response.status);

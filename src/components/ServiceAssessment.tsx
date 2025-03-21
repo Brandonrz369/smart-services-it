@@ -274,13 +274,24 @@ export default function ServiceAssessment() {
       // Show results immediately
       setShowResults(true);
       
-      // Go back to the original working Formspree endpoint
-      console.log('Submitting IT assessment to Formspree...');
+      // Create a simple object with all form data
+      console.log('Preparing IT assessment data...');
+      const formObject = {};
+      formData.forEach((value, key) => {
+        formObject[key] = value;
+      });
+      
+      // Add assessment answers as a field
+      formObject['assessment_data'] = JSON.stringify(state.answers);
+      
+      // Send as JSON instead of FormData
+      console.log('Submitting IT assessment to Formspree as JSON...');
       const response = await fetch('https://formspree.io/f/xzzeddgr', {
         method: 'POST',
-        body: formData,
+        body: JSON.stringify(formObject),
         headers: {
-          'Accept': 'application/json'
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
         }
       });
       console.log('Formspree response status:', response.status);
