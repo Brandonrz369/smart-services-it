@@ -280,9 +280,10 @@ export default function ServiceAssessment() {
         method: 'POST',
         body: formData,
         headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'multipart/form-data'
-        }
+          'Accept': 'application/json'
+          // Remove Content-Type header - let the browser set it with boundary parameter
+        },
+        mode: 'cors' // Explicitly set CORS mode
       });
       console.log('Formspree response status:', response.status);
       
