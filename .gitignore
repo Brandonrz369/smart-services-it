@@ -16,9 +16,17 @@
 # next.js
 /.next/
 /out/
+/dist/
 
 # production
 /build
+
+# logs
+*.log
+*-log.json
+debug-server-log.json
+form-submissions-log.json
+form-test-results.json
 
 # misc
 .DS_Store
