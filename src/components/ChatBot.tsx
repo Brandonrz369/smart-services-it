@@ -286,7 +286,7 @@ export default function ChatBot() {
       {/* Chat Button */}
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-20 z-50 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 flex items-center justify-center"
+        className="fixed bottom-6 right-6 z-50 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 flex items-center justify-center"
         aria-label={isOpen ? "Close chat" : "Open chat"}
       >
         {isOpen ? (
@@ -302,7 +302,7 @@ export default function ChatBot() {
       
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-24 right-20 w-96 max-w-[calc(100vw-2rem)] h-[32rem] max-h-[calc(100vh-10rem)] bg-white rounded-xl shadow-2xl z-50 flex flex-col overflow-hidden border border-gray-200">
+        <div className="fixed bottom-24 right-6 w-96 max-w-[90vw] h-[32rem] max-h-[calc(100vh-10rem)] bg-white rounded-xl shadow-2xl z-50 flex flex-col overflow-hidden border border-gray-200">
           {/* Chat Header */}
           <div className="bg-blue-600 text-white p-4 flex items-center justify-between">
             <div className="flex items-center">

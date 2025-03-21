@@ -259,7 +259,7 @@ export default function Home() {
         <div className="relative z-10 max-w-5xl mx-auto">
           <FadeIn direction="down" delay={0.3} duration={0.8}>
             <motion.h1 
-              className="text-4xl md:text-6xl mb-8 whitespace-normal w-full text-center"
+              className="text-3xl md:text-5xl mb-8 whitespace-normal w-full text-center px-2"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ 
@@ -276,7 +276,7 @@ export default function Home() {
           </FadeIn>
           
           <FadeIn direction="up" delay={0.6} duration={0.8}>
-            <div className="max-w-3xl mx-auto bg-black/40 backdrop-blur-sm p-6 rounded-xl border border-white/20 mb-6">
+            <div className="max-w-3xl mx-auto bg-black/60 p-6 rounded-xl border border-white/20 mb-6">
               <p className="text-white text-base md:text-xl mb-4">Fast, reliable, and affordable computer repairs, IT services, and technical support for homes and businesses - from your trusted local provider.</p>
               
               <div className="h-12 md:h-16 text-lg md:text-2xl mb-4 md:mb-6 font-medium">
@@ -353,7 +353,7 @@ export default function Home() {
         </div>
         
         <motion.div 
-          className="absolute bottom-10 left-1/2 z-10"
+          className="absolute bottom-28 left-1/2 z-10 hidden md:block"
           initial={{ y: -10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.5 }}

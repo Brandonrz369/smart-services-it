@@ -104,6 +104,10 @@ body {
   display: inline-block;
   font-size: inherit;
   width: 100%;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 
 /* Orange cursor in hero section */
@@ -216,7 +220,7 @@ body {
 .floating-cta {
   position: fixed;
   bottom: 20px;
-  right: 20px;
+  left: 20px;
   z-index: 100;
   animation: bounce 2s infinite;
 }
