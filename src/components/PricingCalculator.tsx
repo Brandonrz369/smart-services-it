@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useFormspree } from '@formspree/react';
 
 // Pricing data
 const pricingData = {
@@ -103,6 +104,9 @@ const pricingData = {
 };
 
 export default function PricingCalculator() {
+  // Set up Formspree integration
+  const [formState, submitToFormspree] = useFormspree("xzzeddgr");
+  
   // Simple state management with no dependencies
   const [calculatorType, setCalculatorType] = useState('managed');
   const [selectedPlan, setSelectedPlan] = useState(0);
@@ -166,16 +170,23 @@ export default function PricingCalculator() {
   };
   
   // Handle form submission
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, you would send this to your backend
-    console.log('Quote request:', {
+    
+    // Prepare data for Formspree
+    const formSubmissionData = {
       type: calculatorType,
       plan: calculatorType === 'managed' ? pricingData.managedServices[selectedPlan].name : 'On-Demand',
       userCount: calculatorType === 'managed' ? userCount : null,
       additionalServices: additionalServices.map(i => pricingData.additionalServices[i].name),
-      contactInfo: formData
-    });
+      estimatedPrice: calculatePrice().totalPrice.toFixed(2),
+      ...formData
+    };
+    
+    // Submit to Formspree
+    await submitToFormspree(formSubmissionData);
+    
+    console.log('Quote request submitted:', formSubmissionData);
     
     // Show success message
     setQuoteSubmitted(true);
@@ -218,7 +229,7 @@ export default function PricingCalculator() {
   if (showQuoteForm) {
     return (
       <div className="bg-white shadow-lg rounded-lg p-6 max-w-4xl mx-auto">
-        {quoteSubmitted ? (
+        {formState.succeeded || quoteSubmitted ? (
           <div className="text-center py-8">
             <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
