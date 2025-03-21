@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { submitFormWithDebug } from '@/lib/form-debug';
 
 // Types
 interface Question {
@@ -284,31 +285,16 @@ export default function ServiceAssessment() {
       // Add assessment answers as a field
       formObject['assessment_data'] = JSON.stringify(state.answers);
       
-      // Send as JSON instead of FormData
-      console.log('Submitting IT assessment to Formspree as JSON...');
-      const response = await fetch('https://formspree.io/f/xzzeddgr', {
-        method: 'POST',
-        body: JSON.stringify(formObject),
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
-      });
-      console.log('Formspree response status:', response.status);
+      console.log('Submitting IT assessment through debug service...');
       
-      // Additional debugging - log the response JSON if possible
-      try {
-        const responseData = await response.clone().json();
-        console.log('Formspree response data:', responseData);
-      } catch (e) {
-        console.log('Could not parse response JSON:', e);
-      }
+      // Use our debugging middleware
+      const result = await submitFormWithDebug(formObject, 'ServiceAssessment');
       
-      if (response.ok) {
+      if (result.success) {
         console.log('Assessment data sent successfully!');
         // Don't show alert - too disruptive on mobile
       } else {
-        console.error('Error submitting assessment');
+        console.error('Error submitting assessment:', result.error || result.status);
       }
     } catch (error) {
       console.error('Error submitting data:', error);

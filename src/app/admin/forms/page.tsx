@@ -1,0 +1,309 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+
+interface TestResult {
+  id: string;
+  timestamp: string;
+  test_name: string;
+  success: boolean;
+  details: any;
+}
+
+interface TestLogs {
+  tests: TestResult[];
+  last_run: string | null;
+}
+
+export default function FormsMonitor() {
+  const [testResults, setTestResults] = useState<TestLogs | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [runningTests, setRunningTests] = useState(false);
+  
+  // Load test results on page load
+  useEffect(() => {
+    fetchTestResults();
+  }, []);
+  
+  // Fetch test results from the API
+  const fetchTestResults = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch('/api/debug/auto-test', {
+        method: 'POST'
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        setTestResults(data);
+      } else {
+        setError(`Error fetching test results: ${response.status} ${response.statusText}`);
+      }
+    } catch (err) {
+      setError(`Error fetching test results: ${err instanceof Error ? err.message : String(err)}`);
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+  // Run all form tests
+  const runTests = async () => {
+    try {
+      setRunningTests(true);
+      const response = await fetch('/api/debug/auto-test?test=all');
+      
+      if (response.ok) {
+        // Wait a moment for the logs to be updated
+        setTimeout(() => {
+          fetchTestResults();
+          setRunningTests(false);
+        }, 500);
+      } else {
+        setError(`Error running tests: ${response.status} ${response.statusText}`);
+        setRunningTests(false);
+      }
+    } catch (err) {
+      setError(`Error running tests: ${err instanceof Error ? err.message : String(err)}`);
+      setRunningTests(false);
+    }
+  };
+  
+  // Format date for display
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleString();
+  };
+  
+  return (
+    <div className="container mx-auto p-6 max-w-7xl">
+      <header className="mb-8">
+        <div className="flex justify-between items-center">
+          <h1 className="text-3xl font-bold">Form Submission Monitor</h1>
+          <Link 
+            href="/"
+            className="px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300"
+          >
+            Back to Homepage
+          </Link>
+        </div>
+        <p className="text-gray-600 mt-2">
+          Monitor and test form submissions across the website
+        </p>
+      </header>
+      
+      <div className="mb-8 flex flex-wrap gap-4">
+        <button
+          onClick={runTests}
+          disabled={runningTests}
+          className={`px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 ${
+            runningTests ? 'opacity-70 cursor-not-allowed' : ''
+          }`}
+        >
+          {runningTests ? 'Running Tests...' : 'Run All Form Tests'}
+        </button>
+        
+        <button
+          onClick={fetchTestResults}
+          disabled={loading}
+          className={`px-4 py-2 bg-gray-700 text-white rounded-md hover:bg-gray-800 ${
+            loading ? 'opacity-70 cursor-not-allowed' : ''
+          }`}
+        >
+          {loading ? 'Loading...' : 'Refresh Results'}
+        </button>
+      </div>
+      
+      {error && (
+        <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-md text-red-700">
+          {error}
+        </div>
+      )}
+      
+      <div className="bg-white shadow-md rounded-lg overflow-hidden">
+        <div className="p-4 bg-gray-50 border-b border-gray-200">
+          <h2 className="text-xl font-semibold">Form Test Results</h2>
+          {testResults?.last_run && (
+            <p className="text-sm text-gray-600">
+              Last test run: {formatDate(testResults.last_run)}
+            </p>
+          )}
+        </div>
+        
+        {loading ? (
+          <div className="p-12 text-center text-gray-500">
+            <div className="animate-spin h-8 w-8 border-4 border-blue-500 border-t-transparent rounded-full mx-auto mb-4"></div>
+            <p>Loading test results...</p>
+          </div>
+        ) : !testResults?.tests.length ? (
+          <div className="p-12 text-center text-gray-500">
+            <p>No test results available. Run tests to see results.</p>
+          </div>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Date/Time
+                  </th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Form
+                  </th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Status
+                  </th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Details
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+                {testResults.tests.map((result) => (
+                  <tr key={result.id} className="hover:bg-gray-50">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {formatDate(result.timestamp)}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      {result.test_name}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                        result.success 
+                          ? 'bg-green-100 text-green-800' 
+                          : 'bg-red-100 text-red-800'
+                      }`}>
+                        {result.success ? 'Success' : 'Failed'}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 text-sm text-gray-500">
+                      {result.details.status && (
+                        <div>Status: {result.details.status}</div>
+                      )}
+                      {result.details.error && (
+                        <div className="text-red-600">{result.details.error}</div>
+                      )}
+                      
+                      <details className="mt-1">
+                        <summary className="cursor-pointer text-xs text-blue-500 hover:text-blue-700">
+                          View details
+                        </summary>
+                        <pre className="mt-2 text-xs p-2 bg-gray-50 rounded overflow-x-auto max-w-lg max-h-48">
+                          {JSON.stringify(result.details, null, 2)}
+                        </pre>
+                      </details>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+      
+      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="bg-white shadow-md rounded-lg overflow-hidden">
+          <div className="p-4 bg-gray-50 border-b border-gray-200">
+            <h2 className="text-xl font-semibold">Form Test Links</h2>
+          </div>
+          <div className="p-6 space-y-4">
+            <p className="text-sm">Test individual forms by clicking the links below:</p>
+            <ul className="space-y-2">
+              <li>
+                <a 
+                  href="/api/debug/auto-test?test=simpleContactForm" 
+                  className="text-blue-600 hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Test Simple Contact Form
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="/api/debug/auto-test?test=contactPage" 
+                  className="text-blue-600 hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Test Contact Page Form
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="/api/debug/auto-test?test=pricingCalculator" 
+                  className="text-blue-600 hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Test Pricing Calculator Form
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="/api/debug/auto-test?test=serviceAssessment" 
+                  className="text-blue-600 hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Test Service Assessment Form
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <div className="bg-white shadow-md rounded-lg overflow-hidden">
+          <div className="p-4 bg-gray-50 border-b border-gray-200">
+            <h2 className="text-xl font-semibold">Debugging Resources</h2>
+          </div>
+          <div className="p-6 space-y-4">
+            <p className="text-sm">Additional debugging tools and resources:</p>
+            <ul className="space-y-2">
+              <li>
+                <Link 
+                  href="/web-tools" 
+                  className="text-blue-600 hover:underline"
+                >
+                  Web Tools & Form Debugger
+                </Link>
+              </li>
+              <li>
+                <a 
+                  href="/api/debug/logs" 
+                  className="text-blue-600 hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View Debug Logs (JSON)
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="/FORM_DEBUG.md" 
+                  className="text-blue-600 hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Form Debugging Documentation
+                </a>
+              </li>
+            </ul>
+            
+            <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-md text-sm">
+              <p className="font-medium text-yellow-800 mb-1">
+                Python Debug Client
+              </p>
+              <p className="text-yellow-700">
+                For advanced debugging, use the Python debug client on your server:
+                <br />
+                <code className="bg-yellow-100 px-1 rounded">python debug_client.py</code>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

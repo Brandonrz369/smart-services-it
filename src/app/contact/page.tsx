@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import FadeIn from '@/components/FadeIn';
 import CalendlyWidget from '@/components/CalendlyWidget';
+import { submitFormWithDebug } from '@/lib/form-debug';
 
 export default function ContactPage() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -28,23 +29,16 @@ export default function ContactPage() {
         formObject[key] = value;
       });
       
-      // Send as JSON instead of FormData
-      console.log('Submitting contact form to Formspree as JSON...');
-      const response = await fetch('https://formspree.io/f/xzzeddgr', {
-        method: 'POST',
-        body: JSON.stringify(formObject),
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
-      });
-      console.log('Formspree response status:', response.status);
+      console.log('Submitting contact form through debug service...');
       
-      if (response.ok) {
+      // Use our debugging middleware
+      const result = await submitFormWithDebug(formObject, 'ContactPage');
+      
+      if (result.success) {
         console.log('Form successfully submitted!');
         setFormStatus('success');
       } else {
-        console.error('Form submission failed');
+        console.error('Form submission failed:', result.error || result.status);
         setFormStatus('error');
       }
     } catch (error) {

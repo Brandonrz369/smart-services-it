@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
+import { submitFormWithDebug } from '@/lib/form-debug';
 
 // Pricing data
 const pricingData = {
@@ -176,75 +177,50 @@ export default function PricingCalculator() {
     setIsSubmitting(true);
     setFormError(false);
     
-    // Add hidden inputs for calculator details
-    if (formRef.current) {
-      // Create hidden inputs for calculator details
-      const hiddenInputs = [
-        { name: 'calculator_type', value: calculatorType },
-        { name: 'plan', value: calculatorType === 'managed' ? pricingData.managedServices[selectedPlan].name : 'On-Demand' }
-      ];
+    try {
+      // Get base form data
+      const form = e.target as HTMLFormElement;
+      const formData = new FormData(form);
+      
+      // Convert FormData to a simple object for JSON submission
+      const formObject: Record<string, string> = {};
+      formData.forEach((value, key) => {
+        formObject[key] = value.toString();
+      });
+      
+      // Add calculator details to the form object
+      formObject['calculator_type'] = calculatorType;
+      formObject['plan'] = calculatorType === 'managed' ? pricingData.managedServices[selectedPlan].name : 'On-Demand';
       
       if (calculatorType === 'managed') {
-        hiddenInputs.push({ name: 'user_count', value: userCount.toString() });
-        hiddenInputs.push({ name: 'estimated_price', value: calculatePrice().totalPrice.toFixed(2) });
+        formObject['user_count'] = userCount.toString();
+        formObject['estimated_price'] = calculatePrice().totalPrice.toFixed(2);
         
         if (additionalServices.length > 0) {
           const servicesNames = additionalServices.map(i => pricingData.additionalServices[i].name);
-          hiddenInputs.push({ name: 'additional_services', value: servicesNames.join(', ') });
+          formObject['additional_services'] = servicesNames.join(', ');
         }
       }
       
-      // Add all hidden inputs to form
-      hiddenInputs.forEach(input => {
-        const hiddenField = document.createElement('input');
-        hiddenField.type = 'hidden';
-        hiddenField.name = input.name;
-        hiddenField.value = input.value;
-        formRef.current?.appendChild(hiddenField);
-      });
+      console.log('Submitting price calculator form through debug service...');
       
-      try {
-        // Direct form submit to FormSpree with a simple fetch
-        const formData = new FormData(formRef.current);
-        
-        console.log('Submitting form directly to Formspree...');
-        for (const pair of formData.entries()) {
-          console.log(pair[0] + ': ' + pair[1]);
-        }
-        
-        const response = await fetch('https://formspree.io/f/xzzeddgr', {
-          method: 'POST',
-          body: formData,
-          headers: {
-            'Accept': 'application/json'
-          }
-        });
-        
-        console.log('Formspree response status:', response.status);
-        
-        if (response.ok) {
-          // Success
-          setQuoteSubmitted(true);
-          console.log('Quote request submitted successfully');
-        } else {
-          // Error
-          setFormError(true);
-          console.error('Error submitting form:', await response.text());
-        }
-      } catch (error) {
-        console.error('Error submitting form:', error);
+      // Use our debugging middleware
+      const result = await submitFormWithDebug(formObject, 'PricingCalculator');
+      
+      if (result.success) {
+        // Success
+        setQuoteSubmitted(true);
+        console.log('Quote request submitted successfully');
+      } else {
+        // Error
         setFormError(true);
-      } finally {
-        setIsSubmitting(false);
-        
-        // Remove hidden inputs to avoid duplicate fields
-        hiddenInputs.forEach(() => {
-          const lastChild = formRef.current?.lastChild;
-          if (lastChild) {
-            formRef.current?.removeChild(lastChild);
-          }
-        });
+        console.error('Error submitting form:', result.error || result.status);
       }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setFormError(true);
+    } finally {
+      setIsSubmitting(false);
     }
   };
   
@@ -342,7 +318,7 @@ export default function PricingCalculator() {
               </div>
             )}
             
-            <form ref={formRef} action="https://formspree.io/f/xzzeddgr" method="POST" onSubmit={handleFormSubmit}>
+            <form ref={formRef} onSubmit={handleFormSubmit}>
               {formError && (
                 <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md text-red-700">
                   <p className="font-medium">There was a problem submitting your form. Please try again.</p>

@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
 import Navigation from "@/components/Navigation";
 import ChatBot from "@/components/ChatBot";
-// No provider needed for direct form submissions
+import { FormLoggerProvider } from "@/components/FormLogger";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -32,14 +32,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden max-w-[100vw]`}
       >
-        <Navigation />
-        <main className="min-h-screen pt-20">
-          {children}
-        </main>
-        
-        <ChatBot />
-        
-        <footer className="bg-gray-900 text-white relative z-10">
+        <FormLoggerProvider>
+          <Navigation />
+          <main className="min-h-screen pt-20">
+            {children}
+          </main>
+          
+          <ChatBot />
+          
+          <footer className="bg-gray-900 text-white relative z-10">
           <div className="container mx-auto px-4 md:px-8 py-12">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               <div>
@@ -106,6 +107,7 @@ export default function RootLayout({
             </div>
           </div>
         </footer>
+        </FormLoggerProvider>
       </body>
     </html>
   );
