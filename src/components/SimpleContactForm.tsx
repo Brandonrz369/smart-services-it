@@ -3,44 +3,9 @@
 import { useState, FormEvent } from 'react';
 
 export default function SimpleContactForm() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [isError, setIsError] = useState(false);
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setIsError(false);
-    
-    const form = e.target as HTMLFormElement;
-    
-    try {
-      // Direct FormSpree submission with FormData
-      const formData = new FormData(form);
-      
-      // Add our own form identifier
-      formData.append('_form_name', 'simple_contact_form');
-      
-      // Submit directly to FormSpree with a traditional form submission approach
-      const response = await fetch('https://formspree.io/f/xzzeddgr', {
-        method: 'POST',
-        mode: 'no-cors', // Important: prevents CORS errors but means we can't read the response
-        body: formData
-      });
-      
-      // Since we're using no-cors, we can't actually check response.ok
-      // But the request should go through unless there's a network error
-      console.log('Form submitted (no-cors mode)');
-      setIsSuccess(true);
-      form.reset();
-    } catch (error) {
-      console.error('Form submission error:', error);
-      setIsError(true);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-  
+  // Regular form with a hidden success message that's shown after return
   if (isSuccess) {
     return (
       <div className="bg-green-50 border border-green-200 rounded-lg p-6 text-center">
@@ -74,13 +39,42 @@ export default function SimpleContactForm() {
     <div className="bg-white rounded-lg shadow-md p-6">
       <h2 className="text-xl font-bold text-gray-800 mb-4">Contact Us</h2>
       
-      {isError && (
-        <div className="bg-red-50 text-red-700 p-3 rounded-lg mb-4">
-          There was an error sending your message. Please try again.
-        </div>
-      )}
-      
-      <form onSubmit={handleSubmit}>
+      {/* Traditional HTML form that submits directly to FormSpree */}
+      <form 
+        action="https://formspree.io/f/xzzeddgr" 
+        method="POST"
+        onSubmit={(e) => {
+          e.preventDefault();
+          
+          // Get the form element
+          const form = e.target as HTMLFormElement;
+          
+          // Create a hidden iframe to submit the form
+          const iframe = document.createElement('iframe');
+          iframe.name = 'hidden-form-submit';
+          iframe.style.display = 'none';
+          document.body.appendChild(iframe);
+          
+          // Set up the form to target the iframe
+          form.target = 'hidden-form-submit';
+          
+          // Set up a success handler for when the iframe loads
+          iframe.onload = () => {
+            setIsSuccess(true);
+            form.reset();
+            
+            // Remove the iframe after a delay
+            setTimeout(() => {
+              if (document.body.contains(iframe)) {
+                document.body.removeChild(iframe);
+              }
+            }, 1000);
+          };
+          
+          // Submit the form
+          form.submit();
+        }}
+      >
         <div className="mb-4">
           <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
             Your Name
@@ -120,14 +114,14 @@ export default function SimpleContactForm() {
           ></textarea>
         </div>
         
+        {/* Hidden field for FormSpree to identify the form */}
+        <input type="hidden" name="_form_name" value="simple_contact_form" />
+        
         <button
           type="submit"
-          disabled={isSubmitting}
-          className={`w-full py-2 px-4 rounded-md font-medium text-white ${
-            isSubmitting ? 'bg-blue-400' : 'bg-blue-600 hover:bg-blue-700'
-          }`}
+          className="w-full py-2 px-4 rounded-md font-medium text-white bg-blue-600 hover:bg-blue-700"
         >
-          {isSubmitting ? 'Sending...' : 'Send Message'}
+          Send Message
         </button>
       </form>
     </div>
