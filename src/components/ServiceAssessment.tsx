@@ -274,7 +274,8 @@ export default function ServiceAssessment() {
       // Show results immediately
       setShowResults(true);
       
-      // Send data directly to Formspree
+      // Send data directly to Formspree - make sure you're using the correct endpoint
+      console.log('Submitting data to Formspree...');
       const response = await fetch('https://formspree.io/f/xzzeddgr', {
         method: 'POST',
         body: formData,
@@ -282,6 +283,15 @@ export default function ServiceAssessment() {
           'Accept': 'application/json'
         }
       });
+      console.log('Formspree response status:', response.status);
+      
+      // Additional debugging - log the response JSON if possible
+      try {
+        const responseData = await response.clone().json();
+        console.log('Formspree response data:', responseData);
+      } catch (e) {
+        console.log('Could not parse response JSON:', e);
+      }
       
       if (response.ok) {
         console.log('Assessment data sent successfully!');
