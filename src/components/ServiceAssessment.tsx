@@ -276,6 +276,8 @@ export default function ServiceAssessment() {
       if (response.ok) {
         console.log('Assessment data sent successfully!');
         setShowResults(true);
+        // Show success message to user
+        alert("Your assessment has been submitted successfully! Here are your recommendations.");
       } else {
         console.error('Error submitting assessment');
         // Still show results even if submission fails
@@ -504,10 +506,13 @@ export default function ServiceAssessment() {
                 disabled={isSubmitting}
                 className={`w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors ${
                   isSubmitting ? 'opacity-75 cursor-not-allowed' : ''
-                }`}
+                } active:bg-blue-800 active:scale-95`}
               >
                 {isSubmitting ? 'Submitting...' : 'Get My Recommendations'}
               </button>
+              {isSubmitting && (
+                <p className="text-sm text-center mt-2 text-gray-600">Processing your assessment...</p>
+              )}
             </form>
           </div>
         );
@@ -591,7 +596,7 @@ export default function ServiceAssessment() {
           className={`w-full py-2 px-4 rounded-md font-medium transition-colors ${
             selectedOptions.length === 0
               ? 'bg-gray-300 cursor-not-allowed text-gray-500'
-              : 'bg-blue-600 hover:bg-blue-700 text-white'
+              : 'bg-blue-600 hover:bg-blue-700 text-white active:bg-blue-800 active:scale-95'
           }`}
         >
           Continue
