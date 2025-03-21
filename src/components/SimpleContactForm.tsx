@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, FormEvent } from 'react';
-import { submitForm } from '@/lib/form-helpers';
 
 export default function SimpleContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -17,23 +16,30 @@ export default function SimpleContactForm() {
     const formData = new FormData(form);
     
     try {
-      // Convert FormData to a simple object for JSON submission
+      // Convert FormData to a simple object
       const formObject: Record<string, string> = {};
       formData.forEach((value, key) => {
         formObject[key] = value.toString();
       });
       
-      console.log('Submitting form...');
+      console.log('Submitting contact form...');
       
-      // Use our form submission helper
-      const result = await submitForm(formObject, 'SimpleContactForm');
+      // Submit form directly to our API
+      const response = await fetch('/api/submit-contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formObject)
+      });
       
-      if (result.success) {
+      if (response.ok) {
+        const result = await response.json();
         console.log('Form submitted successfully!');
         setIsSuccess(true);
         form.reset();
       } else {
-        console.error('Form submission failed:', result.error || result.status);
+        console.error('Form submission failed:', response.status);
         setIsError(true);
       }
     } catch (error) {
