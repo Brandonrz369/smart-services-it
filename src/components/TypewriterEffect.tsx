@@ -18,7 +18,7 @@ export default function TypewriterEffect({
   speed = 50,
   delay = 1500,
   className = '',
-  cursorClassName = 'border-r-4 border-orange-500 ml-1 animate-blink h-full inline-block',
+  cursorClassName = 'bg-orange-500 ml-1 w-2 h-[1.1em] inline-block relative animate-blink top-[0.1em]',
   repeat = false,
   onComplete,
 }: TypewriterEffectProps) {

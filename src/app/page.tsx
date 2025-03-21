@@ -190,9 +190,15 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="text-white">
               <FadeIn direction="up">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-5">
-                  LB Computer Help <br />
-                  <TypewriterEffect texts={["Computer Repair", "Network Support", "Managed IT Services"]} />
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-5">
+                  <span className="text-white">LB</span>
+                  <span className="text-orange-400"> Computer</span>
+                  <span className="text-white"> Help</span>
+                  <br />
+                  <TypewriterEffect 
+                    texts={["Expert IT Support", "Computer Repair", "Network Solutions"]} 
+                    className="text-3xl md:text-4xl lg:text-5xl text-blue-200"
+                  />
                 </h1>
                 <p className="text-lg md:text-xl opacity-90 mb-8">
                   Fast, reliable, and affordable computer repairs, IT services, and technical support for homes and businesses - from your trusted local provider.
@@ -202,38 +208,44 @@ export default function Home() {
               <FadeIn direction="up" delay={0.2}>
                 <a 
                   href="tel:2133496790" 
-                  className="inline-block text-2xl font-bold text-white mb-6 hover:text-orange-300 transition-colors"
+                  className="inline-flex items-center text-2xl font-bold text-white mb-6 hover:text-orange-400 transition-colors group"
                 >
+                  <svg className="w-6 h-6 mr-2 text-orange-400 group-hover:animate-ping" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
                   (213) 349-6790
                 </a>
                 
-                <div className="mb-8">
-                  <p className="flex items-center text-white mb-2">
-                    <span className="text-green-400 mr-2">✓</span>Same-Day Service
-                  </p>
-                  <p className="flex items-center text-white mb-2">
-                    <span className="text-green-400 mr-2">✓</span>Transparent Pricing
+                <div className="mb-8 flex flex-col md:flex-row gap-4 md:gap-6">
+                  <p className="flex items-center text-white">
+                    <span className="flex items-center justify-center bg-green-500 text-white rounded-full w-5 h-5 mr-2 text-xs">✓</span>
+                    <span className="font-medium">Same-Day Service</span>
                   </p>
                   <p className="flex items-center text-white">
-                    <span className="text-green-400 mr-2">✓</span>Guaranteed
+                    <span className="flex items-center justify-center bg-green-500 text-white rounded-full w-5 h-5 mr-2 text-xs">✓</span>
+                    <span className="font-medium">Transparent Pricing</span>
+                  </p>
+                  <p className="flex items-center text-white">
+                    <span className="flex items-center justify-center bg-green-500 text-white rounded-full w-5 h-5 mr-2 text-xs">✓</span>
+                    <span className="font-medium">100% Guaranteed</span>
                   </p>
                 </div>
 
                 <div className="flex flex-wrap gap-4 sm:flex-row">
                   <Link 
                     href="/services" 
-                    className="px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transform hover:scale-105 transition-all duration-300 shadow-lg flex items-center"
+                    className="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-blue-800 transform hover:scale-105 transition-all duration-300 shadow-lg flex items-center"
                   >
-                    View Services & Pricing
-                    <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <span>View Services & Pricing</span>
+                    <svg className="w-5 h-5 ml-2 animate-bounce-x" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
                   </Link>
                   <button 
                     onClick={() => setIsAssessmentOpen(true)}
-                    className="px-8 py-3 bg-orange-500 text-white rounded-lg font-semibold hover:bg-orange-600 transform hover:scale-105 transition-all duration-300 shadow-lg flex items-center"
+                    className="px-8 py-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-lg font-semibold hover:from-orange-600 hover:to-orange-700 transform hover:scale-105 transition-all duration-300 shadow-lg flex items-center"
                   >
-                    IT Assessment
+                    <span>IT Assessment</span>
                     <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                     </svg>

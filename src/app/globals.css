@@ -18,6 +18,33 @@ html {
   caret-color: #f97316;
 }
 
+/* Custom animations */
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-blink {
+  animation: blink 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes bounce-x {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+}
+
+.animate-bounce-x {
+  animation: bounce-x 1s ease-in-out infinite;
+}
+
 :root {
   /* Core colors */
   --background: #ffffff;
