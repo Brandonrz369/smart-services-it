@@ -151,6 +151,15 @@ export default function Navigation() {
     { href: "/contact", label: "Contact" },
     { href: "/emergency", label: "Emergency Support" }
   ];
+  
+  // Check if admin is logged in
+  const [isAdmin, setIsAdmin] = useState(false);
+  
+  useEffect(() => {
+    // Check admin status from localStorage
+    const adminAuth = localStorage.getItem('adminAuthenticated');
+    setIsAdmin(adminAuth === 'true');
+  }, []);
 
   return (
     <div className="fixed top-0 left-0 right-0 z-40 transition-all duration-300">
@@ -229,6 +238,16 @@ export default function Navigation() {
             >
               Contact
             </Link>
+            
+            {/* Admin link - only visible when logged in */}
+            {isAdmin && (
+              <Link 
+                href="/admin/forms" 
+                className="bg-gray-700 hover:bg-gray-800 text-white px-4 py-2 rounded-lg transition-colors font-medium ml-2"
+              >
+                Admin
+              </Link>
+            )}
           </nav>
           <SimpleMobileNav />
         </div>

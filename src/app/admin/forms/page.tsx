@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 interface TestResult {
@@ -21,11 +22,33 @@ export default function FormsMonitor() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [runningTests, setRunningTests] = useState(false);
+  const router = useRouter();
+  
+  // Check authentication
+  useEffect(() => {
+    const isAuthenticated = localStorage.getItem('adminAuthenticated') === 'true';
+    const authTime = Number(localStorage.getItem('adminAuthTime') || '0');
+    const timeNow = Date.now();
+    
+    // If not authenticated or session expired (more than 1 hour), redirect to login
+    if (!isAuthenticated || (timeNow - authTime > 3600000)) {
+      localStorage.removeItem('adminAuthenticated');
+      localStorage.removeItem('adminAuthTime');
+      router.push('/admin/login');
+    }
+  }, [router]);
   
   // Load test results on page load
   useEffect(() => {
     fetchTestResults();
   }, []);
+  
+  // Function to handle logout
+  const handleLogout = () => {
+    localStorage.removeItem('adminAuthenticated');
+    localStorage.removeItem('adminAuthTime');
+    router.push('/admin/login');
+  };
   
   // Fetch test results from the API
   const fetchTestResults = async () => {
@@ -81,12 +104,20 @@ export default function FormsMonitor() {
       <header className="mb-8">
         <div className="flex justify-between items-center">
           <h1 className="text-3xl font-bold">Form Submission Monitor</h1>
-          <Link 
-            href="/"
-            className="px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300"
-          >
-            Back to Homepage
-          </Link>
+          <div className="flex gap-2">
+            <button
+              onClick={handleLogout}
+              className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700"
+            >
+              Logout
+            </button>
+            <Link 
+              href="/"
+              className="px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300"
+            >
+              Back to Homepage
+            </Link>
+          </div>
         </div>
         <p className="text-gray-600 mt-2">
           Monitor and test form submissions across the website
@@ -136,7 +167,7 @@ export default function FormsMonitor() {
             <div className="animate-spin h-8 w-8 border-4 border-blue-500 border-t-transparent rounded-full mx-auto mb-4"></div>
             <p>Loading test results...</p>
           </div>
-        ) : !testResults?.tests.length ? (
+        ) : !testResults?.tests?.length ? (
           <div className="p-12 text-center text-gray-500">
             <p>No test results available. Run tests to see results.</p>
           </div>
@@ -178,10 +209,10 @@ export default function FormsMonitor() {
                       </span>
                     </td>
                     <td className="px-6 py-4 text-sm text-gray-500">
-                      {result.details.status && (
+                      {result.details?.status && (
                         <div>Status: {result.details.status}</div>
                       )}
-                      {result.details.error && (
+                      {result.details?.error && (
                         <div className="text-red-600">{result.details.error}</div>
                       )}
                       
@@ -281,12 +312,12 @@ export default function FormsMonitor() {
               </li>
               <li>
                 <a 
-                  href="/FORM_DEBUG.md" 
+                  href="/api/direct-test" 
                   className="text-blue-600 hover:underline"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Form Debugging Documentation
+                  Run Direct FormSpree Test
                 </a>
               </li>
             </ul>
