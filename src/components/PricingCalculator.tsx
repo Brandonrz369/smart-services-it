@@ -173,22 +173,37 @@ export default function PricingCalculator() {
     setIsSubmitting(true);
     setFormError(false);
     
-    // Prepare data for Formspree
-    const formSubmissionData = {
-      type: calculatorType,
-      plan: calculatorType === 'managed' ? pricingData.managedServices[selectedPlan].name : 'On-Demand',
-      userCount: calculatorType === 'managed' ? userCount : null,
-      additionalServices: additionalServices.map(i => pricingData.additionalServices[i].name),
-      estimatedPrice: calculatePrice().totalPrice.toFixed(2),
-      ...formData
-    };
-    
     try {
-      // Submit directly to Formspree
-      console.log('Submitting pricing quote to Formspree...');
+      // Get form data
+      const form = e.target as HTMLFormElement;
+      const formData = new FormData(form);
+      
+      // Add calculator details to form data
+      formData.append('calculator_type', calculatorType);
+      formData.append('plan', calculatorType === 'managed' ? pricingData.managedServices[selectedPlan].name : 'On-Demand');
+      
+      if (calculatorType === 'managed') {
+        formData.append('user_count', userCount.toString());
+        formData.append('estimated_price', calculatePrice().totalPrice.toFixed(2));
+        
+        if (additionalServices.length > 0) {
+          const servicesNames = additionalServices.map(i => pricingData.additionalServices[i].name);
+          formData.append('additional_services', servicesNames.join(', '));
+        }
+      }
+      
+      // Create simple object version for JSON submission
+      console.log('Preparing pricing calculator data...');
+      const formObject: Record<string, string | File> = {};
+      formData.forEach((value, key) => {
+        formObject[key] = value;
+      });
+      
+      // Submit to FormSpree
+      console.log('Submitting pricing calculator data to Formspree...');
       const response = await fetch('https://formspree.io/f/xzzeddgr', {
         method: 'POST',
-        body: JSON.stringify(formSubmissionData),
+        body: JSON.stringify(formObject),
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
@@ -196,6 +211,14 @@ export default function PricingCalculator() {
       });
       
       console.log('Formspree response status:', response.status);
+      
+      // Additional debugging - log the response JSON if possible
+      try {
+        const responseData = await response.clone().json();
+        console.log('Formspree response data:', responseData);
+      } catch (e) {
+        console.log('Could not parse response JSON:', e);
+      }
       
       if (response.ok) {
         // Success
