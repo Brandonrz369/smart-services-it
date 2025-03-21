@@ -4,7 +4,8 @@ import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 
 interface RevealTextProps {
-  text: string;
+  text?: string;
+  children?: React.ReactNode;
   className?: string;
   once?: boolean;
   delay?: number;
@@ -12,6 +13,7 @@ interface RevealTextProps {
 
 export default function RevealText({
   text,
+  children,
   className = '',
   once = true,
   delay = 0,
@@ -19,7 +21,8 @@ export default function RevealText({
   const ref = useRef(null);
   const isInView = useInView(ref, { once });
   
-  const words = text.split(' ');
+  // Handle either text prop or children
+  const content = text ? text.split(' ') : [];
   
   const container = {
     hidden: { opacity: 0 },
@@ -58,15 +61,26 @@ export default function RevealText({
       initial="hidden"
       animate={isInView ? 'visible' : 'hidden'}
     >
-      {words.map((word, index) => (
-        <motion.span
-          key={index}
-          className="inline-block mr-1"
+      {text ? (
+        // If text prop is provided, split into words with animation
+        content.map((word, index) => (
+          <motion.span
+            key={index}
+            className="inline-block mr-1"
+            variants={child}
+          >
+            {word}{' '}
+          </motion.span>
+        ))
+      ) : (
+        // If children are provided, use them directly
+        <motion.div
           variants={child}
+          className="inline-block"
         >
-          {word}{' '}
-        </motion.span>
-      ))}
+          {children}
+        </motion.div>
+      )}
     </motion.div>
   );
 }

@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { submitFormWithDebug } from '@/lib/form-debug';
 
 // Types
 interface Question {
@@ -164,12 +163,6 @@ export default function ServiceAssessment() {
   });
 
   const [showResults, setShowResults] = useState(false);
-  const [contactInfo, setContactInfo] = useState({
-    name: '',
-    email: '',
-    phone: ''
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Find current question
   const currentQuestion = assessment.questions.find(q => q.id === state.currentQuestionId);
@@ -244,64 +237,9 @@ export default function ServiceAssessment() {
     }
   };
 
-  // Handle contact info change
-  const handleContactInfoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setContactInfo({
-      ...contactInfo,
-      [e.target.name]: e.target.value
-    });
-  };
+  // No longer need contact info handling with direct FormSpree submission
 
-  // Handle contact form submit
-  const handleContactSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    try {
-      // Get form data
-      const form = e.target as HTMLFormElement;
-      const formData = new FormData(form);
-      
-      // Add assessment answers to form data
-      formData.append('assessment_answers', JSON.stringify(state.answers));
-      
-      // Update state to completed immediately to show results
-      setState({
-        ...state,
-        completed: true,
-        progress: 100
-      });
-      
-      // Show results immediately
-      setShowResults(true);
-      
-      // Create a simple object with all form data
-      console.log('Preparing IT assessment data...');
-      const formObject: Record<string, string | File | string[]> = {};
-      formData.forEach((value, key) => {
-        formObject[key] = value;
-      });
-      
-      // Add assessment answers as a field
-      formObject['assessment_data'] = JSON.stringify(state.answers);
-      
-      console.log('Submitting IT assessment through debug service...');
-      
-      // Use our debugging middleware
-      const result = await submitFormWithDebug(formObject, 'ServiceAssessment');
-      
-      if (result.success) {
-        console.log('Assessment data sent successfully!');
-        // Don't show alert - too disruptive on mobile
-      } else {
-        console.error('Error submitting assessment:', result.error || result.status);
-      }
-    } catch (error) {
-      console.error('Error submitting data:', error);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+  // No longer need handleContactSubmit as we're using direct FormSpree submission
 
   // Generate recommendations based on answers
   const generateRecommendations = () => {
@@ -465,7 +403,29 @@ export default function ServiceAssessment() {
           <div className="space-y-6">
             <p className="text-xl font-medium text-gray-800">{currentQuestion.text}</p>
             
-            <form onSubmit={handleContactSubmit} className="space-y-4">
+            <form
+              action="https://formspree.io/f/xzzeddgr"
+              method="POST"
+              className="space-y-4"
+              onSubmit={() => {
+                // Update state to completed for immediate UI feedback
+                setState({
+                  ...state,
+                  completed: true,
+                  progress: 100
+                });
+                setShowResults(true);
+              }}
+            >
+              {/* Redirect back to our site after submission */}
+              <input type="hidden" name="_next" value="https://lbcomputerhelp.com/thanks" />
+              
+              {/* Include a honeypot field to prevent spam */}
+              <input type="text" name="_gotcha" style={{ display: 'none' }} />
+              
+              {/* Include assessment data as JSON */}
+              <input type="hidden" name="assessment_data" value={JSON.stringify(state.answers)} />
+              
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
                   Your Name
@@ -474,8 +434,6 @@ export default function ServiceAssessment() {
                   type="text"
                   id="name"
                   name="name"
-                  value={contactInfo.name}
-                  onChange={handleContactInfoChange}
                   required
                   className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                   placeholder="John Smith"
@@ -490,8 +448,6 @@ export default function ServiceAssessment() {
                   type="email"
                   id="email"
                   name="email"
-                  value={contactInfo.email}
-                  onChange={handleContactInfoChange}
                   required
                   className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                   placeholder="john@example.com"
@@ -506,8 +462,6 @@ export default function ServiceAssessment() {
                   type="tel"
                   id="phone"
                   name="phone"
-                  value={contactInfo.phone}
-                  onChange={handleContactInfoChange}
                   className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                   placeholder="(213) 555-1234"
                 />
@@ -515,16 +469,10 @@ export default function ServiceAssessment() {
               
               <button
                 type="submit"
-                disabled={isSubmitting}
-                className={`w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors ${
-                  isSubmitting ? 'opacity-75 cursor-not-allowed' : ''
-                } active:bg-blue-800 active:scale-95`}
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors active:bg-blue-800 active:scale-95"
               >
-                {isSubmitting ? 'Submitting...' : 'Get My Recommendations'}
+                Get My Recommendations
               </button>
-              {isSubmitting && (
-                <p className="text-sm text-center mt-2 text-gray-600">Processing your assessment...</p>
-              )}
             </form>
           </div>
         );

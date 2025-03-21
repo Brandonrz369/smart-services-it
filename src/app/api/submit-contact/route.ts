@@ -22,7 +22,7 @@ export async function POST(request: Request) {
     if (response.ok) {
       try {
         responseData = await response.json();
-      } catch (_err) {
+      } catch {
         responseData = { message: 'Form submitted successfully, but could not parse response' };
       }
       
@@ -34,7 +34,7 @@ export async function POST(request: Request) {
     } else {
       try {
         responseData = await response.json();
-      } catch (_err) {
+      } catch {
         responseData = { error: `FormSpree returned status: ${response.status}` };
       }
       

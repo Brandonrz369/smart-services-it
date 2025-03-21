@@ -184,7 +184,6 @@ export async function GET(request: Request) {
 }
 
 // Get test results
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function POST(_request: Request) {
   try {
     if (!fs.existsSync(TEST_LOG_FILE)) {

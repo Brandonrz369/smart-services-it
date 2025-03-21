@@ -91,7 +91,7 @@ export async function POST(request: Request) {
     let responseData;
     try {
       responseData = await formspreeResponse.json();
-    } catch (_err) {
+    } catch {
       try {
         const text = await formspreeResponse.text();
         responseData = { raw_text: text };

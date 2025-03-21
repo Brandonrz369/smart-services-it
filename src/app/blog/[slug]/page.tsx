@@ -300,7 +300,6 @@ interface BlogPost {
 }
 
 // Generate metadata for the page
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function generateMetadata({ params }: any): Metadata {
   const post = blogPosts.find(post => post.id === params.slug);
   
@@ -318,7 +317,6 @@ export function generateMetadata({ params }: any): Metadata {
 }
 
 // Server component for blog post page
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function BlogPostPage({ params }: any) {
   // Find the current post
   const post = blogPosts.find(post => post.id === params.slug);

@@ -4,48 +4,14 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import FadeIn from '@/components/FadeIn';
 import CalendlyWidget from '@/components/CalendlyWidget';
-import { submitFormWithDebug } from '@/lib/form-debug';
 
 export default function ContactPage() {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [formStatus, setFormStatus] = useState<'idle' | 'success' | 'error'>('idle');
   
   useEffect(() => {
     setIsLoaded(true);
   }, []);
-  
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setFormStatus('submitting');
-    
-    try {
-      const form = e.currentTarget;
-      const formData = new FormData(form);
-      
-      // Convert FormData to a simple object
-      console.log('Preparing contact form data...');
-      const formObject: Record<string, string | File> = {};
-      formData.forEach((value, key) => {
-        formObject[key] = value;
-      });
-      
-      console.log('Submitting contact form through debug service...');
-      
-      // Use our debugging middleware
-      const result = await submitFormWithDebug(formObject, 'ContactPage');
-      
-      if (result.success) {
-        console.log('Form successfully submitted!');
-        setFormStatus('success');
-      } else {
-        console.error('Form submission failed:', result.error || result.status);
-        setFormStatus('error');
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      setFormStatus('error');
-    }
-  };
   
   return (
     <div className={`min-h-screen bg-background text-foreground font-sans transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
@@ -189,7 +155,17 @@ export default function ContactPage() {
                     </button>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form
+                    action="https://formspree.io/f/xzzeddgr"
+                    method="POST"
+                    className="space-y-6"
+                  >
+                    {/* Redirect back to our site after submission */}
+                    <input type="hidden" name="_next" value="https://lbcomputerhelp.com/thanks" />
+                    
+                    {/* Include a honeypot field to prevent spam */}
+                    <input type="text" name="_gotcha" style={{ display: 'none' }} />
+                    
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
                         <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
@@ -282,22 +258,9 @@ export default function ContactPage() {
                     
                     <button
                       type="submit"
-                      disabled={formStatus === 'submitting'}
-                      className={`w-full py-3 px-4 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition duration-300 ${
-                        formStatus === 'submitting' ? 'opacity-75 cursor-not-allowed' : ''
-                      }`}
+                      className="w-full py-3 px-4 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition duration-300"
                     >
-                      {formStatus === 'submitting' ? (
-                        <span className="flex items-center justify-center">
-                          <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                          </svg>
-                          Sending...
-                        </span>
-                      ) : (
-                        'Send Message'
-                      )}
+                      Send Message
                     </button>
                   </form>
                 )}
