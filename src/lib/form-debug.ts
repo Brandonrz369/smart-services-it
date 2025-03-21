@@ -41,14 +41,16 @@ export async function submitFormWithDebug(
     });
     
     if (useFormspree) {
-      // Make the actual FormSpree request
-      const response = await fetch('https://formspree.io/f/xzzeddgr', {
+      // Make the actual FormSpree request via our proxy to avoid CORS issues
+      const response = await fetch('/api/debug/form-proxy', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json'
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          form_data: formData,
+          form_name: formName
+        })
       });
       
       // Get the response data
