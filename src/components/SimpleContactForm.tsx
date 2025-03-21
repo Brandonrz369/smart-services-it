@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, FormEvent } from 'react';
-import { submitFormWithDebug } from '@/lib/form-debug';
+import { submitForm } from '@/lib/form-helpers';
 
 export default function SimpleContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -23,10 +23,10 @@ export default function SimpleContactForm() {
         formObject[key] = value.toString();
       });
       
-      console.log('Submitting form through debug service...');
+      console.log('Submitting form...');
       
-      // Use our debugging middleware
-      const result = await submitFormWithDebug(formObject, 'SimpleContactForm');
+      // Use our form submission helper
+      const result = await submitForm(formObject, 'SimpleContactForm');
       
       if (result.success) {
         console.log('Form submitted successfully!');
