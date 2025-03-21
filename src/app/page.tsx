@@ -279,14 +279,14 @@ export default function Home() {
             <div className="max-w-3xl mx-auto bg-black/60 p-6 rounded-xl border border-white/20 mb-6">
               <p className="text-white text-base md:text-xl mb-4">Fast, reliable, and affordable computer repairs, IT services, and technical support for homes and businesses - from your trusted local provider.</p>
               
-              <div className="h-12 md:h-16 text-lg md:text-2xl mb-4 md:mb-6 font-medium">
+              <div className="h-12 md:h-16 text-sm md:text-xl mb-4 md:mb-6 font-medium overflow-hidden">
                 <div className="typewriter-bg text-white">
                   <TypewriterEffect 
                     texts={[
-                      "Professional IT Support & Repair",
-                      "Managed Services for Businesses",
-                      "Expert Computer & Mobile Device Repair",
-                      "On-Site Support for Home & Office"
+                      "Professional IT Support",
+                      "Managed IT Services",
+                      "Computer & Mobile Repair",
+                      "Home & Office Support"
                     ]}
                     speed={40}
                     delay={2000}
