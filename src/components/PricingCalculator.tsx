@@ -170,7 +170,7 @@ export default function PricingCalculator() {
   };
   
   // Handle form submission
-  const handleFormSubmit = async (e: React.FormEvent) => {
+  const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     // Prepare data for Formspree
@@ -183,17 +183,10 @@ export default function PricingCalculator() {
       ...formData
     };
     
-    try {
-      // Submit to Formspree
-      await handleSubmit(formSubmissionData);
-      
-      console.log('Quote request submitted:', formSubmissionData);
-      
-      // Show success message
-      setQuoteSubmitted(true);
-    } catch (error) {
-      console.error('Error submitting form:', error);
-    }
+    // Submit to Formspree
+    handleSubmit(formSubmissionData);
+    
+    console.log('Quote request submitted:', formSubmissionData);
   };
   
   // Calculate pricing
@@ -291,6 +284,12 @@ export default function PricingCalculator() {
             )}
             
             <form onSubmit={handleFormSubmit}>
+              {formState.errors ? (
+                <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md text-red-700">
+                  <p className="font-medium">There was a problem submitting your form</p>
+                </div>
+              ) : null}
+            
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
@@ -375,8 +374,9 @@ export default function PricingCalculator() {
                 <button
                   type="submit"
                   className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                  disabled={formState.submitting}
                 >
-                  Submit Quote Request
+                  {formState.submitting ? 'Submitting...' : 'Submit Quote Request'}
                 </button>
               </div>
             </form>
