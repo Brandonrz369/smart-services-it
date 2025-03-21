@@ -274,13 +274,14 @@ export default function ServiceAssessment() {
       // Show results immediately
       setShowResults(true);
       
-      // Send data directly to Formspree - make sure you're using the correct endpoint
-      console.log('Submitting data to Formspree...');
-      const response = await fetch('https://formspree.io/f/xzzeddgr', {
+      // Send data directly to new Formspree endpoint - IT assessment specific form
+      console.log('Submitting IT assessment to Formspree...');
+      const response = await fetch('https://formspree.io/f/mqkrjjng', {
         method: 'POST',
         body: formData,
         headers: {
-          'Accept': 'application/json'
+          'Accept': 'application/json',
+          'Content-Type': 'multipart/form-data'
         }
       });
       console.log('Formspree response status:', response.status);

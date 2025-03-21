@@ -71,13 +71,17 @@ export default function Home() {
     
     try {
       // Submit to Formspree
-      const response = await fetch('https://formspree.io/f/xzzeddgr', {
+      // Using new dedicated form for homepage inquiries
+      console.log('Submitting homepage form to Formspree...');
+      const response = await fetch('https://formspree.io/f/xgegvazj', {
         method: 'POST',
         body: formData,
         headers: {
-          'Accept': 'application/json'
+          'Accept': 'application/json',
+          'Content-Type': 'multipart/form-data'
         }
       });
+      console.log('Formspree response status:', response.status);
       
       if (response.ok) {
         // Success

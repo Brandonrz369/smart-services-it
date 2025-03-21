@@ -21,13 +21,17 @@ export default function ContactPage() {
       const form = e.currentTarget;
       const formData = new FormData(form);
       
-      const response = await fetch('https://formspree.io/f/xzzeddgr', {
+      // Using a new dedicated form for contact form
+      console.log('Submitting contact form to Formspree...');
+      const response = await fetch('https://formspree.io/f/xkngdddj', {
         method: 'POST',
         body: formData,
         headers: {
-          'Accept': 'application/json'
+          'Accept': 'application/json',
+          'Content-Type': 'multipart/form-data'
         }
       });
+      console.log('Formspree response status:', response.status);
       
       if (response.ok) {
         console.log('Form successfully submitted!');
