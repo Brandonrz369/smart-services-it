@@ -46,7 +46,7 @@ export default function ThankYouPage() {
           </h2>
           
           <p className="text-gray-600 mb-6">
-            Thank you for contacting LB Computer Help. We've received your message 
+            Thank you for contacting LB Computer Help. We&apos;ve received your message 
             and will get back to you as soon as possible.
           </p>
           

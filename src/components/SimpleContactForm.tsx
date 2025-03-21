@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+// No state needed for this component
 
 export default function SimpleContactForm() {
   // This is a traditional HTML form that posts directly to FormSpree

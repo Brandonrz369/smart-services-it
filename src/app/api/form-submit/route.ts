@@ -18,8 +18,8 @@ try {
       }
     }), 'utf8');
   }
-} catch (error) {
-  console.error('Error initializing form submissions log file:', error);
+} catch (err) {
+  console.error('Error initializing form submissions log file:', err);
 }
 
 // Helper function to log form submissions
@@ -54,8 +54,8 @@ function logFormSubmission(formName: string, formData: any, success: boolean, st
     
     fs.writeFileSync(SUBMISSIONS_LOG_FILE, JSON.stringify(logs, null, 2), 'utf8');
     return true;
-  } catch (error) {
-    console.error('Error logging form submission:', error);
+  } catch (err) {
+    console.error('Error logging form submission:', err);
     return false;
   }
 }
@@ -91,7 +91,7 @@ export async function POST(request: Request) {
     let responseData;
     try {
       responseData = await formspreeResponse.json();
-    } catch (error) {
+    } catch (_err) {
       try {
         const text = await formspreeResponse.text();
         responseData = { raw_text: text };
@@ -120,8 +120,8 @@ export async function POST(request: Request) {
       data: responseData
     });
     
-  } catch (error) {
-    console.error('Error handling form submission:', error);
+  } catch (err) {
+    console.error('Error handling form submission:', err);
     
     // Log the failed submission
     try {
@@ -135,14 +135,14 @@ export async function POST(request: Request) {
         form_data,
         false,
         500,
-        { error: error instanceof Error ? error.message : String(error) }
+        { error: err instanceof Error ? err.message : String(err) }
       );
     } catch {}
     
     return NextResponse.json({ 
       success: false,
       error: 'Server error processing form submission',
-      details: error instanceof Error ? error.message : String(error)
+      details: err instanceof Error ? err.message : String(err)
     }, { status: 500 });
   }
 }

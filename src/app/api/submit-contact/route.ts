@@ -22,7 +22,7 @@ export async function POST(request: Request) {
     if (response.ok) {
       try {
         responseData = await response.json();
-      } catch (error) {
+      } catch (_err) {
         responseData = { message: 'Form submitted successfully, but could not parse response' };
       }
       
@@ -34,7 +34,7 @@ export async function POST(request: Request) {
     } else {
       try {
         responseData = await response.json();
-      } catch (error) {
+      } catch (_err) {
         responseData = { error: `FormSpree returned status: ${response.status}` };
       }
       
@@ -45,13 +45,13 @@ export async function POST(request: Request) {
         status: response.status
       }, { status: response.status });
     }
-  } catch (error) {
-    console.error('Error in form submission:', error);
+  } catch (err) {
+    console.error('Error in form submission:', err);
     
     return NextResponse.json({
       success: false,
       message: 'Server error processing form',
-      error: error instanceof Error ? error.message : 'Unknown error'
+      error: err instanceof Error ? err.message : 'Unknown error'
     }, { status: 500 });
   }
 }
