@@ -6,6 +6,7 @@ import Link from 'next/link';
 import SeoAnalyzer from '@/components/SeoAnalyzer';
 import FormDebugger from '@/components/FormDebugger';
 import FormLogger from '@/components/FormLogger';
+import SecurityScanner from '@/components/SecurityScanner';
 
 export default function AdminWebTools() {
   const [loading, setLoading] = useState(true);
@@ -85,6 +86,12 @@ export default function AdminWebTools() {
               className="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700"
             >
               Forms Dashboard
+            </Link>
+            <Link 
+              href="/admin/analytics"
+              className="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700"
+            >
+              Analytics
             </Link>
             <Link 
               href="/"
@@ -185,10 +192,7 @@ export default function AdminWebTools() {
             </p>
           </div>
           
-          <div className="p-8 text-center text-gray-500 bg-gray-50 rounded-lg">
-            <p className="mb-2 font-medium">Security Scanner Coming Soon</p>
-            <p>This feature is currently under development and will be available in the next update.</p>
-          </div>
+          <SecurityScanner />
         </div>
       )}
       

@@ -157,6 +157,18 @@ export default function FormsMonitor() {
               Logout
             </button>
             <Link 
+              href="/admin/web-tools"
+              className="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700"
+            >
+              Web Tools
+            </Link>
+            <Link 
+              href="/admin/analytics"
+              className="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700"
+            >
+              Analytics
+            </Link>
+            <Link 
               href="/"
               className="px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300"
             >
