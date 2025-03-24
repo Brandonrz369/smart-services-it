@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
+import { trackToolUsage } from '@/lib/analytics';
 
 interface ColorPalette {
   name: string;
@@ -17,6 +18,9 @@ export default function ColorGenerator() {
 
   // Load recent colors from localStorage
   useEffect(() => {
+    // Track component initialization
+    trackToolUsage('ColorGenerator', 'init');
+    
     const saved = localStorage.getItem('recentColors');
     if (saved) {
       try {
@@ -116,6 +120,12 @@ export default function ColorGenerator() {
     const rgb = hexToRgb(color);
     const [h, s, l] = rgbToHsl(rgb[0], rgb[1], rgb[2]);
     
+    // Track palette generation
+    trackToolUsage('ColorGenerator', 'generate_palette', {
+      baseColor: color,
+      paletteType: paletteType
+    });
+    
     let newPalette: ColorPalette[] = [];
     
     switch (paletteType) {
@@ -197,6 +207,9 @@ export default function ColorGenerator() {
     const hex = `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0')}`;
     setColor(hex);
     addToRecentColors(hex);
+    
+    // Track random color generation
+    trackToolUsage('ColorGenerator', 'random_color', { color: hex });
   };
 
   // Add a color to recent colors
@@ -226,6 +239,12 @@ export default function ColorGenerator() {
       .then(() => {
         setCopied(colorValue);
         setTimeout(() => setCopied(null), 1500);
+        
+        // Track color copy
+        trackToolUsage('ColorGenerator', 'copy_color', { 
+          color: colorValue,
+          format: colorType 
+        });
       })
       .catch(err => console.error('Failed to copy: ', err));
   };

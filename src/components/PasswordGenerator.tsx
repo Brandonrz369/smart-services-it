@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { trackToolUsage } from '@/lib/analytics';
 
 interface PasswordOptions {
   length: number;
@@ -28,6 +29,9 @@ export default function PasswordGenerator() {
 
   // Load password history from local storage
   useEffect(() => {
+    // Track component initialization
+    trackToolUsage('PasswordGenerator', 'init');
+    
     const savedHistory = localStorage.getItem('passwordHistory');
     if (savedHistory) {
       try {
@@ -43,6 +47,12 @@ export default function PasswordGenerator() {
       ...prev,
       [option]: value,
     }));
+    
+    // Track option changes
+    trackToolUsage('PasswordGenerator', 'change_option', {
+      option,
+      value
+    });
   };
 
   const generatePassword = useCallback(() => {
@@ -114,10 +124,19 @@ export default function PasswordGenerator() {
       const updatedHistory = [newPassword, ...passwordHistory.slice(0, 7)];
       setPasswordHistory(updatedHistory);
       localStorage.setItem('passwordHistory', JSON.stringify(updatedHistory));
+      
+      // Track password generation
+      trackToolUsage('PasswordGenerator', 'generate_password', {
+        length: options.length,
+        strength: strength,
+        hasUppercase: options.uppercase,
+        hasLowercase: options.lowercase,
+        hasNumbers: options.numbers,
+        hasSymbols: options.symbols
+      });
     }
     
     setCopied(false);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [options, passwordHistory]);
   
   // Initialize password on component mount
@@ -146,6 +165,11 @@ export default function PasswordGenerator() {
       navigator.clipboard.writeText(password).then(() => {
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
+        
+        // Track password copy
+        trackToolUsage('PasswordGenerator', 'copy_password', {
+          passwordStrength: passwordStrength
+        });
       });
     }
   };
@@ -316,6 +340,9 @@ export default function PasswordGenerator() {
                       navigator.clipboard.writeText(pass);
                       setCopied(true);
                       setTimeout(() => setCopied(false), 2000);
+                      
+                      // Track history password copy
+                      trackToolUsage('PasswordGenerator', 'copy_history_password');
                     }}
                     className="text-xs text-blue-600 hover:text-blue-800"
                   >

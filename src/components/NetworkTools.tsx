@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { trackToolUsage } from '@/lib/analytics';
 
 interface PingResult {
   host: string;
@@ -32,11 +33,22 @@ export default function NetworkTools() {
     if (!pingHost) return;
     
     setIsPinging(true);
+    // Track start in analytics
+    trackToolUsage('NetworkTools', 'ping_start', { host: pingHost });
+    
+    const pingTime = Math.floor(Math.random() * 100) + 10; // Simulate ping time between 10-110ms
     setPingResults(prev => [...prev, {
       host: pingHost,
       status: 'success',
-      time: Math.floor(Math.random() * 100) + 10 // Simulate ping time between 10-110ms
+      time: pingTime
     }]);
+    
+    // Track completion in analytics
+    trackToolUsage('NetworkTools', 'ping_complete', { 
+      host: pingHost,
+      time: pingTime 
+    });
+    
     setIsPinging(false);
   };
   
@@ -44,6 +56,8 @@ export default function NetworkTools() {
     if (!dnsHost) return;
     
     setIsLookingUp(true);
+    // Track start in analytics
+    trackToolUsage('NetworkTools', 'dns_lookup_start', { domain: dnsHost });
     
     try {
       // Simulated DNS lookup
@@ -51,10 +65,23 @@ export default function NetworkTools() {
         // Generate random IP
         const ip = `${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`;
         setDnsResult(ip);
+        
+        // Track completion in analytics
+        trackToolUsage('NetworkTools', 'dns_lookup_complete', { 
+          domain: dnsHost,
+          result: ip 
+        });
+        
         setIsLookingUp(false);
       }, 500);
     } catch {
       setDnsResult('Lookup failed');
+      
+      // Track failure in analytics
+      trackToolUsage('NetworkTools', 'dns_lookup_failed', { 
+        domain: dnsHost 
+      });
+      
       setIsLookingUp(false);
     }
   };
@@ -64,6 +91,9 @@ export default function NetworkTools() {
     
     setIsTracing(true);
     setTracerouteResults([]);
+    
+    // Track start in analytics
+    trackToolUsage('NetworkTools', 'traceroute_start', { host: tracerouteHost });
     
     // Simulate traceroute with random hops
     const hops = Math.floor(Math.random() * 8) + 3; // 3-10 hops
@@ -83,6 +113,12 @@ export default function NetworkTools() {
       
       setTracerouteResults([...results]);
     }
+    
+    // Track completion in analytics
+    trackToolUsage('NetworkTools', 'traceroute_complete', { 
+      host: tracerouteHost,
+      hops: hops 
+    });
     
     setIsTracing(false);
   };
