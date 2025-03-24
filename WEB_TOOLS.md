@@ -14,6 +14,7 @@ The web tools are accessible at `/web-tools` and include:
 6. [Color Generator](#color-generator)
 7. [Password Generator](#password-generator)
 8. [Domain Lookup](#domain-lookup)
+9. [Image Compressor](#image-compressor)
 
 ## Form Test
 
@@ -128,6 +129,26 @@ Domain information and DNS records lookup tool.
   1. Enter a domain name
   2. View general information, DNS records, and WHOIS data
   3. Optionally export results as JSON
+  
+## Image Compressor
+
+Client-side image compression utility.
+
+- **Purpose**: Reduce image file sizes for web optimization
+- **Features**:
+  - Drag and drop interface
+  - Quality and dimension controls
+  - Compression statistics
+  - Batch processing for multiple images
+  - Individual or bulk download options
+  - Visual preview of compressed images
+- **Implementation**: Client-side canvas-based compression with analytics
+- **Files**: `src/components/ImageCompressor.tsx`
+- **Usage**:
+  1. Drag and drop images or click to select files
+  2. Adjust quality and max width settings
+  3. Preview compressed images and savings
+  4. Download individual images or the entire batch
 
 ## Technical Implementation
 
@@ -159,9 +180,9 @@ All tools are designed to be responsive and mobile-friendly:
 ## Future Improvements
 
 Planned enhancements for the web tools:
-- Image compression utility
 - Broken link checker
 - Security scanner
 - Enhanced data visualization for test results
 - Server-side analytics tracking
 - Real API integrations for network and domain tools
+- ZIP file download for batch image compression
