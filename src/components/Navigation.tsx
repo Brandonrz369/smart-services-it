@@ -156,7 +156,8 @@ export default function Navigation() {
   const resourcesItems = [
     { href: "/case-studies", label: "Case Studies" },
     { href: "/blog", label: "Blog" },
-    { href: "/web-tools", label: "Web Tools" }
+    { href: "/web-tools", label: "Web Tools" },
+    { href: "/admin/login", label: "Admin Login" }
   ];
   
   const companyItems = [

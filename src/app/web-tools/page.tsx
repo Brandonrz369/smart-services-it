@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SimpleContactForm from '@/components/SimpleContactForm';
 import FormDebugger from '@/components/FormDebugger';
 import FormLogger from '@/components/FormLogger';
@@ -10,13 +10,75 @@ import ColorGenerator from '@/components/ColorGenerator';
 import PasswordGenerator from '@/components/PasswordGenerator';
 import DomainLookup from '@/components/DomainLookup';
 import ImageCompressor from '@/components/ImageCompressor';
+import SeoAnalyzer from '@/components/SeoAnalyzer';
 
 export default function WebTools() {
-  const [activeTab, setActiveTab] = useState<'simple' | 'debug' | 'logs' | 'speed' | 'network' | 'color' | 'password' | 'domain' | 'image'>('simple');
+  const [activeTab, setActiveTab] = useState<'simple' | 'debug' | 'logs' | 'speed' | 'network' | 'color' | 'password' | 'domain' | 'image' | 'seo'>('simple');
+  
+  // Check URL parameters for direct tool navigation
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const tab = params.get('tab');
+      const tool = params.get('tool');
+      
+      if (tab) {
+        switch(tab) {
+          case 'simple':
+          case 'debug':
+          case 'logs':
+          case 'speed':
+          case 'network':
+          case 'color':
+          case 'password':
+          case 'domain':
+          case 'image':
+          case 'seo':
+            setActiveTab(tab);
+            break;
+        }
+      } else if (tool) {
+        // Handle admin tool redirects
+        switch(tool) {
+          case 'seo':
+            setActiveTab('seo');
+            break;
+          case 'network':
+            setActiveTab('network');
+            break;
+          case 'utilities':
+            setActiveTab('color'); // Default to color generator for utilities
+            break;
+        }
+      }
+    }
+  }, []);
   
   return (
     <div className="container mx-auto py-12 px-4">
-      <h1 className="text-3xl font-bold mb-8 text-center">Web Tools & Testing</h1>
+      <div className="flex flex-col items-center mb-8">
+        <h1 className="text-3xl font-bold text-center">Web Tools & Testing</h1>
+        <div className="mt-4 flex gap-4">
+          <a 
+            href="/admin/login" 
+            className="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center"
+          >
+            <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+            Admin Login
+          </a>
+          <a 
+            href="/admin/web-tools" 
+            className="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center"
+          >
+            <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            Advanced Tools
+          </a>
+        </div>
+      </div>
       
       {/* Tab Navigation */}
       <div className="max-w-6xl mx-auto mb-8">
@@ -28,6 +90,7 @@ export default function WebTools() {
                 : 'text-gray-500 hover:text-gray-700'
             }`}
             onClick={() => setActiveTab('simple')}
+            data-tool="simple"
           >
             Form Test
           </button>
@@ -38,6 +101,7 @@ export default function WebTools() {
                 : 'text-gray-500 hover:text-gray-700'
             }`}
             onClick={() => setActiveTab('debug')}
+            data-tool="debug"
           >
             Form Debug
           </button>
@@ -48,6 +112,7 @@ export default function WebTools() {
                 : 'text-gray-500 hover:text-gray-700'
             }`}
             onClick={() => setActiveTab('logs')}
+            data-tool="logs"
           >
             Form Logs
           </button>
@@ -58,6 +123,7 @@ export default function WebTools() {
                 : 'text-gray-500 hover:text-gray-700'
             }`}
             onClick={() => setActiveTab('speed')}
+            data-tool="speed"
           >
             Speed Test
           </button>
@@ -68,8 +134,20 @@ export default function WebTools() {
                 : 'text-gray-500 hover:text-gray-700'
             }`}
             onClick={() => setActiveTab('network')}
+            data-tool="network"
           >
             Network
+          </button>
+          <button
+            className={`py-2 px-3 font-medium text-center text-sm md:text-base ${
+              activeTab === 'seo' 
+                ? 'text-blue-600 border-b-2 border-blue-600' 
+                : 'text-gray-500 hover:text-gray-700'
+            }`}
+            onClick={() => setActiveTab('seo')}
+            data-tool="seo"
+          >
+            SEO
           </button>
           <button
             className={`py-2 px-3 font-medium text-center text-sm md:text-base ${
@@ -78,6 +156,7 @@ export default function WebTools() {
                 : 'text-gray-500 hover:text-gray-700'
             }`}
             onClick={() => setActiveTab('color')}
+            data-tool="color"
           >
             Colors
           </button>
@@ -88,6 +167,7 @@ export default function WebTools() {
                 : 'text-gray-500 hover:text-gray-700'
             }`}
             onClick={() => setActiveTab('password')}
+            data-tool="password"
           >
             Password
           </button>
@@ -98,6 +178,7 @@ export default function WebTools() {
                 : 'text-gray-500 hover:text-gray-700'
             }`}
             onClick={() => setActiveTab('domain')}
+            data-tool="domain"
           >
             Domain
           </button>
@@ -108,6 +189,7 @@ export default function WebTools() {
                 : 'text-gray-500 hover:text-gray-700'
             }`}
             onClick={() => setActiveTab('image')}
+            data-tool="image"
           >
             Images
           </button>
@@ -245,6 +327,21 @@ export default function WebTools() {
           </div>
           
           <ImageCompressor />
+        </div>
+      )}
+      
+      {/* SEO Analyzer Tab */}
+      {activeTab === 'seo' && (
+        <div>
+          <div className="mb-8 bg-indigo-50 p-4 rounded-lg">
+            <h2 className="text-xl font-semibold mb-2">SEO Analyzer Tool</h2>
+            <p className="text-gray-600 mb-4">
+              Analyze websites for SEO best practices and receive actionable recommendations
+              to improve search engine rankings and visibility.
+            </p>
+          </div>
+          
+          <SeoAnalyzer />
         </div>
       )}
     </div>
