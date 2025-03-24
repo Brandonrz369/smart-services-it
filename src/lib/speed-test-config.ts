@@ -50,9 +50,9 @@ interface SpeedTestConfig {
  * - Measured ping: 122 ms vs Actual: 7 ms
  * 
  * User 2 (Toronto):
- * - Measured download: 30 Mbps (est.) vs Actual: 416 Mbps
- * - Measured upload: 17 Mbps (est.) vs Actual: 36.7 Mbps
- * - Measured ping: 120 ms (est.) vs Actual: 22 ms
+ * - Measured download: 23 Mbps vs Actual: 389 Mbps
+ * - Measured upload: 36.24 Mbps vs Actual: 415 Mbps
+ * - Measured ping: 102 ms vs Actual: 24 ms
  */
 export const speedTestConfig: SpeedTestConfig = {
   // Calibration data points for multiple connection types
@@ -60,7 +60,7 @@ export const speedTestConfig: SpeedTestConfig = {
     { measuredValue: 5, actualValue: 50 },      // Slow connection
     { measuredValue: 15, actualValue: 100 },    // Medium connection
     { measuredValue: 27.53, actualValue: 384.9 },  // Brandon's connection
-    { measuredValue: 30, actualValue: 416 },    // Toronto connection
+    { measuredValue: 23, actualValue: 389 },    // Toronto connection (updated)
     { measuredValue: 35, actualValue: 940 }     // Gigabit connection
   ],
   
@@ -68,14 +68,14 @@ export const speedTestConfig: SpeedTestConfig = {
     { measuredValue: 2, actualValue: 5 },       // Slow connection
     { measuredValue: 5, actualValue: 10 },      // Medium connection
     { measuredValue: 8.04, actualValue: 17.3 }, // Brandon's connection
-    { measuredValue: 17, actualValue: 36.7 },   // Toronto connection
-    { measuredValue: 20, actualValue: 50 }      // Fast connection
+    { measuredValue: 36.24, actualValue: 415 }, // Toronto connection (updated)
+    { measuredValue: 40, actualValue: 500 }     // Fast connection
   ],
   
   pingCalibrationData: [
     { measuredValue: 50, actualValue: 30 },     // Good connection
     { measuredValue: 122, actualValue: 7 },     // Brandon's connection
-    { measuredValue: 120, actualValue: 22 },    // Toronto connection
+    { measuredValue: 102, actualValue: 24 },    // Toronto connection (updated)
     { measuredValue: 200, actualValue: 100 }    // Poor connection
   ],
   
