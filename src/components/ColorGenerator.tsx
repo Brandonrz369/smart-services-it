@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 interface ColorPalette {
   name: string;
@@ -15,19 +15,14 @@ export default function ColorGenerator() {
   const [recentColors, setRecentColors] = useState<string[]>([]);
   const [copied, setCopied] = useState<string | null>(null);
 
-  // Generate palette whenever color or palette type changes
-  useEffect(() => {
-    generatePalette();
-  }, [color, paletteType]);
-
   // Load recent colors from localStorage
   useEffect(() => {
     const saved = localStorage.getItem('recentColors');
     if (saved) {
       try {
         setRecentColors(JSON.parse(saved));
-      } catch (e) {
-        console.error('Failed to parse saved colors');
+      } catch (error) {
+        console.error('Failed to parse saved colors:', error);
       }
     }
   }, []);
@@ -40,7 +35,9 @@ export default function ColorGenerator() {
     
     const max = Math.max(r, g, b);
     const min = Math.min(r, g, b);
-    let h = 0, s, l = (max + min) / 2;
+    let h = 0;
+    let s;
+    const l = (max + min) / 2;
 
     if (max === min) {
       h = s = 0; // achromatic
@@ -108,10 +105,16 @@ export default function ColorGenerator() {
     return `#${((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1)}`;
   };
 
+  // Helper function to convert HSL to hex
+  const hslToHex = (h: number, s: number, l: number) => {
+    const rgb = hslToRgb(h, s, l);
+    return rgbToHex(rgb[0], rgb[1], rgb[2]);
+  };
+
   // Generate a palette based on the current color
-  const generatePalette = () => {
+  const generatePalette = useCallback(() => {
     const rgb = hexToRgb(color);
-    const [h, s, l] = rgbToHsl(...rgb);
+    const [h, s, l] = rgbToHsl(rgb[0], rgb[1], rgb[2]);
     
     let newPalette: ColorPalette[] = [];
     
@@ -121,11 +124,11 @@ export default function ColorGenerator() {
         newPalette = [{
           name: 'Analogous',
           colors: [
-            rgbToHex(...hslToRgb((h - 30 + 360) % 360, s, l)),
-            rgbToHex(...hslToRgb((h - 15 + 360) % 360, s, l)),
+            hslToHex((h - 30 + 360) % 360, s, l),
+            hslToHex((h - 15 + 360) % 360, s, l),
             color,
-            rgbToHex(...hslToRgb((h + 15) % 360, s, l)),
-            rgbToHex(...hslToRgb((h + 30) % 360, s, l))
+            hslToHex((h + 15) % 360, s, l),
+            hslToHex((h + 30) % 360, s, l)
           ]
         }];
         break;
@@ -135,20 +138,20 @@ export default function ColorGenerator() {
         newPalette = [{
           name: 'Light Shades',
           colors: [
-            rgbToHex(...hslToRgb(h, s, Math.min(l + 40, 95))),
-            rgbToHex(...hslToRgb(h, s, Math.min(l + 20, 85))),
+            hslToHex(h, s, Math.min(l + 40, 95)),
+            hslToHex(h, s, Math.min(l + 20, 85)),
             color,
-            rgbToHex(...hslToRgb(h, s, Math.max(l - 20, 15))),
-            rgbToHex(...hslToRgb(h, s, Math.max(l - 40, 5)))
+            hslToHex(h, s, Math.max(l - 20, 15)),
+            hslToHex(h, s, Math.max(l - 40, 5))
           ]
         }, {
           name: 'Saturation Variations',
           colors: [
-            rgbToHex(...hslToRgb(h, Math.max(s - 40, 5), l)),
-            rgbToHex(...hslToRgb(h, Math.max(s - 20, 10), l)),
+            hslToHex(h, Math.max(s - 40, 5), l),
+            hslToHex(h, Math.max(s - 20, 10), l),
             color,
-            rgbToHex(...hslToRgb(h, Math.min(s + 20, 95), l)),
-            rgbToHex(...hslToRgb(h, Math.min(s + 40, 100), l))
+            hslToHex(h, Math.min(s + 20, 95), l),
+            hslToHex(h, Math.min(s + 40, 100), l)
           ]
         }];
         break;
@@ -159,8 +162,8 @@ export default function ColorGenerator() {
           name: 'Triadic',
           colors: [
             color,
-            rgbToHex(...hslToRgb((h + 120) % 360, s, l)),
-            rgbToHex(...hslToRgb((h + 240) % 360, s, l))
+            hslToHex((h + 120) % 360, s, l),
+            hslToHex((h + 240) % 360, s, l)
           ]
         }];
         break;
@@ -170,18 +173,24 @@ export default function ColorGenerator() {
         newPalette = [{
           name: 'Complementary',
           colors: [
-            rgbToHex(...hslToRgb((h - 30 + 360) % 360, s, l)),
-            rgbToHex(...hslToRgb((h - 15 + 360) % 360, s, l)),
+            hslToHex((h - 30 + 360) % 360, s, l),
+            hslToHex((h - 15 + 360) % 360, s, l),
             color,
-            rgbToHex(...hslToRgb((h + 165) % 360, s, l)),
-            rgbToHex(...hslToRgb((h + 180) % 360, s, l))
+            hslToHex((h + 165) % 360, s, l),
+            hslToHex((h + 180) % 360, s, l)
           ]
         }];
         break;
     }
     
     setPalette(newPalette);
-  };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [color, paletteType]);
+  
+  // Generate palette whenever color or palette type changes
+  useEffect(() => {
+    generatePalette();
+  }, [generatePalette]);
 
   // Generate a random color
   const generateRandomColor = () => {

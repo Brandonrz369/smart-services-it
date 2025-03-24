@@ -53,7 +53,7 @@ export default function NetworkTools() {
         setDnsResult(ip);
         setIsLookingUp(false);
       }, 500);
-    } catch (error) {
+    } catch {
       setDnsResult('Lookup failed');
       setIsLookingUp(false);
     }

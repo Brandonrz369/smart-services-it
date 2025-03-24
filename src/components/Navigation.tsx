@@ -79,6 +79,19 @@ export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHomePage, setIsHomePage] = useState(false);
   const [isEmergencyVisible, setIsEmergencyVisible] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
+  
+  // Check for admin authentication
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const isAuthenticated = localStorage.getItem('adminAuthenticated') === 'true';
+      const authTime = Number(localStorage.getItem('adminAuthTime') || '0');
+      const timeNow = Date.now();
+      
+      // Check if authenticated and session not expired (1 hour)
+      setIsAdmin(isAuthenticated && (timeNow - authTime < 3600000));
+    }
+  }, []);
   
   // Check if we're on home page and handle scroll event
   useEffect(() => {
@@ -152,14 +165,7 @@ export default function Navigation() {
     { href: "/emergency", label: "Emergency Support" }
   ];
   
-  // Check if admin is logged in
-  const [isAdmin, setIsAdmin] = useState(false);
-  
-  useEffect(() => {
-    // Check admin status from localStorage
-    const adminAuth = localStorage.getItem('adminAuthenticated');
-    setIsAdmin(adminAuth === 'true');
-  }, []);
+  /* Admin status is already handled in the component */
 
   return (
     <div className="fixed top-0 left-0 right-0 z-40 transition-all duration-300">
@@ -239,14 +245,22 @@ export default function Navigation() {
               Contact
             </Link>
             
-            {/* Admin link - only visible when logged in */}
+            {/* Admin links - only visible when logged in */}
             {isAdmin && (
-              <Link 
-                href="/admin/forms" 
-                className="bg-gray-700 hover:bg-gray-800 text-white px-4 py-2 rounded-lg transition-colors font-medium ml-2"
-              >
-                Admin
-              </Link>
+              <>
+                <Link 
+                  href="/admin/forms" 
+                  className="bg-gray-700 hover:bg-gray-800 text-white px-4 py-2 rounded-lg transition-colors font-medium ml-2"
+                >
+                  Admin
+                </Link>
+                <Link 
+                  href="/web-tools" 
+                  className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg transition-colors font-medium ml-2"
+                >
+                  Web Tools
+                </Link>
+              </>
             )}
           </nav>
           <SimpleMobileNav />

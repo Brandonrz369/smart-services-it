@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 export default function SpeedTest() {
   const [isRunning, setIsRunning] = useState(false);

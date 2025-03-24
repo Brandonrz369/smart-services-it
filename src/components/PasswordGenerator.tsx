@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 
 interface PasswordOptions {
   length: number;
@@ -26,16 +26,14 @@ export default function PasswordGenerator() {
   const [passwordHistory, setPasswordHistory] = useState<string[]>([]);
   const passwordRef = useRef<HTMLInputElement>(null);
 
+  // Load password history from local storage
   useEffect(() => {
-    generatePassword();
-    
-    // Load password history from local storage
     const savedHistory = localStorage.getItem('passwordHistory');
     if (savedHistory) {
       try {
         setPasswordHistory(JSON.parse(savedHistory));
-      } catch (e) {
-        console.error('Failed to parse password history');
+      } catch (error) {
+        console.error('Failed to parse password history:', error);
       }
     }
   }, []);
@@ -47,7 +45,7 @@ export default function PasswordGenerator() {
     }));
   };
 
-  const generatePassword = () => {
+  const generatePassword = useCallback(() => {
     // Character sets
     const uppercaseChars = 'ABCDEFGHJKLMNPQRSTUVWXYZ'; // Excluding I, O
     const uppercaseAmbiguous = 'IO';
@@ -119,7 +117,13 @@ export default function PasswordGenerator() {
     }
     
     setCopied(false);
-  };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [options, passwordHistory]);
+  
+  // Initialize password on component mount
+  useEffect(() => {
+    generatePassword();
+  }, [generatePassword]);
 
   const calculateEntropy = (pass: string) => {
     let charsetSize = 0;
