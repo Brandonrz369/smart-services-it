@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 export default function SimpleContactForm() {
   const [isMobile, setIsMobile] = useState(false);
-  const [formSubmitted] = useState(false);
+  const [formSubmitted, _setFormSubmitted] = useState(false);
   
   // Detect mobile devices
   useEffect(() => {
