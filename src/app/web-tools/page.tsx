@@ -8,9 +8,10 @@ import SpeedTest from '@/components/SpeedTest';
 import NetworkTools from '@/components/NetworkTools';
 import ColorGenerator from '@/components/ColorGenerator';
 import PasswordGenerator from '@/components/PasswordGenerator';
+import DomainLookup from '@/components/DomainLookup';
 
 export default function WebTools() {
-  const [activeTab, setActiveTab] = useState<'simple' | 'debug' | 'logs' | 'speed' | 'network' | 'color' | 'password'>('simple');
+  const [activeTab, setActiveTab] = useState<'simple' | 'debug' | 'logs' | 'speed' | 'network' | 'color' | 'password' | 'domain'>('simple');
   
   return (
     <div className="container mx-auto py-12 px-4">
@@ -88,6 +89,16 @@ export default function WebTools() {
             onClick={() => setActiveTab('password')}
           >
             Password
+          </button>
+          <button
+            className={`py-2 px-3 font-medium text-center text-sm md:text-base ${
+              activeTab === 'domain' 
+                ? 'text-blue-600 border-b-2 border-blue-600' 
+                : 'text-gray-500 hover:text-gray-700'
+            }`}
+            onClick={() => setActiveTab('domain')}
+          >
+            Domain
           </button>
         </div>
       </div>
@@ -193,6 +204,21 @@ export default function WebTools() {
           </div>
           
           <PasswordGenerator />
+        </div>
+      )}
+      
+      {/* Domain Lookup Tab */}
+      {activeTab === 'domain' && (
+        <div>
+          <div className="mb-8 bg-indigo-50 p-4 rounded-lg">
+            <h2 className="text-xl font-semibold mb-2">Domain & DNS Lookup</h2>
+            <p className="text-gray-600 mb-4">
+              Retrieve DNS records, IP addresses, and WHOIS information for any domain name.
+              This tool provides detailed insights into domain configurations.
+            </p>
+          </div>
+          
+          <DomainLookup />
         </div>
       )}
     </div>
