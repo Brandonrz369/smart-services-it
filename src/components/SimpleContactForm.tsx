@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 export default function SimpleContactForm() {
   const [isMobile, setIsMobile] = useState(false);
-  const [formSubmitted, _setFormSubmitted] = useState(false);
+  // Removed unused formSubmitted state
   
   // Detect mobile devices
   useEffect(() => {
@@ -61,22 +61,7 @@ export default function SimpleContactForm() {
     return true;
   };
   
-  // Show success message if form submitted
-  if (formSubmitted) {
-    return (
-      <div className="bg-white rounded-lg shadow-md p-6">
-        <div className="text-center">
-          <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-            </svg>
-          </div>
-          <h2 className="text-xl font-bold text-gray-800 mb-2">Message Sent!</h2>
-          <p className="text-gray-600 mb-4">Thank you for contacting us. We'll be in touch soon.</p>
-        </div>
-      </div>
-    );
-  }
+  // Note: Success message is handled by redirect to /thanks page for non-mobile devices
   
   return (
     <div className="bg-white rounded-lg shadow-md p-6">
