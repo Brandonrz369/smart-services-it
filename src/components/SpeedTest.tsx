@@ -40,9 +40,13 @@ export default function SpeedTest() {
       setRawPing(measuredPing);
       
       // Apply calibration to get more realistic ping value
+      // Use brandon's ping factor for compatibility with previous method 
+      const pingFactor = speedTestConfig.pingCalibrationData[1].actualValue / 
+                         speedTestConfig.pingCalibrationData[1].measuredValue;
+                         
       const calibratedPing = Math.round(calibratePing(
         measuredPing,
-        speedTestConfig.pingCalibrationFactor,
+        pingFactor,
         speedTestConfig.minPing
       ));
       
@@ -73,9 +77,13 @@ export default function SpeedTest() {
         setRawDownloadSpeed(parseFloat(measuredSpeed.toFixed(2)));
         
         // Apply calibration to get more realistic download speed
+        // Use brandon's download factor for compatibility with previous method
+        const downloadFactor = speedTestConfig.downloadCalibrationData[2].actualValue / 
+                              speedTestConfig.downloadCalibrationData[2].measuredValue;
+                              
         const calibratedSpeed = calibrateSpeed(
           measuredSpeed,
-          speedTestConfig.downloadCalibrationFactor,
+          downloadFactor,
           speedTestConfig.maxDownloadSpeed
         );
         
@@ -114,9 +122,13 @@ export default function SpeedTest() {
         setRawUploadSpeed(parseFloat(measuredSpeed.toFixed(2)));
         
         // Apply calibration to get more realistic upload speed
+        // Use brandon's upload factor for compatibility with previous method
+        const uploadFactor = speedTestConfig.uploadCalibrationData[2].actualValue / 
+                            speedTestConfig.uploadCalibrationData[2].measuredValue;
+                            
         const calibratedSpeed = calibrateSpeed(
           measuredSpeed,
-          speedTestConfig.uploadCalibrationFactor,
+          uploadFactor,
           speedTestConfig.maxUploadSpeed
         );
         
@@ -131,6 +143,11 @@ export default function SpeedTest() {
     setTestPhase('complete');
     setIsRunning(false);
     
+    // Calculate effective calibration factors for this test
+    const effectivePingFactor = ping && rawPing ? ping / rawPing : null;
+    const effectiveDownloadFactor = downloadSpeed && rawDownloadSpeed ? downloadSpeed / rawDownloadSpeed : null;
+    const effectiveUploadFactor = uploadSpeed && rawUploadSpeed ? uploadSpeed / rawUploadSpeed : null;
+    
     // Track test completion in analytics
     trackToolUsage('SpeedTest', 'complete', {
       ping: ping,
@@ -139,10 +156,16 @@ export default function SpeedTest() {
       rawPing: rawPing,
       rawDownloadSpeed: rawDownloadSpeed,
       rawUploadSpeed: rawUploadSpeed,
-      calibrationFactors: {
-        ping: speedTestConfig.pingCalibrationFactor,
-        download: speedTestConfig.downloadCalibrationFactor,
-        upload: speedTestConfig.uploadCalibrationFactor
+      effectiveCalibration: {
+        ping: effectivePingFactor,
+        download: effectiveDownloadFactor,
+        upload: effectiveUploadFactor
+      },
+      adaptiveScaling: speedTestConfig.useAdaptiveScaling,
+      referenceProfiles: {
+        download: speedTestConfig.downloadCalibrationData.length,
+        upload: speedTestConfig.uploadCalibrationData.length,
+        ping: speedTestConfig.pingCalibrationData.length
       }
     });
   };
@@ -223,29 +246,78 @@ export default function SpeedTest() {
         <div className="mb-6 bg-gray-50 p-4 rounded-lg text-sm">
           <h3 className="font-medium mb-2">Calibration Details</h3>
           <p className="text-gray-600 mb-3">
-            Speed test results are calibrated to better match real-world speeds. Your network is likely faster than our test server can measure.
+            Speed test results are calibrated to better match real-world speeds using adaptive scaling based on multiple connection profiles.
           </p>
           
-          <div className="grid grid-cols-3 gap-4 mb-2">
+          <div className="grid grid-cols-3 gap-4 mb-4">
             <div>
               <p className="font-medium">Ping</p>
               <p>Raw: {rawPing} ms</p>
               <p>Calibrated: {ping} ms</p>
-              <p className="text-xs text-gray-500">Factor: {speedTestConfig.pingCalibrationFactor.toFixed(2)}x</p>
+              <p className="text-xs text-gray-500">
+                {speedTestConfig.useAdaptiveScaling ? 'Using adaptive calibration' : 'Fixed calibration'}
+              </p>
             </div>
             <div>
               <p className="font-medium">Download</p>
               <p>Raw: {rawDownloadSpeed} Mbps</p>
               <p>Calibrated: {downloadSpeed} Mbps</p>
-              <p className="text-xs text-gray-500">Factor: {speedTestConfig.downloadCalibrationFactor.toFixed(2)}x</p>
+              <p className="text-xs text-gray-500">
+                Server capacity ceiling: {speedTestConfig.serverCapacityCeiling} Mbps
+              </p>
             </div>
             <div>
               <p className="font-medium">Upload</p>
               <p>Raw: {rawUploadSpeed} Mbps</p>
               <p>Calibrated: {uploadSpeed} Mbps</p>
-              <p className="text-xs text-gray-500">Factor: {speedTestConfig.uploadCalibrationFactor.toFixed(2)}x</p>
+              <p className="text-xs text-gray-500">
+                Based on {speedTestConfig.uploadCalibrationData.length} connection profiles
+              </p>
             </div>
           </div>
+          
+          <details className="text-xs text-gray-600">
+            <summary className="cursor-pointer hover:text-blue-600 transition-colors">
+              View calibration reference data
+            </summary>
+            <div className="mt-2 overflow-x-auto">
+              <div className="mb-2">
+                <p className="font-medium">Download Calibration Reference Points:</p>
+                <ul className="list-disc ml-4">
+                  {speedTestConfig.downloadCalibrationData.map((point, index) => (
+                    <li key={index}>
+                      Measured: {point.measuredValue} Mbps → Actual: {point.actualValue} Mbps 
+                      (Factor: {(point.actualValue / point.measuredValue).toFixed(2)}x)
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              
+              <div className="mb-2">
+                <p className="font-medium">Upload Calibration Reference Points:</p>
+                <ul className="list-disc ml-4">
+                  {speedTestConfig.uploadCalibrationData.map((point, index) => (
+                    <li key={index}>
+                      Measured: {point.measuredValue} Mbps → Actual: {point.actualValue} Mbps
+                      (Factor: {(point.actualValue / point.measuredValue).toFixed(2)}x)
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              
+              <div>
+                <p className="font-medium">Ping Calibration Reference Points:</p>
+                <ul className="list-disc ml-4">
+                  {speedTestConfig.pingCalibrationData.map((point, index) => (
+                    <li key={index}>
+                      Measured: {point.measuredValue} ms → Actual: {point.actualValue} ms
+                      (Factor: {(point.actualValue / point.measuredValue).toFixed(3)}x)
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </details>
         </div>
       )}
       
