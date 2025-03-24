@@ -1,4 +1,6 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* Let's use a simpler approach for cursors to avoid build issues */
 * {
@@ -97,7 +99,8 @@ html {
   --gradient-orange: linear-gradient(130deg, var(--secondary-600) 0%, var(--secondary-400) 100%);
 }
 
-@theme inline {
+/* Theme variables */
+:root {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
