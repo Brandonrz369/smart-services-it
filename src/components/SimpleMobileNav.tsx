@@ -15,7 +15,7 @@ export default function SimpleMobileNav({}: MobileNavProps) {
     services: false,
     resources: false,
     company: false,
-    residentialBusiness: false, // Add state for the new section
+    // Removed residentialBusiness state
   });
 
   const toggleSection = (section: string) => {
@@ -131,6 +131,14 @@ export default function SimpleMobileNav({}: MobileNavProps) {
                         >
                           Book Appointment
                         </Link>
+                        {/* Added link here */}
+                        <Link
+                          href="/residential-business"
+                          className="block py-2 px-4 text-base font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          Home & Business Solutions
+                        </Link>
                       </div>
                     )}
                   </div>
@@ -237,39 +245,7 @@ export default function SimpleMobileNav({}: MobileNavProps) {
                   </div>
                 </li>
 
-                {/* Residential/Business Dropdown */}
-                <li>
-                  <div>
-                    <button
-                      className="flex items-center justify-between w-full py-2 px-4 text-lg font-medium text-gray-800 hover:bg-blue-50 hover:text-blue-600 rounded-lg"
-                      onClick={() => toggleSection("residentialBusiness")}
-                      type="button"
-                      aria-expanded={expandedSections.residentialBusiness}
-                    >
-                      <span>Residential/Business</span>
-                      <svg
-                        className={`h-5 w-5 transform transition-transform ${expandedSections.residentialBusiness ? "rotate-180" : ""}`}
-                        fill="none"
-                        aria-hidden="true"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </button>
-                    {expandedSections.residentialBusiness && (
-                      <div className="ml-4 mt-2 border-l-2 border-blue-100 pl-4">
-                        <Link
-                          href="/residential-business"
-                          className="block py-2 px-4 text-base font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg"
-                          onClick={() => setIsOpen(false)}
-                        >
-                          Residential & Business Services
-                        </Link>
-                      </div>
-                    )}
-                  </div>
-                </li>
+                {/* Removed Residential/Business Dropdown */}
 
                 {/* Emergency Button */}
                 <li>

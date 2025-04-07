@@ -41,49 +41,63 @@ export default function ResidentialBusinessClientPage(/* props: ResidentialBusin
     // Add more compliant testimonials if available
   ];
 
-  // Compliant Service Definitions
+  // Revised Compliant Service Definitions (Problem/Solution Focused)
   const services = [
     {
-      title: "Screen & Display Issues?",
-      description: "Expert diagnostics for Mac & PC screens. Explore configuration options and clear pricing.",
-      icon: "🖥️", // Example icon
+      title: "Mac or PC Screen Issues?",
+      description: "Dim display, flickering, or physical concerns? We offer expert diagnostics and configuration options.",
+      icon: "🖥️",
       features: ["Screen Diagnostics", "Display Configuration Options", "Component Assessment", "Transparent Quotes"],
-      category: "hardware", // Internal category if needed
+      category: "hardware",
     },
     {
-      title: "Battery Performance Concerns?",
-      description: "Assessment and optimization services to extend your laptop's battery life.",
+      title: "Laptop Battery Draining Fast?",
+      description: "Extend your device's life with battery performance assessment and optimization.",
       icon: "🔋",
       features: ["Battery Health Check", "Performance Optimization", "Power Setting Config", "Longevity Tips"],
       category: "hardware",
     },
     {
-      title: "Slow Computer Performance?",
-      description: "Comprehensive system optimization and configuration to boost speed.",
+      title: "Computer Running Slow?",
+      description: "Frustrated with sluggish performance? Our optimization services can boost speed.",
       icon: "🚀",
       features: ["Performance Tune-up", "Software Cleanup", "Hardware Config Review", "Startup Optimization"],
       category: "optimization",
     },
     {
-      title: "Data Access or Boot-Up Problems?",
-      description: "Assistance with data accessibility challenges and boot sequence analysis.",
+      title: "Can't Access Your Files?",
+      description: "Difficulties accessing data? We provide consultation on accessibility options and backup strategies.",
       icon: "💾",
       features: ["Data Accessibility Consult", "Boot Diagnostics", "Backup Strategy Advice", "System Configuration Review"],
       category: "data",
     },
+    {
+      title: "Worried About Security Threats?",
+      description: "Concerned about malware or strange behavior? Get a system security assessment and cleanup assistance.",
+      icon: "🛡️", // Changed icon
+      features: ["Security Assessment", "Malware/Adware Check", "System Cleanup Assistance", "Security Hardening Tips"],
+      category: "security",
+    },
+    {
+      title: "Wi-Fi or Network Problems?",
+      description: "Experiencing connectivity issues? We offer network setup, configuration, and optimization.",
+      icon: "🌐",
+      features: ["Network Diagnostics", "Router/Modem Setup", "Wi-Fi Optimization", "Guest Network Config"],
+      category: "network",
+    },
      {
-      title: "Hardware Component Needs?",
-      description: "Professional assessment and installation services for compatible components like RAM or storage.",
+      title: "Software Conflicts or Setup Needs?",
+      description: "Need help installing or configuring software? We provide expert assistance.",
+      icon: "🧩", // Changed icon
+      features: ["Software Installation", "Configuration Help", "Compatibility Checks", "Troubleshooting Assistance"],
+      category: "software",
+    },
+     {
+      title: "Considering Hardware Upgrades?",
+      description: "Need new components installed or configured? We offer professional assessment and installation.",
       icon: "⚙️",
       features: ["Component Assessment", "Installation Service", "Configuration & Testing", "Compatibility Guidance"],
       category: "hardware",
-    },
-     {
-      title: "General Tech Guidance?",
-      description: "Expert IT consulting for homes and businesses on tech choices, security, and more.",
-      icon: "💡",
-      features: ["Tech Purchase Advice", "Security Best Practices", "Workflow Improvements", "Remote Work Solutions"],
-      category: "consulting",
     },
   ];
 
@@ -91,15 +105,14 @@ export default function ResidentialBusinessClientPage(/* props: ResidentialBusin
     <div
       className={`min-h-screen font-sans transition-opacity duration-1000 ${isLoaded ? "opacity-100" : "opacity-0"}`}
     >
-      {/* Hero Section - Compliant Version */}
+      {/* Hero Section - Revised */}
       <section className="relative h-[70vh] min-h-[600px] flex items-center bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700">
-        {/* Background elements adapted from homepage */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-black opacity-30"></div>
            <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: "url('/images/hero-background.jpg')", // Reuse or choose a different background
+              backgroundImage: "url('/images/hero-background.jpg')",
               mixBlendMode: "overlay",
               opacity: 0.4,
             }}
@@ -111,37 +124,39 @@ export default function ResidentialBusinessClientPage(/* props: ResidentialBusin
         <div className="container mx-auto px-4 relative z-10 text-center">
           <FadeIn direction="up">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 text-white">
-              Long Beach Tech Experts: <br /> Device Solutions & Assistance
+              Long Beach Computer Help: <br /> Expert Assistance for Your Tech Challenges
             </h1>
             <div className="text-2xl md:text-3xl lg:text-4xl text-blue-200 mb-6">
                <TypewriterEffect
                   texts={[
-                    "Hardware Diagnostics",
-                    "Component Configuration",
+                    "Device Diagnostics",
                     "System Optimization",
-                    "Expert IT Guidance",
+                    "Hardware Configuration",
+                    "Network Setup",
+                    "Data Consultation",
+                    "Security Assessment",
                   ]}
                   className="text-2xl md:text-3xl lg:text-4xl text-blue-200"
                 />
             </div>
             <p className="text-lg md:text-xl text-white opacity-90 mb-8 max-w-3xl mx-auto">
-              Experiencing computer issues in Long Beach? Slow performance, screen problems, battery drain? We offer expert diagnostics, hardware configuration options, and system optimization services. Get transparent pricing and professional assistance today.
+              Facing computer troubles in Long Beach? From slow Macs and PCs to screen issues, battery drain, or network problems, LB Computer Help offers expert diagnostics, configuration, optimization, and consultation services. Get reliable, local computer help with transparent pricing.
             </p>
           </FadeIn>
           <FadeIn direction="up" delay={0.2}>
              <div className="flex flex-wrap gap-4 justify-center">
                 <Link
-                  href="#services" // Link to services section below
+                  href="#services"
                   className="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-blue-800 transform hover:scale-105 transition-all duration-300 shadow-lg flex items-center"
                 >
-                  <span>Explore Our Services</span>
+                  <span>Explore Solutions</span>
                    <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
                 </Link>
                 <Link
-                  href="#contact" // Link to contact section below
+                  href="#contact"
                   className="px-8 py-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-lg font-semibold hover:from-orange-600 hover:to-orange-700 transform hover:scale-105 transition-all duration-300 shadow-lg flex items-center"
                 >
-                  <span>Request Consultation</span>
+                  <span>Get Diagnostic Quote</span>
                   <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg>
                 </Link>
               </div>
@@ -149,24 +164,23 @@ export default function ResidentialBusinessClientPage(/* props: ResidentialBusin
         </div>
       </section>
 
-      {/* Services Section - Compliant */}
+      {/* Services Section - Revised */}
       <section id="services" className="py-20 px-4 bg-gray-50">
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <FadeIn direction="up">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Solutions for Common Device Issues
+                Solutions for Common Computer Problems in Long Beach
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
-                We provide expert diagnostics, configuration, and optimization services for a wide range of computer problems faced by Long Beach residents and businesses.
+                We provide expert diagnostics, configuration, and optimization services for a wide range of computer issues faced by Long Beach residents and businesses.
               </p>
             </FadeIn>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"> {/* Changed to 4 columns for better fit */}
             {services.map((service, index) => (
-              <FadeIn key={service.title} direction="up" delay={index * 0.1}>
-                {/* Ensure ServiceCard component can handle these props */}
+              <FadeIn key={service.title} direction="up" delay={index * 0.05}> {/* Reduced delay */}
                 <ServiceCard
                   title={service.title}
                   description={service.description}
@@ -179,16 +193,16 @@ export default function ResidentialBusinessClientPage(/* props: ResidentialBusin
         </div>
       </section>
 
-       {/* Trust & Transparency Section - MANDATORY */}
+       {/* Trust & Transparency Section */}
       <section id="trust" className="py-20 px-4 bg-white">
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <FadeIn direction="up">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Your Trusted Long Beach Tech Partner
+                Reliable Service & Clear Pricing
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
-                We believe in transparency, expertise, and reliable service.
+                We believe in transparency, expertise, and dependable computer help in Long Beach.
               </p>
             </FadeIn>
           </div>
@@ -220,7 +234,6 @@ export default function ResidentialBusinessClientPage(/* props: ResidentialBusin
                    <p>(213) 349-6790</p>
                    <p className="mt-2">Serving Long Beach Since 2018</p>
                    {/* Add Certification Badges/Text Here if applicable */}
-                   {/* <p className="mt-2 font-semibold">CompTIA Certified</p> */}
                  </div>
                </div>
              </FadeIn>
@@ -239,31 +252,29 @@ export default function ResidentialBusinessClientPage(/* props: ResidentialBusin
         </div>
       </section>
 
-      {/* Testimonials Section - Compliant */}
+      {/* Testimonials Section */}
       <section className="py-20 px-4 bg-gray-50">
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <FadeIn direction="up">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                What Our Long Beach Clients Say
+                Hear From Your Long Beach Neighbors
               </h2>
             </FadeIn>
           </div>
           <FadeIn direction="up">
-            {/* Ensure TestimonialCarousel component exists and works */}
             <TestimonialCarousel testimonials={testimonials} />
           </FadeIn>
         </div>
       </section>
 
-      {/* Contact Section - Compliant */}
+      {/* Contact Section - Revised */}
       <section id="contact" className="py-20 px-4 bg-gray-900 text-white">
-         {/* Adapted from homepage contact section */}
          <div className="container mx-auto">
           <div className="text-center mb-12">
             <FadeIn direction="up">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Get Expert Assistance in Long Beach
+                Get Professional Computer Help in Long Beach Today
               </h2>
               <p className="text-gray-300 max-w-2xl mx-auto">
                 Ready for solutions? Contact us for a consultation or assessment quote. We offer reliable computer help near you.
@@ -272,10 +283,9 @@ export default function ResidentialBusinessClientPage(/* props: ResidentialBusin
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-             {/* Contact Info Column (reuse from homepage if desired) */}
+             {/* Contact Info Column */}
              <div>
                <FadeIn direction="right">
-                 {/* Add contact details like phone, email, address, hours here */}
                   <div className="space-y-8">
                     {/* Phone */}
                     <div className="flex items-start gap-4">
@@ -309,61 +319,57 @@ export default function ResidentialBusinessClientPage(/* props: ResidentialBusin
                </FadeIn>
              </div>
 
-             {/* Form Column */}
+             {/* Form Column - Revised Dropdown */}
              <div className="bg-gray-800 rounded-xl p-8 shadow-lg">
                <h3 className="text-2xl font-bold mb-6">Send us a message</h3>
-               {/* Use the same form action */}
                <form action="https://formspree.io/f/xzzeddgr" method="POST">
                  <input type="hidden" name="_next" value="https://lbcomputerhelp.com/thanks" />
-                 <input type="hidden" name="page_source" value="Residential-Business Landing Page" /> {/* Optional: Track source */}
+                 <input type="hidden" name="page_source" value="Residential-Business Landing Page" />
 
                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-                   {/* Name */}
                    <div>
                      <label htmlFor="contact_name_rb" className="block text-sm font-medium text-gray-300 mb-1">Name</label>
                      <input type="text" id="contact_name_rb" name="name" required className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your name" />
                    </div>
-                   {/* Email */}
                    <div>
                      <label htmlFor="contact_email_rb" className="block text-sm font-medium text-gray-300 mb-1">Email</label>
                      <input type="email" id="contact_email_rb" name="email" required className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your email" />
                    </div>
                  </div>
-                 {/* Phone */}
                  <div className="mb-4">
                    <label htmlFor="contact_phone_rb" className="block text-sm font-medium text-gray-300 mb-1">Phone</label>
                    <input type="tel" id="contact_phone_rb" name="phone" required className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your phone number" />
                  </div>
-                 {/* Service Needed - Compliant Dropdown */}
+                 {/* Revised Service Interest Dropdown */}
                  <div className="mb-4">
                    <label htmlFor="contact_service_rb" className="block text-sm font-medium text-gray-300 mb-1">Service Interest</label>
                    <select id="contact_service_rb" name="service_interest" required className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
                      <option value="">Select an option...</option>
-                     <option value="Diagnostic Assessment">Diagnostic Assessment</option>
-                     <option value="Component Configuration/Installation">Component Configuration/Installation</option>
-                     <option value="System Optimization">System Optimization</option>
-                     <option value="Data Accessibility Consultation">Data Accessibility Consultation</option>
-                     <option value="IT Consultation">IT Consultation</option>
-                     <option value="Device Setup">Device Setup</option>
+                     <option value="Screen/Display Issue Assessment">Screen/Display Issue Assessment</option>
+                     <option value="Slow Performance Optimization">Slow Performance Optimization</option>
+                     <option value="Battery Assessment/Optimization">Battery Assessment/Optimization</option>
+                     <option value="Data Access Consultation">Data Access Consultation</option>
+                     <option value="Security Check/Cleanup Assistance">Security Check/Cleanup Assistance</option>
+                     <option value="Network Setup/Assistance">Network Setup/Assistance</option>
+                     <option value="Software Configuration/Assistance">Software Configuration/Assistance</option>
+                     <option value="Hardware Installation/Upgrade Consultation">Hardware Installation/Upgrade Consultation</option>
+                     <option value="General IT Consultation">General IT Consultation</option>
+                     <option value="Device Setup Service">Device Setup Service</option>
                      <option value="Other Inquiry">Other Inquiry</option>
                    </select>
                  </div>
-                 {/* Message */}
                  <div className="mb-4">
                    <label htmlFor="contact_message_rb" className="block text-sm font-medium text-gray-300 mb-1">Describe Your Issue/Question</label>
                    <textarea id="contact_message_rb" name="message" rows={4} required className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Briefly describe the problem or what you need help with..."></textarea>
                  </div>
-                 {/* Submit Button */}
                  <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all transform hover:scale-105 duration-300 flex items-center justify-center">
-                   Request Assessment or Consultation
+                   Request Service or Consultation
                  </button>
                </form>
              </div>
            </div>
          </div>
       </section>
-
-      {/* Schema.org markup is handled by the page component now */}
     </div>
   );
 }

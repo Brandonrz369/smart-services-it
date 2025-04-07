@@ -1,19 +1,18 @@
 // src/app/residential-business/page.tsx
 // This is now a Server Component
 
-import ResidentialBusinessClientPage from "@/components/ResidentialBusinessClientPage"; // Import the new client component
+import ResidentialBusinessClientPage from "@/components/ResidentialBusinessClientPage"; // Import the updated client component
 
-// Define Metadata for this specific page (overrides layout.tsx)
-// This can only be exported from a Server Component
+// Define Metadata for this specific page (Enhanced Semantic Scope)
 export const metadata = {
-  title: "Long Beach Computer Assistance | Device Solutions & Pricing | LB Computer Help",
+  title: "Long Beach Computer Help | Device Assistance & Solutions | LB Computer Help",
   description:
-    "Expert computer assistance in Long Beach. Get diagnostics, hardware configuration options, system optimization, and transparent pricing for common device issues like screen problems or battery drain.",
+    "Expert computer help in Long Beach. Diagnostics, configuration, optimization & consultation for Mac/PC issues: slow performance, screen problems, battery drain, data access, network setup & more. Transparent pricing.",
   keywords:
-    "computer assistance Long Beach, device solutions Long Beach, hardware configuration Long Beach, PC optimization cost, Mac screen options Long Beach, laptop battery performance Long Beach, local tech experts Long Beach, computer diagnostic pricing, Long Beach computer help, lb computer help near me",
+    "long beach computer help, lb computer help near me, computer assistance Long Beach, device solutions Long Beach, macbook screen options Long Beach, laptop battery performance Long Beach, slow pc help Long Beach, data access consultation Long Beach, network setup Long Beach, local tech experts Long Beach, computer diagnostic pricing, hardware configuration Long Beach", // Added more keywords
 };
 
-// Schema Markup Component - can remain here or be moved, but needs to be rendered server-side if complex
+// Schema Markup Component (Enhanced Scope)
 function ResidentialBusinessJsonLd() {
   const businessSchema = {
     "@context": "https://schema.org",
@@ -46,26 +45,16 @@ function ResidentialBusinessJsonLd() {
     ],
   };
 
+  // Revised Service Schemas
   const serviceSchemas = [
     {
       "@context": "https://schema.org",
       "@type": "Service",
       serviceType: "Hardware Diagnostic & Assessment",
-      description: "Identify issues with screens, batteries, boot problems, or other components. Get clear options and pricing for solutions in Long Beach.",
-      provider: { "@id": "https://lbcomputerhelp.com" }, // Link to LocalBusiness ID
-      areaServed: {
-        "@type": "City",
-        name: "Long Beach"
-      },
-      offers: {
-        "@type": "Offer",
-        priceSpecification: {
-          "@type": "PriceSpecification",
-          price: "99",
-          priceCurrency: "USD",
-          valueAddedTaxIncluded: "false" // Adjust if needed
-        }
-      }
+      description: "Identify issues with Mac/PC screens, batteries, boot problems, or other components. Get clear options and pricing for solutions in Long Beach.",
+      provider: { "@id": "https://lbcomputerhelp.com" },
+      areaServed: { "@type": "City", name: "Long Beach" },
+      offers: { "@type": "Offer", priceSpecification: { "@type": "PriceSpecification", price: "99", priceCurrency: "USD" } }
     },
     {
       "@context": "https://schema.org",
@@ -78,7 +67,7 @@ function ResidentialBusinessJsonLd() {
     {
       "@context": "https://schema.org",
       "@type": "Service",
-      serviceType: "System Optimization Service",
+      serviceType: "System Performance Optimization",
       description: "Improve speed and battery life for your Mac or PC through expert optimization techniques and software configuration.",
       provider: { "@id": "https://lbcomputerhelp.com" },
       areaServed: { "@type": "City", name: "Long Beach" },
@@ -88,6 +77,30 @@ function ResidentialBusinessJsonLd() {
       "@type": "Service",
       serviceType: "Data Accessibility Consultation",
       description: "Assistance and guidance for accessing files on malfunctioning devices. Includes data backup strategy advice.",
+      provider: { "@id": "https://lbcomputerhelp.com" },
+      areaServed: { "@type": "City", name: "Long Beach" },
+    },
+     {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      serviceType: "System Security Assessment & Cleanup Assistance",
+      description: "Assessment for security threats, malware checks, and assistance with system cleanup for enhanced protection.",
+      provider: { "@id": "https://lbcomputerhelp.com" },
+      areaServed: { "@type": "City", name: "Long Beach" },
+    },
+     {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      serviceType: "Network Setup & Configuration",
+      description: "Reliable setup, configuration, and optimization for home and small business Wi-Fi and wired networks.",
+      provider: { "@id": "https://lbcomputerhelp.com" },
+      areaServed: { "@type": "City", name: "Long Beach" },
+    },
+     {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      serviceType: "Software Configuration Assistance",
+      description: "Expert help with installing, configuring, or troubleshooting software applications and operating systems.",
       provider: { "@id": "https://lbcomputerhelp.com" },
       areaServed: { "@type": "City", name: "Long Beach" },
     },
@@ -118,7 +131,7 @@ function ResidentialBusinessJsonLd() {
   );
 }
 
-// The main page component is now simple: it renders the client component and the schema markup
+// The main page component renders the client component and the schema markup
 export default function ResidentialBusinessPage() {
   return (
     <>
