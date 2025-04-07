@@ -51,7 +51,7 @@ function ResidentialBusinessJsonLd() {
       "@context": "https://schema.org",
       "@type": "Service",
       serviceType: "Hardware Diagnostic & Assessment",
-      description: "Identify issues with Mac/PC screens, batteries, boot problems, or other components. Get clear options and pricing for solutions in Long Beach.",
+      description: "Identify issues with Mac/PC screens (including cracked/damaged displays, flickering, dimness), batteries, boot problems, or other components. Get clear options and pricing for solutions in Long Beach.", // Enhanced description
       provider: { "@id": "https://lbcomputerhelp.com" },
       areaServed: { "@type": "City", name: "Long Beach" },
       offers: { "@type": "Offer", priceSpecification: { "@type": "PriceSpecification", price: "99", priceCurrency: "USD" } }

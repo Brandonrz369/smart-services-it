@@ -44,10 +44,10 @@ export default function ResidentialBusinessClientPage(/* props: ResidentialBusin
   // Revised Compliant Service Definitions (Problem/Solution Focused)
   const services = [
     {
-      title: "Mac or PC Screen Issues?",
-      description: "Dim display, flickering, or physical concerns? We offer expert diagnostics and configuration options.",
+      title: "Mac/PC Screen Problems?", // Slightly broader title
+      description: "Cracked screen, dim display, flickering, or other physical concerns? We offer expert diagnostics & discuss configuration/component options.", // More direct about physical issues
       icon: "🖥️",
-      features: ["Screen Diagnostics", "Display Configuration Options", "Component Assessment", "Transparent Quotes"],
+      features: ["Cracked/Damaged Screen Assessment", "Display Issue Diagnostics", "Configuration Options", "Component Consultation", "Transparent Quotes"], // More specific features
       category: "hardware",
     },
     {
