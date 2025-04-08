@@ -183,7 +183,8 @@ export default function ServicesPage() {
   return (
     <>
       {/* Render the Client Component which contains the interactive parts */}
-      <ServicesPageClient />
+      {/* Pass the servicesDetail data as a prop */}
+      <ServicesPageClient servicesDetail={servicesDetail} />
       {/* Render the JSON-LD Schema */}
       <ServicesPageJsonLd />
     </>
