@@ -5,6 +5,13 @@ import { useState, useEffect } from "react";
 import FadeIn from "@/components/FadeIn";
 import CalendlyWidget from "@/components/CalendlyWidget";
 
+// Declare gtag_report_conversion function for TypeScript
+declare global {
+  interface Window {
+    gtag_report_conversion: (url?: string) => void;
+  }
+}
+
 export default function ContactPageClient() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [formStatus, setFormStatus] = useState<"idle" | "success" | "error">(
@@ -197,7 +204,13 @@ export default function ContactPageClient() {
                       <input id="consent" name="consent" type="checkbox" required className="mt-1 mr-2" />
                       <label htmlFor="consent" className="text-sm text-gray-600">I agree to be contacted by LB Computer Help regarding my inquiry.</label>
                     </div>
-                     <button type="submit" className="w-full py-3 px-4 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition duration-300">Send Message</button>
+                     <button
+                       type="submit"
+                       className="w-full py-3 px-4 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition duration-300"
+                       onClick={() => { if (typeof window.gtag_report_conversion === 'function') { window.gtag_report_conversion(); } }}
+                     >
+                       Send Message
+                     </button>
                   </form>
                 )}
               </div>

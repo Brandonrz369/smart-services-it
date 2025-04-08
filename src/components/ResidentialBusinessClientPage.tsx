@@ -12,6 +12,13 @@ import TestimonialCarousel, {
 } from "@/components/TestimonialCarousel";
 import RevealText from "@/components/RevealText";
 
+// Declare gtag_report_conversion function for TypeScript
+declare global {
+  interface Window {
+    gtag_report_conversion: (url?: string) => void;
+  }
+}
+
 // Define the props if needed, though this component might not need props initially
 // interface ResidentialBusinessClientPageProps {}
 
@@ -344,7 +351,11 @@ export default function ResidentialBusinessClientPage(/* props: ResidentialBusin
                      <textarea id="quick_help_rb" name="message" rows={3} required className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Briefly describe your issue"></textarea>
                    </div>
                  </div>
-                 <button type="submit" className="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all transform hover:scale-105 duration-300 flex items-center justify-center">
+                 <button
+                   type="submit"
+                   className="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all transform hover:scale-105 duration-300 flex items-center justify-center"
+                   onClick={() => { if (typeof window.gtag_report_conversion === 'function') { window.gtag_report_conversion(); } }}
+                 >
                    Submit Inquiry
                  </button>
                </form>

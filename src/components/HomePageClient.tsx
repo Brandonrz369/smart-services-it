@@ -14,6 +14,13 @@ import RevealText from "@/components/RevealText";
 import ParallaxEffect from "@/components/ParallaxEffect";
 import ServiceAssessmentModal from "@/components/ServiceAssessmentModal";
 
+// Declare gtag_report_conversion function for TypeScript
+declare global {
+  interface Window {
+    gtag_report_conversion: (url?: string) => void;
+  }
+}
+
 // Define the interface for service data
 interface Service {
   title: string;
@@ -326,6 +333,7 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                         <button
                           type="submit"
                           className="mt-6 w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-md"
+                          onClick={() => { if (typeof window.gtag_report_conversion === 'function') { window.gtag_report_conversion(); } }}
                         >
                           Submit Request
                         </button>

@@ -271,6 +271,25 @@ export default function RootLayout({
             gtag('config', 'AW-16853780718');
           `}
         </Script>
+        {/* Google Ads Lead Form Conversion Event Snippet */}
+        <Script id="google-ads-lead-conversion" strategy="afterInteractive">
+          {`
+            function gtag_report_conversion(url) {
+              var callback = function () {
+                if (typeof(url) != 'undefined') {
+                  window.location = url;
+                }
+              };
+              gtag('event', 'conversion', {
+                  'send_to': 'AW-16853780718/c4TrCL2P97UaEO6RweQ-',
+                  'value': 1.0,
+                  'currency': 'USD',
+                  'event_callback': callback
+              });
+              return false;
+            }
+          `}
+        </Script>
       </body>
     </html>
   );
