@@ -36,17 +36,21 @@ Set the `AI_PROVIDER` variable to either `openai` or `anthropic` to select your 
 ### 3. Selecting a model
 
 #### For OpenAI
+
 Set the `OPENAI_MODEL` variable to one of:
+
 - `gpt-4o` (newest, most powerful)
 - `gpt-4` (powerful but more expensive)
 - `gpt-3.5-turbo` (faster, less expensive)
 
 #### For Anthropic
+
 The system currently uses `claude-3-haiku-20240307` by default, which is Claude's fastest model.
 
 ### 4. Deploying to Vercel
 
 When deploying to Vercel, add these environment variables in the Vercel dashboard:
+
 1. Go to your project settings
 2. Navigate to "Environment Variables"
 3. Add each of the variables from your .env.local file

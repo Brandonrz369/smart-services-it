@@ -1,28 +1,32 @@
 /**
  * Form debugging utility functions
- * 
+ *
  * This file provides utilities to help debug form submissions by intercepting
  * and logging submissions to our server-side debug API.
  */
 
 // Helper function to send debug logs to the server
-export async function logFormDebug(type: string, message: string, data: any = null) {
+export async function logFormDebug(
+  type: string,
+  message: string,
+  data: any = null,
+) {
   try {
-    await fetch('/api/debug-server', {
-      method: 'POST',
+    await fetch("/api/debug-server", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer debug-server-key'
+        "Content-Type": "application/json",
+        Authorization: "Bearer debug-server-key",
       },
       body: JSON.stringify({
-        action: 'log',
+        action: "log",
         type,
         message,
-        data
-      })
+        data,
+      }),
     });
   } catch (error) {
-    console.error('Failed to log form debug:', error);
+    console.error("Failed to log form debug:", error);
   }
 }
 
@@ -30,29 +34,29 @@ export async function logFormDebug(type: string, message: string, data: any = nu
 export async function submitFormWithDebug(
   formData: Record<string, any>,
   formName: string,
-  useFormspree = true
+  useFormspree = true,
 ) {
   try {
     // Log the submission attempt
-    await logFormDebug('info', `Form submission attempt: ${formName}`, {
+    await logFormDebug("info", `Form submission attempt: ${formName}`, {
       submission_time: new Date().toISOString(),
       form_data: { ...formData },
-      form_name: formName
+      form_name: formName,
     });
-    
+
     if (useFormspree) {
       // Make the actual FormSpree request via our proxy to avoid CORS issues
-      const response = await fetch('/api/debug/form-proxy', {
-        method: 'POST',
+      const response = await fetch("/api/debug/form-proxy", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           form_data: formData,
-          form_name: formName
-        })
+          form_name: formName,
+        }),
       });
-      
+
       // Get the response data
       let responseData;
       try {
@@ -61,49 +65,49 @@ export async function submitFormWithDebug(
         const text = await response.clone().text();
         responseData = { raw_text: text };
       }
-      
+
       // Log the response
       await logFormDebug(
-        response.ok ? 'success' : 'error',
+        response.ok ? "success" : "error",
         `FormSpree response for ${formName}: ${response.status}`,
         {
           status: response.status,
           status_text: response.statusText,
           response_data: responseData,
-          form_name: formName
-        }
+          form_name: formName,
+        },
       );
-      
+
       return {
         success: response.ok,
         status: response.status,
-        data: responseData
+        data: responseData,
       };
     } else {
       // Simulate a successful submission for testing
       await logFormDebug(
-        'success',
+        "success",
         `Simulated successful submission for ${formName}`,
-        { form_name: formName }
+        { form_name: formName },
       );
-      
+
       return {
         success: true,
         status: 200,
-        data: { ok: true, message: 'Simulated successful submission' }
+        data: { ok: true, message: "Simulated successful submission" },
       };
     }
   } catch (error) {
     // Log any errors during submission
-    await logFormDebug('error', `Error submitting ${formName}`, {
+    await logFormDebug("error", `Error submitting ${formName}`, {
       error: error instanceof Error ? error.message : String(error),
-      form_name: formName
+      form_name: formName,
     });
-    
+
     return {
       success: false,
       status: 0,
-      error: error instanceof Error ? error.message : String(error)
+      error: error instanceof Error ? error.message : String(error),
     };
   }
 }

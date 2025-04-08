@@ -15,12 +15,14 @@ These instructions will help you get a copy of the project up and running on you
 ### Installing
 
 1. Clone the repository
+
 ```bash
 git clone <repository-url>
 cd lbcom
 ```
 
 2. Install dependencies
+
 ```bash
 npm install
 # or
@@ -28,6 +30,7 @@ yarn install
 ```
 
 3. Run the development server
+
 ```bash
 npm run dev
 # or
@@ -50,11 +53,13 @@ The hero section background image needs to be added to the `/public/images/` dir
 
 1. Create an account on [Vercel](https://vercel.com)
 2. Install the Vercel CLI:
+
 ```bash
 npm install -g vercel
 ```
 
 3. Deploy your site:
+
 ```bash
 vercel
 ```
@@ -65,11 +70,13 @@ vercel
 
 1. Create an account on [Netlify](https://www.netlify.com/)
 2. Install the Netlify CLI:
+
 ```bash
 npm install -g netlify-cli
 ```
 
 3. Build your site:
+
 ```bash
 npm run build
 # or
@@ -77,6 +84,7 @@ yarn build
 ```
 
 4. Deploy your site:
+
 ```bash
 netlify deploy
 ```
@@ -84,6 +92,7 @@ netlify deploy
 ### Option 3: Traditional Web Hosting
 
 1. Build your site:
+
 ```bash
 npm run build
 # or
@@ -92,12 +101,14 @@ yarn build
 
 2. The build output will be in the `.next` folder
 3. Upload the following to your web server:
+
    - `.next` folder
    - `public` folder
    - `package.json` file
    - `next.config.js` file
 
 4. On your server, install Node.js and run:
+
 ```bash
 npm install
 npm start
@@ -110,13 +121,15 @@ npm start
 If you prefer a static HTML export that can be hosted anywhere:
 
 1. Add the following to your `next.config.js`:
+
 ```js
 module.exports = {
-  output: 'export',
-}
+  output: "export",
+};
 ```
 
 2. Build your site:
+
 ```bash
 npm run build
 # or
@@ -139,6 +152,7 @@ yarn build
 
 1. Purchase a domain name from a registrar like Namecheap, GoDaddy, or Google Domains
 2. Point your domain's DNS settings to your hosting provider:
+
    - For Vercel: Add the domain in the Vercel dashboard and follow their instructions
    - For Netlify: Add the domain in the Netlify dashboard and follow their instructions
    - For traditional hosting: Update your domain's A records to point to your server's IP address

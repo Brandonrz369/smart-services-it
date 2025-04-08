@@ -1,21 +1,27 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
-export default function AdminWebToolsLayout({ children }: { children: React.ReactNode }) {
+export default function AdminWebToolsLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   // Handle URL parameters in the layout
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       // Get URL parameters
       const params = new URLSearchParams(window.location.search);
-      const tool = params.get('tool');
-      
+      const tool = params.get("tool");
+
       // If we have a tool parameter, find and click the button
       if (tool) {
         setTimeout(() => {
-          const buttons = document.querySelectorAll('button');
+          const buttons = document.querySelectorAll("button");
           for (const button of buttons) {
-            if (button.textContent?.toLowerCase().includes(tool.toLowerCase())) {
+            if (
+              button.textContent?.toLowerCase().includes(tool.toLowerCase())
+            ) {
               button.click();
               break;
             }
@@ -25,9 +31,5 @@ export default function AdminWebToolsLayout({ children }: { children: React.Reac
     }
   }, []);
 
-  return (
-    <div>
-      {children}
-    </div>
-  );
+  return <div>{children}</div>;
 }

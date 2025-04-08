@@ -10,12 +10,14 @@
 ## Deployment Options
 
 1. **Vercel (Easiest)**
+
    ```bash
    npm install -g vercel
    vercel
    ```
 
 2. **Netlify**
+
    ```bash
    npm install -g netlify-cli
    npm run build

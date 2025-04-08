@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { trackToolUsage } from '@/lib/analytics';
+import React, { useState } from "react";
+import { trackToolUsage } from "@/lib/analytics";
 
 interface PingResult {
   host: string;
-  status: 'success' | 'error';
+  status: "success" | "error";
   time?: number;
   error?: string;
 }
@@ -17,116 +17,124 @@ interface TracerouteHop {
 }
 
 export default function NetworkTools() {
-  const [pingHost, setPingHost] = useState('');
+  const [pingHost, setPingHost] = useState("");
   const [pingResults, setPingResults] = useState<PingResult[]>([]);
   const [isPinging, setIsPinging] = useState(false);
-  
-  const [dnsHost, setDnsHost] = useState('');
+
+  const [dnsHost, setDnsHost] = useState("");
   const [dnsResult, setDnsResult] = useState<string | null>(null);
   const [isLookingUp, setIsLookingUp] = useState(false);
-  
-  const [tracerouteHost, setTracerouteHost] = useState('');
-  const [tracerouteResults, setTracerouteResults] = useState<TracerouteHop[]>([]);
+
+  const [tracerouteHost, setTracerouteHost] = useState("");
+  const [tracerouteResults, setTracerouteResults] = useState<TracerouteHop[]>(
+    [],
+  );
   const [isTracing, setIsTracing] = useState(false);
 
   const handlePing = async () => {
     if (!pingHost) return;
-    
+
     setIsPinging(true);
     // Track start in analytics
-    trackToolUsage('NetworkTools', 'ping_start', { host: pingHost });
-    
+    trackToolUsage("NetworkTools", "ping_start", { host: pingHost });
+
     const pingTime = Math.floor(Math.random() * 100) + 10; // Simulate ping time between 10-110ms
-    setPingResults(prev => [...prev, {
-      host: pingHost,
-      status: 'success',
-      time: pingTime
-    }]);
-    
+    setPingResults((prev) => [
+      ...prev,
+      {
+        host: pingHost,
+        status: "success",
+        time: pingTime,
+      },
+    ]);
+
     // Track completion in analytics
-    trackToolUsage('NetworkTools', 'ping_complete', { 
+    trackToolUsage("NetworkTools", "ping_complete", {
       host: pingHost,
-      time: pingTime 
+      time: pingTime,
     });
-    
+
     setIsPinging(false);
   };
-  
+
   const handleDnsLookup = async () => {
     if (!dnsHost) return;
-    
+
     setIsLookingUp(true);
     // Track start in analytics
-    trackToolUsage('NetworkTools', 'dns_lookup_start', { domain: dnsHost });
-    
+    trackToolUsage("NetworkTools", "dns_lookup_start", { domain: dnsHost });
+
     try {
       // Simulated DNS lookup
       setTimeout(() => {
         // Generate random IP
         const ip = `${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`;
         setDnsResult(ip);
-        
+
         // Track completion in analytics
-        trackToolUsage('NetworkTools', 'dns_lookup_complete', { 
+        trackToolUsage("NetworkTools", "dns_lookup_complete", {
           domain: dnsHost,
-          result: ip 
+          result: ip,
         });
-        
+
         setIsLookingUp(false);
       }, 500);
     } catch {
-      setDnsResult('Lookup failed');
-      
+      setDnsResult("Lookup failed");
+
       // Track failure in analytics
-      trackToolUsage('NetworkTools', 'dns_lookup_failed', { 
-        domain: dnsHost 
+      trackToolUsage("NetworkTools", "dns_lookup_failed", {
+        domain: dnsHost,
       });
-      
+
       setIsLookingUp(false);
     }
   };
-  
+
   const handleTraceroute = async () => {
     if (!tracerouteHost) return;
-    
+
     setIsTracing(true);
     setTracerouteResults([]);
-    
+
     // Track start in analytics
-    trackToolUsage('NetworkTools', 'traceroute_start', { host: tracerouteHost });
-    
+    trackToolUsage("NetworkTools", "traceroute_start", {
+      host: tracerouteHost,
+    });
+
     // Simulate traceroute with random hops
     const hops = Math.floor(Math.random() * 8) + 3; // 3-10 hops
-    
+
     const results: TracerouteHop[] = [];
     for (let i = 1; i <= hops; i++) {
       // Simulate each hop taking some time
-      await new Promise(resolve => setTimeout(resolve, 300));
-      
+      await new Promise((resolve) => setTimeout(resolve, 300));
+
       results.push({
         hop: i,
-        host: i === hops 
-          ? tracerouteHost 
-          : `router-${Math.floor(Math.random() * 100)}.network.com`,
-        time: Math.floor(Math.random() * 100) + 10
+        host:
+          i === hops
+            ? tracerouteHost
+            : `router-${Math.floor(Math.random() * 100)}.network.com`,
+        time: Math.floor(Math.random() * 100) + 10,
       });
-      
+
       setTracerouteResults([...results]);
     }
-    
+
     // Track completion in analytics
-    trackToolUsage('NetworkTools', 'traceroute_complete', { 
+    trackToolUsage("NetworkTools", "traceroute_complete", {
       host: tracerouteHost,
-      hops: hops 
+      hops: hops,
     });
-    
+
     setIsTracing(false);
   };
 
   const clearPingResults = () => {
     setPingResults([]);
   };
-  
+
   const clearTracerouteResults = () => {
     setTracerouteResults([]);
   };
@@ -149,21 +157,21 @@ export default function NetworkTools() {
             disabled={isPinging || !pingHost}
             className={`px-4 py-2 rounded-r-md text-white font-medium ${
               isPinging || !pingHost
-                ? 'bg-gray-400 cursor-not-allowed'
-                : 'bg-blue-600 hover:bg-blue-700'
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-blue-600 hover:bg-blue-700"
             }`}
           >
             Ping
           </button>
         </div>
-        
+
         {pingResults.length > 0 && (
           <>
             <div className="max-h-64 overflow-y-auto mb-2 font-mono text-sm bg-gray-50 p-3 rounded">
               {pingResults.map((result, index) => (
                 <div key={index} className="mb-1">
-                  {result.status === 'success' 
-                    ? `PING ${result.host}: time=${result.time}ms` 
+                  {result.status === "success"
+                    ? `PING ${result.host}: time=${result.time}ms`
                     : `PING ${result.host}: failed - ${result.error}`}
                 </div>
               ))}
@@ -177,7 +185,7 @@ export default function NetworkTools() {
           </>
         )}
       </div>
-      
+
       {/* DNS Lookup Tool */}
       <div className="bg-white p-6 rounded-lg shadow-md">
         <h3 className="text-xl font-semibold mb-4">DNS Lookup</h3>
@@ -193,15 +201,15 @@ export default function NetworkTools() {
             onClick={handleDnsLookup}
             disabled={isLookingUp || !dnsHost}
             className={`px-4 py-2 rounded-r-md text-white font-medium ${
-              isLookingUp || !dnsHost 
-                ? 'bg-gray-400 cursor-not-allowed' 
-                : 'bg-blue-600 hover:bg-blue-700'
+              isLookingUp || !dnsHost
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-blue-600 hover:bg-blue-700"
             }`}
           >
             Lookup
           </button>
         </div>
-        
+
         {dnsResult && (
           <div className="font-mono text-sm bg-gray-50 p-3 rounded">
             <div className="mb-1">
@@ -213,7 +221,7 @@ export default function NetworkTools() {
           </div>
         )}
       </div>
-      
+
       {/* Traceroute Tool */}
       <div className="bg-white p-6 rounded-lg shadow-md md:col-span-2">
         <h3 className="text-xl font-semibold mb-4">Traceroute</h3>
@@ -230,20 +238,20 @@ export default function NetworkTools() {
             disabled={isTracing || !tracerouteHost}
             className={`px-4 py-2 rounded-r-md text-white font-medium ${
               isTracing || !tracerouteHost
-                ? 'bg-gray-400 cursor-not-allowed'
-                : 'bg-blue-600 hover:bg-blue-700'
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-blue-600 hover:bg-blue-700"
             }`}
           >
             Trace
           </button>
         </div>
-        
+
         {isTracing && (
           <div className="text-sm text-gray-600 mb-2">
             Tracing route to {tracerouteHost}...
           </div>
         )}
-        
+
         {tracerouteResults.length > 0 && (
           <>
             <div className="max-h-64 overflow-y-auto mb-2 font-mono text-sm bg-gray-50 p-3 rounded">

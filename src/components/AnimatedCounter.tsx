@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useState } from 'react';
-import { useInView } from 'react-intersection-observer';
+import { useEffect, useRef, useState } from "react";
+import { useInView } from "react-intersection-observer";
 
 interface AnimatedCounterProps {
   end: number;
@@ -14,9 +14,9 @@ interface AnimatedCounterProps {
 export default function AnimatedCounter({
   end,
   duration = 2000,
-  prefix = '',
-  suffix = '',
-  className = '',
+  prefix = "",
+  suffix = "",
+  className = "",
 }: AnimatedCounterProps) {
   const [count, setCount] = useState(0);
   const countRef = useRef<number>(0);
@@ -32,7 +32,7 @@ export default function AnimatedCounter({
         if (!startTime) startTime = timestamp;
         const progress = Math.min((timestamp - startTime) / duration, 1);
         const currentCount = Math.floor(progress * end);
-        
+
         if (countRef.current !== currentCount) {
           countRef.current = currentCount;
           setCount(currentCount);
@@ -51,7 +51,9 @@ export default function AnimatedCounter({
 
   return (
     <span ref={ref} className={className}>
-      {prefix}{count}{suffix}
+      {prefix}
+      {count}
+      {suffix}
     </span>
   );
 }

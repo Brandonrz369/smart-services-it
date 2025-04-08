@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
-import Link from 'next/link';
+import { useEffect } from "react";
+import Link from "next/link";
 
 export default function Error({
   error,
@@ -18,7 +18,9 @@ export default function Error({
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 px-4">
       <div className="text-center">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">Something went wrong</h1>
+        <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          Something went wrong
+        </h1>
         <p className="text-lg text-gray-600 mb-8">
           We&apos;re sorry, but there was an error loading this page.
         </p>

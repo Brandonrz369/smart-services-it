@@ -66,6 +66,7 @@ Vercel automatically deploys when you push to the connected GitHub repository:
 ## Contact Information
 
 For any deployment issues, contact:
+
 - Your GitHub: https://github.com/Brandonrz369
 - Vercel Support: https://vercel.com/support
 - Formspree Support: https://help.formspree.io

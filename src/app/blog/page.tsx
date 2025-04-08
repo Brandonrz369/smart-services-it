@@ -1,106 +1,122 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import FadeIn from '@/components/FadeIn';
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import FadeIn from "@/components/FadeIn";
 
 const blogPosts = [
   {
-    id: 'securing-your-small-business',
-    title: 'Securing Your Small Business in the Digital Age',
-    date: 'March 15, 2025',
-    category: 'Security',
-    excerpt: 'Learn essential cybersecurity measures every small business should implement to protect against common threats.',
-    imageUrl: '/images/blog/cybersecurity.jpg',
-    author: 'Michael Chen',
-    authorRole: 'IT Security Specialist',
+    id: "securing-your-small-business",
+    title: "Securing Your Small Business in the Digital Age",
+    date: "March 15, 2025",
+    category: "Security",
+    excerpt:
+      "Learn essential cybersecurity measures every small business should implement to protect against common threats.",
+    imageUrl: "/images/blog/cybersecurity.jpg",
+    author: "Michael Chen",
+    authorRole: "IT Security Specialist",
   },
   {
-    id: 'windows-11-productivity',
-    title: '10 Windows 11 Features That Will Boost Your Productivity',
-    date: 'March 10, 2025',
-    category: 'Productivity',
-    excerpt: 'Discover hidden Windows 11 features and settings that can significantly improve your daily workflow.',
-    imageUrl: '/images/blog/windows11.jpg',
-    author: 'Sarah Johnson',
-    authorRole: 'IT Consultant',
+    id: "windows-11-productivity",
+    title: "10 Windows 11 Features That Will Boost Your Productivity",
+    date: "March 10, 2025",
+    category: "Productivity",
+    excerpt:
+      "Discover hidden Windows 11 features and settings that can significantly improve your daily workflow.",
+    imageUrl: "/images/blog/windows11.jpg",
+    author: "Sarah Johnson",
+    authorRole: "IT Consultant",
   },
   {
-    id: 'cloud-storage-solutions',
-    title: 'Comparing Cloud Storage Solutions for Businesses',
-    date: 'March 5, 2025',
-    category: 'Cloud Services',
-    excerpt: 'A comprehensive comparison of popular cloud storage options to help you choose the right one for your business needs.',
-    imageUrl: '/images/blog/cloud-storage.jpg',
-    author: 'Michael Chen',
-    authorRole: 'IT Security Specialist',
+    id: "cloud-storage-solutions",
+    title: "Comparing Cloud Storage Solutions for Businesses",
+    date: "March 5, 2025",
+    category: "Cloud Services",
+    excerpt:
+      "A comprehensive comparison of popular cloud storage options to help you choose the right one for your business needs.",
+    imageUrl: "/images/blog/cloud-storage.jpg",
+    author: "Michael Chen",
+    authorRole: "IT Security Specialist",
   },
   {
-    id: 'network-troubleshooting',
-    title: 'Common Network Issues and How to Fix Them',
-    date: 'February 28, 2025',
-    category: 'Networking',
-    excerpt: 'A guide to diagnosing and resolving the most frequent network problems faced by home and small business users.',
-    imageUrl: '/images/blog/networking.jpg',
-    author: 'Sarah Johnson',
-    authorRole: 'IT Consultant',
+    id: "network-troubleshooting",
+    title: "Common Network Issues and How to Fix Them",
+    date: "February 28, 2025",
+    category: "Networking",
+    excerpt:
+      "A guide to diagnosing and resolving the most frequent network problems faced by home and small business users.",
+    imageUrl: "/images/blog/networking.jpg",
+    author: "Sarah Johnson",
+    authorRole: "IT Consultant",
   },
   {
-    id: 'smartphone-battery-tips',
-    title: '7 Tips to Extend Your Smartphone Battery Life',
-    date: 'February 20, 2025',
-    category: 'Mobile Devices',
-    excerpt: 'Simple but effective strategies to maximize battery life on both Android and iPhone devices.',
-    imageUrl: '/images/blog/smartphone.jpg',
-    author: 'Michael Chen',
-    authorRole: 'IT Security Specialist',
+    id: "smartphone-battery-tips",
+    title: "7 Tips to Extend Your Smartphone Battery Life",
+    date: "February 20, 2025",
+    category: "Mobile Devices",
+    excerpt:
+      "Simple but effective strategies to maximize battery life on both Android and iPhone devices.",
+    imageUrl: "/images/blog/smartphone.jpg",
+    author: "Michael Chen",
+    authorRole: "IT Security Specialist",
   },
   {
-    id: 'managed-services-benefits',
-    title: 'The Business Case for Managed IT Services',
-    date: 'February 15, 2025',
-    category: 'MSP',
-    excerpt: 'How managed services can reduce costs, improve reliability, and provide strategic advantages for growing businesses.',
-    imageUrl: '/images/blog/managed-services.jpg',
-    author: 'Sarah Johnson',
-    authorRole: 'IT Consultant',
-  }
+    id: "managed-services-benefits",
+    title: "The Business Case for Managed IT Services",
+    date: "February 15, 2025",
+    category: "MSP",
+    excerpt:
+      "How managed services can reduce costs, improve reliability, and provide strategic advantages for growing businesses.",
+    imageUrl: "/images/blog/managed-services.jpg",
+    author: "Sarah Johnson",
+    authorRole: "IT Consultant",
+  },
 ];
 
 export default function BlogPage() {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [categoryFilter, setCategoryFilter] = useState('all');
-  const [searchQuery, setSearchQuery] = useState('');
-  
+  const [categoryFilter, setCategoryFilter] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
+
   useEffect(() => {
     setIsLoaded(true);
   }, []);
-  
+
   // Filter posts based on category and search query
-  const filteredPosts = blogPosts.filter(post => {
-    const matchesCategory = categoryFilter === 'all' || post.category.toLowerCase() === categoryFilter.toLowerCase();
-    const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                         post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
+  const filteredPosts = blogPosts.filter((post) => {
+    const matchesCategory =
+      categoryFilter === "all" ||
+      post.category.toLowerCase() === categoryFilter.toLowerCase();
+    const matchesSearch =
+      post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
   // Get unique categories for filter
-  const categories = ['all', ...new Set(blogPosts.map(post => post.category.toLowerCase()))];
-  
+  const categories = [
+    "all",
+    ...new Set(blogPosts.map((post) => post.category.toLowerCase())),
+  ];
+
   return (
-    <div className={`min-h-screen bg-background text-foreground font-sans transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+    <div
+      className={`min-h-screen bg-background text-foreground font-sans transition-opacity duration-1000 ${isLoaded ? "opacity-100" : "opacity-0"}`}
+    >
       {/* Header Banner */}
       <div className="relative py-24 bg-gradient-to-r from-blue-800 to-blue-600 text-white">
         <div className="absolute inset-0 bg-black opacity-30"></div>
         <div className="relative z-10 container mx-auto px-4 md:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Tech Insights Blog</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            Tech Insights Blog
+          </h1>
           <p className="text-xl max-w-3xl mx-auto">
             Expert advice, tips, and industry insights from our IT professionals
           </p>
         </div>
       </div>
-      
+
       {/* Search and Filter Section */}
       <section className="py-8 px-4 md:px-8 bg-white border-b">
         <div className="max-w-6xl mx-auto">
@@ -128,15 +144,15 @@ export default function BlogPage() {
                 </svg>
               </div>
             </div>
-            
+
             <div className="flex flex-wrap gap-2">
               {categories.map((category, index) => (
                 <button
                   key={index}
                   className={`px-4 py-2 text-sm font-medium rounded-full transition duration-300 ${
                     categoryFilter === category
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      ? "bg-blue-600 text-white"
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                   }`}
                   onClick={() => setCategoryFilter(category)}
                 >
@@ -147,7 +163,7 @@ export default function BlogPage() {
           </div>
         </div>
       </section>
-      
+
       {/* Blog Content Section with Sidebar */}
       <section className="py-16 px-4 md:px-8 bg-gray-50">
         <div className="max-w-6xl mx-auto">
@@ -158,16 +174,12 @@ export default function BlogPage() {
                 <div className="space-y-8">
                   {/* Featured Post - First Post */}
                   {filteredPosts.slice(0, 1).map((post) => (
-                    <FadeIn
-                      key={post.id}
-                      delay={0.1}
-                      direction="up"
-                    >
+                    <FadeIn key={post.id} delay={0.1} direction="up">
                       <Link href={`/blog/${post.id}`} className="block">
                         <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
                           <div className="relative h-72 bg-gray-200">
-                            <Image 
-                              src={post.imageUrl} 
+                            <Image
+                              src={post.imageUrl}
                               alt={post.title}
                               className="object-cover"
                               fill
@@ -183,21 +195,39 @@ export default function BlogPage() {
                             <h2 className="text-3xl font-bold text-gray-900 mb-3 hover:text-blue-600 transition-colors">
                               {post.title}
                             </h2>
-                            <p className="text-gray-600 text-lg mb-6">{post.excerpt}</p>
+                            <p className="text-gray-600 text-lg mb-6">
+                              {post.excerpt}
+                            </p>
                             <div className="flex items-center justify-between">
                               <div className="flex items-center">
                                 <div className="bg-blue-600 rounded-full w-12 h-12 flex items-center justify-center text-white font-bold text-lg">
-                                  {post.author.split(' ').map(name => name[0]).join('')}
+                                  {post.author
+                                    .split(" ")
+                                    .map((name) => name[0])
+                                    .join("")}
                                 </div>
                                 <div className="ml-3">
-                                  <p className="font-medium text-gray-900">{post.author}</p>
-                                  <p className="text-sm text-gray-500">{post.date}</p>
+                                  <p className="font-medium text-gray-900">
+                                    {post.author}
+                                  </p>
+                                  <p className="text-sm text-gray-500">
+                                    {post.date}
+                                  </p>
                                 </div>
                               </div>
                               <span className="inline-flex items-center text-blue-600 font-medium">
-                                Read Article 
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
-                                  <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                                Read Article
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  className="h-4 w-4 ml-1"
+                                  viewBox="0 0 20 20"
+                                  fill="currentColor"
+                                >
+                                  <path
+                                    fillRule="evenodd"
+                                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                                    clipRule="evenodd"
+                                  />
                                 </svg>
                               </span>
                             </div>
@@ -206,7 +236,7 @@ export default function BlogPage() {
                       </Link>
                     </FadeIn>
                   ))}
-                  
+
                   {/* Other Posts Grid */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {filteredPosts.slice(1).map((post, index) => (
@@ -216,11 +246,14 @@ export default function BlogPage() {
                         direction="up"
                         className="h-full"
                       >
-                        <Link href={`/blog/${post.id}`} className="block h-full">
+                        <Link
+                          href={`/blog/${post.id}`}
+                          className="block h-full"
+                        >
                           <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
                             <div className="relative h-48 bg-gray-200">
-                              <Image 
-                                src={post.imageUrl} 
+                              <Image
+                                src={post.imageUrl}
                                 alt={post.title}
                                 className="object-cover"
                                 fill
@@ -237,15 +270,24 @@ export default function BlogPage() {
                                 <h3 className="text-lg font-bold text-gray-900 mb-2 hover:text-blue-600 transition-colors">
                                   {post.title}
                                 </h3>
-                                <p className="text-gray-600 text-sm mb-4">{post.excerpt}</p>
+                                <p className="text-gray-600 text-sm mb-4">
+                                  {post.excerpt}
+                                </p>
                               </div>
                               <div className="flex items-center mt-3">
                                 <div className="bg-blue-600 rounded-full w-8 h-8 flex items-center justify-center text-white font-bold text-sm">
-                                  {post.author.split(' ').map(name => name[0]).join('')}
+                                  {post.author
+                                    .split(" ")
+                                    .map((name) => name[0])
+                                    .join("")}
                                 </div>
                                 <div className="ml-2">
-                                  <p className="text-xs font-medium text-gray-900">{post.author}</p>
-                                  <p className="text-xs text-gray-500">{post.date}</p>
+                                  <p className="text-xs font-medium text-gray-900">
+                                    {post.author}
+                                  </p>
+                                  <p className="text-xs text-gray-500">
+                                    {post.date}
+                                  </p>
                                 </div>
                               </div>
                             </div>
@@ -257,13 +299,31 @@ export default function BlogPage() {
                 </div>
               ) : (
                 <div className="text-center py-16">
-                  <svg className="mx-auto h-12 w-12 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  <svg
+                    className="mx-auto h-12 w-12 text-gray-400"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
                   </svg>
-                  <h3 className="mt-4 text-lg font-medium text-gray-900">No articles found</h3>
-                  <p className="mt-1 text-gray-500">Try changing your search or filter criteria.</p>
-                  <button 
-                    onClick={() => {setCategoryFilter('all'); setSearchQuery('');}}
+                  <h3 className="mt-4 text-lg font-medium text-gray-900">
+                    No articles found
+                  </h3>
+                  <p className="mt-1 text-gray-500">
+                    Try changing your search or filter criteria.
+                  </p>
+                  <button
+                    onClick={() => {
+                      setCategoryFilter("all");
+                      setSearchQuery("");
+                    }}
                     className="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700"
                   >
                     Clear filters
@@ -271,29 +331,37 @@ export default function BlogPage() {
                 </div>
               )}
             </div>
-            
+
             {/* Sidebar */}
             <div className="lg:w-4/12">
               <div className="sticky top-28">
                 <div className="bg-white rounded-xl shadow-md overflow-hidden mb-6">
                   <div className="p-6">
-                    <h3 className="text-lg font-bold text-gray-900 mb-4 pb-2 border-b">Categories</h3>
+                    <h3 className="text-lg font-bold text-gray-900 mb-4 pb-2 border-b">
+                      Categories
+                    </h3>
                     <ul className="space-y-2">
                       {categories.map((category, index) => (
                         <li key={index}>
                           <button
                             className={`w-full text-left px-2 py-1.5 rounded-lg transition duration-200 ${
                               categoryFilter === category
-                                ? 'bg-blue-100 text-blue-700 font-medium'
-                                : 'text-gray-700 hover:bg-gray-100'
+                                ? "bg-blue-100 text-blue-700 font-medium"
+                                : "text-gray-700 hover:bg-gray-100"
                             }`}
                             onClick={() => setCategoryFilter(category)}
                           >
-                            {category === 'all' ? 'All Categories' : category.charAt(0).toUpperCase() + category.slice(1)}
+                            {category === "all"
+                              ? "All Categories"
+                              : category.charAt(0).toUpperCase() +
+                                category.slice(1)}
                             <span className="float-right text-sm text-gray-500">
-                              {category === 'all' 
-                                ? blogPosts.length 
-                                : blogPosts.filter(post => post.category.toLowerCase() === category).length}
+                              {category === "all"
+                                ? blogPosts.length
+                                : blogPosts.filter(
+                                    (post) =>
+                                      post.category.toLowerCase() === category,
+                                  ).length}
                             </span>
                           </button>
                         </li>
@@ -301,16 +369,18 @@ export default function BlogPage() {
                     </ul>
                   </div>
                 </div>
-                
+
                 <div className="bg-white rounded-xl shadow-md overflow-hidden mb-6">
                   <div className="p-6">
-                    <h3 className="text-lg font-bold text-gray-900 mb-4 pb-2 border-b">Popular Posts</h3>
+                    <h3 className="text-lg font-bold text-gray-900 mb-4 pb-2 border-b">
+                      Popular Posts
+                    </h3>
                     <div className="space-y-4">
                       {blogPosts.slice(0, 3).map((post) => (
                         <div key={post.id} className="flex gap-3">
                           <div className="relative w-20 h-20 flex-shrink-0 rounded-md overflow-hidden">
-                            <Image 
-                              src={post.imageUrl} 
+                            <Image
+                              src={post.imageUrl}
                               alt={post.title}
                               className="object-cover"
                               fill
@@ -318,23 +388,33 @@ export default function BlogPage() {
                             />
                           </div>
                           <div className="flex-grow">
-                            <Link href={`/blog/${post.id}`} className="font-medium text-gray-900 hover:text-blue-600 line-clamp-2 text-sm">
+                            <Link
+                              href={`/blog/${post.id}`}
+                              className="font-medium text-gray-900 hover:text-blue-600 line-clamp-2 text-sm"
+                            >
                               {post.title}
                             </Link>
-                            <p className="text-xs text-gray-500 mt-1">{post.date}</p>
+                            <p className="text-xs text-gray-500 mt-1">
+                              {post.date}
+                            </p>
                           </div>
                         </div>
                       ))}
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="bg-blue-600 rounded-xl shadow-md overflow-hidden">
                   <div className="p-6 text-white text-center">
-                    <h3 className="text-lg font-bold mb-2">Need Tech Support?</h3>
-                    <p className="text-blue-100 mb-4">We&apos;re here to help with all your computer and technology needs.</p>
-                    <a 
-                      href="tel:2133496790" 
+                    <h3 className="text-lg font-bold mb-2">
+                      Need Tech Support?
+                    </h3>
+                    <p className="text-blue-100 mb-4">
+                      We&apos;re here to help with all your computer and
+                      technology needs.
+                    </p>
+                    <a
+                      href="tel:2133496790"
                       className="inline-block bg-white text-blue-600 font-bold py-2 px-6 rounded-lg hover:bg-blue-50 transition-colors"
                     >
                       Call (213) 349-6790
@@ -346,13 +426,14 @@ export default function BlogPage() {
           </div>
         </div>
       </section>
-      
+
       {/* Newsletter Section */}
       <section className="py-16 px-4 md:px-8 bg-blue-600 text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
           <p className="text-lg mb-8 text-blue-100">
-            Subscribe to our newsletter for the latest tech tips, industry news, and exclusive offers.
+            Subscribe to our newsletter for the latest tech tips, industry news,
+            and exclusive offers.
           </p>
           <form className="max-w-md mx-auto flex flex-col sm:flex-row gap-3">
             <input

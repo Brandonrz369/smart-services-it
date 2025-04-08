@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import FadeIn from '@/components/FadeIn';
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import FadeIn from "@/components/FadeIn";
 
 interface BlogPost {
   id: string;
@@ -21,37 +21,47 @@ interface BlogContentProps {
 
 export default function BlogContent({ posts }: BlogContentProps) {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [categoryFilter, setCategoryFilter] = useState('all');
-  const [searchQuery, setSearchQuery] = useState('');
-  
+  const [categoryFilter, setCategoryFilter] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
+
   useEffect(() => {
     setIsLoaded(true);
   }, []);
-  
+
   // Filter posts based on category and search query
-  const filteredPosts = posts.filter(post => {
-    const matchesCategory = categoryFilter === 'all' || post.category.toLowerCase() === categoryFilter.toLowerCase();
-    const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                         post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
+  const filteredPosts = posts.filter((post) => {
+    const matchesCategory =
+      categoryFilter === "all" ||
+      post.category.toLowerCase() === categoryFilter.toLowerCase();
+    const matchesSearch =
+      post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
   // Get unique categories for filter
-  const categories = ['all', ...new Set(posts.map(post => post.category.toLowerCase()))];
-  
+  const categories = [
+    "all",
+    ...new Set(posts.map((post) => post.category.toLowerCase())),
+  ];
+
   return (
-    <div className={`min-h-screen bg-background text-foreground font-sans transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+    <div
+      className={`min-h-screen bg-background text-foreground font-sans transition-opacity duration-1000 ${isLoaded ? "opacity-100" : "opacity-0"}`}
+    >
       {/* Header Banner */}
       <div className="relative py-24 bg-gradient-to-r from-blue-800 to-blue-600 text-white">
         <div className="absolute inset-0 bg-black opacity-30"></div>
         <div className="relative z-10 container mx-auto px-4 md:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Tech Insights Blog</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            Tech Insights Blog
+          </h1>
           <p className="text-xl max-w-3xl mx-auto">
             Expert advice, tips, and industry insights from our IT professionals
           </p>
         </div>
       </div>
-      
+
       {/* Search and Filter Section */}
       <section className="py-8 px-4 md:px-8 bg-white border-b">
         <div className="max-w-6xl mx-auto">
@@ -79,15 +89,15 @@ export default function BlogContent({ posts }: BlogContentProps) {
                 </svg>
               </div>
             </div>
-            
+
             <div className="flex flex-wrap gap-2">
               {categories.map((category, index) => (
                 <button
                   key={index}
                   className={`px-4 py-2 text-sm font-medium rounded-full transition duration-300 ${
                     categoryFilter === category
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      ? "bg-blue-600 text-white"
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                   }`}
                   onClick={() => setCategoryFilter(category)}
                 >
@@ -98,7 +108,7 @@ export default function BlogContent({ posts }: BlogContentProps) {
           </div>
         </div>
       </section>
-      
+
       {/* Blog Posts Grid */}
       <section className="py-16 px-4 md:px-8 bg-gray-50">
         <div className="max-w-6xl mx-auto">
@@ -116,8 +126,19 @@ export default function BlogContent({ posts }: BlogContentProps) {
                       <div className="relative h-48 bg-gray-200">
                         {/* Placeholder for blog post image */}
                         <div className="absolute inset-0 flex items-center justify-center text-gray-500">
-                          <svg className="h-12 w-12" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                          <svg
+                            className="h-12 w-12"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                            />
                           </svg>
                         </div>
                         <div className="absolute top-4 left-4">
@@ -135,10 +156,15 @@ export default function BlogContent({ posts }: BlogContentProps) {
                         </div>
                         <div className="flex items-center mt-4">
                           <div className="bg-blue-600 rounded-full w-10 h-10 flex items-center justify-center text-white font-bold">
-                            {post.author.split(' ').map(name => name[0]).join('')}
+                            {post.author
+                              .split(" ")
+                              .map((name) => name[0])
+                              .join("")}
                           </div>
                           <div className="ml-3">
-                            <p className="text-sm font-medium text-gray-900">{post.author}</p>
+                            <p className="text-sm font-medium text-gray-900">
+                              {post.author}
+                            </p>
                             <p className="text-sm text-gray-500">{post.date}</p>
                           </div>
                         </div>
@@ -150,13 +176,31 @@ export default function BlogContent({ posts }: BlogContentProps) {
             </div>
           ) : (
             <div className="text-center py-16">
-              <svg className="mx-auto h-12 w-12 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              <svg
+                className="mx-auto h-12 w-12 text-gray-400"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
               </svg>
-              <h3 className="mt-4 text-lg font-medium text-gray-900">No articles found</h3>
-              <p className="mt-1 text-gray-500">Try changing your search or filter criteria.</p>
-              <button 
-                onClick={() => {setCategoryFilter('all'); setSearchQuery('');}}
+              <h3 className="mt-4 text-lg font-medium text-gray-900">
+                No articles found
+              </h3>
+              <p className="mt-1 text-gray-500">
+                Try changing your search or filter criteria.
+              </p>
+              <button
+                onClick={() => {
+                  setCategoryFilter("all");
+                  setSearchQuery("");
+                }}
                 className="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700"
               >
                 Clear filters
@@ -165,13 +209,14 @@ export default function BlogContent({ posts }: BlogContentProps) {
           )}
         </div>
       </section>
-      
+
       {/* Newsletter Section */}
       <section className="py-16 px-4 md:px-8 bg-blue-600 text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
           <p className="text-lg mb-8 text-blue-100">
-            Subscribe to our newsletter for the latest tech tips, industry news, and exclusive offers.
+            Subscribe to our newsletter for the latest tech tips, industry news,
+            and exclusive offers.
           </p>
           <form className="max-w-md mx-auto flex flex-col sm:flex-row gap-3">
             <input

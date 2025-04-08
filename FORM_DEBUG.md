@@ -5,12 +5,14 @@ This debugging tool is designed to help diagnose and fix form submission issues 
 ## Components
 
 1. **Server-Side Debug Endpoint**
+
    - Located at `/src/app/api/debug-server/route.ts`
    - Provides a central logging facility for all form submissions
    - Maintains a log file at `/form-submissions-log.json`
    - Provides API endpoints for logging and retrieving submission data
 
 2. **Form Debugging Library**
+
    - Located at `/src/lib/form-debug.ts`
    - Provides a middleware function to intercept form submissions
    - Logs all submission attempts and responses
@@ -56,6 +58,7 @@ The logs include detailed information about each form submission:
 3. Any exceptions that occurred during submission
 
 Each log entry includes:
+
 - Timestamp
 - Type (info, success, error)
 - Message
@@ -66,15 +69,18 @@ Each log entry includes:
 If forms are failing to submit, check the logs for:
 
 1. **HTTP 400 Bad Request**
+
    - Usually indicates invalid form data
    - Check if required fields are missing
    - Ensure data types are correct (strings vs. files)
 
 2. **HTTP 401 Unauthorized**
+
    - Check if the FormSpree endpoint is correct
    - Make sure your FormSpree account is active
 
 3. **Network Errors**
+
    - Look for CORS issues
    - Check for connectivity problems
 

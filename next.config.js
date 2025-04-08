@@ -1,16 +1,27 @@
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['calendly.com', 'assets.calendly.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'calendly.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'assets.calendly.com',
+      },
+    ],
     dangerouslyAllowSVG: true,
   },
-  eslint: {
-    ignoreDuringBuilds: true,
+  // Add this to allow cross-origin requests during development from your local network IP
+  experimental: {
+    allowedDevOrigins: ["http://10.168.0.3:3000"],
   },
-  typescript: {
-    ignoreBuildErrors: true,
-  }
 };
 
-module.exports = nextConfig;
+module.exports = withBundleAnalyzer(nextConfig);

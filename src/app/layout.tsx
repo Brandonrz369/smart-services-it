@@ -18,11 +18,11 @@ const geistMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "LB Computer Help | Professional IT Services & Computer Repair",
+  title: "LB Computer Help | Professional IT Services & Computer Assistance", // Changed Repair -> Assistance
   description:
-    "Expert IT support, computer repair, and managed services for businesses and residential clients throughout Long Beach and Los Angeles County.",
+    "Expert IT support, computer services, and managed services for businesses and residential clients throughout Long Beach and Los Angeles County.", // Changed repair -> services
   keywords:
-    "computer repair, IT support, managed IT services, MSP, laptop repair, Long Beach, Los Angeles, data recovery, smartphone repair",
+    "computer service, IT support, managed IT services, MSP, laptop service, Long Beach, Los Angeles, data accessibility, smartphone assistance", // Changed repair -> service/assistance, data recovery -> data accessibility
 };
 
 export default function RootLayout({
@@ -47,7 +47,7 @@ export default function RootLayout({
                 <div>
                   <h3 className="text-lg font-bold mb-4">LB Computer Help</h3>
                   <p className="text-gray-300 mb-4">
-                    Professional IT support and computer repair services in Long
+                    Professional IT support and computer services in Long {/* Changed repair -> services */}
                     Beach and throughout Los Angeles County.
                   </p>
                   <p className="text-gray-300">
@@ -64,7 +64,7 @@ export default function RootLayout({
                         href="/services"
                         className="text-gray-300 hover:text-white transition"
                       >
-                        Computer Repair
+                        Computer Services {/* Changed Repair -> Services */}
                       </Link>
                     </li>
                     <li>
@@ -88,7 +88,7 @@ export default function RootLayout({
                         href="/services"
                         className="text-gray-300 hover:text-white transition"
                       >
-                        Data Recovery
+                        Data Solutions {/* Changed Recovery -> Solutions */}
                       </Link>
                     </li>
                     <li>

@@ -7,7 +7,7 @@ This document provides an overview of the web tools available on the LB Computer
 The web tools are accessible at `/web-tools` and include:
 
 1. [Form Test](#form-test)
-2. [Form Debugger](#form-debugger) 
+2. [Form Debugger](#form-debugger)
 3. [Form Logs](#form-logs)
 4. [Speed Test](#speed-test)
 5. [Network Tools](#network-tools)
@@ -89,7 +89,7 @@ Color palette generation tool.
   - Copy-to-clipboard functionality
 - **Implementation**: Client-side color calculations and conversions
 - **Files**: `src/components/ColorGenerator.tsx`
-- **Usage**: 
+- **Usage**:
   1. Choose a base color
   2. Select a palette type
   3. Copy generated colors
@@ -129,7 +129,7 @@ Domain information and DNS records lookup tool.
   1. Enter a domain name
   2. View general information, DNS records, and WHOIS data
   3. Optionally export results as JSON
-  
+
 ## Image Compressor
 
 Client-side image compression utility.
@@ -153,6 +153,7 @@ Client-side image compression utility.
 ## Technical Implementation
 
 The web tools are built using:
+
 - React.js with Next.js framework
 - TypeScript for type safety
 - TailwindCSS for styling
@@ -172,6 +173,7 @@ To add a new tool:
 ## Mobile Considerations
 
 All tools are designed to be responsive and mobile-friendly:
+
 - Fluid layouts using Flexbox and Grid
 - Responsive typography
 - Touch-friendly controls
@@ -180,6 +182,7 @@ All tools are designed to be responsive and mobile-friendly:
 ## Future Improvements
 
 Planned enhancements for the web tools:
+
 - Broken link checker
 - Security scanner
 - Enhanced data visualization for test results

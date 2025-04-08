@@ -7,6 +7,7 @@
 Our systematic diagnostic approach identifies both hardware and software issues with precision:
 
 1. **Initial Assessment Protocol**
+
    - Hardware identification and verification via system information tools (CPU-Z, HWiNFO)
    - Event log analysis using Windows Event Viewer or Linux system logs
    - Resource utilization monitoring through Process Explorer/Activity Monitor
@@ -24,27 +25,28 @@ Our systematic diagnostic approach identifies both hardware and software issues 
 
 #### Hardware-Related Issues
 
-| Issue | Technical Solution |
-|-------|-------------------|
-| **CPU Overheating** | We diagnose thermal throttling using HWMonitor to track temperature curves, perform die-surface cleaning with 99% isopropyl alcohol, apply premium thermal compound (Arctic MX-4 or Thermal Grizzly Kryonaut), and verify proper heatsink mounting pressure. |
-| **RAM Failures** | Using MemTest86+ for comprehensive testing across multiple passes, we identify specific failing memory addresses, test individual modules in isolation, verify proper XMP/DOCP settings in BIOS, and perform slot compatibility verification. |
+| Issue                      | Technical Solution                                                                                                                                                                                                                                                       |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **CPU Overheating**        | We diagnose thermal throttling using HWMonitor to track temperature curves, perform die-surface cleaning with 99% isopropyl alcohol, apply premium thermal compound (Arctic MX-4 or Thermal Grizzly Kryonaut), and verify proper heatsink mounting pressure.             |
+| **RAM Failures**           | Using MemTest86+ for comprehensive testing across multiple passes, we identify specific failing memory addresses, test individual modules in isolation, verify proper XMP/DOCP settings in BIOS, and perform slot compatibility verification.                            |
 | **Storage Drive Failures** | We employ S.M.A.R.T. attribute analysis with CrystalDiskInfo for predictive failure detection, perform sector-by-sector scanning using specialized software, verify connection integrity through alternate cables/ports, and measure read/write performance degradation. |
-| **GPU Issues** | Our technicians perform GPU core/memory stability testing, VRAM integrity verification, analyze driver conflicts using DDU (Display Driver Uninstaller), check PCIe bus performance, and verify power delivery using oscilloscope measurements when necessary. |
-| **Power Supply Problems** | We conduct load testing across multiple voltage rails (3.3V, 5V, 12V) using specialized equipment, analyze voltage stability under various loads, check for capacitor degradation, perform ripple testing, and verify proper wattage capacity. |
+| **GPU Issues**             | Our technicians perform GPU core/memory stability testing, VRAM integrity verification, analyze driver conflicts using DDU (Display Driver Uninstaller), check PCIe bus performance, and verify power delivery using oscilloscope measurements when necessary.           |
+| **Power Supply Problems**  | We conduct load testing across multiple voltage rails (3.3V, 5V, 12V) using specialized equipment, analyze voltage stability under various loads, check for capacitor degradation, perform ripple testing, and verify proper wattage capacity.                           |
 
 #### Software-Related Issues
 
-| Issue | Technical Solution |
-|-------|-------------------|
-| **Operating System Corruption** | We employ SFC (System File Checker) and DISM (Deployment Image Servicing and Management) tools to repair system files, analyze Windows Registry for corruption using specialized tools, rebuild boot configuration data (BCD), and repair Master Boot Record when necessary. |
-| **Driver Conflicts** | We resolve driver conflicts by using Device Manager to identify conflicting devices, utilizing Driver Verifier to pinpoint unstable drivers, implementing controlled driver rollbacks using archived versions, and creating custom driver installation sequences for problematic hardware. |
-| **Malware Removal** | Our multi-layered approach includes offline scanning using boot disks, targeted rootkit removal with specialized tools (Malwarebytes Anti-Rootkit), Registry cleaning of persistent entries, master boot record verification and repair, and network connection analysis to identify command-and-control communications. |
-| **Software Performance Optimization** | We analyze startup items using Autoruns, perform application dependency mapping, implement strategic Windows service optimization, conduct registry defragmentation when necessary, and optimize application virtualization layers. |
-| **System Instability** | We verify system integrity through memory dump analysis using WinDbg, perform modular component disabling to isolate issues, analyze hardware abstraction layer conflicts, verify system timing and interrupt handling, and test power state transitions. |
+| Issue                                 | Technical Solution                                                                                                                                                                                                                                                                                                       |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Operating System Corruption**       | We employ SFC (System File Checker) and DISM (Deployment Image Servicing and Management) tools to repair system files, analyze Windows Registry for corruption using specialized tools, rebuild boot configuration data (BCD), and repair Master Boot Record when necessary.                                             |
+| **Driver Conflicts**                  | We resolve driver conflicts by using Device Manager to identify conflicting devices, utilizing Driver Verifier to pinpoint unstable drivers, implementing controlled driver rollbacks using archived versions, and creating custom driver installation sequences for problematic hardware.                               |
+| **Malware Removal**                   | Our multi-layered approach includes offline scanning using boot disks, targeted rootkit removal with specialized tools (Malwarebytes Anti-Rootkit), Registry cleaning of persistent entries, master boot record verification and repair, and network connection analysis to identify command-and-control communications. |
+| **Software Performance Optimization** | We analyze startup items using Autoruns, perform application dependency mapping, implement strategic Windows service optimization, conduct registry defragmentation when necessary, and optimize application virtualization layers.                                                                                      |
+| **System Instability**                | We verify system integrity through memory dump analysis using WinDbg, perform modular component disabling to isolate issues, analyze hardware abstraction layer conflicts, verify system timing and interrupt handling, and test power state transitions.                                                                |
 
 ### Tools and Software We Use
 
 #### Hardware Diagnostic Tools
+
 - Digital multimeters (Fluke 87V, Klein Tools MM700)
 - Advanced oscilloscopes for signal integrity analysis
 - Logic analyzers for data bus debugging
@@ -52,6 +54,7 @@ Our systematic diagnostic approach identifies both hardware and software issues 
 - Professional-grade soldering and microsoldering equipment
 
 #### Software Diagnostic Suites
+
 - **System Information Tools**: AIDA64 Extreme, SiSoftware Sandra
 - **Stress Testing Software**: Prime95, AIDA64 System Stability Test, MemTest86+
 - **Drive Utilities**: HDDScan, Victoria, MHDD, Samsung Magician, Intel SSD Toolbox
@@ -62,6 +65,7 @@ Our systematic diagnostic approach identifies both hardware and software issues 
 ### Our Computer Repair Process
 
 1. **Comprehensive Intake Assessment**
+
    - Detailed customer interview about specific symptoms
    - System configuration documentation and verification
    - Initial hypothesis formation based on symptom patterns
@@ -69,6 +73,7 @@ Our systematic diagnostic approach identifies both hardware and software issues 
    - Service level agreement establishment
 
 2. **Diagnostic Phase**
+
    - Multi-level hardware diagnostics (component level)
    - Operating system integrity verification
    - Application conflict analysis
@@ -76,6 +81,7 @@ Our systematic diagnostic approach identifies both hardware and software issues 
    - Peripheral and external device testing
 
 3. **Solution Formulation**
+
    - Cost-benefit analysis of repair vs. replacement
    - Parts sourcing and compatibility verification
    - Repair strategy documentation
@@ -83,6 +89,7 @@ Our systematic diagnostic approach identifies both hardware and software issues 
    - Timeframe establishment based on complexity
 
 4. **Implementation**
+
    - Data preservation procedures
    - Systematic repair execution
    - Interim testing between repair steps
@@ -90,6 +97,7 @@ Our systematic diagnostic approach identifies both hardware and software issues 
    - System cleanup and preparation
 
 5. **Quality Assurance**
+
    - Comprehensive system stress testing
    - Multi-reboot stability verification
    - Performance benchmarking comparison
@@ -107,15 +115,15 @@ Our systematic diagnostic approach identifies both hardware and software issues 
 
 Our computer repair services follow a transparent pricing model based on:
 
-| Service Level | Description | Price Range | Typical Timeframe |
-|---------------|-------------|-------------|-------------------|
-| **Level 1: Diagnostic Assessment** | Complete hardware and software diagnostic using professional tools | $49-$89 | 1-3 hours |
-| **Level 2: Software Remediation** | Operating system repair, malware removal, performance optimization | $79-$149 | 3-24 hours |
-| **Level 3: Hardware Repair** | Component replacement (excluding parts), hardware-level troubleshooting | $99-$199 | 1-3 days |
-| **Level 4: Data Recovery** | Recovery from logical or physical drive failure | $149-$499+ | 1-7 days |
-| **Level 5: System Rebuild** | Complete system reconstitution with data migration | $199-$399 | 1-3 days |
+| Service Level                      | Description                                                             | Price Range | Typical Timeframe |
+| ---------------------------------- | ----------------------------------------------------------------------- | ----------- | ----------------- |
+| **Level 1: Diagnostic Assessment** | Complete hardware and software diagnostic using professional tools      | $49-$89     | 1-3 hours         |
+| **Level 2: Software Remediation**  | Operating system repair, malware removal, performance optimization      | $79-$149    | 3-24 hours        |
+| **Level 3: Hardware Repair**       | Component replacement (excluding parts), hardware-level troubleshooting | $99-$199    | 1-3 days          |
+| **Level 4: Data Recovery**         | Recovery from logical or physical drive failure                         | $149-$499+  | 1-7 days          |
+| **Level 5: System Rebuild**        | Complete system reconstitution with data migration                      | $199-$399   | 1-3 days          |
 
-*Note: Hardware component costs are additional and priced at current market rates plus a 10-15% procurement fee.*
+_Note: Hardware component costs are additional and priced at current market rates plus a 10-15% procurement fee._
 
 ### Service Guarantees
 
@@ -136,6 +144,7 @@ Our comprehensive Managed IT Services provide proactive management of your entir
 #### Technical Components
 
 - **24/7 Infrastructure Monitoring**
+
   - Real-time performance metrics collection using PRTG Network Monitor
   - Automated alert thresholds customized to your business requirements
   - Proactive hardware failure prediction through S.M.A.R.T. monitoring
@@ -143,6 +152,7 @@ Our comprehensive Managed IT Services provide proactive management of your entir
   - Application performance monitoring with detailed telemetry
 
 - **Endpoint Management**
+
   - Centralized management via MDM solutions (Microsoft Intune, Jamf Pro)
   - Remote deployment of software and updates through GPO and SCCM
   - Hardware and software inventory automation
@@ -150,6 +160,7 @@ Our comprehensive Managed IT Services provide proactive management of your entir
   - Device lifecycle management and replacement planning
 
 - **Network Administration**
+
   - Comprehensive TCP/IP subnet management and optimization
   - QoS implementation for bandwidth-critical applications
   - VLAN segmentation for enhanced security and performance
@@ -157,6 +168,7 @@ Our comprehensive Managed IT Services provide proactive management of your entir
   - Advanced firewall rule management and regular auditing
 
 - **Security Management**
+
   - Multi-layered security architecture implementation
   - Endpoint protection with behavioral analysis capabilities
   - Intrusion detection/prevention systems management
@@ -173,6 +185,7 @@ Our comprehensive Managed IT Services provide proactive management of your entir
 #### Our MSP Process
 
 1. **Initial Infrastructure Assessment**
+
    - Network topology documentation and analysis
    - Security vulnerability assessment
    - Current state documentation and gap analysis
@@ -180,6 +193,7 @@ Our comprehensive Managed IT Services provide proactive management of your entir
    - Technology alignment with business objectives evaluation
 
 2. **Strategic Technology Planning**
+
    - 1-3 year technology roadmap development
    - Budget forecasting and TCO analysis
    - Risk assessment and mitigation planning
@@ -187,6 +201,7 @@ Our comprehensive Managed IT Services provide proactive management of your entir
    - Compliance requirement mapping
 
 3. **Implementation**
+
    - Phased deployment to minimize business disruption
    - Infrastructure optimization and standardization
    - Documentation development and knowledge base creation
@@ -202,14 +217,14 @@ Our comprehensive Managed IT Services provide proactive management of your entir
 
 #### MSP Pricing Models
 
-| Service Tier | Business Size | Features | Monthly Investment |
-|--------------|--------------|----------|-------------------|
-| **Foundation** | 1-10 employees | 24/7 monitoring, help desk support, patch management, antivirus, basic backup | $299-$599/month |
-| **Professional** | 11-25 employees | Foundation + advanced security, cloud management, compliance support, disaster recovery | $599-$1,499/month |
-| **Enterprise** | 26-100 employees | Professional + dedicated vCIO, enhanced security, advanced monitoring, priority response | $1,499-$4,999/month |
-| **Custom** | 100+ employees | Tailored solution with dedicated resources | Custom pricing |
+| Service Tier     | Business Size    | Features                                                                                 | Monthly Investment  |
+| ---------------- | ---------------- | ---------------------------------------------------------------------------------------- | ------------------- |
+| **Foundation**   | 1-10 employees   | 24/7 monitoring, help desk support, patch management, antivirus, basic backup            | $299-$599/month     |
+| **Professional** | 11-25 employees  | Foundation + advanced security, cloud management, compliance support, disaster recovery  | $599-$1,499/month   |
+| **Enterprise**   | 26-100 employees | Professional + dedicated vCIO, enhanced security, advanced monitoring, priority response | $1,499-$4,999/month |
+| **Custom**       | 100+ employees   | Tailored solution with dedicated resources                                               | Custom pricing      |
 
-*All plans include defined SLAs with guaranteed response times and unlimited remote support.*
+_All plans include defined SLAs with guaranteed response times and unlimited remote support._
 
 ### Network Design & Implementation
 
@@ -218,6 +233,7 @@ We create tailored network infrastructure solutions that balance performance, se
 #### Technical Design Elements
 
 - **Network Architecture**
+
   - Layer 2/3 design with appropriate switching and routing protocols
   - Hierarchical network models (Core-Distribution-Access)
   - High-availability designs with redundant paths and failover
@@ -225,6 +241,7 @@ We create tailored network infrastructure solutions that balance performance, se
   - Future-proof scaling considerations
 
 - **Performance Optimization**
+
   - Traffic flow analysis and optimization
   - Quality of Service (QoS) implementation
   - VLAN segmentation for improved performance
@@ -241,6 +258,7 @@ We create tailored network infrastructure solutions that balance performance, se
 #### Network Implementation Process
 
 1. **Requirements Analysis**
+
    - Current and future bandwidth requirements assessment
    - Application profile development and traffic patterns analysis
    - Security and compliance requirement documentation
@@ -248,6 +266,7 @@ We create tailored network infrastructure solutions that balance performance, se
    - Existing infrastructure evaluation
 
 2. **Design Development**
+
    - Detailed network topology creation
    - Hardware and software specification
    - IP addressing scheme development
@@ -255,6 +274,7 @@ We create tailored network infrastructure solutions that balance performance, se
    - Documentation and standard operating procedure development
 
 3. **Proof of Concept**
+
    - Critical design element testing
    - Performance validation in isolated environment
    - Security control effectiveness verification
@@ -262,6 +282,7 @@ We create tailored network infrastructure solutions that balance performance, se
    - User experience validation for key applications
 
 4. **Implementation**
+
    - Phased deployment plan with rollback capabilities
    - After-hours cutover for critical systems
    - Comprehensive testing at each milestone
@@ -277,14 +298,14 @@ We create tailored network infrastructure solutions that balance performance, se
 
 #### Network Solutions Pricing
 
-| Service | Description | Price Range |
-|---------|-------------|-------------|
-| **Network Assessment** | Comprehensive evaluation of existing network with detailed recommendations | $750-$2,500 |
-| **Network Design** | Custom architecture design with complete documentation | $1,500-$7,500 |
-| **Implementation** | Physical and logical implementation of designed network | Based on scope |
-| **Wireless Solution** | Enterprise-grade WiFi design and implementation | $1,500-$15,000 |
-| **Security Implementation** | Advanced security integration into network infrastructure | $2,500-$20,000 |
-| **Ongoing Management** | Proactive monitoring and management of network infrastructure | From $299/month |
+| Service                     | Description                                                                | Price Range     |
+| --------------------------- | -------------------------------------------------------------------------- | --------------- |
+| **Network Assessment**      | Comprehensive evaluation of existing network with detailed recommendations | $750-$2,500     |
+| **Network Design**          | Custom architecture design with complete documentation                     | $1,500-$7,500   |
+| **Implementation**          | Physical and logical implementation of designed network                    | Based on scope  |
+| **Wireless Solution**       | Enterprise-grade WiFi design and implementation                            | $1,500-$15,000  |
+| **Security Implementation** | Advanced security integration into network infrastructure                  | $2,500-$20,000  |
+| **Ongoing Management**      | Proactive monitoring and management of network infrastructure              | From $299/month |
 
 ### Cloud Migration & Management
 
@@ -293,6 +314,7 @@ We facilitate seamless transitions to cloud environments while optimizing perfor
 #### Technical Migration Elements
 
 - **Assessment & Planning**
+
   - Application dependency mapping using specialized tools
   - Bandwidth and latency analysis for cloud connectivity
   - TCO and ROI calculation with detailed models
@@ -300,6 +322,7 @@ We facilitate seamless transitions to cloud environments while optimizing perfor
   - Risk assessment and mitigation strategy development
 
 - **Migration Methodologies**
+
   - "Lift and shift" vs. refactoring analysis for each workload
   - Database migration with minimal downtime techniques
   - Data transfer optimization for large datasets
@@ -307,6 +330,7 @@ We facilitate seamless transitions to cloud environments while optimizing perfor
   - Custom API integration for hybrid environments
 
 - **Cloud Architecture Design**
+
   - Multi-cloud or single provider strategy development
   - Infrastructure-as-Code (IaC) implementation with Terraform or CloudFormation
   - Containerization strategy with Docker and Kubernetes
@@ -323,6 +347,7 @@ We facilitate seamless transitions to cloud environments while optimizing perfor
 #### Cloud Migration Process
 
 1. **Discovery & Assessment**
+
    - Current environment inventory and documentation
    - Application and data classification for migration prioritization
    - Dependency mapping and relationship documentation
@@ -330,6 +355,7 @@ We facilitate seamless transitions to cloud environments while optimizing perfor
    - Total Cost of Ownership analysis
 
 2. **Strategy & Planning**
+
    - Cloud provider selection based on specific requirements
    - Application-specific migration strategy development
    - Detailed migration timeline and phasing
@@ -337,6 +363,7 @@ We facilitate seamless transitions to cloud environments while optimizing perfor
    - Success criteria and KPI establishment
 
 3. **Preparation & Execution**
+
    - Cloud landing zone configuration
    - Connectivity establishment and testing
    - Pilot migration of non-critical applications
@@ -352,13 +379,13 @@ We facilitate seamless transitions to cloud environments while optimizing perfor
 
 #### Cloud Service Pricing
 
-| Service | Description | Price Range |
-|---------|-------------|-------------|
-| **Cloud Readiness Assessment** | Evaluation of environment, recommendations, and migration roadmap | $1,500-$7,500 |
-| **Cloud Migration** | End-to-end migration of applications and data to cloud platforms | Based on scope |
-| **Cloud Optimization** | Performance and cost optimization of existing cloud deployments | $1,000-$5,000 |
-| **Cloud Management** | Ongoing management, monitoring, and maintenance of cloud environment | From $499/month |
-| **Disaster Recovery** | Cloud-based DR solution implementation | $2,500-$15,000 |
+| Service                        | Description                                                          | Price Range     |
+| ------------------------------ | -------------------------------------------------------------------- | --------------- |
+| **Cloud Readiness Assessment** | Evaluation of environment, recommendations, and migration roadmap    | $1,500-$7,500   |
+| **Cloud Migration**            | End-to-end migration of applications and data to cloud platforms     | Based on scope  |
+| **Cloud Optimization**         | Performance and cost optimization of existing cloud deployments      | $1,000-$5,000   |
+| **Cloud Management**           | Ongoing management, monitoring, and maintenance of cloud environment | From $499/month |
+| **Disaster Recovery**          | Cloud-based DR solution implementation                               | $2,500-$15,000  |
 
 ---
 
@@ -371,6 +398,7 @@ Our comprehensive network assessment identifies performance bottlenecks, securit
 #### Technical Assessment Components
 
 - **Network Performance Analysis**
+
   - End-to-end latency measurement using specialized tools
   - Bandwidth utilization tracking across key network segments
   - Packet loss and jitter quantification
@@ -378,6 +406,7 @@ Our comprehensive network assessment identifies performance bottlenecks, securit
   - Application performance correlation with network metrics
 
 - **Security Posture Evaluation**
+
   - External and internal vulnerability scanning
   - Firewall rule set analysis and optimization
   - Wireless network security assessment
@@ -385,6 +414,7 @@ Our comprehensive network assessment identifies performance bottlenecks, securit
   - Defense-in-depth implementation analysis
 
 - **Infrastructure Health Verification**
+
   - Network device health monitoring (CPU, memory, interface errors)
   - Firmware and software version auditing
   - End-of-life/end-of-support equipment identification
@@ -401,6 +431,7 @@ Our comprehensive network assessment identifies performance bottlenecks, securit
 #### Network Assessment Process
 
 1. **Pre-Assessment Planning**
+
    - Business objectives and requirements gathering
    - Critical application identification
    - Scope definition and boundary establishment
@@ -408,6 +439,7 @@ Our comprehensive network assessment identifies performance bottlenecks, securit
    - Tool selection for specific environment
 
 2. **Data Collection**
+
    - Passive monitoring implementation
    - Active testing during maintenance windows
    - Configuration backup and analysis
@@ -415,6 +447,7 @@ Our comprehensive network assessment identifies performance bottlenecks, securit
    - Historical performance data analysis
 
 3. **Analysis & Findings Development**
+
    - Performance metric correlation and analysis
    - Security vulnerability risk ranking
    - Configuration standardization opportunities
@@ -422,6 +455,7 @@ Our comprehensive network assessment identifies performance bottlenecks, securit
    - Root cause analysis of identified issues
 
 4. **Recommendations & Roadmap**
+
    - Prioritized recommendation development
    - Implementation difficulty and impact assessment
    - Cost-benefit analysis for major changes
@@ -438,6 +472,7 @@ Our comprehensive network assessment identifies performance bottlenecks, securit
 #### Network Troubleshooting Methodology
 
 1. **Problem Identification**
+
    - Symptom documentation and user impact assessment
    - Affected systems and applications mapping
    - Problem classification (intermittent vs. constant)
@@ -445,6 +480,7 @@ Our comprehensive network assessment identifies performance bottlenecks, securit
    - Initial hypothesis development
 
 2. **Systematic Data Collection**
+
    - Log collection from relevant devices
    - Targeted packet captures in affected areas
    - Performance metric gathering during issue occurrence
@@ -452,6 +488,7 @@ Our comprehensive network assessment identifies performance bottlenecks, securit
    - Environmental factor consideration
 
 3. **Analysis & Diagnosis**
+
    - OSI model bottom-up or top-down analysis
    - Protocol-specific troubleshooting techniques
    - Pattern recognition in collected data
@@ -459,6 +496,7 @@ Our comprehensive network assessment identifies performance bottlenecks, securit
    - Root cause isolation through elimination
 
 4. **Resolution Implementation**
+
    - Temporary workaround deployment for critical issues
    - Permanent solution development and testing
    - Implementation risk assessment
@@ -474,13 +512,13 @@ Our comprehensive network assessment identifies performance bottlenecks, securit
 
 #### Network Services Pricing
 
-| Service | Description | Price Range | Timeframe |
-|---------|-------------|-------------|-----------|
-| **Network Assessment** | Comprehensive evaluation with detailed report | $750-$3,500 | 1-2 weeks |
-| **Troubleshooting** | Identification and resolution of specific network issues | $125-$195/hour | Varies by complexity |
-| **Performance Optimization** | Tuning and enhancement of existing network | $1,500-$5,000 | 1-3 weeks |
-| **Security Hardening** | Implementation of security best practices | $2,000-$7,500 | 2-4 weeks |
-| **Documentation Development** | Creation of comprehensive network documentation | $1,000-$4,000 | 1-3 weeks |
+| Service                       | Description                                              | Price Range    | Timeframe            |
+| ----------------------------- | -------------------------------------------------------- | -------------- | -------------------- |
+| **Network Assessment**        | Comprehensive evaluation with detailed report            | $750-$3,500    | 1-2 weeks            |
+| **Troubleshooting**           | Identification and resolution of specific network issues | $125-$195/hour | Varies by complexity |
+| **Performance Optimization**  | Tuning and enhancement of existing network               | $1,500-$5,000  | 1-3 weeks            |
+| **Security Hardening**        | Implementation of security best practices                | $2,000-$7,500  | 2-4 weeks            |
+| **Documentation Development** | Creation of comprehensive network documentation          | $1,000-$4,000  | 1-3 weeks            |
 
 ---
 
@@ -493,6 +531,7 @@ We employ advanced techniques to recover critical data from damaged or corrupted
 #### Technical Recovery Capabilities
 
 - **Logical Recovery**
+
   - File system corruption repair using specialized algorithms
   - Deleted file recovery through sector-by-sector analysis
   - Partition table reconstruction for inaccessible volumes
@@ -500,6 +539,7 @@ We employ advanced techniques to recover critical data from damaged or corrupted
   - Virtual machine recovery from damaged disk images
 
 - **Physical Recovery**
+
   - Hard drive platter readback in cleanroom environment
   - Head stack assembly replacement for mechanical failures
   - PCB diagnosis and repair for controller failures
@@ -516,6 +556,7 @@ We employ advanced techniques to recover critical data from damaged or corrupted
 #### Recovery Process
 
 1. **Initial Consultation**
+
    - Data criticality and value assessment
    - Recovery urgency determination
    - Device type and failure mode identification
@@ -523,6 +564,7 @@ We employ advanced techniques to recover critical data from damaged or corrupted
    - Chain of custody documentation
 
 2. **Diagnostic Evaluation**
+
    - Non-invasive device testing
    - Failure mode confirmation
    - Data structure analysis
@@ -530,6 +572,7 @@ We employ advanced techniques to recover critical data from damaged or corrupted
    - Detailed quote preparation
 
 3. **Recovery Procedure**
+
    - Appropriate technique selection based on failure mode
    - Write-blocking implementation to prevent further damage
    - Incremental backup creation during process
@@ -553,16 +596,16 @@ We employ advanced techniques to recover critical data from damaged or corrupted
 
 #### Data Recovery Pricing
 
-| Service Level | Description | Price Range | Timeframe |
-|---------------|-------------|-------------|-----------|
-| **Level 1: Logical Recovery** | Software-based recovery of accessible media | $300-$800 | 1-3 days |
-| **Level 2: Advanced Logical** | Complex logical issues requiring specialized tools | $800-$1,500 | 3-7 days |
-| **Level 3: Physical Recovery** | Recovery requiring controlled environment, no parts replacement | $1,000-$2,000 | 5-10 days |
-| **Level 4: Advanced Physical** | Component replacement in cleanroom environment | $1,500-$3,000 | 7-14 days |
-| **Level 5: Severe Damage** | Platters/chips with significant damage requiring specialized techniques | $2,500-$5,000+ | 2-4 weeks |
-| **Emergency Service** | Expedited recovery with 24/7 processing | 50-100% premium | 24-72 hours |
+| Service Level                  | Description                                                             | Price Range     | Timeframe   |
+| ------------------------------ | ----------------------------------------------------------------------- | --------------- | ----------- |
+| **Level 1: Logical Recovery**  | Software-based recovery of accessible media                             | $300-$800       | 1-3 days    |
+| **Level 2: Advanced Logical**  | Complex logical issues requiring specialized tools                      | $800-$1,500     | 3-7 days    |
+| **Level 3: Physical Recovery** | Recovery requiring controlled environment, no parts replacement         | $1,000-$2,000   | 5-10 days   |
+| **Level 4: Advanced Physical** | Component replacement in cleanroom environment                          | $1,500-$3,000   | 7-14 days   |
+| **Level 5: Severe Damage**     | Platters/chips with significant damage requiring specialized techniques | $2,500-$5,000+  | 2-4 weeks   |
+| **Emergency Service**          | Expedited recovery with 24/7 processing                                 | 50-100% premium | 24-72 hours |
 
-*Evaluation fees apply but are credited toward recovery costs if service is approved.*
+_Evaluation fees apply but are credited toward recovery costs if service is approved._
 
 ### Cybersecurity Services
 
@@ -571,6 +614,7 @@ We implement multi-layered security solutions that protect your data and systems
 #### Technical Security Components
 
 - **Endpoint Security**
+
   - Next-generation antivirus with behavioral analysis
   - Endpoint Detection and Response (EDR) implementation
   - Application whitelisting and control
@@ -578,6 +622,7 @@ We implement multi-layered security solutions that protect your data and systems
   - Device control and data loss prevention
 
 - **Network Security**
+
   - Next-generation firewall implementation with deep packet inspection
   - Intrusion Detection/Prevention Systems (IDS/IPS)
   - Network Access Control (NAC) for device authentication
@@ -585,6 +630,7 @@ We implement multi-layered security solutions that protect your data and systems
   - Secure remote access via enterprise VPN solutions
 
 - **Identity & Access Management**
+
   - Multi-factor authentication implementation
   - Role-based access control with least privilege
   - Single Sign-On (SSO) integration
@@ -601,6 +647,7 @@ We implement multi-layered security solutions that protect your data and systems
 #### Security Implementation Process
 
 1. **Security Assessment**
+
    - Vulnerability scanning and penetration testing
    - Security control effectiveness evaluation
    - Current security posture measurement
@@ -608,6 +655,7 @@ We implement multi-layered security solutions that protect your data and systems
    - Risk assessment and prioritization
 
 2. **Architecture & Planning**
+
    - Defense-in-depth strategy development
    - Security control selection and mapping
    - Implementation roadmap creation
@@ -615,6 +663,7 @@ We implement multi-layered security solutions that protect your data and systems
    - Success metrics establishment
 
 3. **Implementation**
+
    - Phased deployment to minimize disruption
    - Standard operating procedure development
    - Testing in isolated environment before production
@@ -630,13 +679,13 @@ We implement multi-layered security solutions that protect your data and systems
 
 #### Security Service Pricing
 
-| Service | Description | Price Range |
-|---------|-------------|-------------|
-| **Security Assessment** | Comprehensive evaluation of security posture with detailed recommendations | $1,500-$10,000 |
-| **Security Implementation** | Design and deployment of multi-layered security architecture | Based on scope |
-| **Managed Security** | 24/7 monitoring, management, and incident response | From $10/endpoint/month |
-| **Penetration Testing** | Simulated attacks to identify vulnerabilities | $3,000-$25,000 |
-| **Security Training** | Employee awareness training and phishing simulation | $30-$60/user/year |
+| Service                     | Description                                                                | Price Range             |
+| --------------------------- | -------------------------------------------------------------------------- | ----------------------- |
+| **Security Assessment**     | Comprehensive evaluation of security posture with detailed recommendations | $1,500-$10,000          |
+| **Security Implementation** | Design and deployment of multi-layered security architecture               | Based on scope          |
+| **Managed Security**        | 24/7 monitoring, management, and incident response                         | From $10/endpoint/month |
+| **Penetration Testing**     | Simulated attacks to identify vulnerabilities                              | $3,000-$25,000          |
+| **Security Training**       | Employee awareness training and phishing simulation                        | $30-$60/user/year       |
 
 ---
 
@@ -645,6 +694,7 @@ We implement multi-layered security solutions that protect your data and systems
 ### Business Approach
 
 - **Proactive Methodology**
+
   - Scheduled preventative maintenance to minimize disruption
   - Regular system health checks and reporting
   - Advance warning of aging hardware and software
@@ -652,6 +702,7 @@ We implement multi-layered security solutions that protect your data and systems
   - Capacity planning and proactive scaling
 
 - **Rapid Response Guarantees**
+
   - Tiered SLAs with guaranteed response times (15min, 30min, 1hr, 4hr)
   - 24/7 support availability for critical systems
   - Escalation procedures for mission-critical issues
@@ -659,6 +710,7 @@ We implement multi-layered security solutions that protect your data and systems
   - Priority queue for business clients
 
 - **Minimal Downtime Focus**
+
   - Redundant systems design and implementation
   - High-availability configurations where appropriate
   - Backup power and connectivity solutions
@@ -666,6 +718,7 @@ We implement multi-layered security solutions that protect your data and systems
   - On-site spare parts inventory for critical components
 
 - **Business Process Integration**
+
   - Workflow analysis to optimize technology alignment
   - Integration with business-specific applications
   - Custom solution development for unique requirements
@@ -682,6 +735,7 @@ We implement multi-layered security solutions that protect your data and systems
 ### Residential Approach
 
 - **Accessible Communication**
+
   - Plain-language explanations of technical concepts
   - Visual aids and analogies for complex issues
   - Step-by-step guides for common procedures
@@ -689,6 +743,7 @@ We implement multi-layered security solutions that protect your data and systems
   - Multiple communication channels (phone, email, text)
 
 - **Flexible Scheduling**
+
   - Evening and weekend appointments available
   - In-home service options for convenience
   - Remote support for quick issues
@@ -696,6 +751,7 @@ We implement multi-layered security solutions that protect your data and systems
   - Same-day emergency options when possible
 
 - **Transparent Pricing**
+
   - Clear, easy-to-understand service packages
   - No hidden fees or technical upselling
   - Written estimates before work begins
@@ -703,6 +759,7 @@ We implement multi-layered security solutions that protect your data and systems
   - Price matching for comparable local services
 
 - **Education Focus**
+
   - User training for common maintenance tasks
   - Security awareness education
   - Personalized "tech guide" for your specific setup
