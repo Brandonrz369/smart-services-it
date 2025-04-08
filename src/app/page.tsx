@@ -111,9 +111,9 @@ export default function Home() {
 
   const services = [
     {
-      title: "Laptop & Desktop Services", // Changed Repair -> Services
+      title: "Laptop & Desktop Services",
       description:
-        "Professional diagnostics and solutions at your home or office.", // Changed repairs -> solutions
+        "Professional diagnostics and solutions at your home or office.",
       icon: "💻",
       features: [
         "Screen Replacement",
@@ -225,15 +225,15 @@ export default function Home() {
                   <TypewriterEffect
                     texts={[
                       "Expert IT Support",
-                      "Computer Services", // Changed Repair -> Services
+                      "Computer Services",
                       "Network Solutions",
                     ]}
                     className="text-3xl md:text-4xl lg:text-5xl text-blue-200"
                   />
                 </h1>
                 <p className="text-lg md:text-xl opacity-90 mb-8">
-                  Fast, reliable, and affordable computer services, IT solutions, {/* Changed repairs -> services, IT services -> IT solutions */}
-                  and technical guidance for homes and businesses - from your {/* Changed support -> guidance */}
+                  Fast, reliable, and affordable computer services, IT solutions,
+                  and technical guidance for homes and businesses - from your
                   trusted local provider.
                 </p>
               </FadeIn>
@@ -515,7 +515,7 @@ export default function Home() {
                 Our IT Services
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
-                From hardware assistance to managed IT solutions, we provide {/* Changed repairs -> assistance */}
+                From hardware assistance to managed IT solutions, we provide
                 comprehensive tech services for businesses and individuals in
                 Long Beach.
               </p>
@@ -542,7 +542,6 @@ export default function Home() {
               >
                 Business IT
               </button>
-              {/* Removed Repair Services filter button */}
               <button
                 onClick={() => setServiceFilter("support")}
                 className={`px-4 py-2 rounded-full text-sm font-medium ${
@@ -637,7 +636,7 @@ export default function Home() {
                   </p>
                   <p>
                     Whether you need managed IT services for your growing
-                    business or emergency computer assistance, we're here to help {/* Changed repair -> assistance */}
+                    business or emergency computer assistance, we're here to help
                     with prompt, professional service at competitive rates.
                   </p>
                 </div>
@@ -997,11 +996,11 @@ export default function Home() {
                   >
                     <option value="">Select a service</option>
                     <option>Managed IT Services (MSP)</option>
-                    <option>Computer Services</option> {/* Changed Repair -> Services */}
+                    <option>Computer Services</option>
                     <option>Network & Server Support</option>
                     <option>Business IT Consulting</option>
-                    <option>Smartphone/Tablet Assistance</option> {/* Changed Repair -> Assistance */}
-                    <option>Data Solutions</option> {/* Changed Recovery -> Solutions */}
+                    <option>Smartphone/Tablet Assistance</option>
+                    <option>Data Solutions</option>
                     <option>Other</option>
                   </select>
                 </div>

@@ -6,16 +6,16 @@ import PricingCalculator from "@/components/PricingCalculator";
 
 const servicesDetail = [
   {
-    title: "Laptop & Desktop Services", // Changed
-    description: "Professional diagnostics and solutions at your home or office.", // Changed
+    title: "Laptop & Desktop Services",
+    description: "Professional diagnostics and solutions at your home or office.",
     icon: "💻",
-    image: "/images/services/computer-repair.jpg", // Keep image for now
+    image: "/images/services/computer-services.jpg",
     features: [
-      "Screen Solutions", // Changed
+      "Screen Solutions",
       "Hardware Upgrades",
       "Software Troubleshooting",
-      "Security Cleanup Assistance", // Changed
-      "Data Accessibility Consultation", // Changed
+      "Security Cleanup Assistance",
+      "Data Accessibility Consultation",
     ],
     pricing: [
       {
@@ -29,9 +29,9 @@ const servicesDetail = [
         description: "Speed up a slow computer",
       },
       {
-        service: "Screen Assessment & Options", // Changed
+        service: "Screen Assessment & Options",
         price: "From $129",
-        description: "Assess damaged laptop screens & discuss options", // Changed
+        description: "Assess damaged laptop screens & discuss options",
       },
       {
         service: "Hardware Upgrade",
@@ -39,14 +39,14 @@ const servicesDetail = [
         description: "RAM, SSD, and component upgrades",
       },
       {
-        service: "Security Cleanup", // Changed
+        service: "Security Cleanup",
         price: "$89",
-        description: "Assistance removing threats & securing your system", // Changed
+        description: "Assistance removing threats & securing your system",
       },
     ],
     category: "residential",
     longDescription:
-      "Our comprehensive laptop and desktop services cover everything from hardware component issues to software problems. We work with all major brands including Apple, Dell, HP, Lenovo, and more. Our experienced technicians can diagnose issues quickly, offering effective solutions to get your computer performing optimally with minimal downtime. We offer both in-home service and pickup options for your convenience.", // Changed repair services -> services, failures -> component issues, fix problems -> offering effective solutions, back up and running -> performing optimally
+      "Our comprehensive laptop and desktop services cover everything from hardware component issues to software problems. We work with all major brands including Apple, Dell, HP, Lenovo, and more. Our experienced technicians can diagnose issues quickly, offering effective solutions to get your computer performing optimally with minimal downtime. We offer both in-home service and pickup options for your convenience.",
   },
   {
     title: "Managed IT Services (MSP)",
@@ -92,47 +92,47 @@ const servicesDetail = [
       "Our Managed IT Services provide comprehensive technology management for your business, allowing you to focus on your core operations. We handle everything from day-to-day IT support to strategic planning and implementation. Our proactive approach helps prevent issues before they impact your business, while our 24/7 monitoring ensures rapid response to any emerging problems. We tailor our MSP plans to your specific business needs and budget.",
   },
   {
-    title: "Mobile Device Services", // Changed
-    description: "Expert assistance for smartphones and tablets.", // Changed
+    title: "Mobile Device Services",
+    description: "Expert assistance for smartphones and tablets.",
     icon: "📱",
-    image: "/images/services/mobile-repair.jpg", // Keep image
+    image: "/images/services/mobile-support.jpg",
     features: [
-      "Screen & Glass Solutions", // Changed
+      "Screen & Glass Solutions",
       "Battery Replacements",
-      "Charging Port Assistance", // Changed
+      "Charging Port Assistance",
       "Software Issues",
       "Data Transfer",
     ],
     pricing: [
       {
-        service: "Phone Screen Assessment", // Changed
+        service: "Phone Screen Assessment",
         price: "From $79",
-        description: "Assess screen issues for most popular models", // Changed
+        description: "Assess screen issues for most popular models",
       },
       {
-        service: "Battery Replacement", // Kept as replacement is common term here
+        service: "Battery Replacement",
         price: "From $59",
         description: "Restore battery life",
       },
       {
-        service: "Charging Port Service", // Changed
+        service: "Charging Port Service",
         price: "From $69",
-        description: "Address connection issues", // Changed
+        description: "Address connection issues",
       },
       {
-        service: "Water Damage Assessment", // Changed
+        service: "Water Damage Assessment",
         price: "From $99",
-        description: "Assistance with liquid damage incidents", // Changed
+        description: "Assistance with liquid damage incidents",
       },
       {
-        service: "Data Accessibility", // Changed
+        service: "Data Accessibility",
         price: "From $79",
-        description: "Help retrieving important information", // Changed
+        description: "Help retrieving important information",
       },
     ],
     category: "residential",
     longDescription:
-      "We provide expert services for all major smartphone and tablet brands, including Apple iPhone, iPad, Samsung Galaxy devices, and more. From cracked screens to battery replacements, our technicians use high-quality parts and precise techniques to get your mobile devices working optimally again. We also offer data transfer services to help you move information between devices or consult on data accessibility from damaged units.", // Changed repair services -> services, working perfectly -> working optimally, recover data -> consult on data accessibility
+      "We provide expert services for all major smartphone and tablet brands, including Apple iPhone, iPad, Samsung Galaxy devices, and more. From cracked screens to battery replacements, our technicians use high-quality parts and precise techniques to get your mobile devices working optimally again. We also offer data transfer services to help you move information between devices or consult on data accessibility from damaged units.",
   },
   {
     title: "Network & Server Solutions",
@@ -178,30 +178,30 @@ const servicesDetail = [
       "Our network and server solutions help businesses establish reliable, secure, and high-performance IT infrastructure. We handle everything from initial network design to ongoing maintenance and security. Our team has extensive experience with Windows Server, Linux, virtualization technologies, and cloud platforms. We also implement comprehensive security measures to protect your valuable business data and ensure business continuity in case of any disruptions.",
   },
   {
-    title: "Data Solutions & Backup", // Changed
+    title: "Data Solutions & Backup",
     description: "Secure solutions for critical business and personal data.",
     icon: "💾",
-    image: "/images/services/data-recovery.jpg", // Keep image
+    image: "/images/services/data-solutions.jpg",
     features: [
-      "Data Accessibility Consultation", // Changed
+      "Data Accessibility Consultation",
       "Cloud Backup Solutions",
       "Automated Backup Systems",
-      "RAID Accessibility Consultation", // Changed
-      "Emergency Data Consultation", // Changed
+      "RAID Accessibility Consultation",
+      "Emergency Data Consultation",
     ],
     pricing: [
       {
-        service: "Basic Data Consultation", // Changed
+        service: "Basic Data Consultation",
         price: "From $149",
         description: "For accessible hard drives",
       },
       {
-        service: "Advanced Data Consultation", // Changed
+        service: "Advanced Data Consultation",
         price: "From $299",
         description: "For damaged storage media",
       },
       {
-        service: "RAID Consultation", // Changed
+        service: "RAID Consultation",
         price: "From $499",
         description: "For server RAID arrays",
       },
@@ -218,30 +218,30 @@ const servicesDetail = [
     ],
     category: "both",
     longDescription:
-      "Our data solutions and backup services help both businesses and individuals protect their valuable information and consult on options for data loss situations. We use advanced tools and techniques to assist with accessing data from potentially damaged or corrupted storage media, including hard drives, SSDs, memory cards, and RAID arrays. We also implement robust backup solutions to prevent future data loss, with options for both local and cloud-based backups that run automatically.", // Changed recovery -> solutions, recover from -> consult on options for, retrieve data -> assist with accessing data from potentially
+      "Our data solutions and backup services help both businesses and individuals protect their valuable information and consult on options for data loss situations. We use advanced tools and techniques to assist with accessing data from potentially damaged or corrupted storage media, including hard drives, SSDs, memory cards, and RAID arrays. We also implement robust backup solutions to prevent future data loss, with options for both local and cloud-based backups that run automatically.",
   },
   {
     title: "Smart Home & Devices",
-    description: "Setup and assistance for all your connected devices.", // Changed support -> assistance
+    description: "Setup and assistance for all your connected devices.",
     icon: "🏠",
     image: "/images/services/remote-support.jpg",
     features: [
-      "Smart Watch Assistance", // Changed Repairs -> Assistance
-      "Earbud/Headphone Solutions", // Changed Fixes -> Solutions
+      "Smart Watch Assistance",
+      "Earbud/Headphone Solutions",
       "Voice Assistant Setup",
       "Smart Home Configuration",
       "IoT Device Support",
     ],
     pricing: [
       {
-        service: "Smart Watch Service", // Changed Repair -> Service
+        service: "Smart Watch Service",
         price: "From $69",
-        description: "Battery and screen related assistance", // Changed replacements -> related assistance
+        description: "Battery and screen related assistance",
       },
       {
-        service: "Earbud/Headphone Service", // Changed Repair -> Service
+        service: "Earbud/Headphone Service",
         price: "From $49",
-        description: "Address audio and charging issues", // Changed Fix -> Address
+        description: "Address audio and charging issues",
       },
       {
         service: "Smart Home Setup",
@@ -261,7 +261,7 @@ const servicesDetail = [
     ],
     category: "residential",
     longDescription:
-      "Our smart home and device services help you get the most from your connected technology. We provide assistance and support for a wide range of smart devices including watches, earbuds, speakers, and home automation systems. Our technicians can set up and configure voice assistants like Amazon Alexa and Google Home, integrate smart lighting, thermostats, security systems, and other IoT devices. We also offer custom solutions to create a seamless connected home experience.", // Changed repair and support -> provide assistance and support
+      "Our smart home and device services help you get the most from your connected technology. We provide assistance and support for a wide range of smart devices including watches, earbuds, speakers, and home automation systems. Our technicians can set up and configure voice assistants like Amazon Alexa and Google Home, integrate smart lighting, thermostats, security systems, and other IoT devices. We also offer custom solutions to create a seamless connected home experience.",
   },
   {
     title: "Business IT Consulting",
@@ -307,7 +307,7 @@ const servicesDetail = [
       "Our IT consulting services provide strategic guidance to help businesses make informed technology decisions. We work with organizations of all sizes to develop IT strategies that align with business goals, optimize technology investments, and implement solutions that drive growth and efficiency. Our consultants have extensive experience across various industries and can help with everything from technology assessments to compliance requirements and digital transformation initiatives.",
   },
   {
-    title: "Remote Assistance Options", // Changed Support -> Assistance
+    title: "Remote Assistance Options",
     description: "Get help without leaving your home or office.",
     icon: "🌐",
     features: [
@@ -319,12 +319,12 @@ const servicesDetail = [
     ],
     pricing: [
       {
-        service: "Quick Assistance Session", // Changed Fix -> Assistance
+        service: "Quick Assistance Session",
         price: "$39",
-        description: "30-minute remote assistance", // Changed support -> assistance
+        description: "30-minute remote assistance",
       },
       {
-        service: "Standard Remote Assistance", // Changed Support -> Assistance
+        service: "Standard Remote Assistance",
         price: "$70/hr",
         description: "For general issues",
       },
@@ -341,12 +341,12 @@ const servicesDetail = [
       {
         service: "Security Scan & Cleanup",
         price: "$79",
-        description: "Identify and address potential threats", // Changed remove -> address potential
+        description: "Identify and address potential threats",
       },
     ],
     category: "both",
     longDescription:
-      "Our remote assistance services provide convenient help without requiring an in-person visit. Using secure connection tools, our technicians can access your computer remotely to diagnose and address a wide range of issues. This is ideal for software problems, system optimization, security checks, and general troubleshooting. Remote assistance offers a fast response time and is often more cost-effective than on-site visits for many common computer problems.", // Changed support -> assistance, fix -> address, malware removal -> security checks
+      "Our remote assistance services provide convenient help without requiring an in-person visit. Using secure connection tools, our technicians can access your computer remotely to diagnose and address a wide range of issues. This is ideal for software problems, system optimization, security checks, and general troubleshooting. Remote assistance offers a fast response time and is often more cost-effective than on-site visits for many common computer problems.",
   },
 ];
 
@@ -683,9 +683,9 @@ export default function ServicesPage() {
                 What is your warranty policy?
               </h3>
               <p className="text-gray-600">
-                Our services come with a 90-day warranty on labor. If {/* Changed repairs -> Our services, repair -> service */}
-                any issue arises with our service within this period, we will address {/* Changed fix -> address */}
-                it at no additional charge. Specific component warranties may vary and will be clearly explained. {/* Adjusted wording */}
+                Our services come with a 90-day warranty on labor. If
+                any issue arises with our service within this period, we will address
+                it at no additional charge. Specific component warranties may vary and will be clearly explained.
               </p>
             </div>
 
@@ -809,39 +809,3 @@ export default function ServicesPage() {
     </div>
   );
 }
-
-</final_file_content>
-
-IMPORTANT: For any future changes to this file, use the final_file_content shown above as your reference. This content reflects the current state of the file, including any auto-formatting (e.g., if you used single quotes but the formatter converted them to double quotes). Always base your SEARCH/REPLACE operations on this final version to ensure accuracy.
-
-<environment_details>
-# VSCode Visible Files
-src/app/services/page.tsx
-
-# VSCode Open Tabs
-eslint.config.mjs
-src/components/ImageCompressor.tsx
-package.json
-next.config.js
-src/lib/mockSecurityScan.ts
-src/components/SecurityScanner.tsx
-src/lib/mockSeoAnalysis.ts
-src/components/SeoAnalyzer.tsx
-landing_page_plan.md
-../../.config/Code/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json
-perplexity_mcp_setup_plan.md
-../../.config/Code/User/globalStorage/rooveterinaryinc.roo-cline/settings/cline_mcp_settings.json
-src/components/Navigation.tsx
-src/components/SimpleMobileNav.tsx
-src/components/ResidentialBusinessClientPage.tsx
-src/app/residential-business/page.tsx
-src/app/layout.tsx
-src/app/page.tsx
-src/app/services/page.tsx
-
-# Current Time
-4/8/2025, 7:51:30 AM (UTC, UTC+0:00)
-
-# Current Mode
-ACT MODE
-</environment_details>

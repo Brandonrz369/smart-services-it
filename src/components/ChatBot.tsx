@@ -85,34 +85,34 @@ export default function ChatBot() {
       "who are you":
         "I'm the LB Computer Help AI assistant. I can provide information about our services, help troubleshoot common issues, or schedule a consultation. How can I assist you today?",
       about:
-        "LB Computer Help is a leading IT support and computer services company in Long Beach, CA. We've been serving businesses and individuals since 2010 with a wide range of tech services.", // Changed repair -> services
+        "LB Computer Help is a leading IT support and computer services company in Long Beach, CA. We've been serving businesses and individuals since 2010 with a wide range of tech services.",
 
       // Services
       services:
-        "We offer computer services, managed IT services, network setup & support, data accessibility consultation, mobile device assistance, and cloud solutions. Which service are you interested in?", // Changed repair -> services, data recovery -> data accessibility consultation, mobile device repair -> mobile device assistance
-      "computer services": // Changed key
-        "Our computer services include hardware diagnostics, software troubleshooting, security cleanup assistance, screen assessment, and hardware configuration. Our technicians are certified and experienced with all major brands.", // Changed repair services -> services, virus removal -> security cleanup assistance, screen replacement -> screen assessment, hardware upgrades -> hardware configuration
-      "laptop services": // Changed key
-        "We offer comprehensive laptop services including screen assessment, keyboard assistance, battery replacement, security cleanup, data accessibility consultation, and performance optimization.", // Changed repair -> services, screen replacement -> screen assessment, keyboard fixes -> keyboard assistance, virus removal -> security cleanup, data recovery -> data accessibility consultation
-      "security cleanup": // Changed key
-        "Our security cleanup assistance includes thorough system scanning, help addressing malicious software, system cleanup, and security recommendations to prevent future infections.", // Changed virus and malware removal service -> security cleanup assistance, removal of -> help addressing
-      "data accessibility": // Changed key
-        "Our data accessibility consultations can help explore options for retrieving lost files from corrupted drives, accidentally formatted storage, and potentially damaged devices. We have specialized tools and methods.", // Changed recovery services -> accessibility consultations, retrieve -> explore options for retrieving, physically damaged -> potentially damaged, high success rate -> methods
+        "We offer computer services, managed IT services, network setup & support, data accessibility consultation, mobile device assistance, and cloud solutions. Which service are you interested in?",
+      "computer services":
+        "Our computer services include hardware diagnostics, software troubleshooting, security cleanup assistance, screen assessment, and hardware configuration. Our technicians are certified and experienced with all major brands.",
+      "laptop services":
+        "We offer comprehensive laptop services including screen assessment, keyboard assistance, battery replacement, security cleanup, data accessibility consultation, and performance optimization.",
+      "security cleanup":
+        "Our security cleanup assistance includes thorough system scanning, help addressing malicious software, system cleanup, and security recommendations to prevent future infections.",
+      "data accessibility":
+        "Our data accessibility consultations can help explore options for retrieving lost files from corrupted drives, accidentally formatted storage, and potentially damaged devices. We have specialized tools and methods.",
       network:
         "Our networking services include setup and troubleshooting for home and business networks, WiFi optimization, network security, and VPN configuration.",
       cloud:
         "We offer cloud services including Microsoft 365 implementation, cloud backup solutions, cloud migration, and ongoing cloud infrastructure management.",
       "managed it":
         "Our managed IT services include 24/7 monitoring, regular maintenance, security management, help desk support, and strategic IT planning for a fixed monthly fee.",
-      "mobile assistance": // Changed key
-        "We provide assistance for smartphones and tablets, including screen assessment, battery service, charging port solutions, and data consultation/transfer between devices.", // Changed repair -> provide assistance for, screen replacement -> screen assessment, charging port fixes -> charging port solutions, data recovery -> data consultation
+      "mobile assistance":
+        "We provide assistance for smartphones and tablets, including screen assessment, battery service, charging port solutions, and data consultation/transfer between devices.",
 
       // Pricing
       pricing:
-        "Our computer services range from $75-150/hour depending on complexity. Managed IT services start at $299/month. Data accessibility consultations start at $150. Would you like pricing for a specific service?", // Changed repair -> services, data recovery -> data accessibility consultations
+        "Our computer services range from $75-150/hour depending on complexity. Managed IT services start at $299/month. Data accessibility consultations start at $150. Would you like pricing for a specific service?",
       rates:
-        "Our standard rate for computer services is $75-150/hour depending on the complexity. For businesses, we offer managed IT packages starting at $299/month for up to 10 devices.", // Changed repair -> services
-      cost: "Our services start at $75/hour for basic computer assistance. For businesses, we recommend our managed IT packages which provide comprehensive support starting at $299/month.", // Changed repair -> assistance
+        "Our standard rate for computer services is $75-150/hour depending on the complexity. For businesses, we offer managed IT packages starting at $299/month for up to 10 devices.",
+      cost: "Our services start at $75/hour for basic computer assistance. For businesses, we recommend our managed IT packages which provide comprehensive support starting at $299/month.",
 
       // Booking
       appointment:
@@ -206,7 +206,6 @@ export default function ChatBot() {
               ],
               contact: ["reach", "call", "calling", "contacting"],
               location: ["located", "office", "address", "where"],
-              // Removed repair key and related words
               network: [
                 "networking",
                 "wifi",
@@ -305,7 +304,7 @@ export default function ChatBot() {
           lowerInput.includes("fee")
         ) {
           errorMessage =
-            "While I'm having some technical difficulties, I can tell you that our computer services range from $75-150/hour depending on complexity. Managed IT services start at $299/month. For a detailed quote, please call us at (213) 349-6790."; // Changed repair -> services
+            "While I'm having some technical difficulties, I can tell you that our computer services range from $75-150/hour depending on complexity. Managed IT services start at $299/month. For a detailed quote, please call us at (213) 349-6790.";
         } else if (
           lowerInput.includes("location") ||
           lowerInput.includes("address") ||

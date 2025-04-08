@@ -297,7 +297,7 @@ const blogPosts = [
       <div class="bg-gray-100 p-6 rounded-lg mb-6">
         <p class="mb-2">Managed IT Services refers to the practice of outsourcing IT management responsibilities to a third-party provider (MSP) that proactively administers, monitors, and supports your IT infrastructure and systems on an ongoing, subscription basis.</p>
         
-        <p>Unlike the traditional break-fix model where you pay for repairs when something breaks, MSPs charge a predictable monthly fee and focus on preventing problems before they occur.</p>
+        <p>Unlike the traditional break-fix model where you pay for service calls when something breaks, MSPs charge a predictable monthly fee and focus on preventing problems before they occur.</p>
       </div>
     `,
     author: "Sarah Johnson",

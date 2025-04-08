@@ -259,7 +259,7 @@ export default function EmergencyServicesPage() {
                         Server/System Failures
                       </h3>
                       <p className="text-gray-600">
-                        Emergency assistance for critical system failures affecting {/* Changed repair of -> assistance for */}
+                        Emergency assistance for critical system failures affecting
                         business applications. We work quickly to restore
                         services, implement workarounds, and resolve hardware or
                         software issues.
@@ -292,12 +292,12 @@ export default function EmergencyServicesPage() {
                     </div>
                     <div>
                       <h3 className="text-xl font-bold mb-1">
-                        Data Loss & Accessibility {/* Changed Recovery -> Accessibility */}
+                        Data Loss & Accessibility
                       </h3>
                       <p className="text-gray-600">
-                        Urgent data accessibility consultation for accidental deletions {/* Changed recovery services -> accessibility consultation */}
+                        Urgent data accessibility consultation for accidental deletions
                         or storage failures. Our specialized tools and processes
-                        help consult on retrieving lost data and implement safeguards against {/* Changed retrieve -> consult on retrieving */}
+                        help consult on retrieving lost data and implement safeguards against
                         future incidents.
                       </p>
                     </div>
