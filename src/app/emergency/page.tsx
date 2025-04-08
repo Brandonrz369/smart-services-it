@@ -3,6 +3,15 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import FadeIn from "@/components/FadeIn";
+import type { Metadata } from "next"; // Import Metadata type
+
+// Metadata for Emergency Page
+export const metadata: Metadata = {
+  title: "Emergency IT Support Long Beach | Fast Response | LB Computer Help",
+  description: "Urgent IT support in Long Beach. Fast response for ransomware, server failures, network outages, and data loss emergencies. Call LB Computer Help now.",
+  keywords: "emergency IT support Long Beach, urgent computer help Long Beach, ransomware recovery Long Beach, server down Long Beach, network outage Long Beach, emergency data recovery Long Beach, 24/7 IT support Long Beach, immediate tech support Long Beach", // Page-specific keywords
+};
+
 
 export default function EmergencyServicesPage() {
   const [isLoaded, setIsLoaded] = useState(false);

@@ -4,6 +4,15 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import FadeIn from "@/components/FadeIn";
 import CalendlyWidget from "@/components/CalendlyWidget";
+import type { Metadata } from "next"; // Import Metadata type
+
+// Metadata for Contact Page
+export const metadata: Metadata = {
+  title: "Contact LB Computer Help | Long Beach IT Support",
+  description: "Contact LB Computer Help in Long Beach for IT support, computer services, and managed IT solutions. Call, email, or schedule an appointment online.",
+  keywords: "contact computer help Long Beach, IT support contact Long Beach, schedule computer service Long Beach, LB Computer Help phone number, Long Beach tech support contact", // Page-specific keywords
+};
+
 
 export default function ContactPage() {
   const [isLoaded, setIsLoaded] = useState(false);

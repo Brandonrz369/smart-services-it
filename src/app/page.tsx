@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   description:
     "Your trusted local source for computer services, IT support, managed services, and tech solutions in Long Beach, CA. Serving homes and businesses.", // Homepage specific description
   keywords:
-    "computer service, IT support, managed IT services, MSP, laptop service, Long Beach, Los Angeles, data accessibility, smartphone assistance", // Keywords from layout
+    "long beach computer help, lb computer help near me, computer assistance Long Beach, device solutions Long Beach, macbook screen options Long Beach, laptop battery performance Long Beach, slow pc help Long Beach, data access consultation Long Beach, network setup Long Beach, local tech experts Long Beach, computer diagnostic pricing, hardware configuration Long Beach", // Keywords from residential-business page
 };
 
 // Schema markup for SEO
@@ -71,6 +71,76 @@ function BusinessJsonLd() {
   );
 }
 
+// Service Schema Markup Component
+function ServiceJsonLd() {
+  // Using the optimized service definitions
+  const serviceSchemas = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      serviceType: "Hardware Diagnostic & Assessment",
+      description: "Identify issues with Mac/PC screens, batteries, boot problems, or other components. Get clear options and pricing for solutions in Long Beach.",
+      provider: { "@id": "https://lbcomputerhelp.com" },
+      areaServed: { "@type": "City", name: "Long Beach" },
+      offers: { "@type": "Offer", priceSpecification: { "@type": "PriceSpecification", price: "99", priceCurrency: "USD" } }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      serviceType: "System Performance Optimization",
+      description: "Improve speed and battery life for your Mac or PC through expert optimization techniques and software configuration.",
+      provider: { "@id": "https://lbcomputerhelp.com" },
+      areaServed: { "@type": "City", name: "Long Beach" },
+    },
+     {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      serviceType: "Data Accessibility Consultation",
+      description: "Assistance and guidance for accessing files on malfunctioning devices. Includes data backup strategy advice.",
+      provider: { "@id": "https://lbcomputerhelp.com" },
+      areaServed: { "@type": "City", name: "Long Beach" },
+    },
+     {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      serviceType: "System Security Assessment & Cleanup Assistance",
+      description: "Assessment for security threats, malware checks, and assistance with system cleanup for enhanced protection.",
+      provider: { "@id": "https://lbcomputerhelp.com" },
+      areaServed: { "@type": "City", name: "Long Beach" },
+    },
+     {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      serviceType: "Network Setup & Configuration",
+      description: "Reliable setup, configuration, and optimization for home and small business Wi-Fi and wired networks.",
+      provider: { "@id": "https://lbcomputerhelp.com" },
+      areaServed: { "@type": "City", name: "Long Beach" },
+    },
+     {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      serviceType: "Software Configuration Assistance",
+      description: "Expert help with installing, configuring, or troubleshooting software applications and operating systems.",
+      provider: { "@id": "https://lbcomputerhelp.com" },
+      areaServed: { "@type": "City", name: "Long Beach" },
+    },
+    // Add other relevant service schemas if needed for the homepage
+  ];
+
+  return (
+    <>
+      {serviceSchemas.map((schema, index) => (
+        <script
+          key={`service-${index}`}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
+    </>
+  );
+}
+
+
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [serviceFilter, setServiceFilter] = useState("all");
@@ -119,85 +189,66 @@ export default function Home() {
     },
   ];
 
+  // Using optimized service definitions from residential-business page
   const services = [
-    {
-      title: "Laptop & Desktop Services",
-      description:
-        "Professional diagnostics and solutions at your home or office.",
-      icon: "💻",
-      features: [
-        "Screen Replacement",
-        "Hardware Upgrades",
-        "Software Troubleshooting",
-        "Performance Optimization",
-      ],
-      category: "services", // Changed category
+     {
+      title: "Mac/PC Screen Problems?",
+      description: "Cracked screen, dim display, flickering? Expert diagnostics & configuration/component options.",
+      icon: "🖥️",
+      features: ["Cracked/Damaged Screen Assessment", "Display Issue Diagnostics", "Configuration Options", "Component Consultation", "Transparent Quotes"],
+      category: "hardware", // Assign appropriate category for filtering if needed
     },
     {
-      title: "Managed IT Services",
-      description: "Full-service IT support plans for small businesses.",
-      icon: "🔧",
-      features: [
-        "24/7 Monitoring",
-        "Proactive Maintenance",
-        "Network Security",
-        "Data Backup Solutions",
-      ],
-      category: "business",
+      title: "Computer Running Slow?",
+      description: "Frustrated with sluggish performance? Our optimization services can boost speed.",
+      icon: "🚀",
+      features: ["Performance Tune-up", "Software Cleanup", "Hardware Config Review", "Startup Optimization"],
+      category: "optimization",
     },
     {
-      title: "Network Solutions",
-      description:
-        "Setup, troubleshooting, and optimization of business networks.",
-      icon: "🌐",
-      features: [
-        "Network Design",
-        "Router Configuration",
-        "WiFi Optimization",
-        "Network Security",
-      ],
-      category: "business",
-    },
-    {
-      title: "Data Recovery",
-      description:
-        "Recovery of data from damaged or corrupted storage devices.",
+      title: "Can't Access Your Files?",
+      description: "Difficulties accessing data? We provide consultation on accessibility options and backup strategies.",
       icon: "💾",
-      features: [
-        "Hard Drive Recovery",
-        "SSD Recovery",
-        "USB Drive Recovery",
-        "File Restoration",
-      ],
-      category: "data", // Changed category
+      features: ["Data Accessibility Consult", "Boot Diagnostics", "Backup Strategy Advice", "System Configuration Review"],
+      category: "data",
     },
     {
-      title: "Virus Removal",
-      description: "Removal of malware, viruses, and other malicious software.",
-      icon: "🦠",
-      features: [
-        "Virus Scanning",
-        "Malware Removal",
-        "System Cleanup",
-        "Security Hardening",
-      ],
-      category: "security", // Changed category
+      title: "Worried About Security Threats?",
+      description: "Concerned about malware or strange behavior? Get a system security assessment and cleanup assistance.",
+      icon: "🛡️",
+      features: ["Security Assessment", "Malware/Adware Check", "System Cleanup Assistance", "Security Hardening Tips"],
+      category: "security",
     },
     {
-      title: "Remote Support",
-      description: "Technical support and troubleshooting from anywhere.",
-      icon: "🌍",
-      features: [
-        "Remote Diagnostics",
-        "Software Installation",
-        "Issue Resolution",
-        "OS Updates & Patches",
-      ],
-      category: "support",
+      title: "Wi-Fi or Network Problems?",
+      description: "Experiencing connectivity issues? We offer network setup, configuration, and optimization.",
+      icon: "🌐",
+      features: ["Network Diagnostics", "Router/Modem Setup", "Wi-Fi Optimization", "Guest Network Config"],
+      category: "network",
     },
+     {
+      title: "Software Conflicts or Setup Needs?",
+      description: "Need help installing or configuring software? We provide expert assistance.",
+      icon: "🧩",
+      features: ["Software Installation", "Configuration Help", "Compatibility Checks", "Troubleshooting Assistance"],
+      category: "software",
+    },
+    // Add Managed IT Services if desired for homepage display
+    // {
+    //   title: "Managed IT Services",
+    //   description: "Full-service IT support plans for small businesses.",
+    //   icon: "🔧",
+    //   features: [
+    //     "24/7 Monitoring",
+    //     "Proactive Maintenance",
+    //     "Network Security",
+    //     "Data Backup Solutions",
+    //   ],
+    //   category: "business",
+    // },
   ];
 
-  // Filter services based on selected category
+    // Filter services based on selected category (adjust categories if needed)
   const filteredServices =
     serviceFilter === "all"
       ? services
@@ -811,8 +862,68 @@ export default function Home() {
         </div>
       </section>
 
+       {/* Trust & Transparency Section */}
+      <section id="trust" className="py-20 px-4 bg-white">
+        <div className="container mx-auto">
+          <div className="text-center mb-12">
+            <FadeIn direction="up">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Reliable Service & Clear Pricing
+              </h2>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                We believe in transparency, expertise, and dependable computer help in Long Beach.
+              </p>
+            </FadeIn>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            {/* Pricing */}
+            <FadeIn direction="up" delay={0.1}>
+              <div className="bg-gray-50 p-6 rounded-lg shadow-md h-full flex flex-col">
+                 <svg className="w-12 h-12 mx-auto mb-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                <h3 className="text-xl font-semibold mb-2">Transparent Pricing</h3>
+                <ul className="text-gray-600 space-y-1 text-left px-4 flex-grow">
+                  <li><strong>Diagnostic Assessment:</strong> $99 (Flat Fee)</li>
+                  <li><strong>Hourly Assistance/Config/Optimization:</strong> $125/hour</li>
+                  <li><strong>IT Consultation:</strong> $150/hour</li>
+                  {/* Add more key prices if desired */}
+                </ul>
+                 <p className="text-gray-500 text-sm mt-4">Clear quotes provided before work begins.</p>
+              </div>
+            </FadeIn>
+
+            {/* Credentials */}
+             <FadeIn direction="up" delay={0.2}>
+               <div className="bg-gray-50 p-6 rounded-lg shadow-md h-full flex flex-col">
+                 <svg className="w-12 h-12 mx-auto mb-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2" /></svg>
+                <h3 className="text-xl font-semibold mb-2">Local & Certified</h3>
+                 <div className="text-gray-600 flex-grow">
+                   <p>LB Computer Help</p>
+                   <p>927 Magnolia Ave #2, Long Beach, CA 90813</p>
+                   <p>(213) 349-6790</p>
+                   <p className="mt-2">Serving Long Beach Since 2018</p>
+                   <p className="mt-1 font-medium">Fully Insured</p>
+                   {/* Add Certification Badges/Text Here if applicable */}
+                 </div>
+               </div>
+             </FadeIn>
+
+             {/* Disclaimer */}
+             <FadeIn direction="up" delay={0.3}>
+               <div className="bg-gray-50 p-6 rounded-lg shadow-md h-full flex flex-col">
+                 <svg className="w-12 h-12 mx-auto mb-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+                <h3 className="text-xl font-semibold mb-2">Independent Service Provider</h3>
+                <p className="text-gray-600 text-sm flex-grow">
+                  LB Computer Help is an independent company providing expert tech assistance and guidance. We are not affiliated with Microsoft, Apple, Dell, HP, or any other hardware or software provider. Our recommendations are based on industry best practices and your specific needs.
+                </p>
+               </div>
+             </FadeIn>
+          </div>
+        </div>
+      </section>
+
       {/* Contact Section */}
-      <section className="py-20 px-4 bg-gray-900 text-white">
+      <section id="contact" className="py-20 px-4 bg-gray-900 text-white">
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <FadeIn direction="up">
@@ -1046,6 +1157,7 @@ export default function Home() {
 
       {/* Schema.org markup for search engines */}
       <BusinessJsonLd />
+      <ServiceJsonLd /> {/* Add Service Schema */}
 
       {/* Service Assessment Modal */}
       <ServiceAssessmentModal

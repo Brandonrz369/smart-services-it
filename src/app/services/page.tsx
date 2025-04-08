@@ -3,6 +3,15 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import PricingCalculator from "@/components/PricingCalculator";
+import type { Metadata } from "next"; // Import Metadata type
+
+// Metadata for Services Page
+export const metadata: Metadata = {
+  title: "Our IT Services | LB Computer Help | Long Beach",
+  description: "Explore comprehensive IT services from LB Computer Help in Long Beach: Computer diagnostics, managed IT, mobile device assistance, network solutions, data recovery consultation, and more.",
+  keywords: "Long Beach IT services, computer support Long Beach, managed services provider Long Beach, MSP Long Beach, laptop assistance Long Beach, mobile device help Long Beach, network support Long Beach, data solutions Long Beach, IT consulting Long Beach, remote IT support", // Page-specific keywords
+};
+
 
 const servicesDetail = [
   {
@@ -359,6 +368,40 @@ interface ServiceDetail {
   category: string;
   longDescription: string;
 }
+
+// Service Schema Markup Component for this page
+function ServicesPageJsonLd() {
+  const serviceSchemas = servicesDetail.map(service => ({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: service.title, // Use the service title
+    description: service.longDescription, // Use the long description
+    provider: { "@id": "https://lbcomputerhelp.com" }, // Reference the main business ID
+    areaServed: { "@type": "City", name: "Long Beach" },
+    // Optionally add offers if pricing is consistent or representative
+    // offers: service.pricing.map(p => ({
+    //   "@type": "Offer",
+    //   priceSpecification: {
+    //     "@type": "PriceSpecification",
+    //     price: p.price.replace(/[^0-9.]/g, ''), // Extract numeric price if possible
+    //     priceCurrency: "USD"
+    //   }
+    // }))
+  }));
+
+  return (
+    <>
+      {serviceSchemas.map((schema, index) => (
+        <script
+          key={`service-schema-${index}`}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
+    </>
+  );
+}
+
 
 export default function ServicesPage() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -806,6 +849,9 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+
+      {/* Add Service Schema Markup */}
+      <ServicesPageJsonLd />
     </div>
   );
 }

@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   description:
     "Expert IT support, computer services, and managed services for businesses and residential clients throughout Long Beach and Los Angeles County.",
   keywords:
-    "computer service, IT support, managed IT services, MSP, laptop service, Long Beach, Los Angeles, data accessibility, smartphone assistance",
+    "Long Beach computer support, LB device troubleshooting, Mac screen assistance Long Beach, laptop battery service Long Beach, slow PC optimization Long Beach, data recovery consultation Long Beach, home network setup Long Beach, virus protection services Long Beach, business IT support Long Beach, computer diagnostic Long Beach, hardware configuration Long Beach, local tech help Long Beach, computer technical assistance Long Beach, residential computer services Long Beach, PC support Long Beach, computer help online Long Beach", // Refined keyword list
 };
 
 export default function RootLayout({
@@ -35,6 +35,42 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden max-w-[100vw]`}
       >
+        {/* LocalBusiness Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "name": "LB Computer Help",
+              "image": "", // Add logo URL if available
+              "@id": "https://lbcomputerhelp.com",
+              "url": "https://lbcomputerhelp.com",
+              "telephone": "(213) 349-6790",
+              "priceRange": "$$ - $$$",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "927 Magnolia Ave #2",
+                "addressLocality": "Long Beach",
+                "addressRegion": "CA",
+                "postalCode": "90813",
+                "addressCountry": "US"
+              },
+              "openingHoursSpecification": [
+                {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                  "opens": "06:00",
+                  "closes": "18:00"
+                }
+              ],
+              "sameAs": [
+                "https://facebook.com/lbcomputerhelp",
+                "https://instagram.com/lbcomputerhelp"
+              ]
+            }),
+          }}
+        />
         <FormLoggerProvider>
           <Navigation />
           <main className="min-h-screen pt-20">{children}</main>
@@ -187,6 +223,35 @@ export default function RootLayout({
                       Contact Us
                     </Link>
                   </div>
+                </div>
+              </div>
+              {/* Trust & Transparency Section */}
+              <div className="mt-12 pt-8 border-t border-gray-700 grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
+                {/* Pricing */}
+                <div>
+                  <h4 className="font-semibold text-gray-100 mb-2">Transparent Pricing</h4>
+                  <ul className="text-gray-400 space-y-1">
+                    <li>Diagnostic Assessment: $99</li>
+                    <li>Hourly Assistance: $125/hr</li>
+                    <li>IT Consultation: $150/hr</li>
+                    {/* Add more key prices if desired */}
+                  </ul>
+                </div>
+                {/* Certified */}
+                <div>
+                  <h4 className="font-semibold text-gray-100 mb-2">Local & Certified</h4>
+                  <p className="text-gray-400">LB Computer Help</p>
+                  <p className="text-gray-400">927 Magnolia Ave #2, Long Beach, CA 90813</p>
+                  <p className="text-gray-400">Serving Long Beach Since 2018</p>
+                  <p className="text-gray-400 mt-1 font-medium">Fully Insured</p>
+                  {/* Add Certifications */}
+                </div>
+                {/* Disclaimer */}
+                <div>
+                  <h4 className="font-semibold text-gray-100 mb-2">Independent Service Provider</h4>
+                  <p className="text-gray-400">
+                    LB Computer Help is an independent company providing expert tech assistance. We are not affiliated with Microsoft, Apple, Dell, HP, or others. Recommendations are based on best practices and your needs.
+                  </p>
                 </div>
               </div>
             </div>
