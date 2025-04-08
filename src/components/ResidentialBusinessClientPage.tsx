@@ -319,51 +319,33 @@ export default function ResidentialBusinessClientPage(/* props: ResidentialBusin
                </FadeIn>
              </div>
 
-             {/* Form Column - Revised Dropdown */}
+             {/* Form Column - Quick Inquiry */}
              <div className="bg-gray-800 rounded-xl p-8 shadow-lg">
-               <h3 className="text-2xl font-bold mb-6">Send us a message</h3>
+               <h3 className="text-2xl font-bold mb-6 text-white">Quick Inquiry</h3>
                <form action="https://formspree.io/f/xzzeddgr" method="POST">
                  <input type="hidden" name="_next" value="https://lbcomputerhelp.com/thanks" />
-                 <input type="hidden" name="page_source" value="Residential-Business Landing Page" />
+                 <input type="hidden" name="page_source" value="Residential-Business Quick Form" />
 
-                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                 <div className="space-y-4">
                    <div>
-                     <label htmlFor="contact_name_rb" className="block text-sm font-medium text-gray-300 mb-1">Name</label>
-                     <input type="text" id="contact_name_rb" name="name" required className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your name" />
+                     <label htmlFor="quick_name_rb" className="block text-sm font-medium text-gray-300 mb-1">Name</label>
+                     <input type="text" id="quick_name_rb" name="name" required className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your name" />
                    </div>
                    <div>
-                     <label htmlFor="contact_email_rb" className="block text-sm font-medium text-gray-300 mb-1">Email</label>
-                     <input type="email" id="contact_email_rb" name="email" required className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your email" />
+                     <label htmlFor="quick_email_rb" className="block text-sm font-medium text-gray-300 mb-1">Email</label>
+                     <input type="email" id="quick_email_rb" name="email" required className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your email" />
+                   </div>
+                   <div>
+                     <label htmlFor="quick_phone_rb" className="block text-sm font-medium text-gray-300 mb-1">Phone</label>
+                     <input type="tel" id="quick_phone_rb" name="phone" required className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your phone number" />
+                   </div>
+                   <div>
+                     <label htmlFor="quick_help_rb" className="block text-sm font-medium text-gray-300 mb-1">How can we help?</label>
+                     <textarea id="quick_help_rb" name="message" rows={3} required className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Briefly describe your issue"></textarea>
                    </div>
                  </div>
-                 <div className="mb-4">
-                   <label htmlFor="contact_phone_rb" className="block text-sm font-medium text-gray-300 mb-1">Phone</label>
-                   <input type="tel" id="contact_phone_rb" name="phone" required className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your phone number" />
-                 </div>
-                 {/* Revised Service Interest Dropdown */}
-                 <div className="mb-4">
-                   <label htmlFor="contact_service_rb" className="block text-sm font-medium text-gray-300 mb-1">Service Interest</label>
-                   <select id="contact_service_rb" name="service_interest" required className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
-                     <option value="">Select an option...</option>
-                     <option value="Screen/Display Issue Assessment">Screen/Display Issue Assessment</option>
-                     <option value="Slow Performance Optimization">Slow Performance Optimization</option>
-                     <option value="Battery Assessment/Optimization">Battery Assessment/Optimization</option>
-                     <option value="Data Access Consultation">Data Access Consultation</option>
-                     <option value="Security Check/Cleanup Assistance">Security Check/Cleanup Assistance</option>
-                     <option value="Network Setup/Assistance">Network Setup/Assistance</option>
-                     <option value="Software Configuration/Assistance">Software Configuration/Assistance</option>
-                     <option value="Hardware Installation/Upgrade Consultation">Hardware Installation/Upgrade Consultation</option>
-                     <option value="General IT Consultation">General IT Consultation</option>
-                     <option value="Device Setup Service">Device Setup Service</option>
-                     <option value="Other Inquiry">Other Inquiry</option>
-                   </select>
-                 </div>
-                 <div className="mb-4">
-                   <label htmlFor="contact_message_rb" className="block text-sm font-medium text-gray-300 mb-1">Describe Your Issue/Question</label>
-                   <textarea id="contact_message_rb" name="message" rows={4} required className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Briefly describe the problem or what you need help with..."></textarea>
-                 </div>
-                 <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all transform hover:scale-105 duration-300 flex items-center justify-center">
-                   Request Service or Consultation
+                 <button type="submit" className="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all transform hover:scale-105 duration-300 flex items-center justify-center">
+                   Submit Inquiry
                  </button>
                </form>
              </div>

@@ -22,6 +22,10 @@ const nextConfig = {
   experimental: {
     allowedDevOrigins: ["http://10.168.0.3:3000"],
   },
+  // Disable ESLint during builds as it conflicts with flat config
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 module.exports = withBundleAnalyzer(nextConfig);

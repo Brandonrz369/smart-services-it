@@ -13,6 +13,16 @@ import TestimonialCarousel, {
 import RevealText from "@/components/RevealText";
 import ParallaxEffect from "@/components/ParallaxEffect";
 import ServiceAssessmentModal from "@/components/ServiceAssessmentModal";
+import type { Metadata } from "next";
+
+// Metadata for the Homepage
+export const metadata: Metadata = {
+  title: "LB Computer Help | Long Beach IT Support & Computer Services", // Homepage specific title
+  description:
+    "Your trusted local source for computer services, IT support, managed services, and tech solutions in Long Beach, CA. Serving homes and businesses.", // Homepage specific description
+  keywords:
+    "computer service, IT support, managed IT services, MSP, laptop service, Long Beach, Los Angeles, data accessibility, smartphone assistance", // Keywords from layout
+};
 
 // Schema markup for SEO
 function BusinessJsonLd() {
