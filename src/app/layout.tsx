@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import Link from "next/link";
 import Script from "next/script"; // Import the Script component
+import { Analytics } from "@vercel/analytics/react";
 import Navigation from "@/components/Navigation";
 import ChatBot from "@/components/ChatBot";
 import { FormLoggerProvider } from "@/components/FormLogger";
@@ -263,6 +264,8 @@ export default function RootLayout({
           strategy="afterInteractive"
           src="https://www.googletagmanager.com/gtag/js?id=AW-16853780718"
         />
+        {/* Seobility Verification Meta Tag */}
+        <meta name="seobility" content="2c1caf48b548cfc6f9a4828c80f1c74a" />
         <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
@@ -290,6 +293,16 @@ export default function RootLayout({
             }
           `}
         </Script>
+        {/* Google Analytics 4 (GA4) */}
+        <Script id="google-analytics-4" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-C7LHNFKCEG');
+          `}
+        </Script>
+        <Analytics />
       </body>
     </html>
   );
