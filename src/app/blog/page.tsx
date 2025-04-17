@@ -7,24 +7,34 @@ import FadeIn from "@/components/FadeIn";
 
 const blogPosts = [
   {
-    id: "cybersecurity-tips-long-beach",
+    id: "cybersecurity-tips-long-beach", // This entry already exists from the failed attempt, just updating imageUrl
     title: "5 Essential Cybersecurity Tips for Long Beach Residents & Businesses",
-    date: "April 17, 2025",
+    date: "April 17, 2025", // Using today's date
     category: "Security",
     excerpt: "Protect yourself and your business in Long Beach with these 5 crucial cybersecurity tips covering passwords, phishing, updates, Wi-Fi, and backups.",
-    imageUrl: "/images/blog/cybersecurity-tips.jpg", // Placeholder - needs relevant image
+    imageUrl: "/images/blog/cybersecurity-tips-long-beach.png", // Use generated image
     author: "Brandon Ruiz",
     authorRole: "Lead Technician",
   },
   {
     id: "fix-slow-wifi-long-beach",
-    title: "Fixing Slow Wi-Fi: Common Causes & Solutions for Long Beach Homes & Offices",
+    title: "5 Essential Cybersecurity Tips for Long Beach Residents & Businesses",
     date: "April 17, 2025",
-    category: "Networking",
-    excerpt: "Experiencing slow Wi-Fi in Long Beach? Learn common causes like router placement, interference, and congestion, plus troubleshooting tips.",
-    imageUrl: "/images/blog/wifi-interference.png", // Updated image path
+    category: "Security",
+    excerpt: "Protect yourself and your business in Long Beach with these 5 crucial cybersecurity tips covering passwords, phishing, updates, Wi-Fi, and backups.",
+    imageUrl: "/images/blog/cybersecurity-tips-long-beach.png", // Correct image path
     author: "Brandon Ruiz",
     authorRole: "Lead Technician",
+  },
+  {
+    id: "fix-slow-wifi-long-beach", // Correct ID
+    title: "Fixing Slow Wi-Fi: Common Causes & Solutions for Long Beach Homes & Offices", // Correct Title
+    date: "April 17, 2025", // Correct Date (can adjust if needed)
+    category: "Networking", // Correct Category
+    excerpt: "Experiencing slow Wi-Fi in Long Beach? Learn common causes like router placement, interference, and congestion, plus troubleshooting tips.", // Correct Excerpt
+    imageUrl: "/images/blog/wifi-interference.png", // Correct image path
+    author: "Brandon Ruiz", // Correct Author
+    authorRole: "Lead Technician", // Correct Role
   },
   {
     id: "slow-computer-troubleshooting-long-beach",

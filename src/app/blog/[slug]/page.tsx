@@ -5,6 +5,121 @@ import { Metadata } from "next";
 // Blog posts data would normally come from a CMS or API
 const blogPosts = [
   {
+    id: "cybersecurity-tips-long-beach",
+    title: "5 Essential Cybersecurity Tips for Long Beach Residents & Businesses",
+    date: "April 17, 2025",
+    category: "Security",
+    excerpt: "Protect yourself and your business in Long Beach with these 5 crucial cybersecurity tips covering passwords, phishing, updates, Wi-Fi, and backups.",
+    content: `
+      <p class="mb-4">In today's digital world, cybersecurity isn't just a concern for large corporations; it's vital for everyone in <strong>Long Beach</strong>, from individual residents using home computers to local small business owners managing sensitive customer data. Online threats like data breaches, identity theft, phishing scams, and ransomware are unfortunately common. Protecting your personal information and business assets online requires vigilance. Here are five essential <strong>cybersecurity tips</strong> from your local experts at LB Computer Help to enhance your <strong>online safety</strong>.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">1. Use Strong, Unique Passwords & Multi-Factor Authentication (MFA)</h2>
+      <p class="mb-4">Weak or reused passwords are one of the easiest ways for cybercriminals to gain access to your accounts. Create strong passwords that are long (12+ characters) and mix uppercase letters, lowercase letters, numbers, and symbols. Most importantly, use a *unique* password for every important online account (email, banking, social media, business applications). Remembering dozens of complex passwords is hard, so consider using a reputable password manager to generate and store them securely.</p>
+      <p class="mb-4">Even strong passwords can be compromised. Enable <strong>Multi-Factor Authentication (MFA)</strong>, also known as two-factor authentication (2FA), whenever possible. This adds an extra layer of security, usually requiring a code from your phone or an authenticator app (like Google Authenticator or Authy), or a physical security key. This significantly hinders unauthorized access even if your password gets compromised.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">2. Beware of Phishing Scams Targeting Long Beach</h2>
+      <p class="mb-4">Phishing scams are deceptive attempts to trick you into revealing sensitive information (passwords, account numbers, Social Security numbers) or clicking malicious links/attachments that install malware. These scams arrive via email, text messages (smishing), social media messages, or even phone calls (vishing). Be wary of messages that:</p>
+      <ul class="list-disc pl-6 mb-4 space-y-2">
+        <li>Create a sense of urgency or threat (e.g., "Suspicious activity detected! Log in immediately!").</li>
+        <li>Ask directly for login credentials or personal details.</li>
+        <li>Contain unexpected attachments or links, especially if the sender is unfamiliar or the message context seems odd.</li>
+        <li>Have grammatical errors, typos, or generic greetings ("Dear Customer").</li>
+        <li>Seem too good to be true (e.g., winning a prize you didn't enter).</li>
+      </ul>
+      <p class="mb-4">Always verify unexpected requests independently. If an email claims to be from your bank, don't click the link; go directly to the bank's website or call their official number. Be aware of scams that might specifically target the <strong>Long Beach</strong> community, perhaps referencing local events or institutions.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">3. Keep Your Software Updated</h2>
+      <p class="mb-4">Software updates often contain critical security patches that fix vulnerabilities discovered by developers. Cybercriminals actively exploit these known weaknesses in outdated software. Keeping your operating system (Windows, macOS, iOS, Android), web browsers (Chrome, Firefox, Safari, Edge), antivirus programs, and other applications patched and up-to-date is one of the most effective ways to protect yourself.</p>
+      <p class="mb-4">Enable automatic updates whenever possible. For software that requires manual updates, make it a regular habit to check for and install them promptly. This simple habit closes doors that attackers might otherwise use.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">4. Secure Your Wi-Fi Network</h2>
+      <p class="mb-4">Your home or office Wi-Fi network is the gateway to all your connected devices. An unsecured or poorly secured network is an open invitation for neighbours or malicious actors nearby to access your internet connection, potentially monitor your traffic, or even attempt to access devices on your network. Key steps include:</p>
+      <ul class="list-disc pl-6 mb-4 space-y-2">
+        <li>**Strong Encryption:** Use WPA3 or WPA2 security (avoid outdated WEP).</li>
+        <li>**Unique Router Password:** Change the default administrator login for your router.</li>
+        <li>**Strong Wi-Fi Password:** Use a complex password for connecting devices to your Wi-Fi.</li>
+        <li>**Guest Network:** If available, enable a separate guest network for visitors.</li>
+      </ul>
+      <p class="mb-4">(Need more details? Check out our guide on <a href="/blog/fix-slow-wifi-long-beach" class="text-blue-600 hover:underline">Fixing Slow Wi-Fi in Long Beach</a>, which covers related security aspects).</p>
+
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">5. Back Up Your Important Data Regularly</h2>
+      <p class="mb-4">Data backups are essential insurance against data loss from ransomware attacks, hard drive failures, accidental deletions, theft, or physical damage. Imagine losing precious family photos or critical business documents – backups prevent that disaster.</p>
+      <p class="mb-4">Follow the industry-standard **3-2-1 backup rule:** Keep at least **3** copies of your important data, store these copies on **2** different types of media (e.g., internal drive + external drive, or internal drive + cloud), and keep **1** copy securely offsite (e.g., in the cloud or a separate physical location). Regularly test your backups to ensure you can actually restore your data when needed. Reliable cloud backup services are readily available for <strong>Long Beach</strong> residents and businesses looking to <strong>protect data</strong>.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Stay Safe Online in Long Beach</h2>
+      <p class="mb-4">Cybersecurity requires ongoing vigilance, not just a one-time setup. By consistently applying these fundamental practices, you can significantly reduce your risk of falling victim to common online threats. Stay informed, be cautious, and prioritize your digital safety.</p>
+      <p class="mt-8 text-gray-600 italic">Need help implementing these security measures, cleaning up a potential infection, or require a comprehensive <strong>cybersecurity assessment</strong> for your <strong>Long Beach</strong> business? Contact the trusted IT security experts at LB Computer Help today at (213) 349-6790 or visit our <a href="/contact" class="text-blue-600 hover:underline">contact page</a>!</p>
+    `,
+    author: "Brandon Ruiz",
+    authorRole: "Lead Technician",
+    authorBio: "Brandon is the founder and lead technician at LB Computer Help, dedicated to providing friendly and effective tech solutions to the Long Beach community.",
+    imageUrl: "/images/blog/cybersecurity-tips-long-beach.png", // Use generated image
+    relatedPosts: [ // Example related posts - adjust as needed
+      "fix-slow-wifi-long-beach",
+      "slow-computer-troubleshooting-long-beach",
+      "managed-services-benefits",
+    ],
+  },
+  {
+    id: "fix-slow-wifi-long-beach",
+    title: "5 Essential Cybersecurity Tips for Long Beach Residents & Businesses",
+    date: "April 17, 2025",
+    category: "Security",
+    excerpt: "Protect yourself and your business in Long Beach with these 5 crucial cybersecurity tips covering passwords, phishing, updates, Wi-Fi, and backups.",
+    content: `
+      <p class="mb-4">In today's digital world, cybersecurity isn't just a concern for large corporations; it's vital for everyone in <strong>Long Beach</strong>, from individual residents using home computers to local small business owners managing sensitive customer data. Online threats like data breaches, identity theft, phishing scams, and ransomware are unfortunately common. Protecting your personal information and business assets online requires vigilance. Here are five essential <strong>cybersecurity tips</strong> from your local experts at LB Computer Help to enhance your <strong>online safety</strong>.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">1. Use Strong, Unique Passwords & Multi-Factor Authentication (MFA)</h2>
+      <p class="mb-4">Weak or reused passwords are one of the easiest ways for cybercriminals to gain access to your accounts. Create strong passwords that are long (12+ characters) and mix uppercase letters, lowercase letters, numbers, and symbols. Most importantly, use a *unique* password for every important online account (email, banking, social media, business applications). Remembering dozens of complex passwords is hard, so consider using a reputable password manager to generate and store them securely.</p>
+      <p class="mb-4">Even strong passwords can be compromised. Enable <strong>Multi-Factor Authentication (MFA)</strong>, also known as two-factor authentication (2FA), whenever possible. This adds an extra layer of security, usually requiring a code from your phone or an authenticator app (like Google Authenticator or Authy), or a physical security key. This significantly hinders unauthorized access even if your password gets compromised.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">2. Beware of Phishing Scams Targeting Long Beach</h2>
+      <p class="mb-4">Phishing scams are deceptive attempts to trick you into revealing sensitive information (passwords, account numbers, Social Security numbers) or clicking malicious links/attachments that install malware. These scams arrive via email, text messages (smishing), social media messages, or even phone calls (vishing). Be wary of messages that:</p>
+      <ul class="list-disc pl-6 mb-4 space-y-2">
+        <li>Create a sense of urgency or threat (e.g., "Suspicious activity detected! Log in immediately!").</li>
+        <li>Ask directly for login credentials or personal details.</li>
+        <li>Contain unexpected attachments or links, especially if the sender is unfamiliar or the message context seems odd.</li>
+        <li>Have grammatical errors, typos, or generic greetings ("Dear Customer").</li>
+        <li>Seem too good to be true (e.g., winning a prize you didn't enter).</li>
+      </ul>
+      <p class="mb-4">Always verify unexpected requests independently. If an email claims to be from your bank, don't click the link; go directly to the bank's website or call their official number. Be aware of scams that might specifically target the <strong>Long Beach</strong> community, perhaps referencing local events or institutions.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">3. Keep Your Software Updated</h2>
+      <p class="mb-4">Software updates often contain critical security patches that fix vulnerabilities discovered by developers. Cybercriminals actively exploit these known weaknesses in outdated software. Keeping your operating system (Windows, macOS, iOS, Android), web browsers (Chrome, Firefox, Safari, Edge), antivirus programs, and other applications patched and up-to-date is one of the most effective ways to protect yourself.</p>
+      <p class="mb-4">Enable automatic updates whenever possible. For software that requires manual updates, make it a regular habit to check for and install them promptly. This simple habit closes doors that attackers might otherwise use.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">4. Secure Your Wi-Fi Network</h2>
+      <p class="mb-4">Your home or office Wi-Fi network is the gateway to all your connected devices. An unsecured or poorly secured network is an open invitation for neighbours or malicious actors nearby to access your internet connection, potentially monitor your traffic, or even attempt to access devices on your network. Key steps include:</p>
+      <ul class="list-disc pl-6 mb-4 space-y-2">
+        <li>**Strong Encryption:** Use WPA3 or WPA2 security (avoid outdated WEP).</li>
+        <li>**Unique Router Password:** Change the default administrator login for your router.</li>
+        <li>**Strong Wi-Fi Password:** Use a complex password for connecting devices to your Wi-Fi.</li>
+        <li>**Guest Network:** If available, enable a separate guest network for visitors.</li>
+      </ul>
+      <p class="mb-4">(Need more details? Check out our guide on <a href="/blog/fix-slow-wifi-long-beach" class="text-blue-600 hover:underline">Fixing Slow Wi-Fi in Long Beach</a>, which covers related security aspects).</p>
+
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">5. Back Up Your Important Data Regularly</h2>
+      <p class="mb-4">Data backups are essential insurance against data loss from ransomware attacks, hard drive failures, accidental deletions, theft, or physical damage. Imagine losing precious family photos or critical business documents – backups prevent that disaster.</p>
+      <p class="mb-4">Follow the industry-standard **3-2-1 backup rule:** Keep at least **3** copies of your important data, store these copies on **2** different types of media (e.g., internal drive + external drive, or internal drive + cloud), and keep **1** copy securely offsite (e.g., in the cloud or a separate physical location). Regularly test your backups to ensure you can actually restore your data when needed. Reliable cloud backup services are readily available for <strong>Long Beach</strong> residents and businesses looking to <strong>protect data</strong>.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Stay Safe Online in Long Beach</h2>
+      <p class="mb-4">Cybersecurity requires ongoing vigilance, not just a one-time setup. By consistently applying these fundamental practices, you can significantly reduce your risk of falling victim to common online threats. Stay informed, be cautious, and prioritize your digital safety.</p>
+      <p class="mt-8 text-gray-600 italic">Need help implementing these security measures, cleaning up a potential infection, or require a comprehensive <strong>cybersecurity assessment</strong> for your <strong>Long Beach</strong> business? Contact the trusted IT security experts at LB Computer Help today at (213) 349-6790 or visit our <a href="/contact" class="text-blue-600 hover:underline">contact page</a>!</p>
+    `,
+    author: "Brandon Ruiz",
+    authorRole: "Lead Technician",
+    authorBio: "Brandon is the founder and lead technician at LB Computer Help, dedicated to providing friendly and effective tech solutions to the Long Beach community.",
+    imageUrl: "/images/blog/cybersecurity-tips-long-beach.png", // Correct image path
+    relatedPosts: [ // Example related posts - adjust as needed
+      "fix-slow-wifi-long-beach",
+      "slow-computer-troubleshooting-long-beach",
+      "managed-services-benefits",
+    ],
+  },
+  // Removed the duplicate entry that might have been here
+  {
     id: "fix-slow-wifi-long-beach",
     title: "Fixing Slow Wi-Fi: Common Causes & Solutions for Long Beach Homes & Offices",
     date: "April 17, 2025",
