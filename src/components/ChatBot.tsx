@@ -239,13 +239,35 @@ export default function ChatBot() {
         }
       }
 
-      // If no quick response matched, call the API
+      // If no quick response matched, decide which API endpoint to call
       if (!responseText) {
-        // Call our API endpoint
-        const response = await fetch("/api/chat", {
+        let apiUrl = "/api/chat"; // Default API endpoint
+
+        // --- Logic to determine if the query is complex and needs the researcher ---
+        const complexKeywords = ["explain", "compare", "analyze", "pros and cons", "how does", "why is", "research", "details about", "in-depth"];
+        const isComplexQuery = userInput.length > 100 || complexKeywords.some(keyword => lowerInput.includes(keyword));
+
+        if (isComplexQuery) {
+          console.log("Complex query detected, routing to research API");
+          apiUrl = "/api/chat-research"; // Target the new endpoint for complex queries
+          // TODO: Backend implementation needed for /api/chat-research
+          // This endpoint should receive the message and interact with the
+          // researcher-mcp server, likely using the 'reason' or 'deep_research' tool.
+        } else {
+           console.log("Simple query, routing to standard chat API");
+        }
+        // --- End of complexity check ---
+
+        // Call the determined API endpoint
+        const response = await fetch(apiUrl, { // Use the determined apiUrl
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message: userInput }),
+          // Send chat history along with the message for better context
+          body: JSON.stringify({
+             message: userInput,
+             // Send last 5 messages for context (user/bot alternating)
+             history: chatHistoryRef.current.slice(-5)
+          }),
         });
 
         if (!response.ok) {
