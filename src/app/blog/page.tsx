@@ -7,6 +7,16 @@ import FadeIn from "@/components/FadeIn";
 
 const blogPosts = [
   {
+    id: "cybersecurity-tips-long-beach",
+    title: "5 Essential Cybersecurity Tips for Long Beach Residents & Businesses",
+    date: "April 17, 2025",
+    category: "Security",
+    excerpt: "Protect yourself and your business in Long Beach with these 5 crucial cybersecurity tips covering passwords, phishing, updates, Wi-Fi, and backups.",
+    imageUrl: "/images/blog/cybersecurity-tips.jpg", // Placeholder - needs relevant image
+    author: "Brandon Ruiz",
+    authorRole: "Lead Technician",
+  },
+  {
     id: "fix-slow-wifi-long-beach",
     title: "Fixing Slow Wi-Fi: Common Causes & Solutions for Long Beach Homes & Offices",
     date: "April 17, 2025",
