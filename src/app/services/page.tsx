@@ -36,7 +36,7 @@ const servicesDetail = [
     title: "Managed IT Services (MSP)",
     description: "Complete IT management for businesses of all sizes.",
     icon: "🏢",
-    image: "/images/services/managed-it.jpg",
+    image: "/images/services/managed-it-new.png",
     features: ["IT Infrastructure Management", "Proactive Monitoring", "Strategic IT Planning", "Security Solutions", "Cloud Service Implementation"],
     pricing: [
       { service: "Basic MSP Plan", price: "From $299/mo", description: "For businesses with 1-5 employees" },
@@ -68,7 +68,7 @@ const servicesDetail = [
     title: "Network & Server Solutions",
     description: "Business-grade networking and server management.",
     icon: "🔧",
-    image: "/images/services/network-support.jpg",
+    image: "/images/services/network-support-new.png",
     features: ["Server Setup & Maintenance", "Network Security", "Business Continuity Planning", "Microsoft 365 Management", "VPN & Remote Access"],
     pricing: [
       { service: "Network Assessment", price: "$249", description: "Comprehensive evaluation of current setup" },
