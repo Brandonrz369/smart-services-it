@@ -7,6 +7,16 @@ import FadeIn from "@/components/FadeIn";
 
 const blogPosts = [
   {
+    id: "fix-slow-wifi-long-beach",
+    title: "Fixing Slow Wi-Fi: Common Causes & Solutions for Long Beach Homes & Offices",
+    date: "April 17, 2025",
+    category: "Networking",
+    excerpt: "Experiencing slow Wi-Fi in Long Beach? Learn common causes like router placement, interference, and congestion, plus troubleshooting tips.",
+    imageUrl: "/images/blog/wifi-interference.png", // Updated image path
+    author: "Brandon Ruiz",
+    authorRole: "Lead Technician",
+  },
+  {
     id: "slow-computer-troubleshooting-long-beach",
     title: "Slow Computer? Top 5 Troubleshooting Tips from Long Beach Tech Experts",
     date: "April 16, 2025",
