@@ -2,29 +2,55 @@ import { NextRequest, NextResponse } from 'next/server';
 import { Ratelimit } from '@upstash/ratelimit';
 import { kv } from '@vercel/kv';
 
-// --- MCP Tool Simulation ---
-// In a real scenario, you'd import and use the actual MCP client/tool functions.
-// For this simulation, we'll define a placeholder function.
+// =========================================================================
+// MCP Interaction Implementation (Using HTTP Fetch)
+// =========================================================================
+// This function attempts to call the locally running researcher-mcp server.
+// ASSUMPTION: The MCP server is running and listening for POST requests
+//             on http://localhost:3001/reason
+//             (Verify this port and path are correct for your MCP server setup)
+// =========================================================================
 async function callResearcherMcpReason(query: string): Promise<string> {
-  console.log(`Simulating call to researcher-mcp 'reason' tool with query: "${query}"`);
-  // Simulate network delay
-  await new Promise(resolve => setTimeout(resolve, 1500));
+  const mcpServerUrl = 'http://localhost:3001/reason'; // <-- VERIFY THIS URL/PORT
+  console.log(`Attempting to call researcher-mcp 'reason' tool at ${mcpServerUrl} with query: "${query}"`);
 
-  // Simulate different responses based on query complexity or keywords
-  if (query.toLowerCase().includes("compare")) {
-    return `Based on my analysis, comparing A and B shows that A excels in X while B is better for Y. Consider your specific needs for Z to make the best choice.`;
-  } else if (query.toLowerCase().includes("explain")) {
-    return `Certainly. [Topic] involves several key concepts: Concept 1, Concept 2, and Concept 3. It's important because of [Reason]. Would you like more detail on any specific part?`;
-  } else if (query.length > 150) {
-     return `That's a detailed question! Based on my research, the key factors are [Factor 1], [Factor 2], and [Factor 3]. The implications for your situation might involve [Implication A] and [Implication B]. Further investigation into [Specific Area] could provide more clarity.`;
-  } else {
-    // Generic simulated research response
-    return `I've researched your query about "${query.substring(0, 50)}...". The key findings suggest that [Finding 1] and [Finding 2] are most relevant. It often depends on factors like [Factor A] and [Factor B].`;
+  try {
+    const response = await fetch(mcpServerUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ query: query }), // Send query in the expected format
+      // IMPORTANT: fetch in Node.js might require specific configurations
+      // for localhost calls depending on the environment (e.g., keepalive).
+      // Vercel functions might have specific ways to handle local service calls.
+    });
+
+    if (!response.ok) {
+      throw new Error(`MCP server responded with status: ${response.status} ${response.statusText}`);
+    }
+
+    const result = await response.json();
+
+    // Assuming the MCP server returns JSON like { "answer": "..." }
+    // Adjust this based on the actual response structure of the 'reason' tool
+    if (typeof result.answer !== 'string') {
+       throw new Error('Invalid response structure from MCP server.');
+    }
+
+    console.log("Successfully received response from researcher-mcp.");
+    return result.answer;
+
+  } catch (error) {
+    console.error("Error calling researcher-mcp:", error);
+    // Provide a user-friendly error message, but log the technical details
+    if (error instanceof Error && error.message.includes('ECONNREFUSED')) {
+       throw new Error("Could not connect to the local researcher-mcp server. Is it running?");
+    }
+    throw new Error("Failed to get response from the research service.");
   }
-  // Simulate potential error
-  // throw new Error("Simulated MCP connection error");
 }
-// --- End MCP Tool Simulation ---
+// =========================================================================
 
 
 // Rate limiting: Allow 5 requests per 10 seconds per IP
@@ -67,7 +93,6 @@ export async function POST(req: NextRequest) {
     console.log(`Research API received query: "${researchQuery}"`);
 
     // --- Call MCP Tool ---
-    // Replace this with the actual MCP tool call
     const mcpResponseText = await callResearcherMcpReason(researchQuery);
     // ---
 
