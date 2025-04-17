@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image"; // Import next/image
 import PricingCalculator from "@/components/PricingCalculator";
 
 // Define the interface for the service details
@@ -125,10 +126,23 @@ export default function ServicesPageClient({ servicesDetail }: ServicesPageClien
             {filteredServices.map((service, index) => (
               <div
                 key={index}
-                className={`bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 ${isLoaded ? "opacity-100" : "opacity-0"}`}
+                className={`bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col ${isLoaded ? "opacity-100" : "opacity-0"}`} // Added flex flex-col
                 style={{ transitionDelay: `${200 + index * 100}ms` }}
               >
-                <div className="p-6">
+                {/* Service Image */}
+                {service.image && (
+                  <div className="relative w-full h-48"> {/* Set fixed height for image container */}
+                    <Image
+                      src={service.image}
+                      alt={`${service.title} service image`}
+                      layout="fill" // Use fill layout
+                      objectFit="cover" // Cover the container
+                      className="transition-transform duration-300 group-hover:scale-105" // Optional: Add hover effect
+                    />
+                  </div>
+                )}
+                {/* Service Content */}
+                <div className="p-6 flex flex-col flex-grow"> {/* Added flex flex-col flex-grow */}
                   <div className="flex items-center mb-4">
                     <div className="text-3xl mr-3">{service.icon}</div>
                     <h3 className="text-xl font-bold text-gray-900">
@@ -162,7 +176,7 @@ export default function ServicesPageClient({ servicesDetail }: ServicesPageClien
                     </ul>
                   </div>
 
-                  <div className="mt-auto">
+                  <div className="mt-auto pt-4"> {/* Added pt-4 for spacing */}
                     <button
                       onClick={() => setActiveService(service)}
                       className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition duration-300 flex items-center justify-center"
