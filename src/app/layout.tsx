@@ -19,11 +19,11 @@ const geistMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "LB Computer Help | Professional IT Services & Computer Assistance",
+  title: "Long Beach IT Support & Computer Services | LB Computer Help",
   description:
-    "Expert IT support, computer services, and managed services for businesses and residential clients throughout Long Beach and Los Angeles County.",
+    "LB Computer Help provides expert IT support, computer repair, cybersecurity, and managed services in Long Beach and Los Angeles County for businesses and homes. Get fast, reliable tech help today!",
   keywords:
-    "Long Beach computer support, LB device troubleshooting, Mac screen assistance Long Beach, laptop battery service Long Beach, slow PC optimization Long Beach, data recovery consultation Long Beach, home network setup Long Beach, virus protection services Long Beach, business IT support Long Beach, computer diagnostic Long Beach, hardware configuration Long Beach, local tech help Long Beach, computer technical assistance Long Beach, residential computer services Long Beach, PC support Long Beach, computer help online Long Beach", // Refined keyword list
+    "Long Beach IT support, computer repair, managed services, cybersecurity, data recovery, network support, tech support, IT consulting, business IT support, residential computer services, Long Beach tech help, Los Angeles County IT services",
 };
 
 export default function RootLayout({

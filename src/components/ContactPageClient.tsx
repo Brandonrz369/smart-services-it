@@ -55,9 +55,9 @@ export default function ContactPageClient() {
           }}
         ></div>
         <div className="relative z-10 container mx-auto px-4 md:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact LB Computer Help in Long Beach</h1>
           <p className="text-xl max-w-3xl mx-auto">
-            Get in touch with our team for all your IT support needs
+            Reach out for expert IT support, computer repair, and managed services in the Long Beach area.
           </p>
         </div>
       </div>
@@ -68,7 +68,7 @@ export default function ContactPageClient() {
           <div className="flex flex-col lg:flex-row gap-12">
             <FadeIn direction="right" className="w-full lg:w-1/2">
               <div className="bg-gray-50 rounded-xl p-8 shadow-md h-full">
-                <h2 className="text-2xl font-bold mb-8">Contact Information</h2>
+                <h2 className="text-2xl font-bold mb-8">Long Beach IT Support Contact Details</h2>
 
                 <div className="space-y-6">
                   {/* Contact Details */}
@@ -79,7 +79,7 @@ export default function ContactPageClient() {
                     <div>
                       <h3 className="text-lg font-medium mb-1">Phone</h3>
                       <p className="text-gray-600 mb-1">(213) 349-6790</p>
-                      <p className="text-sm text-gray-500">Available Mon-Sat, 6AM-6PM</p>
+                      <p className="text-sm text-gray-500">Call for immediate <strong>Long Beach computer support</strong> (Mon-Sat, 6AM-6PM)</p>
                     </div>
                   </div>
                    <div className="flex items-start">
@@ -89,7 +89,7 @@ export default function ContactPageClient() {
                     <div>
                       <h3 className="text-lg font-medium mb-1">Email</h3>
                       <p className="text-gray-600 mb-1">support@lbcomputerhelp.com</p>
-                      <p className="text-sm text-gray-500">We typically respond within 24 hours</p>
+                      <p className="text-sm text-gray-500">Email us for inquiries about <strong>managed services</strong> or <strong>IT consulting</strong> (Response within 24 hours)</p>
                     </div>
                   </div>
                    <div className="flex items-start">
@@ -100,7 +100,7 @@ export default function ContactPageClient() {
                       <h3 className="text-lg font-medium mb-1">Address</h3>
                       <p className="text-gray-600 mb-1">927 Magnolia Ave #2</p>
                       <p className="text-gray-600 mb-1">Long Beach, CA 90813</p>
-                      <p className="text-sm text-gray-500">Please call for appointment before visiting</p>
+                      <p className="text-sm text-gray-500">Visit our <strong>Long Beach</strong> office by appointment for device drop-off or consultation</p>
                     </div>
                   </div>
                    <div className="flex items-start">
@@ -118,10 +118,9 @@ export default function ContactPageClient() {
                 </div>
 
                 <div className="mt-10">
-                  <h3 className="text-lg font-bold mb-4">Service Area</h3>
+                  <h3 className="text-lg font-bold mb-4">Our Long Beach Service Area</h3>
                   <p className="text-gray-600 mb-2">
-                    Proudly serving Long Beach and all of Los Angeles County,
-                    including:
+                    Providing on-site <strong>computer repair</strong> and <strong>IT support</strong> across Long Beach and Los Angeles County, including:
                   </p>
                   <div className="flex flex-wrap gap-2 mt-3">
                     {[
@@ -140,7 +139,7 @@ export default function ContactPageClient() {
 
             <FadeIn direction="left" className="w-full lg:w-1/2">
               <div className="bg-white rounded-xl p-8 border border-gray-200 shadow-md">
-                <h2 className="text-2xl font-bold mb-6">Send Us a Message</h2>
+                <h2 className="text-2xl font-bold mb-6">Request IT Support or Computer Service</h2>
 
                 {formStatus === "success" ? (
                   <div className="bg-green-50 border border-green-200 rounded-lg p-6 text-center">
@@ -225,12 +224,10 @@ export default function ContactPageClient() {
           <FadeIn>
             <div className="text-center mb-8">
               <h2 className="text-3xl font-bold mb-4">
-                Schedule an Appointment
+                Schedule Long Beach IT Support Online
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
-                Book a time for IT support or consultation directly using our
-                online calendar. Select a time that works for you, and
-                we'll confirm your appointment.
+                Book a convenient time for <strong>IT support</strong>, <strong>computer repair</strong>, or <strong>IT consultation</strong> in Long Beach directly using our online calendar. Select a time that works for you, and we'll confirm your appointment.
               </p>
             </div>
 
@@ -252,7 +249,7 @@ export default function ContactPageClient() {
         <div className="max-w-6xl mx-auto">
           <FadeIn>
             <h2 className="text-2xl font-bold mb-8 text-center">
-              Our Location
+              Visit Our Long Beach Office (By Appointment)
             </h2>
             <div className="bg-white p-2 rounded-xl shadow-md">
               {/* Responsive iframe container with 16:9 aspect ratio */}
@@ -280,10 +277,9 @@ export default function ContactPageClient() {
       <section className="py-16 px-4 md:px-8 bg-red-600 text-white">
         <div className="max-w-4xl mx-auto text-center">
           <FadeIn>
-            <h2 className="text-3xl font-bold mb-4">Need Urgent IT Support?</h2>
+            <h2 className="text-3xl font-bold mb-4">Need Urgent IT Support in Long Beach?</h2>
             <p className="text-xl mb-8 text-red-100 max-w-2xl mx-auto">
-              Our emergency support team is available to help with critical IT
-              issues.
+              Our emergency <strong>Long Beach IT support</strong> team is available to help with critical <strong>computer service</strong> and <strong>business IT</strong> issues.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link

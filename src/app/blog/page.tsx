@@ -7,6 +7,16 @@ import FadeIn from "@/components/FadeIn";
 
 const blogPosts = [
   {
+    id: "slow-computer-troubleshooting-long-beach",
+    title: "Slow Computer? Top 5 Troubleshooting Tips from Long Beach Tech Experts",
+    date: "April 16, 2025",
+    category: "Troubleshooting", // New category or use 'Productivity'/'Computer Services'
+    excerpt: "Frustrated with a slow computer in Long Beach? Try these 5 expert troubleshooting tips before calling for repair.",
+    imageUrl: "/images/blog/slow-computer-troubleshooting.png", // Updated image path
+    author: "Brandon Ruiz", // Assuming Brandon is the author
+    authorRole: "Lead Technician",
+  },
+  {
     id: "securing-your-small-business",
     title: "Securing Your Small Business in the Digital Age",
     date: "March 15, 2025",
@@ -109,10 +119,10 @@ export default function BlogPage() {
         <div className="absolute inset-0 bg-black opacity-30"></div>
         <div className="relative z-10 container mx-auto px-4 md:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Tech Insights Blog
+            LB Computer Help Blog | Long Beach Tech Insights
           </h1>
           <p className="text-xl max-w-3xl mx-auto">
-            Expert advice, tips, and industry insights from our IT professionals
+            Expert IT advice, computer tips, and industry insights from your local Long Beach tech professionals.
           </p>
         </div>
       </div>
@@ -180,7 +190,7 @@ export default function BlogPage() {
                           <div className="relative h-72 bg-gray-200">
                             <Image
                               src={post.imageUrl}
-                              alt={post.title}
+                              alt={`Blog post image for: ${post.title}`}
                               className="object-cover"
                               fill
                               sizes="(max-width: 768px) 100vw, 60vw"
@@ -254,7 +264,7 @@ export default function BlogPage() {
                             <div className="relative h-48 bg-gray-200">
                               <Image
                                 src={post.imageUrl}
-                                alt={post.title}
+                                alt={`Blog post image for: ${post.title}`}
                                 className="object-cover"
                                 fill
                                 sizes="(max-width: 768px) 100vw, 30vw"
@@ -381,7 +391,7 @@ export default function BlogPage() {
                           <div className="relative w-20 h-20 flex-shrink-0 rounded-md overflow-hidden">
                             <Image
                               src={post.imageUrl}
-                              alt={post.title}
+                              alt={`Blog post image for: ${post.title}`}
                               className="object-cover"
                               fill
                               sizes="80px"
@@ -407,17 +417,16 @@ export default function BlogPage() {
                 <div className="bg-blue-600 rounded-xl shadow-md overflow-hidden">
                   <div className="p-6 text-white text-center">
                     <h3 className="text-lg font-bold mb-2">
-                      Need Tech Support?
+                      Need Tech Support in Long Beach?
                     </h3>
                     <p className="text-blue-100 mb-4">
-                      We&apos;re here to help with all your computer and
-                      technology needs.
+                      LB Computer Help is here for all your <strong>Long Beach computer repair</strong> and <strong>IT support</strong> needs.
                     </p>
                     <a
                       href="tel:2133496790"
                       className="inline-block bg-white text-blue-600 font-bold py-2 px-6 rounded-lg hover:bg-blue-50 transition-colors"
                     >
-                      Call (213) 349-6790
+                      Call (213) 349-6790 for Long Beach Support
                     </a>
                   </div>
                 </div>

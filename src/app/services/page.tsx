@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Our IT Services | LB Computer Help | Long Beach",
   description: "Explore comprehensive IT services from LB Computer Help in Long Beach: Computer diagnostics, managed IT, mobile device assistance, network solutions, data recovery consultation, and more.",
-  keywords: "Long Beach IT services, computer support Long Beach, managed services provider Long Beach, MSP Long Beach, laptop assistance Long Beach, mobile device help Long Beach, network support Long Beach, data solutions Long Beach, IT consulting Long Beach, remote IT support", // Page-specific keywords
+  keywords: "Long Beach IT services, computer repair Long Beach, managed IT services Long Beach, MSP Long Beach, business IT support Long Beach, network support Long Beach, cybersecurity services Long Beach, data recovery Long Beach, IT consulting Long Beach, remote IT support Long Beach, laptop repair Long Beach, mobile device repair Long Beach, tech support Long Beach", // Updated page-specific keywords
 };
 
 // Service data (can stay here or be moved to a lib file)

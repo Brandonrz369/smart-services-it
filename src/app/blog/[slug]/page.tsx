@@ -5,6 +5,61 @@ import { Metadata } from "next";
 // Blog posts data would normally come from a CMS or API
 const blogPosts = [
   {
+    id: "slow-computer-troubleshooting-long-beach",
+    title: "Slow Computer? Top 5 Troubleshooting Tips from Long Beach Tech Experts",
+    date: "April 16, 2025",
+    category: "Troubleshooting", // Match category from listing page
+    excerpt: "Frustrated with a slow computer in Long Beach? Try these 5 expert troubleshooting tips before calling for repair.",
+    content: `
+      <p class="mb-4">Is your computer crawling at a snail's pace? Few things are more frustrating than waiting for applications to load or your system to respond. It's a common headache for many <strong>Long Beach</strong> residents and businesses, impacting productivity and causing unnecessary stress. While LB Computer Help offers expert <strong>computer repair in Long Beach</strong>, here are five troubleshooting tips you can try yourself first to potentially speed things up.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">1. Restart Your Computer Regularly</h2>
+      <p class="mb-4">It sounds simple, but you'd be surprised how often this fixes minor slowdowns! Restarting your computer clears out temporary files, closes background processes that might be hogging resources, and gives your system a fresh start. Make it a habit to fully restart (not just sleep or hibernate) your PC or Mac at least once a day or every couple of days.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">2. Check for Malware and Viruses</h2>
+      <p class="mb-4">Malicious software (malware) running hidden in the background is a common cause of a suddenly <strong>slow computer</strong>. These programs consume system resources and can compromise your data security. Ensure you have a reputable antivirus and anti-malware program installed and that it's up-to-date. Run a full system scan regularly. If you suspect an infection or need help choosing security software, LB Computer Help provides professional virus removal and <strong>security cleanup services in Long Beach</strong>.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">3. Manage Startup Programs</h2>
+      <p class="mb-4">Does your computer take forever to become usable after you turn it on? Too many applications launching automatically at startup can significantly slow down the boot process and continue to consume resources. You can manage these:</p>
+      <ul class="list-disc pl-6 mb-4 space-y-2">
+        <li><strong>On Windows:</strong> Right-click the taskbar, select "Task Manager," and go to the "Startup" tab (or "Startup Apps" in Windows 11). Disable programs you don't need immediately upon starting your computer.</li>
+        <li><strong>On Mac:</strong> Go to System Settings (or System Preferences) > General > Login Items. Remove unnecessary applications from the "Open at Login" list.</li>
+      </ul>
+      <p class="mb-4">Be cautious not to disable essential system processes or your antivirus software.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">4. Free Up Disk Space</h2>
+      <p class="mb-4">A hard drive (especially a traditional spinning drive or an almost-full Solid State Drive - SSD) that's nearing capacity can significantly slow down your computer. Your operating system needs free space to function efficiently (e.g., for temporary files, virtual memory). Try these steps:</p>
+      <ul class="list-disc pl-6 mb-4 space-y-2">
+        <li>Empty your Recycle Bin (Windows) or Trash (Mac).</li>
+        <li>Uninstall programs or applications you no longer use.</li>
+        <li>Use built-in disk cleanup tools (Disk Cleanup on Windows, Storage Management on Mac) to remove temporary files, system junk, and large files you might not need.</li>
+        <li>Consider moving large files (photos, videos) to an external hard drive or cloud storage.</li>
+      </ul>
+      <p class="mb-4">If your drive is consistently full, you might need a hardware upgrade, a service offered by <strong>Long Beach tech support</strong> specialists like us.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">5. Check Background Processes</h2>
+      <p class="mb-4">Sometimes, a specific application running in the background might be consuming an excessive amount of CPU power or memory, causing slowdowns. You can investigate this:</p>
+      <ul class="list-disc pl-6 mb-4 space-y-2">
+        <li><strong>On Windows:</strong> Open Task Manager (Ctrl+Shift+Esc) and check the "Processes" tab. Sort by CPU or Memory usage to identify potential culprits.</li>
+        <li><strong>On Mac:</strong> Open Activity Monitor (Applications > Utilities) and check the CPU and Memory tabs.</li>
+      </ul>
+      <p class="mb-4">If you find a non-essential application using excessive resources, you can try closing it. Again, be careful not to end critical system processes if you're unsure.</p>
+
+      <h2 class="text-2xl font-bold mt-8 mb-4">Still Slow? Time for Professional Help</h2>
+      <p class="mb-4">These tips can resolve many common causes of computer slowdowns. However, if your computer remains sluggish after trying these steps, or if you suspect a hardware problem (like a failing hard drive, insufficient RAM, or overheating), it's time to call in the experts.</p>
+      <p class="mt-8 text-gray-600 italic">Experiencing persistent computer slowness in <strong>Long Beach</strong>? Don't let it frustrate you any longer! Contact LB Computer Help today at (213) 349-6790 or visit our <a href="/contact" class="text-blue-600 hover:underline">contact page</a> for expert diagnostics and professional <strong>computer repair services in Long Beach</strong>!</p>
+    `,
+    author: "Brandon Ruiz", // Assuming Brandon is the author
+    authorRole: "Lead Technician",
+    authorBio: "Brandon is the founder and lead technician at LB Computer Help, dedicated to providing friendly and effective tech solutions to the Long Beach community.", // Example Bio
+    imageUrl: "/images/blog/slow-computer-troubleshooting.png", // Updated image path
+    relatedPosts: [ // Example related posts - adjust as needed
+      "network-troubleshooting",
+      "windows-11-productivity",
+      "securing-your-small-business",
+    ],
+  },
+  {
     id: "securing-your-small-business",
     title: "Securing Your Small Business in the Digital Age",
     date: "March 15, 2025",
@@ -346,9 +401,22 @@ export function generateMetadata({ params }: any): Metadata {
     };
   }
 
+  // Add keywords relevant to the post category and general business
+  const baseKeywords = "LB Computer Help, Long Beach IT support, computer services Long Beach, tech blog";
+  const categoryKeywords = {
+    Security: "cybersecurity tips, small business security, data protection",
+    Productivity: "Windows 11 tips, productivity hacks, tech efficiency",
+    "Cloud Services": "cloud storage comparison, business cloud solutions, OneDrive",
+    Networking: "network troubleshooting, fix wifi issues, home networking",
+    "Mobile Devices": "smartphone tips, extend battery life, mobile tech help",
+    MSP: "managed IT services benefits, MSP Long Beach, business IT outsourcing",
+  };
+  const specificKeywords = categoryKeywords[post.category as keyof typeof categoryKeywords] || "";
+
   return {
-    title: post.title,
-    description: post.excerpt,
+    title: `${post.title} | LB Computer Help Blog`, // Add Brand to title
+    description: `${post.excerpt} - Read more on the LB Computer Help blog for Long Beach tech insights.`, // Enhance description
+    keywords: `${baseKeywords}, ${specificKeywords}, ${post.title}`, // Combine keywords
   };
 }
 
@@ -460,7 +528,7 @@ export default function BlogPostPage({ params }: any) {
             <div className="w-full h-64 rounded-lg mb-8 relative overflow-hidden">
               <Image
                 src={post.imageUrl}
-                alt={post.title}
+                alt={`Featured image for blog post: ${post.title}`}
                 className="object-cover"
                 fill
                 sizes="(max-width: 768px) 100vw, 800px"
@@ -557,7 +625,7 @@ export default function BlogPostPage({ params }: any) {
                         {/* Blog post image */}
                         <Image
                           src={relatedPost.imageUrl}
-                          alt={relatedPost.title}
+                          alt={`Related blog post image: ${relatedPost.title}`}
                           className="object-cover"
                           fill
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -589,11 +657,10 @@ export default function BlogPostPage({ params }: any) {
       <section className="py-16 px-4 md:px-8 bg-blue-600 text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4">
-            Need Professional IT Support?
+            Need Professional IT Support in Long Beach?
           </h2>
           <p className="text-lg mb-8 text-blue-100 max-w-2xl mx-auto">
-            From everyday tech problems to managed IT services, our team of
-            experts is here to help your business succeed.
+            From everyday tech problems to managed IT services in Long Beach, our team of experts is here to help your business succeed. Contact LB Computer Help today.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

@@ -45,9 +45,9 @@ export default function ServicesPageClient({ servicesDetail }: ServicesPageClien
       <div className="relative py-24 bg-gradient-to-r from-blue-800 to-blue-600 text-white">
         <div className="absolute inset-0 bg-black opacity-30"></div>
         <div className="relative z-10 container mx-auto px-4 md:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Services</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Our IT Services in Long Beach</h1>
           <p className="text-xl max-w-3xl mx-auto">
-            Comprehensive technology solutions for businesses and individuals
+            Comprehensive IT support and computer services for businesses and individuals throughout Long Beach and Los Angeles County.
           </p>
         </div>
       </div>
@@ -318,27 +318,27 @@ export default function ServicesPageClient({ servicesDetail }: ServicesPageClien
             {/* FAQ Items */}
              <div className="bg-white p-6 rounded-lg shadow-md">
               <h3 className="text-lg font-semibold text-gray-900 mb-3">What areas do you serve?</h3>
-              <p className="text-gray-600">We serve Long Beach and surrounding areas in Los Angeles County, including Lakewood, Signal Hill, Seal Beach, Los Alamitos, and nearby communities. For businesses, we offer remote support throughout Southern California.</p>
+              <p className="text-gray-600">We provide expert <strong>IT support</strong> and <strong>computer services</strong> primarily in <strong>Long Beach</strong> and surrounding Los Angeles County communities like Lakewood, Signal Hill, and Seal Beach. For businesses requiring <strong>managed IT services</strong> or specialized <strong>network solutions</strong>, we offer remote support across Southern California.</p>
             </div>
              <div className="bg-white p-6 rounded-lg shadow-md">
               <h3 className="text-lg font-semibold text-gray-900 mb-3">Do you offer same-day service?</h3>
-              <p className="text-gray-600">Yes, we offer same-day service for many issues, depending on our current schedule and the urgency of your situation. Emergency support is available for critical business situations with priority scheduling.</p>
+              <p className="text-gray-600">Yes, we strive to offer same-day <strong>computer repair</strong> and <strong>tech support</strong> in <strong>Long Beach</strong> for many urgent issues, depending on availability. Critical <strong>business IT support</strong> needs receive priority scheduling for emergency assistance.</p>
             </div>
              <div className="bg-white p-6 rounded-lg shadow-md">
               <h3 className="text-lg font-semibold text-gray-900 mb-3">What is your warranty policy?</h3>
-              <p className="text-gray-600">Our services come with a 90-day warranty on labor. If any issue arises with our service within this period, we will address it at no additional charge. Specific component warranties may vary and will be clearly explained.</p>
+              <p className="text-gray-600">Our <strong>Long Beach computer services</strong> come with a 90-day warranty on labor. If any issue arises with our service within this period, we will address it at no additional charge. Specific component warranties may vary and will be clearly explained.</p>
             </div>
              <div className="bg-white p-6 rounded-lg shadow-md">
               <h3 className="text-lg font-semibold text-gray-900 mb-3">Do I need to bring my device to you?</h3>
-              <p className="text-gray-600">We offer both on-site service at your home or business and drop-off options. For many computer issues, we can also provide remote support, accessing your system securely over the internet with your permission.</p>
+              <p className="text-gray-600">We offer flexible options! You can utilize our convenient on-site <strong>IT support</strong> at your <strong>Long Beach</strong> home or business, or use our drop-off service. For many software and configuration issues, our <strong>remote IT support</strong> allows us to resolve problems quickly without an on-site visit.</p>
             </div>
              <div className="bg-white p-6 rounded-lg shadow-md">
               <h3 className="text-lg font-semibold text-gray-900 mb-3">How does the MSP service work?</h3>
-              <p className="text-gray-600">Our Managed Service Provider plans provide comprehensive IT support for businesses on a monthly subscription basis. This includes proactive monitoring, regular maintenance, help desk support, security management, and strategic guidance.</p>
+              <p className="text-gray-600">Our <strong>Managed Service Provider (MSP)</strong> plans offer comprehensive <strong>business IT support</strong> in <strong>Long Beach</strong>. For a fixed monthly fee, you get proactive system monitoring, regular maintenance, unlimited <strong>help desk support</strong>, robust <strong>cybersecurity services</strong>, strategic IT planning, and management of your entire tech infrastructure.</p>
             </div>
              <div className="bg-white p-6 rounded-lg shadow-md">
               <h3 className="text-lg font-semibold text-gray-900 mb-3">What forms of payment do you accept?</h3>
-              <p className="text-gray-600">We accept all major credit cards, cash, and digital payment methods like PayPal and Venmo. For businesses, we can also accommodate purchase orders and net payment terms with approved credit.</p>
+              <p className="text-gray-600">We accept all major credit cards, cash, and digital payment methods like PayPal and Venmo for our <strong>IT services</strong>. For businesses, we can also accommodate purchase orders and net payment terms with approved credit.</p>
             </div>
           </div>
         </div>
