@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react"; // Added useCallback
 import { trackToolUsage } from "@/lib/analytics";
 
 interface PingResult {
@@ -14,6 +14,11 @@ interface TracerouteHop {
   hop: number;
   host: string;
   time: number;
+}
+
+interface PortScanResult {
+  port: number;
+  status: "Open" | "Closed" | "Filtered";
 }
 
 export default function NetworkTools() {
@@ -30,6 +35,13 @@ export default function NetworkTools() {
     [],
   );
   const [isTracing, setIsTracing] = useState(false);
+
+  // Port Scanner State
+  const [scanHost, setScanHost] = useState("");
+  const [scanPorts, setScanPorts] = useState("80, 443, 22, 21, 25, 110, 143, 8080"); // Default common ports
+  const [scanResults, setScanResults] = useState<PortScanResult[]>([]);
+  const [isScanning, setIsScanning] = useState(false);
+  const [scanError, setScanError] = useState<string | null>(null);
 
   const handlePing = async () => {
     if (!pingHost) return;
@@ -138,6 +150,93 @@ export default function NetworkTools() {
   const clearTracerouteResults = () => {
     setTracerouteResults([]);
   };
+
+  // Port Scanner Logic
+  const parsePorts = (portsInput: string): number[] | null => {
+    const ports: number[] = [];
+    const parts = portsInput.split(',');
+
+    for (const part of parts) {
+      const trimmedPart = part.trim();
+      if (trimmedPart.includes('-')) {
+        const [startStr, endStr] = trimmedPart.split('-');
+        const start = parseInt(startStr, 10);
+        const end = parseInt(endStr, 10);
+        if (isNaN(start) || isNaN(end) || start < 1 || end > 65535 || start > end) {
+          return null; // Invalid range
+        }
+        for (let i = start; i <= end; i++) {
+          ports.push(i);
+        }
+      } else {
+        const port = parseInt(trimmedPart, 10);
+        if (isNaN(port) || port < 1 || port > 65535) {
+          return null; // Invalid port
+        }
+        ports.push(port);
+      }
+    }
+    // Remove duplicates and sort
+    return [...new Set(ports)].sort((a, b) => a - b);
+  };
+
+  const handlePortScan = useCallback(async () => {
+    if (!scanHost || !scanPorts) return;
+
+    setIsScanning(true);
+    setScanResults([]);
+    setScanError(null);
+    trackToolUsage("NetworkTools", "port_scan_start", { host: scanHost, ports: scanPorts });
+
+    const portsToScan = parsePorts(scanPorts);
+
+    if (!portsToScan) {
+      setScanError("Invalid port format. Use comma-separated numbers or ranges (e.g., 80, 443, 1000-1024). Ports must be between 1 and 65535.");
+      setIsScanning(false);
+      trackToolUsage("NetworkTools", "port_scan_error", { host: scanHost, error: "Invalid port format" });
+      return;
+    }
+
+    if (portsToScan.length > 1000) { // Limit scan size for simulation
+       setScanError("Too many ports specified for simulation (max 1000). Please narrow your range.");
+       setIsScanning(false);
+       trackToolUsage("NetworkTools", "port_scan_error", { host: scanHost, error: "Too many ports" });
+       return;
+    }
+
+
+    const results: PortScanResult[] = [];
+    const commonOpenPorts = [80, 443, 22, 21, 25, 110, 143, 8080, 3389, 53];
+
+    for (const port of portsToScan) {
+      await new Promise(resolve => setTimeout(resolve, 50)); // Simulate scan delay
+
+      let status: "Open" | "Closed" | "Filtered";
+      if (commonOpenPorts.includes(port)) {
+        status = Math.random() > 0.3 ? "Open" : "Closed"; // Higher chance of being open
+      } else {
+        const rand = Math.random();
+        status = rand < 0.1 ? "Open" : (rand < 0.8 ? "Closed" : "Filtered"); // Lower chance of being open
+      }
+
+      results.push({ port, status });
+      setScanResults([...results]); // Update incrementally
+    }
+
+     trackToolUsage("NetworkTools", "port_scan_complete", {
+       host: scanHost,
+       ports_scanned: portsToScan.length,
+       open_ports: results.filter(r => r.status === 'Open').length
+     });
+
+    setIsScanning(false);
+  }, [scanHost, scanPorts]); // Added dependencies
+
+  const clearScanResults = () => {
+    setScanResults([]);
+    setScanError(null);
+  };
+
 
   return (
     <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -277,6 +376,80 @@ export default function NetworkTools() {
           </>
         )}
       </div>
+
+      {/* Port Scanner Tool */}
+      <div className="bg-white p-6 rounded-lg shadow-md md:col-span-2">
+        <h3 className="text-xl font-semibold mb-4">Port Scanner</h3>
+        <div className="flex flex-col sm:flex-row gap-4 mb-4">
+          <input
+            type="text"
+            value={scanHost}
+            onChange={(e) => setScanHost(e.target.value)}
+            placeholder="Enter hostname or IP"
+            className="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <input
+            type="text"
+            value={scanPorts}
+            onChange={(e) => setScanPorts(e.target.value)}
+            placeholder="Ports (e.g., 80, 443, 1000-1024)"
+            className="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <button
+            onClick={handlePortScan}
+            disabled={isScanning || !scanHost || !scanPorts}
+            className={`px-4 py-2 rounded-md text-white font-medium ${
+              isScanning || !scanHost || !scanPorts
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-blue-600 hover:bg-blue-700"
+            }`}
+          >
+            Scan Ports
+          </button>
+        </div>
+
+        {isScanning && (
+          <div className="text-sm text-gray-600 mb-2">
+            Scanning ports on {scanHost}...
+          </div>
+        )}
+
+        {scanError && (
+           <div className="mb-2 p-3 bg-red-100 text-red-700 text-sm rounded-md">
+             Error: {scanError}
+           </div>
+         )}
+
+        {scanResults.length > 0 && (
+          <>
+            <div className="max-h-64 overflow-y-auto mb-2 font-mono text-sm bg-gray-50 p-3 rounded">
+              <div className="grid grid-cols-3 font-semibold mb-2">
+                <div className="col-span-1">Port</div>
+                <div className="col-span-2">Status</div>
+              </div>
+              {scanResults.map((result, index) => (
+                <div key={index} className="grid grid-cols-3 mb-1">
+                  <div className="col-span-1">{result.port}</div>
+                  <div className={`col-span-2 font-medium ${
+                    result.status === 'Open' ? 'text-green-600' :
+                    result.status === 'Closed' ? 'text-red-600' :
+                    'text-yellow-600' // Filtered
+                  }`}>
+                    {result.status}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <button
+              onClick={clearScanResults}
+              className="text-sm text-gray-600 hover:text-gray-800"
+            >
+              Clear Results
+            </button>
+          </>
+        )}
+      </div>
+
     </div>
   );
 }
