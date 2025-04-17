@@ -14,7 +14,7 @@ const servicesDetail = [
     title: "Laptop & Desktop Services",
     description: "Professional diagnostics and solutions at your home or office.",
     icon: "💻",
-    image: "/images/services/computer-services.jpg",
+    image: "/images/services/computer-services-new.png",
     features: [
       "Screen Solutions",
       "Hardware Upgrades",
@@ -52,7 +52,7 @@ const servicesDetail = [
     title: "Mobile Device Services",
     description: "Expert assistance for smartphones and tablets.",
     icon: "📱",
-    image: "/images/services/mobile-support.jpg",
+    image: "/images/services/mobile-support-new.png",
     features: ["Screen & Glass Solutions", "Battery Replacements", "Charging Port Assistance", "Software Issues", "Data Transfer"],
     pricing: [
       { service: "Phone Screen Assessment", price: "From $79", description: "Assess screen issues for most popular models" },
@@ -84,7 +84,7 @@ const servicesDetail = [
     title: "Data Solutions & Backup",
     description: "Secure solutions for critical business and personal data.",
     icon: "💾",
-    image: "/images/services/data-solutions.jpg",
+    image: "/images/services/data-solutions-new.png",
     features: ["Data Accessibility Consultation", "Cloud Backup Solutions", "Automated Backup Systems", "RAID Accessibility Consultation", "Emergency Data Consultation"],
     pricing: [
       { service: "Basic Data Consultation", price: "From $149", description: "For accessible hard drives" },
@@ -100,7 +100,7 @@ const servicesDetail = [
     title: "Smart Home & Devices",
     description: "Setup and assistance for all your connected devices.",
     icon: "🏠",
-    image: "/images/services/remote-support.jpg",
+    image: "/images/services/smart-home-new.png",
     features: ["Smart Watch Assistance", "Earbud/Headphone Solutions", "Voice Assistant Setup", "Smart Home Configuration", "IoT Device Support"],
     pricing: [
       { service: "Smart Watch Service", price: "From $69", description: "Battery and screen related assistance" },
@@ -116,7 +116,7 @@ const servicesDetail = [
     title: "Business IT Consulting",
     description: "Strategic technology guidance for your organization.",
     icon: "📊",
-    image: "/images/services/it-consulting.jpg",
+    image: "/images/services/it-consulting-new.png",
     features: ["IT Strategy Development", "Technology Assessment", "Cost Optimization", "Vendor Management", "Compliance Solutions"],
     pricing: [
       { service: "IT Assessment", price: "$499", description: "Comprehensive technology evaluation" },
@@ -132,6 +132,7 @@ const servicesDetail = [
     title: "Remote Assistance Options",
     description: "Get help without leaving your home or office.",
     icon: "🌐",
+    image: "/images/services/remote-support-new.png", // Added image property
     features: ["Remote Diagnostics", "Software Installation", "Security Scanning", "System Optimization", "Quick Problem Resolution"],
     pricing: [
       { service: "Quick Assistance Session", price: "$39", description: "30-minute remote assistance" },
