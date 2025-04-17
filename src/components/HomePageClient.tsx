@@ -63,7 +63,7 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: "url('/images/hero-background.jpg')",
+              backgroundImage: "url('/images/hero-background-new.png')",
               mixBlendMode: "overlay",
               opacity: 0.4,
             }}

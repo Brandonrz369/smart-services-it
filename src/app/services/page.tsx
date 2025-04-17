@@ -46,7 +46,7 @@ const servicesDetail = [
       { service: "On-demand IT Support", price: "$125/hr", description: "As-needed IT assistance" },
     ],
     category: "business",
-    longDescription: "Our Managed IT Services provide comprehensive technology management for your business, allowing you to focus on your core operations. We handle everything from day-to-day IT support to strategic planning and implementation. Our proactive approach helps prevent issues before they impact your business, while our 24/7 monitoring ensures rapid response to any emerging problems. We tailor our MSP plans to your specific business needs and budget.",
+    longDescription: "Focus on your core operations while we handle your technology. Our Managed IT Services (MSP) provide comprehensive, proactive IT management tailored for businesses in Long Beach. Benefit from predictable monthly costs (potentially reducing IT expenses by 25-45% compared to traditional models), enhanced cybersecurity with proactive threat management (reducing security incidents significantly), and improved operational efficiency through 24/7 monitoring that minimizes costly downtime. Gain access to certified expertise and enterprise-grade tools without the overhead of a large in-house team. We handle everything from infrastructure management and strategic planning to cloud services and security, ensuring your IT aligns with your business goals. Let us be your strategic IT partner.",
   },
    {
     title: "Mobile Device Services",
@@ -78,7 +78,7 @@ const servicesDetail = [
       { service: "Cloud Server Migration", price: "From $999", description: "Move to cloud infrastructure" },
     ],
     category: "business",
-    longDescription: "Our network and server solutions help businesses establish reliable, secure, and high-performance IT infrastructure. We handle everything from initial network design to ongoing maintenance and security. Our team has extensive experience with Windows Server, Linux, virtualization technologies, and cloud platforms. We also implement comprehensive security measures to protect your valuable business data and ensure business continuity in case of any disruptions.",
+    longDescription: "Establish a reliable, secure, and high-performance IT backbone for your business with our Network & Server Solutions. We design, implement, and manage robust infrastructure, incorporating current best practices like network segmentation and zero-trust principles to enhance security. Our team ensures your systems utilize modern, encrypted protocols (like SMB 3.1.1+) while disabling outdated ones (like SMBv1) to minimize vulnerabilities. We have deep expertise in Windows Server, Linux, virtualization, and cloud platforms, implementing redundancy and proactive monitoring to maximize uptime and performance. Trust us to protect your valuable business data and ensure business continuity through comprehensive security measures and resilient network design.",
   },
   {
     title: "Data Solutions & Backup",
@@ -94,7 +94,7 @@ const servicesDetail = [
       { service: "Business Continuity Plan", price: "From $599", description: "Comprehensive backup strategy" },
     ],
     category: "both",
-    longDescription: "Our data solutions and backup services help both businesses and individuals protect their valuable information and consult on options for data loss situations. We use advanced tools and techniques to assist with accessing data from potentially damaged or corrupted storage media, including hard drives, SSDs, memory cards, and RAID arrays. We also implement robust backup solutions to prevent future data loss, with options for both local and cloud-based backups that run automatically.",
+    longDescription: "Protect your critical business and personal data from loss, corruption, or ransomware. With many businesses failing after significant data loss, a robust strategy is essential. We implement comprehensive Data Solutions & Backup services following best practices like the 3-2-1 rule (3 copies, 2 media types, 1 offsite). Our solutions leverage automated cloud and hybrid backups for reliability, security (including encryption and ransomware resilience), and scalability. We consult on accessing data from various media and design tailored Business Continuity Plans (BCP) with clear Recovery Point Objectives (RPO) and Recovery Time Objectives (RTO) to minimize downtime and keep your operations running.",
   },
   {
     title: "Smart Home & Devices",
@@ -126,7 +126,7 @@ const servicesDetail = [
       { service: "IT Budget Planning", price: "From $799", description: "Optimize technology spending" },
     ],
     category: "business",
-    longDescription: "Our IT consulting services provide strategic guidance to help businesses make informed technology decisions. We work with organizations of all sizes to develop IT strategies that align with business goals, optimize technology investments, and implement solutions that drive growth and efficiency. Our consultants have extensive experience across various industries and can help with everything from technology assessments to compliance requirements and digital transformation initiatives.",
+    longDescription: "Navigate the complexities of modern technology with our strategic Business IT Consulting. We help SMBs align IT with business goals, focusing on key areas like digital transformation (leveraging AI and automation), cloud strategy (optimizing hybrid/multi-cloud environments), and robust cybersecurity posture assessments (implementing zero-trust principles and ensuring compliance). Our expert consultants guide you through technology assessments, cost optimization, vendor management, and the implementation of solutions that drive growth, efficiency, and resilience in today's evolving digital landscape.",
   },
   {
     title: "Remote Assistance Options",
