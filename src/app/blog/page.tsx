@@ -16,18 +16,9 @@ const blogPosts = [
     author: "Brandon Ruiz",
     authorRole: "Lead Technician",
   },
+  // Removing the duplicate entry below
   {
     id: "fix-slow-wifi-long-beach",
-    title: "5 Essential Cybersecurity Tips for Long Beach Residents & Businesses",
-    date: "April 17, 2025",
-    category: "Security",
-    excerpt: "Protect yourself and your business in Long Beach with these 5 crucial cybersecurity tips covering passwords, phishing, updates, Wi-Fi, and backups.",
-    imageUrl: "/images/blog/cybersecurity-tips-long-beach.png", // Correct image path
-    author: "Brandon Ruiz",
-    authorRole: "Lead Technician",
-  },
-  {
-    id: "fix-slow-wifi-long-beach", // Correct ID
     title: "Fixing Slow Wi-Fi: Common Causes & Solutions for Long Beach Homes & Offices", // Correct Title
     date: "April 17, 2025", // Correct Date (can adjust if needed)
     category: "Networking", // Correct Category
