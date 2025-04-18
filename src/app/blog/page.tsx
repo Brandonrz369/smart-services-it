@@ -7,12 +7,32 @@ import FadeIn from "@/components/FadeIn";
 
 const blogPosts = [
   {
+    id: "ai-business-consumer-long-beach",
+    title: "How AI is Reshaping Consumer Experiences & Forcing Long Beach Businesses to Adapt",
+    date: "April 17, 2025",
+    category: "AI",
+    excerpt: "Explore how Artificial Intelligence is changing the game for consumers and businesses in Long Beach, and learn how SMBs can adapt and leverage AI for growth.",
+    imageUrl: "/images/blog/ai-business-consumer-long-beach.webp",
+    author: "Brandon Ruiz",
+    authorRole: "Lead Technician",
+  },
+  {
+    id: "managed-it-services-long-beach",
+    title: "Why Long Beach SMBs Are Switching to Managed IT Services",
+    date: "April 17, 2025",
+    category: "Managed Services", // Using a relevant category
+    excerpt: "Discover the benefits of Managed IT Services for Long Beach small businesses, including cost savings, enhanced security, and proactive support from LB Computer Help.",
+    imageUrl: "/images/blog/managed-it-services-long-beach.webp",
+    author: "Brandon Ruiz",
+    authorRole: "Lead Technician",
+  },
+  {
     id: "cybersecurity-tips-long-beach", // This entry already exists from the failed attempt, just updating imageUrl
     title: "5 Essential Cybersecurity Tips for Long Beach Residents & Businesses",
     date: "April 17, 2025", // Using today's date
     category: "Security",
     excerpt: "Protect yourself and your business in Long Beach with these 5 crucial cybersecurity tips covering passwords, phishing, updates, Wi-Fi, and backups.",
-    imageUrl: "/images/blog/cybersecurity-tips-long-beach.png", // Use generated image
+    imageUrl: "/images/blog/cybersecurity-tips-long-beach.webp", // Use generated image
     author: "Brandon Ruiz",
     authorRole: "Lead Technician",
   },
@@ -23,7 +43,7 @@ const blogPosts = [
     date: "April 17, 2025", // Correct Date (can adjust if needed)
     category: "Networking", // Correct Category
     excerpt: "Experiencing slow Wi-Fi in Long Beach? Learn common causes like router placement, interference, and congestion, plus troubleshooting tips.", // Correct Excerpt
-    imageUrl: "/images/blog/wifi-interference.png", // Correct image path
+    imageUrl: "/images/blog/wifi-interference.webp", // Correct image path
     author: "Brandon Ruiz", // Correct Author
     authorRole: "Lead Technician", // Correct Role
   },
@@ -33,7 +53,7 @@ const blogPosts = [
     date: "April 16, 2025",
     category: "Troubleshooting", // New category or use 'Productivity'/'Computer Services'
     excerpt: "Frustrated with a slow computer in Long Beach? Try these 5 expert troubleshooting tips before calling for repair.",
-    imageUrl: "/images/blog/slow-computer-troubleshooting.png", // Updated image path
+    imageUrl: "/images/blog/slow-computer-troubleshooting.webp", // Updated image path
     author: "Brandon Ruiz", // Assuming Brandon is the author
     authorRole: "Lead Technician",
   },
@@ -44,7 +64,7 @@ const blogPosts = [
     category: "Security",
     excerpt:
       "Learn essential cybersecurity measures every small business should implement to protect against common threats.",
-    imageUrl: "/images/blog/cybersecurity.jpg",
+    imageUrl: "/images/blog/cybersecurity.webp",
     author: "Michael Chen",
     authorRole: "IT Security Specialist",
   },
@@ -55,7 +75,7 @@ const blogPosts = [
     category: "Productivity",
     excerpt:
       "Discover hidden Windows 11 features and settings that can significantly improve your daily workflow.",
-    imageUrl: "/images/blog/windows11.jpg",
+    imageUrl: "/images/blog/windows11.webp",
     author: "Sarah Johnson",
     authorRole: "IT Consultant",
   },
@@ -66,7 +86,7 @@ const blogPosts = [
     category: "Cloud Services",
     excerpt:
       "A comprehensive comparison of popular cloud storage options to help you choose the right one for your business needs.",
-    imageUrl: "/images/blog/cloud-storage.jpg",
+    imageUrl: "/images/blog/cloud-storage.webp",
     author: "Michael Chen",
     authorRole: "IT Security Specialist",
   },
@@ -77,7 +97,7 @@ const blogPosts = [
     category: "Networking",
     excerpt:
       "A guide to diagnosing and resolving the most frequent network problems faced by home and small business users.",
-    imageUrl: "/images/blog/networking.jpg",
+    imageUrl: "/images/blog/networking.webp",
     author: "Sarah Johnson",
     authorRole: "IT Consultant",
   },
@@ -88,7 +108,7 @@ const blogPosts = [
     category: "Mobile Devices",
     excerpt:
       "Simple but effective strategies to maximize battery life on both Android and iPhone devices.",
-    imageUrl: "/images/blog/smartphone.jpg",
+    imageUrl: "/images/blog/smartphone.webp",
     author: "Michael Chen",
     authorRole: "IT Security Specialist",
   },
@@ -99,7 +119,7 @@ const blogPosts = [
     category: "MSP",
     excerpt:
       "How managed services can reduce costs, improve reliability, and provide strategic advantages for growing businesses.",
-    imageUrl: "/images/blog/managed-services.jpg",
+    imageUrl: "/images/blog/managed-services.webp",
     author: "Sarah Johnson",
     authorRole: "IT Consultant",
   },
