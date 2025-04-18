@@ -11,6 +11,7 @@ import PasswordGenerator from "@/components/PasswordGenerator";
 import DomainLookup from "@/components/DomainLookup";
 import ImageCompressor from "@/components/ImageCompressor";
 import SeoAnalyzer from "@/components/SeoAnalyzer";
+import TechTermExplainer from "@/components/TechTermExplainer"; // Import the new component
 
 export default function WebTools() {
   const [activeTab, setActiveTab] = useState<
@@ -24,6 +25,7 @@ export default function WebTools() {
     | "domain"
     | "image"
     | "seo"
+    | "explain" // Add new tab state
   >("simple");
 
   // Check URL parameters for direct tool navigation
@@ -226,6 +228,18 @@ export default function WebTools() {
           >
             Images
           </button>
+          {/* New Explain Term Tab Button */}
+          <button
+            className={`py-2 px-3 font-medium text-center text-sm md:text-base ${
+              activeTab === "explain"
+                ? "text-blue-600 border-b-2 border-blue-600"
+                : "text-gray-500 hover:text-gray-700"
+            }`}
+            onClick={() => setActiveTab("explain")}
+            data-tool="explain"
+          >
+            Explain Term
+          </button>
         </div>
       </div>
 
@@ -392,6 +406,19 @@ export default function WebTools() {
           </div>
 
           <SeoAnalyzer />
+        </div>
+      )}
+
+      {/* Explain Term Tab */}
+      {activeTab === "explain" && (
+        <div>
+          <div className="mb-8 bg-teal-50 p-4 rounded-lg">
+            <h2 className="text-xl font-semibold mb-2">Tech Term Explainer</h2>
+            <p className="text-gray-600 mb-4">
+              Enter an IT or technology term to get a simple explanation using our research AI.
+            </p>
+          </div>
+          <TechTermExplainer />
         </div>
       )}
     </div>
