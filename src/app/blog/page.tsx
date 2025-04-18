@@ -12,7 +12,7 @@ const blogPosts = [
     date: "April 17, 2025",
     category: "AI",
     excerpt: "Explore how Artificial Intelligence is changing the game for consumers and businesses in Long Beach, and learn how SMBs can adapt and leverage AI for growth.",
-    imageUrl: "/images/blog/ai-business-consumer-long-beach.webp",
+    imageUrl: "/images/blog/managed-services.webp", // Placeholder image
     author: "Brandon Ruiz",
     authorRole: "Lead Technician",
   },
@@ -22,7 +22,7 @@ const blogPosts = [
     date: "April 17, 2025",
     category: "Managed Services", // Using a relevant category
     excerpt: "Discover the benefits of Managed IT Services for Long Beach small businesses, including cost savings, enhanced security, and proactive support from LB Computer Help.",
-    imageUrl: "/images/blog/managed-it-services-long-beach.webp",
+    imageUrl: "/images/blog/managed-services.webp", // Placeholder image
     author: "Brandon Ruiz",
     authorRole: "Lead Technician",
   },

@@ -69,7 +69,7 @@ const blogPosts = [
     author: "Brandon Ruiz",
     authorRole: "Lead Technician",
     authorBio: "Brandon is the founder and lead technician at LB Computer Help, dedicated to providing friendly and effective tech solutions to the Long Beach community.",
-    imageUrl: "/images/blog/ai-business-consumer-long-beach.webp", // Updated to webp
+    imageUrl: "/images/blog/managed-services.webp", // Placeholder image
     relatedPosts: [
       "managed-it-services-long-beach",
       "securing-your-small-business",
@@ -143,7 +143,7 @@ const blogPosts = [
     author: "Brandon Ruiz",
     authorRole: "Lead Technician",
     authorBio: "Brandon is the founder and lead technician at LB Computer Help, dedicated to providing friendly and effective tech solutions to the Long Beach community.",
-    imageUrl: "/images/blog/managed-it-services-long-beach.webp",
+    imageUrl: "/images/blog/managed-services.webp", // Placeholder image
     relatedPosts: [
       "cybersecurity-tips-long-beach",
       "securing-your-small-business",
