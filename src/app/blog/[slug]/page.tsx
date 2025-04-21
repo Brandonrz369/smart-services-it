@@ -126,20 +126,30 @@ async function getRelatedPostsMetadata(relatedPostSlugs: string[] | undefined): 
 }
 
 // --- Main Page Component ---
-export default async function BlogPostPage({ params }: { params: { slug: string } }) { // Removed explicit Promise<JSX.Element> return type for now
+export default function BlogPostPage({ params }: { params: { slug: string } }) { // REMOVED async keyword
+  // NOTE: Data fetching inside a non-async Server Component is NOT standard practice
+  // and will likely cause errors or unexpected behavior at runtime.
+  // This is purely to test if removing 'async' affects the build-time type error.
   let postData;
   let frontmatter: PostFrontmatter | null = null;
   let relatedPostsMetadata: (PostFrontmatter & { id: string })[] = [];
   let errorOccurred = false;
 
+  // !!! WARNING: Running async operations like this inside a non-async Server Component
+  // !!! is generally incorrect and will likely lead to runtime issues or errors.
+  // !!! This change is ONLY to diagnose the persistent build-time type error.
   try {
-    // postData = await getPostData(params.slug); // Temporarily comment out
-    // frontmatter = postData.frontmatter as PostFrontmatter; // Temporarily comment out
-    // if (frontmatter?.relatedPosts) { // Temporarily comment out
-    //    relatedPostsMetadata = await getRelatedPostsMetadata(frontmatter.relatedPosts); // Temporarily comment out
-    // } // Temporarily comment out
+    // We still need to await the promises here, which is problematic in a sync function.
+    // This structure is fundamentally flawed for data fetching in Server Components.
+    // Let's keep the simulation for now to see if removing 'async' from the
+    // function signature alone impacts the build error.
+    // postData = await getPostData(params.slug);
+    // frontmatter = postData.frontmatter as PostFrontmatter;
+    // if (frontmatter?.relatedPosts) {
+    //    relatedPostsMetadata = await getRelatedPostsMetadata(frontmatter.relatedPosts);
+    // }
 
-    // --- Simulate data for testing build ---
+     // --- Simulate data for testing build ---
     postData = { content: "Simulated content" };
     frontmatter = {
         title: "Simulated Title",
