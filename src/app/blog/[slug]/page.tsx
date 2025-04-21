@@ -10,7 +10,8 @@ import { getPostData as getPostDataFromLib } from "@/lib/posts"; // Use the lib 
 const postsDirectory = path.join(process.cwd(), "content/blog");
 
 // Function to get all post slugs (filenames without .mdx)
-export function getAllPostIds() {
+// REMOVED export keyword - This should not be exported from a page file
+function getAllPostIds() {
   try {
     const fileNames = fs.readdirSync(postsDirectory);
     return fileNames
