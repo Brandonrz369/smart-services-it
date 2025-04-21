@@ -14,7 +14,7 @@ declare global {
 
 export default function ContactPageClient() {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [formStatus, setFormStatus] = useState<"idle" | "success" | "error">(
+  const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">(
     "idle",
   );
 
@@ -22,18 +22,41 @@ export default function ContactPageClient() {
     setIsLoaded(true);
   }, []);
 
-  // Handle form submission status (replace with actual logic if using state for this)
+  // Handle form submission
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // Simulate form submission
-    // In a real app, you'd send data to Formspree or your backend
-    // and update status based on the response.
-    // For now, let's just simulate success for demonstration.
-    // Replace this simulation with your actual form handling logic.
+    setFormStatus("submitting");
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
     try {
-      // Example: await fetch(event.currentTarget.action, { method: 'POST', body: new FormData(event.currentTarget) });
-      setFormStatus("success");
+      // Call Google Ads conversion tracking
+      if (typeof window.gtag_report_conversion === 'function') {
+        window.gtag_report_conversion();
+      }
+
+      // Submit to Formspree
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        setFormStatus("success");
+        // Optionally reset form fields here if needed
+        // form.reset();
+      } else {
+        // Try to get error from Formspree response
+        const data = await response.json();
+        console.error("Formspree error:", data);
+        setFormStatus("error");
+      }
     } catch (error) {
+      console.error("Submission error:", error);
       setFormStatus("error");
     }
   };
@@ -205,10 +228,14 @@ export default function ContactPageClient() {
                     </div>
                      <button
                        type="submit"
-                       className="w-full py-3 px-4 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition duration-300"
-                       onClick={() => { if (typeof window.gtag_report_conversion === 'function') { window.gtag_report_conversion(); } }}
+                       disabled={formStatus === 'submitting'} // Disable button while submitting
+                       className={`w-full py-3 px-4 font-bold rounded-lg transition duration-300 ${
+                         formStatus === 'submitting'
+                           ? 'bg-gray-400 cursor-not-allowed'
+                           : 'bg-blue-600 text-white hover:bg-blue-700'
+                       }`}
                      >
-                       Send Message
+                       {formStatus === 'submitting' ? 'Sending...' : 'Send Message'}
                      </button>
                   </form>
                 )}
