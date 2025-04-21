@@ -246,11 +246,10 @@ export default function WebTools() {
       {/* Simple Form Tab */}
       {activeTab === "simple" && (
         <div className="max-w-md mx-auto">
-          <div className="mb-8 bg-blue-50 p-4 rounded-lg">
+          <div className="mb-8 bg-blue-50 p-4 rounded-lg border border-blue-100">
             <h2 className="text-xl font-semibold mb-2">Form Submission Test</h2>
-            <p className="text-gray-600 mb-4">
-              This page contains a simple contact form that submits to FormSpree
-              for testing purposes.
+            <p className="text-gray-600 mb-4 text-sm">
+              Use this basic form to perform a simple end-to-end test of the Formspree submission process. It includes standard fields and submits directly to the configured endpoint.
             </p>
           </div>
 
@@ -261,12 +260,10 @@ export default function WebTools() {
       {/* Debug Form Tab */}
       {activeTab === "debug" && (
         <div>
-          <div className="mb-8 bg-yellow-50 p-4 rounded-lg">
+          <div className="mb-8 bg-yellow-50 p-4 rounded-lg border border-yellow-100">
             <h2 className="text-xl font-semibold mb-2">FormSpree Debugger</h2>
-            <p className="text-gray-600 mb-4">
-              Use this tool to test your FormSpree configuration with different
-              submission methods and custom fields. The debugger provides
-              detailed logs to help diagnose submission issues.
+            <p className="text-gray-600 mb-4 text-sm">
+              Test Formspree configurations with various methods (POST, AJAX) and custom data. This tool helps diagnose integration issues by showing detailed submission attempts and responses. Ideal for developers setting up new forms.
             </p>
           </div>
 
@@ -277,12 +274,10 @@ export default function WebTools() {
       {/* Form Logs Tab */}
       {activeTab === "logs" && (
         <div>
-          <div className="mb-8 bg-blue-50 p-4 rounded-lg">
+          <div className="mb-8 bg-blue-50 p-4 rounded-lg border border-blue-100">
             <h2 className="text-xl font-semibold mb-2">Form Submission Logs</h2>
-            <p className="text-gray-600 mb-4">
-              This panel shows logs from form submissions across the entire
-              website. Use this to track and debug form submissions from any
-              page.
+            <p className="text-gray-600 mb-4 text-sm">
+              View a real-time stream of form submission events captured from across the website. Useful for monitoring form activity, identifying errors, and confirming successful submissions without checking email or backend logs.
             </p>
           </div>
 
@@ -293,12 +288,10 @@ export default function WebTools() {
       {/* Speed Test Tab */}
       {activeTab === "speed" && (
         <div>
-          <div className="mb-8 bg-green-50 p-4 rounded-lg">
+          <div className="mb-8 bg-green-50 p-4 rounded-lg border border-green-100">
             <h2 className="text-xl font-semibold mb-2">Network Speed Test</h2>
-            <p className="text-gray-600 mb-4">
-              Test your internet connection speed and performance. This tool
-              measures ping, download, and upload speeds to help diagnose
-              connectivity issues.
+            <p className="text-gray-600 mb-4 text-sm">
+              Check your current internet connection's performance. This tool measures latency (ping), download speed, and upload speed against nearby servers to help identify potential network bottlenecks or ISP issues.
             </p>
           </div>
 
@@ -309,14 +302,12 @@ export default function WebTools() {
       {/* Network Tools Tab */}
       {activeTab === "network" && (
         <div>
-          <div className="mb-8 bg-purple-50 p-4 rounded-lg">
+          <div className="mb-8 bg-purple-50 p-4 rounded-lg border border-purple-100">
             <h2 className="text-xl font-semibold mb-2">
               Network Diagnostic Tools
             </h2>
-            <p className="text-gray-600 mb-4">
-              This section provides various network diagnostic tools including
-              ping, DNS lookup, and traceroute to help identify and troubleshoot
-              network connectivity issues.
+            <p className="text-gray-600 mb-4 text-sm">
+              Utilize standard network utilities like Ping (check host reachability and latency), DNS Lookup (find IP addresses for domains), and Traceroute (map the network path to a destination) to diagnose connectivity problems.
             </p>
           </div>
 
@@ -327,14 +318,12 @@ export default function WebTools() {
       {/* Color Generator Tab */}
       {activeTab === "color" && (
         <div>
-          <div className="mb-8 bg-blue-50 p-4 rounded-lg">
+          <div className="mb-8 bg-blue-50 p-4 rounded-lg border border-blue-100">
             <h2 className="text-xl font-semibold mb-2">
               Color Palette Generator
             </h2>
-            <p className="text-gray-600 mb-4">
-              Generate harmonious color palettes for your design projects. This
-              tool offers various palette types including analogous,
-              monochromatic, triadic, and complementary color schemes.
+            <p className="text-gray-600 mb-4 text-sm">
+              Create visually appealing color schemes for web design or branding. Enter a base color or generate random palettes based on different color harmony rules (analogous, monochromatic, triadic, complementary).
             </p>
           </div>
 
@@ -345,14 +334,12 @@ export default function WebTools() {
       {/* Password Generator Tab */}
       {activeTab === "password" && (
         <div>
-          <div className="mb-8 bg-gray-50 p-4 rounded-lg">
+          <div className="mb-8 bg-gray-50 p-4 rounded-lg border border-gray-100">
             <h2 className="text-xl font-semibold mb-2">
               Strong Password Generator
             </h2>
-            <p className="text-gray-600 mb-4">
-              Create secure, random passwords with customizable options for
-              length and character types. The generator includes strength
-              indicators and password history.
+            <p className="text-gray-600 mb-4 text-sm">
+              Generate strong, random passwords to enhance security. Customize the length and include/exclude character types (uppercase, lowercase, numbers, symbols). Includes a password strength indicator.
             </p>
           </div>
 
@@ -363,12 +350,10 @@ export default function WebTools() {
       {/* Domain Lookup Tab */}
       {activeTab === "domain" && (
         <div>
-          <div className="mb-8 bg-indigo-50 p-4 rounded-lg">
+          <div className="mb-8 bg-indigo-50 p-4 rounded-lg border border-indigo-100">
             <h2 className="text-xl font-semibold mb-2">Domain & DNS Lookup</h2>
-            <p className="text-gray-600 mb-4">
-              Retrieve DNS records, IP addresses, and WHOIS information for any
-              domain name. This tool provides detailed insights into domain
-              configurations.
+            <p className="text-gray-600 mb-4 text-sm">
+              Investigate domain names. Look up essential DNS records (A, MX, NS, TXT), find the domain's IP address, and retrieve public WHOIS registration information to check ownership and configuration details.
             </p>
           </div>
 
@@ -379,14 +364,12 @@ export default function WebTools() {
       {/* Image Compressor Tab */}
       {activeTab === "image" && (
         <div>
-          <div className="mb-8 bg-purple-50 p-4 rounded-lg">
+          <div className="mb-8 bg-purple-50 p-4 rounded-lg border border-purple-100">
             <h2 className="text-xl font-semibold mb-2">
               Image Compression Tool
             </h2>
-            <p className="text-gray-600 mb-4">
-              Optimize images by reducing their file size while maintaining
-              quality. Compress JPG, PNG, WebP, and GIF files for faster website
-              loading.
+            <p className="text-gray-600 mb-4 text-sm">
+              Reduce image file sizes for faster web page loading without significant quality loss. Upload JPG, PNG, WebP, or GIF files and apply compression to optimize them for web use.
             </p>
           </div>
 
@@ -397,11 +380,10 @@ export default function WebTools() {
       {/* SEO Analyzer Tab */}
       {activeTab === "seo" && (
         <div>
-          <div className="mb-8 bg-indigo-50 p-4 rounded-lg">
+          <div className="mb-8 bg-indigo-50 p-4 rounded-lg border border-indigo-100">
             <h2 className="text-xl font-semibold mb-2">SEO Analyzer Tool</h2>
-            <p className="text-gray-600 mb-4">
-              Analyze websites for SEO best practices and receive actionable
-              recommendations to improve search engine rankings and visibility.
+            <p className="text-gray-600 mb-4 text-sm">
+              Perform a basic SEO audit of any webpage. Enter a URL to check for common on-page SEO factors like title tags, meta descriptions, header usage, keyword density, and image alt text, receiving recommendations for improvement.
             </p>
           </div>
 
@@ -412,10 +394,10 @@ export default function WebTools() {
       {/* Explain Term Tab */}
       {activeTab === "explain" && (
         <div>
-          <div className="mb-8 bg-teal-50 p-4 rounded-lg">
+          <div className="mb-8 bg-teal-50 p-4 rounded-lg border border-teal-100">
             <h2 className="text-xl font-semibold mb-2">Tech Term Explainer</h2>
-            <p className="text-gray-600 mb-4">
-              Enter an IT or technology term to get a simple explanation using our research AI.
+            <p className="text-gray-600 mb-4 text-sm">
+              Confused by technical jargon? Enter an IT or technology term (e.g., DNS, VPN, Firewall, SSD) and get a clear, simple explanation powered by our research AI to help you understand complex concepts.
             </p>
           </div>
           <TechTermExplainer />
