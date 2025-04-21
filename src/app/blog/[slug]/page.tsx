@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { MDXRemote } from 'next-mdx-remote/rsc';
+// import { MDXRemote } from 'next-mdx-remote/rsc'; // Temporarily comment out MDX
 import { getPostData as getPostDataFromLib } from "@/lib/posts";
 
 const postsDirectory = path.join(process.cwd(), "content/blog");
@@ -203,9 +203,10 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
             </div>
 
             {/* Article Content */}
-            <article className="prose prose-lg max-w-none prose-headings:font-bold prose-a:text-blue-600 hover:prose-a:text-blue-800 prose-strong:font-semibold">
+             <article className="prose prose-lg max-w-none prose-headings:font-bold prose-a:text-blue-600 hover:prose-a:text-blue-800 prose-strong:font-semibold">
                {/* Use MDXRemote to render the content */}
-               <MDXRemote source={postData.content} />
+               {/* <MDXRemote source={postData.content} /> */} {/* Temporarily comment out MDX rendering */}
+               <p>[MDX Content Placeholder]</p> {/* Add placeholder */}
             </article>
 
             {/* Author Bio */}
