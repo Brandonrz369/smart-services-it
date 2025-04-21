@@ -30,10 +30,12 @@ async function getPostData(slug: string) {
 }
 
 // Generate static paths for all blog posts
+/* // Temporarily comment out generateStaticParams again
 export function generateStaticParams() { // Removed async
    const paths = getAllPostIds();
    return paths;
 }
+*/ // Temporarily comment out generateStaticParams again
 
 // Define the type for the expected frontmatter structure
 interface PostFrontmatter {
