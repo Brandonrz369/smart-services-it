@@ -124,7 +124,7 @@ async function getRelatedPostsMetadata(relatedPostSlugs: string[] | undefined): 
 }
 
 // --- Main Page Component ---
-export default async function BlogPostPage({ params }: { params: { slug: string } }): Promise<JSX.Element> {
+export default async function BlogPostPage({ params }: { params: { slug: string } }) { // Removed explicit Promise<JSX.Element> return type for now
   let postData;
   let frontmatter: PostFrontmatter | null = null;
   let relatedPostsMetadata: (PostFrontmatter & { id: string })[] = [];
