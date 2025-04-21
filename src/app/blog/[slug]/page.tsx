@@ -126,7 +126,7 @@ async function getRelatedPostsMetadata(relatedPostSlugs: string[] | undefined): 
 }
 
 // --- Main Page Component ---
-export default function BlogPostPage({ params }: { params: { slug: string } }) { // REMOVED async keyword
+export default function SpecificBlogPostPage({ params }: { params: { slug: string } }) { // Renamed component
   // NOTE: Data fetching inside a non-async Server Component is NOT standard practice
   // and will likely cause errors or unexpected behavior at runtime.
   // This is purely to test if removing 'async' affects the build-time type error.
