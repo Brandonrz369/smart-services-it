@@ -1,11 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Metadata } from "next";
+// import { Metadata } from "next"; // Comment out
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { MDXRemote } from 'next-mdx-remote/rsc'; // Import MDXRemote
-import { getPostData as getPostDataFromLib } from "@/lib/posts"; // Use the lib function
+// import { MDXRemote } from 'next-mdx-remote/rsc'; // Comment out
+// import { getPostData as getPostDataFromLib } from "@/lib/posts"; // Comment out
 
 const postsDirectory = path.join(process.cwd(), "content/blog");
 
@@ -26,15 +26,15 @@ function getAllPostIds() {
 }
 
 // Function to get data for a single post by slug (using the lib function now)
-async function getPostData(slug: string) {
-    return getPostDataFromLib(slug); // Delegate to the lib function
-}
+// async function getPostData(slug: string) { // Comment out
+//     return getPostDataFromLib(slug); // Delegate to the lib function
+// }
 
 // Generate static paths for all blog posts
-export async function generateStaticParams() {
-   const paths = getAllPostIds();
-   return paths;
-}
+// export async function generateStaticParams() { // Comment out
+//    const paths = getAllPostIds();
+//    return paths;
+// }
 
 // Define the type for the expected frontmatter structure
 interface PostFrontmatter {
@@ -50,104 +50,112 @@ interface PostFrontmatter {
 }
 
 // Generate metadata for the page
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
- try {
-    const postData = await getPostData(params.slug);
-    const frontmatter = postData.frontmatter as PostFrontmatter;
+// export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> { // Comment out
+//  try {
+//     const postData = await getPostData(params.slug);
+//     const frontmatter = postData.frontmatter as PostFrontmatter;
 
-    if (!frontmatter) {
-        // This case might not be reachable if getPostData throws, but good practice
-        return { title: "Post Not Found" };
-    }
+//     if (!frontmatter) {
+//         // This case might not be reachable if getPostData throws, but good practice
+//         return { title: "Post Not Found" };
+//     }
 
-    // Add keywords relevant to the post category and general business
-    const baseKeywords = "LB Computer Help, Long Beach IT support, computer services Long Beach, tech blog";
-    const categoryKeywords = {
-        Security: "cybersecurity tips, small business security, data protection",
-        Productivity: "Windows 11 tips, productivity hacks, tech efficiency",
-        "Cloud Services": "cloud storage comparison, business cloud solutions, OneDrive",
-        Networking: "network troubleshooting, fix wifi issues, home networking",
-        "Mobile Devices": "smartphone tips, extend battery life, mobile tech help",
-        MSP: "managed IT services benefits, MSP Long Beach, business IT outsourcing",
-        AI: "artificial intelligence, AI for business, adapting to AI", // Added AI category
-        Troubleshooting: "computer troubleshooting, slow computer fix, tech support tips", // Added Troubleshooting
-        "Managed Services": "managed IT services, outsourced IT Long Beach, business IT support", // Added Managed Services alias
-    };
-    // @ts-ignore
-    const specificKeywords = categoryKeywords[frontmatter.category] || frontmatter.category || ""; // Use category itself if not mapped
+//     // Add keywords relevant to the post category and general business
+//     const baseKeywords = "LB Computer Help, Long Beach IT support, computer services Long Beach, tech blog";
+//     const categoryKeywords = {
+//         Security: "cybersecurity tips, small business security, data protection",
+//         Productivity: "Windows 11 tips, productivity hacks, tech efficiency",
+//         "Cloud Services": "cloud storage comparison, business cloud solutions, OneDrive",
+//         Networking: "network troubleshooting, fix wifi issues, home networking",
+//         "Mobile Devices": "smartphone tips, extend battery life, mobile tech help",
+//         MSP: "managed IT services benefits, MSP Long Beach, business IT outsourcing",
+//         AI: "artificial intelligence, AI for business, adapting to AI", // Added AI category
+//         Troubleshooting: "computer troubleshooting, slow computer fix, tech support tips", // Added Troubleshooting
+//         "Managed Services": "managed IT services, outsourced IT Long Beach, business IT support", // Added Managed Services alias
+//     };
+//     // @ts-ignore
+//     const specificKeywords = categoryKeywords[frontmatter.category] || frontmatter.category || ""; // Use category itself if not mapped
 
-    return {
-        title: `${frontmatter.title} | LB Computer Help Blog`,
-        description: `${frontmatter.excerpt} - Read more on the LB Computer Help blog for Long Beach tech insights.`,
-        keywords: `${baseKeywords}, ${specificKeywords}, ${frontmatter.title}`,
-        openGraph: {
-            title: `${frontmatter.title} | LB Computer Help Blog`,
-            description: frontmatter.excerpt,
-            url: `https://lbcomputerhelp.com/blog/${params.slug}`,
-            images: [
-            {
-                url: `https://lbcomputerhelp.com${frontmatter.imageUrl}`, // Ensure absolute URL
-                width: 1200,
-                height: 630,
-                alt: frontmatter.title,
-            },
-            ],
-            type: 'article',
-            publishedTime: new Date(frontmatter.date).toISOString(), // Format date for OG
-            authors: [frontmatter.author],
-        },
-        twitter: {
-            card: 'summary_large_image',
-            title: `${frontmatter.title} | LB Computer Help Blog`,
-            description: frontmatter.excerpt,
-            images: [`https://lbcomputerhelp.com${frontmatter.imageUrl}`], // Ensure absolute URL
-        },
-    };
- } catch (error) {
-    console.error(`Error generating metadata for ${params.slug}:`, error);
-    return {
-        title: "Post Not Found",
-        description: "The blog post you are looking for could not be loaded.",
-    };
- }
-}
+//     return {
+//         title: `${frontmatter.title} | LB Computer Help Blog`,
+//         description: `${frontmatter.excerpt} - Read more on the LB Computer Help blog for Long Beach tech insights.`,
+//         keywords: `${baseKeywords}, ${specificKeywords}, ${frontmatter.title}`,
+//         openGraph: {
+//             title: `${frontmatter.title} | LB Computer Help Blog`,
+//             description: frontmatter.excerpt,
+//             url: `https://lbcomputerhelp.com/blog/${params.slug}`,
+//             images: [
+//             {
+//                 url: `https://lbcomputerhelp.com${frontmatter.imageUrl}`, // Ensure absolute URL
+//                 width: 1200,
+//                 height: 630,
+//                 alt: frontmatter.title,
+//             },
+//             ],
+//             type: 'article',
+//             publishedTime: new Date(frontmatter.date).toISOString(), // Format date for OG
+//             authors: [frontmatter.author],
+//         },
+//         twitter: {
+//             card: 'summary_large_image',
+//             title: `${frontmatter.title} | LB Computer Help Blog`,
+//             description: frontmatter.excerpt,
+//             images: [`https://lbcomputerhelp.com${frontmatter.imageUrl}`], // Ensure absolute URL
+//         },
+//     };
+//  } catch (error) {
+//     console.error(`Error generating metadata for ${params.slug}:`, error);
+//     return {
+//         title: "Post Not Found",
+//         description: "The blog post you are looking for could not be loaded.",
+//     };
+//  }
+// }
 
 // --- Helper Function to Get Related Posts Metadata ---
-async function getRelatedPostsMetadata(relatedPostSlugs: string[] | undefined): Promise<(PostFrontmatter & { id: string })[]> {
-    if (!relatedPostSlugs || relatedPostSlugs.length === 0) {
-        return [] as (PostFrontmatter & { id: string })[];
-    }
+// async function getRelatedPostsMetadata(relatedPostSlugs: string[] | undefined): Promise<(PostFrontmatter & { id: string })[]> { // Comment out
+//     if (!relatedPostSlugs || relatedPostSlugs.length === 0) {
+//         return [] as (PostFrontmatter & { id: string })[];
+//     }
 
-    const relatedPostsData = await Promise.all(
-        relatedPostSlugs.map(async (slug) => {
-            try {
-                const postData = await getPostData(slug);
-                 // Ensure the returned object matches the intersection type
-                 const metadata: PostFrontmatter & { id: string } = {
-                    id: slug,
-                    ...(postData.frontmatter as PostFrontmatter), // Spread frontmatter
-                    // Add default for potentially missing optional fields if necessary
-                    authorBio: (postData.frontmatter as PostFrontmatter).authorBio || '',
-                };
-                return metadata;
-            } catch (error) {
-                console.error(`Error fetching related post data for slug: ${slug}`, error);
-                return null; // Handle cases where a related post might not exist
-            }
-        })
-    );
+//     const relatedPostsData = await Promise.all(
+//         relatedPostSlugs.map(async (slug) => {
+//             try {
+//                 const postData = await getPostData(slug);
+//                  // Ensure the returned object matches the intersection type
+//                  const metadata: PostFrontmatter & { id: string } = {
+//                     id: slug,
+//                     ...(postData.frontmatter as PostFrontmatter), // Spread frontmatter
+//                     // Add default for potentially missing optional fields if necessary
+//                     authorBio: (postData.frontmatter as PostFrontmatter).authorBio || '',
+//                 };
+//                 return metadata;
+//             } catch (error) {
+//                 console.error(`Error fetching related post data for slug: ${slug}`, error);
+//                 return null; // Handle cases where a related post might not exist
+//             }
+//         })
+//     );
 
-    return relatedPostsData.filter((post): post is PostFrontmatter & { id: string } => post !== null);
-}
+//     return relatedPostsData.filter((post): post is PostFrontmatter & { id: string } => post !== null);
+// }
 
-// Define explicit props type for Next.js App Router page
-interface PageProps {
-  params: { slug: string };
-  searchParams?: { [key: string]: string | string[] | undefined };
-}
 
 // --- Main Page Component ---
-export default async function BlogPostPage({ params }: { params: { slug: string } }): Promise<JSX.Element> { // Add explicit return type
+// Use simple props type for testing
+export default async function BlogPostPage({ params }: { params: { slug: string } }): Promise<JSX.Element> {
+
+  // --- Simplified Content ---
+  return (
+    <div className="min-h-screen bg-background text-foreground font-sans p-8">
+       <h1 className="text-3xl font-bold">Blog Post: {params.slug}</h1>
+       <p>Content for this post would normally be loaded here.</p>
+       <Link href="/blog">Back to Blog</Link>
+    </div>
+  );
+
+  // --- Original Content (Commented Out) ---
+  /*
   let postData;
   let frontmatter: PostFrontmatter | null = null; // Initialize as null
   let relatedPostsMetadata: (PostFrontmatter & { id: string })[] = [];
@@ -206,7 +214,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
   // If data fetched successfully, render the main component body
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
-      {/* Header Section */}
+      // Header Section
       <div className="relative py-16 bg-gradient-to-r from-blue-800 to-blue-600 text-white">
         <div className="absolute inset-0 bg-black opacity-30"></div>
         <div className="container mx-auto px-4 md:px-8 relative z-10">
@@ -259,12 +267,12 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         </div>
       </div>
 
-      {/* Main Content Area */}
+      // Main Content Area
       <div className="bg-white py-12 md:py-16">
         <div className="container mx-auto px-4 md:px-8">
           <div className="max-w-3xl mx-auto">
-            {/* Featured Image */}
-            <div className="w-full h-64 md:h-96 rounded-lg mb-8 relative overflow-hidden shadow-lg"> {/* Increased height and added shadow */}
+            // Featured Image
+            <div className="w-full h-64 md:h-96 rounded-lg mb-8 relative overflow-hidden shadow-lg"> // Increased height and added shadow
               <Image
                 src={frontmatter.imageUrl}
                 alt={`Featured image for blog post: ${frontmatter.title}`}
@@ -275,18 +283,18 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
               />
             </div>
 
-            {/* Article Content */}
+            // Article Content
             <article
               className="prose prose-lg max-w-none prose-headings:font-bold prose-a:text-blue-600 hover:prose-a:text-blue-800 prose-strong:font-semibold" // Added prose styling
             >
-               {/* Use MDXRemote to render the content */}
-               <MDXRemote source={postData.content} />
+               // Use MDXRemote to render the content
+               // <MDXRemote source={postData.content} /> // Commented out MDXRemote
             </article>
 
-            {/* Author Bio */}
+            // Author Bio
             {frontmatter.authorBio && (
                 <div className="mt-12 pt-8 border-t border-gray-200">
-                <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg"> {/* Added background and padding */}
+                <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg"> // Added background and padding
                     <div className="bg-blue-600 rounded-full w-16 h-16 flex-shrink-0 flex items-center justify-center text-white text-xl font-bold">
                     {frontmatter.author
                         .split(" ")
@@ -302,11 +310,11 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
                 </div>
             )}
 
-            {/* Share Buttons (Placeholder) */}
+            // Share Buttons (Placeholder)
             <div className="mt-10 flex items-center">
               <span className="text-gray-700 mr-4 font-medium">Share this article:</span>
               <div className="flex gap-2">
-                {/* Add actual sharing links later */}
+                // Add actual sharing links later
                 <button className="p-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition" aria-label="Share on Facebook">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" /></svg>
                 </button>
@@ -322,7 +330,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         </div>
       </div>
 
-      {/* Related Posts Section */}
+      // Related Posts Section
       {relatedPostsMetadata.length > 0 && (
         <section className="py-16 px-4 md:px-8 bg-gray-50">
           <div className="max-w-6xl mx-auto">
@@ -368,7 +376,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         </section>
       )}
 
-      {/* CTA Section */}
+      // CTA Section
       <section className="py-16 px-4 md:px-8 bg-blue-600 text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4">
@@ -395,4 +403,5 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
       </section>
     </div>
   );
+  */
 }
