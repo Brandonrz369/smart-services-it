@@ -40,6 +40,7 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
   const [isLoaded, setIsLoaded] = useState(false);
   const [serviceFilter, setServiceFilter] = useState("all");
   const [isAssessmentOpen, setIsAssessmentOpen] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false); // State for submission feedback
 
   // Handle page load animation
   useEffect(() => {
@@ -51,6 +52,17 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
     serviceFilter === "all"
       ? services
       : services.filter((service) => service.category === serviceFilter);
+
+  // Handle form submission click
+  const handleFormSubmitClick = () => {
+    setFormSubmitted(true); // Set submitted state
+    if (typeof window.gtag_report_conversion === 'function') {
+      window.gtag_report_conversion();
+    }
+    // Note: Actual submission is handled by Formspree via form action
+    // We just provide feedback here.
+  };
+
 
   return (
     <div
@@ -265,7 +277,7 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                               htmlFor="name"
                               className="block text-sm font-medium text-gray-700 mb-1"
                             >
-                              Name
+                              Name <span className="text-red-500">*</span>
                             </label>
                             <input
                               type="text"
@@ -282,7 +294,7 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                               htmlFor="email"
                               className="block text-sm font-medium text-gray-700 mb-1"
                             >
-                              Email
+                              Email <span className="text-red-500">*</span>
                             </label>
                             <input
                               type="email"
@@ -299,7 +311,7 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                               htmlFor="phone"
                               className="block text-sm font-medium text-gray-700 mb-1"
                             >
-                              Phone
+                              Phone <span className="text-red-500">*</span>
                             </label>
                             <input
                               type="tel"
@@ -316,7 +328,7 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                               htmlFor="help"
                               className="block text-sm font-medium text-gray-700 mb-1"
                             >
-                              How can we help?
+                              How can we help? <span className="text-red-500">*</span>
                             </label>
                             <textarea
                               id="help"
@@ -332,10 +344,15 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                         <button
                           type="submit"
                           className="mt-6 w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-md"
-                          onClick={() => { if (typeof window.gtag_report_conversion === 'function') { window.gtag_report_conversion(); } }}
+                          onClick={handleFormSubmitClick} // Updated onClick handler
                         >
                           Submit Request
                         </button>
+                        {formSubmitted && (
+                          <p className="mt-4 text-sm text-green-600">
+                            Thank you! Your request is being submitted. You will be redirected shortly.
+                          </p>
+                        )}
                       </form>
                     </div>
                   </div>

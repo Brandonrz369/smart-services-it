@@ -168,11 +168,11 @@ export default function ContactPageClient() {
                     <input type="text" name="_gotcha" style={{ display: "none" }} />
                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Name <span className="text-red-500">*</span></label>
                         <input type="text" id="name" name="name" required className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Your name" />
                       </div>
                       <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email <span className="text-red-500">*</span></label>
                         <input type="email" id="email" name="email" required className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Your email address" />
                       </div>
                     </div>
@@ -196,12 +196,12 @@ export default function ContactPageClient() {
                       </select>
                     </div>
                      <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Message <span className="text-red-500">*</span></label>
                       <textarea id="message" name="message" rows={5} required className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Please describe what you need help with..."></textarea>
                     </div>
                      <div className="flex items-start">
                       <input id="consent" name="consent" type="checkbox" required className="mt-1 mr-2" />
-                      <label htmlFor="consent" className="text-sm text-gray-600">I agree to be contacted by LB Computer Help regarding my inquiry.</label>
+                      <label htmlFor="consent" className="text-sm text-gray-600">I agree to be contacted by LB Computer Help regarding my inquiry. <span className="text-red-500">*</span></label>
                     </div>
                      <button
                        type="submit"
