@@ -140,9 +140,15 @@ async function getRelatedPostsMetadata(relatedPostSlugs: string[] | undefined): 
     return relatedPostsData.filter((post): post is PostFrontmatter & { id: string } => post !== null);
 }
 
+// --- Define Props Interface ---
+interface BlogPostPageProps {
+  params: {
+    slug: string;
+  };
+}
 
 // --- Main Page Component ---
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
+export default async function BlogPostPage({ params }: BlogPostPageProps) { // Use the defined interface
   let postData;
   let frontmatter: PostFrontmatter;
   let relatedPostsMetadata: (PostFrontmatter & { id: string })[] = [];
