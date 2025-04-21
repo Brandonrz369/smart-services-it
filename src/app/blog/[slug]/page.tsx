@@ -142,19 +142,28 @@ async function getRelatedPostsMetadata(relatedPostSlugs: string[] | undefined): 
 
 
 // --- Main Page Component ---
-export default async function BlogPostPage({ params }: { params: { slug: string } }) { // Reverted to inline type
+export default async function BlogPostPage({ params }: { params: { slug: string } }) {
   let postData;
-  let frontmatter: PostFrontmatter;
+  let frontmatter: PostFrontmatter | null = null; // Initialize as null
   let relatedPostsMetadata: (PostFrontmatter & { id: string })[] = [];
+  let errorOccurred = false; // Flag for error
 
   try {
     postData = await getPostData(params.slug);
     frontmatter = postData.frontmatter as PostFrontmatter;
-    relatedPostsMetadata = await getRelatedPostsMetadata(frontmatter.relatedPosts);
+    // Ensure frontmatter exists before trying to access relatedPosts
+    if (frontmatter?.relatedPosts) {
+       relatedPostsMetadata = await getRelatedPostsMetadata(frontmatter.relatedPosts);
+    }
   } catch (error) {
-    // Handle case where post file doesn't exist
+    errorOccurred = true;
+    // Handle case where post file doesn't exist or other errors
     console.error(`Error loading post ${params.slug}:`, error);
-    // Render a 404-like page or message
+    // We will return the error component below
+  }
+
+  // If an error occurred during data fetching or data is missing, render the error message
+  if (errorOccurred || !frontmatter || !postData) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center p-8">
@@ -189,6 +198,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
     );
   }
 
+  // If data fetched successfully, render the main component body
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
       {/* Header Section */}
