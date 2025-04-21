@@ -140,9 +140,14 @@ async function getRelatedPostsMetadata(relatedPostSlugs: string[] | undefined): 
     return relatedPostsData.filter((post): post is PostFrontmatter & { id: string } => post !== null);
 }
 
+// Define explicit props type for Next.js App Router page
+interface PageProps {
+  params: { slug: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
+}
 
 // --- Main Page Component ---
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
+export default async function BlogPostPage({ params }: { params: { slug: string } }): Promise<JSX.Element> { // Add explicit return type
   let postData;
   let frontmatter: PostFrontmatter | null = null; // Initialize as null
   let relatedPostsMetadata: (PostFrontmatter & { id: string })[] = [];
