@@ -30,12 +30,10 @@ async function getPostData(slug: string) {
 }
 
 // Generate static paths for all blog posts
-/* // Temporarily comment out generateStaticParams
-export async function generateStaticParams() {
+export function generateStaticParams() { // Removed async
    const paths = getAllPostIds();
    return paths;
 }
-*/ // Temporarily comment out generateStaticParams
 
 // Define the type for the expected frontmatter structure
 interface PostFrontmatter {
@@ -51,6 +49,7 @@ interface PostFrontmatter {
 }
 
 // Generate metadata for the page
+/* // Temporarily comment out generateMetadata
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
  try {
     const postData = await getPostData(params.slug);
@@ -100,6 +99,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     return { title: "Post Not Found", description: "The blog post you are looking for could not be loaded." };
  }
 }
+*/ // Temporarily comment out generateMetadata
 
 // Helper Function to Get Related Posts Metadata
 async function getRelatedPostsMetadata(relatedPostSlugs: string[] | undefined): Promise<(PostFrontmatter & { id: string })[]> {
