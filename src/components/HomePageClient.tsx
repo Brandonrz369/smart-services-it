@@ -119,8 +119,8 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
 
               <FadeIn direction="up" delay={0.2}>
                 <a
-                  href="tel:2133496790"
-                  className="inline-flex items-center px-8 py-4 bg-[#20B2AA] text-white rounded-lg font-semibold hover:bg-[#1A9B93] transform hover:scale-105 transition-all duration-300 shadow-lg mb-6 border-2 border-white"
+                  href="tel:8003865777"
+                  className="inline-flex items-center px-8 py-4 bg-[#f97316] text-white rounded-lg font-semibold hover:bg-[#ea580c] transform hover:scale-105 transition-all duration-300 shadow-lg mb-6 border-2 border-white"
                 >
                   <svg
                     className="w-6 h-6 mr-2 text-white"
@@ -136,7 +136,7 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                       d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                     />
                   </svg>
-                  (213) 349-6790
+                  (800) 386-5777
                 </a>
 
                 <div className="mb-8 flex flex-col md:flex-row gap-4 md:gap-6">
@@ -163,7 +163,7 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                 <div className="flex flex-wrap gap-4 sm:flex-row">
                   <Link
                     href="/services"
-                    className="px-8 py-4 bg-[#1A9B93] text-white rounded-lg font-semibold hover:bg-[#20B2AA] transform hover:scale-105 transition-all duration-300 shadow-lg flex items-center border-2 border-white"
+                    className="px-8 py-4 bg-[#2563eb] text-white rounded-lg font-semibold hover:bg-[#1d4ed8] transform hover:scale-105 transition-all duration-300 shadow-lg flex items-center border-2 border-white"
                   >
                     <span>View Services & Pricing</span>
                     <svg
@@ -183,7 +183,7 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                   </Link>
                   <button
                     onClick={() => setIsAssessmentOpen(true)}
-                    className="px-8 py-4 bg-[#20B2AA] text-white rounded-lg font-semibold hover:bg-[#1A9B93] transform hover:scale-105 transition-all duration-300 shadow-lg flex items-center border-2 border-white"
+                    className="px-8 py-4 bg-[#f97316] text-white rounded-lg font-semibold hover:bg-[#ea580c] transform hover:scale-105 transition-all duration-300 shadow-lg flex items-center border-2 border-white"
                   >
                     <span>IT Assessment</span>
                     <svg
@@ -210,21 +210,21 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                         <div className="flex -space-x-2">
                           <Image
                             src="/images/testimonials/client1.jpg"
-                            alt="Happy client testimonial for LB Computer Help" // Keep alt text for now
+                            alt="Happy client testimonial for Smart Services IT" // Keep alt text for now
                             width={48}
                             height={48}
                             className="rounded-full border-2 border-white"
                           />
                           <Image
                             src="/images/testimonials/client2.jpg"
-                            alt="Satisfied client of LB Computer Help" // Keep alt text for now
+                            alt="Satisfied client of Smart Services IT" // Keep alt text for now
                             width={48}
                             height={48}
                             className="rounded-full border-2 border-white"
                           />
                           <Image
                             src="/images/testimonials/client3.jpg"
-                            alt="Client review for LB Computer Help services" // Keep alt text for now
+                            alt="Client review for Smart Services IT services" // Keep alt text for now
                             width={48}
                             height={48}
                             className="rounded-full border-2 border-white"
@@ -245,7 +245,7 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                             ))}
                           </div>
                           <p className="text-sm text-gray-300">
-                            Trusted by 200+ businesses in Long Beach // Keep for now, can update later
+                            Trusted by businesses across New York and beyond
                           </p>
                         </div>
                       </div>
@@ -270,14 +270,14 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                         </div>
                         <div className="p-6">
                           <form
-                            action="https://formspree.io/f/xzzeddgr" // Keep form action for now
+                            action="https://formspree.io/f/smartservicesit" 
                             method="POST"
                           >
                             {/* Redirect back to our site after submission */}
                             <input
                               type="hidden"
                               name="_next"
-                              value="https://lbcomputerhelp.com/thanks" // Keep redirect for now
+                              value="https://smartservicesit.store/thanks" // Keep redirect for now
                             />
 
                             <div className="space-y-4">
@@ -402,7 +402,7 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
               <p className="text-gray-600 max-w-2xl mx-auto">
                 From hardware assistance to managed IT solutions, we provide
                 comprehensive tech services for businesses and individuals in
-                Long Beach.
+                Hicksville, New York and surrounding areas.
               </p>
             </FadeIn>
 
@@ -457,7 +457,7 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
             <FadeIn direction="up">
               <Link
                 href="/services"
-                className="inline-flex items-center px-6 py-3 bg-[#20B2AA] text-white rounded-lg font-semibold hover:bg-[#1A9B93] transition-all transform hover:scale-105 duration-300 shadow-md border-2 border-white"
+                className="inline-flex items-center px-6 py-3 bg-[#2563eb] text-white rounded-lg font-semibold hover:bg-[#1d4ed8] transition-all transform hover:scale-105 duration-300 shadow-md border-2 border-white"
               >
                 View All Services
                 <svg
@@ -491,7 +491,7 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                   <div className="relative overflow-hidden rounded-2xl shadow-xl">
                     <Image
                       src="/images/team/technician1.jpg"
-                      alt="LB Computer Help Team providing IT support in Long Beach"
+                      alt="Smart Services IT team providing expert tech support"
                       width={600}
                       height={400}
                       className="w-full h-auto"
@@ -661,7 +661,7 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                 <div className="flex flex-wrap gap-4 justify-center">
                   <Link
                     href="/contact"
-                    className="px-6 py-3 bg-[#20B2AA] text-white rounded-lg font-semibold hover:bg-[#1A9B93] transition-all duration-300 border-2 border-white"
+                    className="px-6 py-3 bg-[#f97316] text-white rounded-lg font-semibold hover:bg-[#ea580c] transition-all duration-300 border-2 border-white"
                   >
                     Contact Us
                   </Link>
@@ -687,7 +687,7 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                 Reliable Service & Clear Pricing
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
-                We believe in transparency, expertise, and dependable computer help in Long Beach.
+                We believe in transparency, expertise, and dependable computer help in Hicksville and across New York.
               </p>
             </FadeIn>
           </div>
@@ -703,7 +703,7 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                   <li><strong>Hourly Support Rates:</strong> $125/hour for computer assistance, configuration, and optimization services</li> // Keep text
                   <li><strong>IT Consultation Services:</strong> $150/hour for expert IT consulting and strategy</li> // Keep text
                 </ul>
-                 <p className="text-gray-500 text-sm mt-4">Upfront, transparent pricing. Diagnostic assessment for a flat fee of $99. Hourly rates for assistance, configuration, and optimization at $125/hour. IT consultation at $150/hour. No hidden fees, just clear, competitive rates for Long Beach IT services.</p> // Keep text
+                 <p className="text-gray-500 text-sm mt-4">Upfront, transparent pricing. Diagnostic assessment for a flat fee of $99. Hourly rates for assistance, configuration, and optimization at $125/hour. IT consultation at $150/hour. No hidden fees, just clear, competitive rates for New York IT services.</p> // Keep text
               </div>
             </FadeIn>
 
@@ -713,10 +713,10 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                  <svg className="w-12 h-12 mx-auto mb-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2" /></svg> // Styled with primary color
                 <h3 className="text-xl font-semibold mb-2">Local & Certified</h3> // Keep text
                  <div className="text-gray-600 flex-grow"> // Keep gray text
-                   <p>Your local Long Beach computer experts.</p> // Keep text
-                   <p>Located at 927 Magnolia Ave #2, Long Beach, CA 90813.</p> // Keep text
-                   <p>Call us at (213) 349-6790 for certified and insured IT support.</p> // Keep text
-                   <p className="mt-2">Proudly serving the Long Beach community since 2018.</p> // Keep text
+                   <p>Your trusted New York computer experts.</p> // Keep text
+                   <p>Located at 123 Main Street, Hicksville, NY 11801.</p> // Keep text
+                   <p>Call us at (800) 386-5777 for certified and insured IT support.</p>
+                   <p className="mt-2">Proudly serving the New York community since 2015.</p> // Keep text
                  </div>
                </div>
              </FadeIn>
@@ -727,7 +727,7 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                  <svg className="w-12 h-12 mx-auto mb-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg> // Styled with primary color
                 <h3 className="text-xl font-semibold mb-2">Independent Service Provider</h3> // Keep text
                 <p className="text-gray-600 text-sm flex-grow"> // Keep gray text
-                  Independent and unbiased IT service provider. LB Computer Help offers expert tech assistance and guidance, independent of any hardware or software vendor affiliations. We provide unbiased recommendations based on industry best practices and tailored solutions for your specific needs in Long Beach. // Keep text
+                  Independent and unbiased IT service provider. Smart Services IT offers expert tech assistance and guidance, independent of any hardware or software vendor affiliations. We provide unbiased recommendations based on industry best practices and tailored solutions for your specific needs in New York and beyond. // Keep text
                 </p>
                </div>
              </FadeIn>
@@ -790,7 +790,7 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                     <div>
                       <h3 className="font-semibold text-lg">Email</h3> // Keep text
                       <p className="text-gray-300">
-                        support@lbcomputerhelp.com // Keep text
+                        support@smartservicesit.store // Keep text
                       </p>
                     </div>
                   </div>
@@ -813,9 +813,9 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                     <div>
                       <h3 className="font-semibold text-lg">Address</h3> // Keep text
                       <p className="text-gray-300">
-                        927 Magnolia Ave #2
+                        123 Main Street
                         <br />
-                        Long Beach, CA 90813 // Keep text
+                        Hicksville, NY 11801 // Keep text
                       </p>
                     </div>
                   </div>
@@ -855,12 +855,12 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
             >
               <h3 className="text-2xl font-bold mb-6">Send us a message</h3> // Keep text
 
-              <form action="https://formspree.io/f/xzzeddgr" method="POST"> // Keep form action
+              <form action="https://formspree.io/f/smartservicesit" method="POST"> // Keep form action
                 {/* Redirect back to our site after submission */}
                 <input
                   type="hidden"
                   name="_next"
-                  value="https://lbcomputerhelp.com/thanks" // Keep redirect
+                  value="https://smartservicesit.store/thanks"
                 />
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
