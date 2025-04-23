@@ -1,14 +1,14 @@
 import ServicesPageClient from "@/components/ServicesPageClient"; // Import the new client component
 import type { Metadata } from "next";
 
-// Metadata for Services Page (Remains in Server Component)
+// Metadata for Resources Page
 export const metadata: Metadata = {
-  title: "Our IT Services | LB Computer Help | Long Beach",
-  description: "Explore comprehensive IT services from LB Computer Help in Long Beach: Computer diagnostics, managed IT, mobile device assistance, network solutions, data recovery consultation, and more.",
-  keywords: "Long Beach IT services, computer repair Long Beach, managed IT services Long Beach, MSP Long Beach, business IT support Long Beach, network support Long Beach, cybersecurity services Long Beach, data recovery Long Beach, IT consulting Long Beach, remote IT support Long Beach, laptop repair Long Beach, mobile device repair Long Beach, tech support Long Beach", // Updated page-specific keywords
+  title: "Resources | Smart Services America", // Updated title
+  description: "Welcome to the Smart Services America Resources page! Here, you'll find valuable guides, articles, and FAQs to help you navigate the world of technology.", // Updated description
+  keywords: "technology guides, tech articles, computer help FAQ, IT support resources, Smart Services America resources", // Updated keywords
 };
 
-// Service data (can stay here or be moved to a lib file)
+// Service data (can stay here or be moved to a lib file) - Keep for now, might be used by the client component
 const servicesDetail = [
     {
     title: "Laptop & Desktop Services",
@@ -56,138 +56,97 @@ const servicesDetail = [
     features: ["Screen & Glass Solutions", "Battery Replacements", "Charging Port Assistance", "Software Issues", "Data Transfer"],
     pricing: [
       { service: "Phone Screen Assessment", price: "From $79", description: "Assess screen issues for most popular models" },
-      { service: "Battery Replacement", price: "From $59", description: "Restore battery life" },
-      { service: "Charging Port Service", price: "From $69", description: "Address connection issues" },
-      { service: "Water Damage Assessment", price: "From $99", description: "Assistance with liquid damage incidents" },
-      { service: "Data Accessibility", price: "From $79", description: "Help retrieving important information" },
+      { service: "Battery Replacement", price: "From $69", description: "Replace aging batteries for better performance" },
+      { service: "Charging Port Repair", price: "From $89", description: "Fix charging connection issues" },
+      { service: "Software Troubleshooting", price: "$59", description: "Resolve software glitches and problems" },
+      { service: "Data Transfer", price: "$49", description: "Move data between devices safely" },
     ],
     category: "residential",
-    longDescription: "We provide expert services for all major smartphone and tablet brands, including Apple iPhone, iPad, Samsung Galaxy devices, and more. From cracked screens to battery replacements, our technicians use high-quality parts and precise techniques to get your mobile devices working optimally again. We also offer data transfer services to help you move information between devices or consult on data accessibility from damaged units.",
+    longDescription: "Our mobile device services cover smartphones and tablets from all major manufacturers including Apple, Samsung, Google, and more. We provide expert assistance with hardware issues like screen repairs and battery replacements, as well as software problems including system optimizations and data recovery. Our technicians can help with both scheduled appointments and emergency services to get your essential devices working properly as quickly as possible.",
   },
   {
-    title: "Network & Server Solutions",
-    description: "Business-grade networking and server management.",
-    icon: "🔧",
+    title: "Network & Server Support",
+    description: "Setup, troubleshooting, and maintenance for business networks.",
+    icon: "🔌",
     image: "/images/services/network-support-new.png",
-    features: ["Server Setup & Maintenance", "Network Security", "Business Continuity Planning", "Microsoft 365 Management", "VPN & Remote Access"],
+    features: ["Network Infrastructure Design", "Router & Switch Configuration", "Server Management", "Network Security", "Wireless Optimization"],
     pricing: [
-      { service: "Network Assessment", price: "$249", description: "Comprehensive evaluation of current setup" },
-      { service: "Server Installation", price: "From $799", description: "Hardware and software setup" },
-      { service: "Network Security Implementation", price: "From $599", description: "Firewall and security configuration" },
-      { service: "Wireless Network Setup", price: "From $399", description: "Enterprise WiFi solutions" },
-      { service: "Cloud Server Migration", price: "From $999", description: "Move to cloud infrastructure" },
+      { service: "Network Assessment", price: "$199", description: "Comprehensive evaluation of existing network" },
+      { service: "Wireless Network Setup", price: "From $299", description: "Professional WiFi installation and optimization" },
+      { service: "Server Maintenance", price: "From $149/mo", description: "Ongoing server management and monitoring" },
+      { service: "Network Security Audit", price: "$399", description: "Identify vulnerabilities in your network" },
+      { service: "On-site Network Support", price: "$125/hr", description: "Expert assistance with network issues" },
     ],
     category: "business",
-    longDescription: "Establish a reliable, secure, and high-performance IT backbone for your business with our Network & Server Solutions. We design, implement, and manage robust infrastructure, incorporating current best practices like network segmentation and zero-trust principles to enhance security. Our team ensures your systems utilize modern, encrypted protocols (like SMB 3.1.1+) while disabling outdated ones (like SMBv1) to minimize vulnerabilities. We have deep expertise in Windows Server, Linux, virtualization, and cloud platforms, implementing redundancy and proactive monitoring to maximize uptime and performance. Trust us to protect your valuable business data and ensure business continuity through comprehensive security measures and resilient network design.",
+    longDescription: "Our network and server support services ensure your business infrastructure runs smoothly. We handle everything from initial network design and implementation to ongoing maintenance and troubleshooting. Our experts work with all types of networks including wired, wireless, and hybrid setups. We can help configure equipment, optimize performance, implement security measures, and resolve connectivity issues. We also provide server setup, maintenance, monitoring, and virtualization services to keep your critical business applications available and performing optimally.",
   },
   {
-    title: "Data Solutions & Backup",
-    description: "Secure solutions for critical business and personal data.",
+    title: "Data Recovery & Backup",
+    description: "Protect and restore your valuable information.",
     icon: "💾",
     image: "/images/services/data-solutions-new.png",
-    features: ["Data Accessibility Consultation", "Cloud Backup Solutions", "Automated Backup Systems", "RAID Accessibility Consultation", "Emergency Data Consultation"],
+    features: ["Hard Drive Recovery", "Cloud Backup Solutions", "Disaster Recovery Planning", "Data Migration", "Secure Data Disposal"],
     pricing: [
-      { service: "Basic Data Consultation", price: "From $149", description: "For accessible hard drives" },
-      { service: "Advanced Data Consultation", price: "From $299", description: "For damaged storage media" },
-      { service: "RAID Consultation", price: "From $499", description: "For server RAID arrays" },
-      { service: "Cloud Backup Setup", price: "From $99", description: "Automated offsite backup" },
-      { service: "Business Continuity Plan", price: "From $599", description: "Comprehensive backup strategy" },
+      { service: "Data Recovery Assessment", price: "$99", description: "Evaluate recovery options for your data" },
+      { service: "Basic Data Recovery", price: "From $199", description: "Recover data from functioning drives" },
+      { service: "Advanced Data Recovery", price: "From $399", description: "Recover data from damaged or failing drives" },
+      { service: "Cloud Backup Setup", price: "$149", description: "Configure secure cloud backup solutions" },
+      { service: "Backup Strategy Consulting", price: "$199", description: "Develop a comprehensive backup plan" },
     ],
-    category: "both",
-    longDescription: "Protect your critical business and personal data from loss, corruption, or ransomware. With many businesses failing after significant data loss, a robust strategy is essential. We implement comprehensive Data Solutions & Backup services following best practices like the 3-2-1 rule (3 copies, 2 media types, 1 offsite). Our solutions leverage automated cloud and hybrid backups for reliability, security (including encryption and ransomware resilience), and scalability. We consult on accessing data from various media and design tailored Business Continuity Plans (BCP) with clear Recovery Point Objectives (RPO) and Recovery Time Objectives (RTO) to minimize downtime and keep your operations running.",
+    category: "support",
+    longDescription: "Data is often the most valuable asset for both businesses and individuals. Our data recovery and backup services help protect that critical information and restore it when problems occur. We offer recovery services for all storage devices including hard drives, SSDs, USB drives, and memory cards. We can help retrieve deleted files, recover from formatting errors, and even address physical damage. We also specialize in implementing reliable backup solutions using both local and cloud-based approaches to prevent data loss in the first place.",
   },
   {
-    title: "Smart Home & Devices",
-    description: "Setup and assistance for all your connected devices.",
-    icon: "🏠",
-    image: "/images/services/smart-home-new.png",
-    features: ["Smart Watch Assistance", "Earbud/Headphone Solutions", "Voice Assistant Setup", "Smart Home Configuration", "IoT Device Support"],
-    pricing: [
-      { service: "Smart Watch Service", price: "From $69", description: "Battery and screen related assistance" },
-      { service: "Earbud/Headphone Service", price: "From $49", description: "Address audio and charging issues" },
-      { service: "Smart Home Setup", price: "From $99", description: "Voice assistants and hub configuration" },
-      { service: "Smart Lighting Installation", price: "From $129", description: "Connected lighting systems" },
-      { service: "Multi-device Integration", price: "From $179", description: "Creating seamless smart home ecosystems" },
-    ],
-    category: "residential",
-    longDescription: "Our smart home and device services help you get the most from your connected technology. We provide assistance and support for a wide range of smart devices including watches, earbuds, speakers, and home automation systems. Our technicians can set up and configure voice assistants like Amazon Alexa and Google Home, integrate smart lighting, thermostats, security systems, and other IoT devices. We also offer custom solutions to create a seamless connected home experience.",
-  },
-  {
-    title: "Business IT Consulting",
-    description: "Strategic technology guidance for your organization.",
+    title: "IT Consulting",
+    description: "Strategic technology guidance for businesses.",
     icon: "📊",
     image: "/images/services/it-consulting-new.png",
-    features: ["IT Strategy Development", "Technology Assessment", "Cost Optimization", "Vendor Management", "Compliance Solutions"],
+    features: ["Technology Assessment", "IT Strategy Development", "Digital Transformation", "Software Selection", "Process Optimization"],
     pricing: [
-      { service: "IT Assessment", price: "$499", description: "Comprehensive technology evaluation" },
-      { service: "Technology Roadmap", price: "$999", description: "Strategic planning for 1-3 years" },
-      { service: "Vendor Selection", price: "From $599", description: "Find the right technology partners" },
-      { service: "Compliance Audit", price: "From $1,299", description: "Ensure regulatory compliance" },
-      { service: "IT Budget Planning", price: "From $799", description: "Optimize technology spending" },
+      { service: "Initial IT Consultation", price: "$199", description: "Discuss current challenges and potential solutions" },
+      { service: "Technology Assessment", price: "$499", description: "Comprehensive review of existing IT infrastructure" },
+      { service: "IT Strategy Development", price: "From $999", description: "Create a roadmap for your technology needs" },
+      { service: "Software Selection Assistance", price: "$399", description: "Find the right software solutions for your business" },
+      { service: "Digital Transformation Planning", price: "Custom", description: "Plan and implement digital transformation initiatives" },
     ],
     category: "business",
-    longDescription: "Navigate the complexities of modern technology with our strategic Business IT Consulting. We help SMBs align IT with business goals, focusing on key areas like digital transformation (leveraging AI and automation), cloud strategy (optimizing hybrid/multi-cloud environments), and robust cybersecurity posture assessments (implementing zero-trust principles and ensuring compliance). Our expert consultants guide you through technology assessments, cost optimization, vendor management, and the implementation of solutions that drive growth, efficiency, and resilience in today's evolving digital landscape.",
+    longDescription: "Our IT consulting services provide strategic guidance to help businesses leverage technology effectively. We work with organizations of all sizes to assess current IT infrastructure, identify opportunities for improvement, and develop comprehensive technology strategies. Our consultants can help with vendor selection, software evaluation, technology budgeting, and project management. We specialize in helping businesses use technology to increase efficiency, reduce costs, improve customer experiences, and gain competitive advantages in their markets.",
   },
   {
-    title: "Remote Assistance Options",
-    description: "Get help without leaving your home or office.",
-    icon: "🌐",
-    image: "/images/services/remote-support-new.png", // Added image property
-    features: ["Remote Diagnostics", "Software Installation", "Security Scanning", "System Optimization", "Quick Problem Resolution"],
+    title: "Remote Support",
+    description: "Convenient assistance without an on-site visit.",
+    icon: "🖥️",
+    image: "/images/services/remote-support-new.png",
+    features: ["Software Troubleshooting", "System Optimization", "Security Updates", "Email Setup", "Remote Diagnostics"],
     pricing: [
-      { service: "Quick Assistance Session", price: "$39", description: "30-minute remote assistance" },
-      { service: "Standard Remote Assistance", price: "$70/hr", description: "For general issues" },
-      { service: "Remote System Cleanup", price: "$89", description: "Performance optimization" },
-      { service: "Software Installation", price: "From $49", description: "Remote setup and configuration" },
-      { service: "Security Scan & Cleanup", price: "$79", description: "Identify and address potential threats" },
+      { service: "Quick Remote Support", price: "$49", description: "15-30 minute session for simple issues" },
+      { service: "Standard Remote Support", price: "$89", description: "Up to 1 hour of remote assistance" },
+      { service: "Extended Remote Support", price: "$159", description: "Up to 2 hours for complex issues" },
+      { service: "Software Installation", price: "$59", description: "Remote setup of software applications" },
+      { service: "Remote Training Session", price: "$79/hr", description: "Learn how to use your technology effectively" },
     ],
-    category: "both",
-    longDescription: "Our remote assistance services provide convenient help without requiring an in-person visit. Using secure connection tools, our technicians can access your computer remotely to diagnose and address a wide range of issues. This is ideal for software problems, system optimization, security checks, and general troubleshooting. Remote assistance offers a fast response time and is often more cost-effective than on-site visits for many common computer problems.",
+    category: "support",
+    longDescription: "Our remote support services provide convenient assistance without requiring an on-site visit. Using secure remote access technology, our technicians can connect to your computer system to diagnose and resolve a wide range of issues. This approach often allows for faster response times and lower costs compared to traditional on-site visits. We can help with software installation, configuration problems, performance optimization, virus removal, email setup, and many other common technology challenges. Remote support is ideal for less complex issues and situations where physical hardware intervention isn't required.",
   },
+  {
+    title: "Smart Home Setup",
+    description: "Connect and optimize your home technology.",
+    icon: "🏠",
+    image: "/images/services/smart-home-new.png",
+    features: ["Smart Speaker Installation", "Home Automation", "Smart Lighting Setup", "Security Camera Config", "Streaming Device Setup"],
+    pricing: [
+      { service: "Smart Device Setup", price: "$79", description: "Configure individual smart home devices" },
+      { service: "Smart Home Hub Installation", price: "$129", description: "Setup and configure central control systems" },
+      { service: "Smart Home Security Package", price: "From $249", description: "Setup cameras, doorbells, and security devices" },
+      { service: "Smart Entertainment Package", price: "From $199", description: "Configure TVs, streaming, and audio systems" },
+      { service: "Complete Smart Home Assessment", price: "$159", description: "Evaluate options for home automation" },
+    ],
+    category: "residential",
+    longDescription: "Our smart home setup services help you connect and optimize the technology in your home. We work with all major brands and platforms including Amazon Alexa, Google Home, Apple HomeKit, Samsung SmartThings, and more. Our technicians can help install and configure a wide range of devices including smart speakers, thermostats, lighting, security cameras, doorbells, locks, and entertainment systems. We also provide guidance on creating automation routines and ensuring all your devices work together seamlessly. Let us help you build a more convenient, efficient, and secure connected home.",
+  }
 ];
 
-// Service Schema Markup Component for this page (Remains in Server Component)
-function ServicesPageJsonLd() {
-  const serviceSchemas = servicesDetail.map(service => ({
-    "@context": "https://schema.org",
-    "@type": "Service",
-    serviceType: service.title, // Use the service title
-    description: service.longDescription, // Use the long description
-    provider: { "@id": "https://lbcomputerhelp.com" }, // Reference the main business ID
-    areaServed: { "@type": "City", name: "Long Beach" },
-    // Optionally add offers if pricing is consistent or representative
-    // offers: service.pricing.map(p => ({
-    //   "@type": "Offer",
-    //   priceSpecification: {
-    //     "@type": "PriceSpecification",
-    //     price: p.price.replace(/[^0-9.]/g, ''), // Extract numeric price if possible
-    //     priceCurrency: "USD"
-    //   }
-    // }))
-  }));
-
-  return (
-    <>
-      {serviceSchemas.map((schema, index) => (
-        <script
-          key={`service-schema-${index}`}
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-        />
-      ))}
-    </>
-  );
-}
-
-// Main Server Component for the page
+// Default export for the page component
 export default function ServicesPage() {
-  return (
-    <>
-      {/* Render the Client Component which contains the interactive parts */}
-      {/* Pass the servicesDetail data as a prop */}
-      <ServicesPageClient servicesDetail={servicesDetail} />
-      {/* Render the JSON-LD Schema */}
-      <ServicesPageJsonLd />
-    </>
-  );
+  return <ServicesPageClient servicesDetail={servicesDetail} />;
 }
