@@ -56,7 +56,7 @@ export default function SimpleMobileNav({}: MobileNavProps) {
           >
             <div className="flex justify-between items-center p-4 border-b bg-primary-50">
               <span className="font-bold text-xl text-primary-600">
-                LB Computer Help
+                Smart Services IT
               </span>
               <button
                 onClick={() => setIsOpen(false)}
@@ -271,7 +271,7 @@ export default function SimpleMobileNav({}: MobileNavProps) {
 
             <div className="p-4 border-t">
               <a
-                href="tel:2133496790"
+                href="tel:8003865777"
                 className="flex items-center justify-center gap-2 bg-primary-600 hover:bg-primary-700 text-white font-bold py-3 px-4 rounded-lg w-full"
               >
                 <svg
@@ -283,7 +283,7 @@ export default function SimpleMobileNav({}: MobileNavProps) {
                 >
                   <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                 </svg>
-                (213) 349-6790
+                (800) 386-5777
               </a>
             </div>
           </div>

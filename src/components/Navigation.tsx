@@ -190,7 +190,7 @@ export default function Navigation() {
                   24/7 SUPPORT
                 </div>
                 <a
-                  href="tel:2133496790"
+                  href="tel:8003865777"
                   className="text-white text-[10px] sm:text-sm hover:underline flex items-center whitespace-nowrap"
                 >
                   <svg
@@ -208,7 +208,7 @@ export default function Navigation() {
                       d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
                     />
                   </svg>
-                  (213) 349-6790
+                  (800) 386-5777
                 </a>
               </div>
               <div className="flex items-center">
@@ -260,7 +260,7 @@ export default function Navigation() {
       <div className={`${navBackgroundColor()} py-2`}>
         <div className="container mx-auto px-4 flex justify-between items-center">
           <Link href="/" className={`font-bold text-xl ${textColor()}`}>
-            LB Computer Help
+            Smart Services IT
           </Link>
           <nav className="hidden md:flex items-center gap-6">
             {/* Services Dropdown */}
