@@ -41,17 +41,36 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
   const [serviceFilter, setServiceFilter] = useState("all");
   const [isAssessmentOpen, setIsAssessmentOpen] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false); // State for submission feedback
-  const [heroBackground, setHeroBackground] = useState('');
+  const [currentSlide, setCurrentSlide] = useState(0);
+  
+  // Slideshow images
+  const heroImages = [
+    '/images/hero-background-new.png',
+    '/images/hero-ab-test-smartservices-1.jpg',
+    '/images/hero-ab-test-smartservices-2.jpg',
+    '/images/hero-slideshow/slide1.png',
+    '/images/hero-slideshow/slide2.png'
+  ];
 
+  // State to track if slideshow is paused
+  const [isPaused, setIsPaused] = useState(false);
+  
+  // Automatic slideshow with pause capability
   useEffect(() => {
-    const images = [
-      '/images/hero-background-new.png', // Original image
-      '/images/hero-ab-test-smartservices-1.jpg', // New image 1
-      '/images/hero-ab-test-smartservices-2.jpg', // New image 2
-    ];
-    const randomIndex = Math.floor(Math.random() * images.length);
-    setHeroBackground(images[randomIndex]);
-  }, []);
+    let slideshowTimer: NodeJS.Timeout;
+    
+    if (!isPaused) {
+      slideshowTimer = setInterval(() => {
+        setCurrentSlide((prevSlide) => 
+          prevSlide === heroImages.length - 1 ? 0 : prevSlide + 1
+        );
+      }, 5000); // Change slide every 5 seconds
+    }
+    
+    return () => {
+      if (slideshowTimer) clearInterval(slideshowTimer);
+    };
+  }, [isPaused, heroImages.length]);
 
   // Handle page load animation
   useEffect(() => {
@@ -73,6 +92,19 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
     // Note: Actual submission is handled by Formspree via form action
     // We just provide feedback here.
   };
+  
+  // Slideshow navigation functions
+  const goToNextSlide = () => {
+    setCurrentSlide((prev) => 
+      prev === heroImages.length - 1 ? 0 : prev + 1
+    );
+  };
+  
+  const goToPrevSlide = () => {
+    setCurrentSlide((prev) => 
+      prev === 0 ? heroImages.length - 1 : prev - 1
+    );
+  };
 
 
   return (
@@ -80,19 +112,86 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
       className={`min-h-screen font-sans transition-opacity duration-1000 ${isLoaded ? "opacity-100" : "opacity-0"}`}
     >
       {/* Hero Section */}
-      <section className="relative h-screen min-h-[800px] flex items-center bg-gradient-to-r from-primary-dark via-primary to-primary-light">
+      <section 
+        className="relative h-screen min-h-[800px] flex items-center bg-gradient-to-r from-primary-dark via-primary to-primary-light"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-black opacity-30"></div>
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{
-              backgroundImage: `url('${heroBackground}')`, // Use state variable
-              mixBlendMode: "overlay",
-              opacity: 0.4,
-            }}
-          ></div>
+          
+          {/* Slideshow hero background with slide transitions */}
+          {heroImages.map((image, index) => (
+            <div
+              key={index}
+              className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000"
+              style={{
+                backgroundImage: `url('${image}')`,
+                mixBlendMode: "overlay",
+                opacity: currentSlide === index ? 0.35 : 0, // More transparent (0.35) and only show current slide
+                zIndex: currentSlide === index ? 1 : 0,
+              }}
+            ></div>
+          ))}
+          
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-primary-dark"></div>
           <FloatingShapes />
+          
+          {/* Navigation arrows */}
+          <button 
+            onClick={goToPrevSlide}
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-black/20 hover:bg-black/40 text-white rounded-full p-2 transition-all duration-200"
+            aria-label="Previous slide"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          
+          <button 
+            onClick={goToNextSlide}
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-black/20 hover:bg-black/40 text-white rounded-full p-2 transition-all duration-200"
+            aria-label="Next slide"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+          
+          {/* Slide indicators and controls */}
+          <div className="absolute bottom-5 left-0 right-0 flex justify-center z-20">
+            <div className="flex items-center space-x-3">
+              {/* Pause/Play button */}
+              <button
+                onClick={() => setIsPaused(!isPaused)}
+                className="bg-black/20 hover:bg-black/40 text-white rounded-full p-1.5 transition-all duration-200 mr-2"
+                aria-label={isPaused ? "Play slideshow" : "Pause slideshow"}
+              >
+                {isPaused ? (
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                ) : (
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                )}
+              </button>
+              
+              {/* Slide indicators */}
+              {heroImages.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    currentSlide === index ? 'bg-white scale-125' : 'bg-white/50 hover:bg-white/70'
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                ></button>
+              ))}
+            </div>
+          </div>
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
@@ -113,7 +212,7 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                   />
                 </h1>
                 <p className="text-lg md:text-xl opacity-90 mb-8">
-                  We come to you in 2 hours. We fix all major issues. Smart Services America offers same-day computer repair solutions.
+                  We come to you in 2 hours. We fix all major issues. Smart Services IT offers same-day computer repair solutions.
                 </p>
               </FadeIn>
 
@@ -210,21 +309,21 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                         <div className="flex -space-x-2">
                           <Image
                             src="/images/testimonials/client1.jpg"
-                            alt="Happy client testimonial for Smart Services IT" // Keep alt text for now
+                            alt="Happy client testimonial for Smart Services IT"
                             width={48}
                             height={48}
                             className="rounded-full border-2 border-white"
                           />
                           <Image
                             src="/images/testimonials/client2.jpg"
-                            alt="Satisfied client of Smart Services IT" // Keep alt text for now
+                            alt="Satisfied client of Smart Services IT"
                             width={48}
                             height={48}
                             className="rounded-full border-2 border-white"
                           />
                           <Image
                             src="/images/testimonials/client3.jpg"
-                            alt="Client review for Smart Services IT services" // Keep alt text for now
+                            alt="Client review for Smart Services IT services"
                             width={48}
                             height={48}
                             className="rounded-full border-2 border-white"
@@ -235,7 +334,7 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                             {[1, 2, 3, 4, 5].map((star) => (
                               <svg
                                 key={star}
-                                className="w-5 h-5 text-yellow-400" // Keep yellow stars
+                                className="w-5 h-5 text-yellow-400"
                                 fill="currentColor"
                                 viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -257,15 +356,15 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                   <FadeIn direction="left">
                     <div className="relative">
                       <div className="absolute inset-0 transform translate-x-6 translate-y-6">
-                        <div className="h-full w-full rounded-xl bg-primary opacity-20"></div> // Styled with primary color
+                        <div className="h-full w-full rounded-xl bg-primary opacity-20"></div>
                       </div>
                       <div className="relative z-10 bg-white rounded-xl shadow-2xl overflow-hidden">
-                        <div className="p-6 bg-primary text-white"> // Styled with primary color
+                        <div className="p-6 bg-primary text-white">
                           <h3 className="text-2xl font-bold mb-1">
-                            Request IT Support // Keep text for now
+                            Request IT Support
                           </h3>
-                          <p className="text-white"> // Styled with white text
-                            Fill out the form for a quick response // Keep text for now
+                          <p className="text-white">
+                            Fill out the form for a quick response
                           </p>
                         </div>
                         <div className="p-6">
@@ -277,50 +376,50 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                             <input
                               type="hidden"
                               name="_next"
-                              value="https://smartservicesit.store/thanks" // Keep redirect for now
+                              value="https://smartservicesit.store/thanks"
                             />
 
                             <div className="space-y-4">
                               <div>
                                 <label
                                   htmlFor="name"
-                                  className="block text-sm font-medium text-gray-700 mb-1" // Keep gray text for labels
+                                  className="block text-sm font-medium text-gray-700 mb-1"
                                 >
-                                  Name <span className="text-red-500">*</span> // Keep red asterisk
+                                  Name <span className="text-red-500">*</span>
                                 </label>
                                 <input
                                   type="text"
                                   id="name"
                                   name="name"
                                   required
-                                  className="w-full border-gray-300 rounded-lg shadow-sm focus:border-primary focus:ring-primary" // Styled with primary focus color
-                                  placeholder="Your name" // Keep placeholder
+                                  className="w-full border-gray-300 rounded-lg shadow-sm focus:border-primary focus:ring-primary"
+                                  placeholder="Your name"
                                 />
                               </div>
 
                               <div>
                                 <label
                                   htmlFor="email"
-                                  className="block text-sm font-medium text-gray-700 mb-1" // Keep gray text for labels
+                                  className="block text-sm font-medium text-gray-700 mb-1"
                                 >
-                                  Email <span className="text-red-500">*</span> // Keep red asterisk
+                                  Email <span className="text-red-500">*</span>
                                 </label>
                                 <input
                                   type="email"
                                   id="email"
                                   name="email"
                                   required
-                                  className="w-full border-gray-300 rounded-lg shadow-sm focus:border-primary focus:ring-primary" // Styled with primary focus color
-                                  placeholder="Your email" // Keep placeholder
+                                  className="w-full border-gray-300 rounded-lg shadow-sm focus:border-primary focus:ring-primary"
+                                  placeholder="Your email"
                                 />
                               </div>
 
                               <div>
                                 <label
                                   htmlFor="phone"
-                                  className="block text-sm font-medium text-gray-700 mb-1" // Keep gray text for labels
+                                  className="block text-sm font-medium text-gray-700 mb-1"
                                 >
-                                  Phone <span className="text-red-500">*</span> // Keep red asterisk
+                                  Phone <span className="text-red-500">*</span>
                                 </label>
                                 <input
                                   type="tel"
@@ -335,9 +434,9 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                               <div>
                                 <label
                                   htmlFor="help"
-                                  className="block text-sm font-medium text-gray-700 mb-1" // Keep gray text for labels
+                                  className="block text-sm font-medium text-gray-700 mb-1"
                                 >
-                                  How can we help? <span className="text-red-500">*</span> // Keep red asterisk
+                                  How can we help? <span className="text-red-500">*</span>
                                 </label>
                                 <textarea
                                   id="help"
@@ -345,7 +444,7 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                                   rows={3}
                                   required
                                   className="w-full border-gray-300 rounded-lg shadow-sm focus:border-primary focus:ring-primary" // Styled with primary focus color
-                                  placeholder="Briefly describe your issue" // Keep placeholder
+                                  placeholder="Briefly describe your issue"
                                 ></textarea>
                               </div>
                             </div>
@@ -353,13 +452,13 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                             <button
                               type="submit"
                               className="mt-6 w-full bg-primary text-white py-3 px-4 rounded-lg font-semibold hover:bg-primary-dark transition-colors shadow-md" // Styled with primary color
-                              onClick={handleFormSubmitClick} // Keep click handler
+                              onClick={handleFormSubmitClick}
                             >
-                              Submit Request // Keep button text
+                              Submit Request
                             </button>
                             {formSubmitted && (
-                              <p className="mt-4 text-sm text-green-600"> // Keep green text
-                                Thank you! Your request is being submitted. You will be redirected shortly. // Keep text
+                              <p className="mt-4 text-sm text-green-600">
+                                Thank you! Your request is being submitted. You will be redirected shortly.
                               </p>
                             )}
                           </form>
@@ -504,17 +603,17 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
             <div className="lg:w-1/2">
               <FadeIn direction="right">
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                  About Smart Services America
-                </h2> // Updated heading text
+                  About Smart Services IT
+                </h2>
                 <div className="prose prose-lg text-gray-600 max-w-none">
                   <p>
-                    Welcome to Smart Services America, where technology meets personalized service. Based in Hicksville, New York, we are committed to delivering top-quality tech support and IT solutions to businesses and individuals alike. With a focus on reliability, efficiency, and customer satisfaction, we aim to provide services that empower our clients to navigate the digital world with ease.
+                    Welcome to Smart Services IT, where technology meets personalized service. Based in Hicksville, New York, we are committed to delivering top-quality tech support and IT solutions to businesses and individuals alike. With a focus on reliability, efficiency, and customer satisfaction, we aim to provide services that empower our clients to navigate the digital world with ease.
+                  </p>
+                  <p>
+                    At Smart Services IT, we specialize in a range of IT services tailored to meet the unique needs of our clients. Whether it’s troubleshooting technical issues, setting up advanced systems, or providing ongoing IT support, our team of experts is here to ensure that your technology works seamlessly. We are passionate about solving complex tech problems while offering the best customer experience.
                   </p> // Updated text content
                   <p>
-                    At Smart Services America, we specialize in a range of IT services tailored to meet the unique needs of our clients. Whether it’s troubleshooting technical issues, setting up advanced systems, or providing ongoing IT support, our team of experts is here to ensure that your technology works seamlessly. We are passionate about solving complex tech problems while offering the best customer experience.
-                  </p> // Updated text content
-                  <p>
-                    Smart Services America offers comprehensive IT support that’s more cost-effective than maintaining an in-house team. We’re here for you 24/7, delivering fast, reliable service. We respond within minutes, not hours or days, ensuring that your business operations remain smooth and uninterrupted. As an external team with diverse resources, we provide more reliability and flexibility than relying on a single in-house IT staff member.
+                    Smart Services IT offers comprehensive IT support that’s more cost-effective than maintaining an in-house team. We’re here for you 24/7, delivering fast, reliable service. We respond within minutes, not hours or days, ensuring that your business operations remain smooth and uninterrupted. As an external team with diverse resources, we provide more reliability and flexibility than relying on a single in-house IT staff member.
                   </p> // Updated text content
                 </div>
 
@@ -770,8 +869,8 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                       </svg>
                     </div>
                     <div>
-                      <h3 className="font-semibold text-lg">Phone</h3> // Keep text
-                      <p className="text-gray-300">(213) 349-6790</p> // Keep text
+                      <h3 className="font-semibold text-lg">Phone</h3>
+                      <p className="text-gray-300">(800) 386-5777</p>
                     </div>
                   </div>
 
