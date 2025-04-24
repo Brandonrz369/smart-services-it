@@ -510,7 +510,7 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                 onClick={() => setServiceFilter("all")}
                 className={`px-4 py-2 rounded-full text-sm font-medium ${
                   serviceFilter === "all"
-                    ? "bg-primary text-white" // Styled with primary color
+                    ? "bg-primary text-white" 
                     : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                 } transition-all duration-300`}
               >
@@ -520,7 +520,7 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                 onClick={() => setServiceFilter("business")}
                 className={`px-4 py-2 rounded-full text-sm font-medium ${
                   serviceFilter === "business"
-                    ? "bg-primary text-white" // Styled with primary color
+                    ? "bg-primary text-white" 
                     : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                 } transition-all duration-300`}
               >
@@ -530,7 +530,7 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                 onClick={() => setServiceFilter("support")}
                 className={`px-4 py-2 rounded-full text-sm font-medium ${
                   serviceFilter === "support"
-                    ? "bg-primary text-white" // Styled with primary color
+                    ? "bg-primary text-white" 
                     : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                 } transition-all duration-300`}
               >
@@ -539,42 +539,198 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
             </div>
           </div>
 
+          {/* Service Cards - Updated to match design in screenshots */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredServices.map((service, index) => (
-              <FadeIn key={service.title} direction="up" delay={index * 0.1}>
-                <ServiceCard
-                  title={service.title}
-                  description={service.description}
-                  icon={service.icon}
-                  features={service.features}
-                />
-              </FadeIn>
-            ))}
-          </div>
-
-          <div className="mt-14 text-center">
-            <FadeIn direction="up">
-              <Link
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <div className="mb-4">
+                <span className="text-4xl">💻</span>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">Mac/PC Screen Problems?</h3>
+              <p className="text-gray-600">Cracked screen, dim display, flickering? Expert diagnostics & configuration/component options.</p>
+              <Link 
                 href="/services"
-                className="inline-flex items-center px-6 py-3 bg-[#2563eb] text-white rounded-lg font-semibold hover:bg-[#1d4ed8] transition-all transform hover:scale-105 duration-300 shadow-md border-2 border-white"
+                className="inline-block text-primary hover:text-primary-dark mt-4 font-medium transition-colors flex items-center"
               >
-                View All Services
-                <svg
-                  className="w-5 h-5 ml-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+                Learn More
+                <svg 
+                  className="w-5 h-5 ml-1" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24" 
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth={2} 
+                    d="M14 5l7 7m0 0l-7 7m7-7H3" 
                   />
                 </svg>
               </Link>
-            </FadeIn>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <div className="mb-4">
+                <span className="text-4xl">🚀</span>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">Computer Running Slow?</h3>
+              <p className="text-gray-600">Frustrated with sluggish performance? Our optimization services can boost speed.</p>
+              <Link 
+                href="/services"
+                className="inline-block text-primary hover:text-primary-dark mt-4 font-medium transition-colors flex items-center"
+              >
+                Learn More
+                <svg 
+                  className="w-5 h-5 ml-1" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24" 
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth={2} 
+                    d="M14 5l7 7m0 0l-7 7m7-7H3" 
+                  />
+                </svg>
+              </Link>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <div className="mb-4">
+                <span className="text-4xl">💾</span>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">Can't Access Your Files?</h3>
+              <p className="text-gray-600">Difficulties accessing data? We provide consultation on accessibility options and backup strategies.</p>
+              <Link 
+                href="/services"
+                className="inline-block text-primary hover:text-primary-dark mt-4 font-medium transition-colors flex items-center"
+              >
+                Learn More
+                <svg 
+                  className="w-5 h-5 ml-1" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24" 
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth={2} 
+                    d="M14 5l7 7m0 0l-7 7m7-7H3" 
+                  />
+                </svg>
+              </Link>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <div className="mb-4">
+                <span className="text-4xl">🛡️</span>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">Worried About Security Threats?</h3>
+              <p className="text-gray-600">Concerned about malware or strange behavior? Get a system security assessment and cleanup assistance.</p>
+              <Link 
+                href="/services"
+                className="inline-block text-primary hover:text-primary-dark mt-4 font-medium transition-colors flex items-center"
+              >
+                Learn More
+                <svg 
+                  className="w-5 h-5 ml-1" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24" 
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth={2} 
+                    d="M14 5l7 7m0 0l-7 7m7-7H3" 
+                  />
+                </svg>
+              </Link>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <div className="mb-4">
+                <span className="text-4xl">🌐</span>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">Wi-Fi or Network Problems?</h3>
+              <p className="text-gray-600">Experiencing connectivity issues? We offer network setup, configuration, and optimization.</p>
+              <Link 
+                href="/services"
+                className="inline-block text-primary hover:text-primary-dark mt-4 font-medium transition-colors flex items-center"
+              >
+                Learn More
+                <svg 
+                  className="w-5 h-5 ml-1" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24" 
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth={2} 
+                    d="M14 5l7 7m0 0l-7 7m7-7H3" 
+                  />
+                </svg>
+              </Link>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <div className="mb-4">
+                <span className="text-4xl">❌</span>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">Software Conflicts or Setup Needs?</h3>
+              <p className="text-gray-600">Need help installing or configuring software? We provide expert assistance.</p>
+              <Link 
+                href="/services"
+                className="inline-block text-primary hover:text-primary-dark mt-4 font-medium transition-colors flex items-center"
+              >
+                Learn More
+                <svg 
+                  className="w-5 h-5 ml-1" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24" 
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth={2} 
+                    d="M14 5l7 7m0 0l-7 7m7-7H3" 
+                  />
+                </svg>
+              </Link>
+            </div>
+          </div>
+
+          <div className="mt-14 text-center">
+            <Link
+              href="/services"
+              className="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-primary-dark transition-all transform hover:scale-105 duration-300 shadow-md"
+            >
+              View All Services
+              <svg
+                className="w-5 h-5 ml-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"
+                />
+              </svg>
+            </Link>
           </div>
         </div>
       </section>
@@ -781,55 +937,109 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
       <section id="trust" className="py-20 px-4 bg-white">
         <div className="container mx-auto">
           <div className="text-center mb-12">
-            <FadeIn direction="up">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Reliable Service & Clear Pricing
-              </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                We believe in transparency, expertise, and dependable computer help in Hicksville and across New York.
-              </p>
-            </FadeIn>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Reliable Service & Clear Pricing
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              We believe in transparency, expertise, and dependable computer help in Hicksville and across New York.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            {/* Pricing */}
-            <FadeIn direction="up" delay={0.1}>
-              <div className="bg-gray-50 p-6 rounded-lg shadow-md h-full flex flex-col">
-                 <svg className="w-12 h-12 mx-auto mb-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" /></svg> // Styled with primary color
-                <h3 className="text-xl font-semibold mb-2">Transparent Pricing</h3> // Keep text
-                 <ul className="text-gray-600 space-y-1 text-left px-4 flex-grow"> // Keep gray text
-                  <li><strong>Diagnostic Assessment:</strong> $99 flat fee for computer issue diagnostics</li> // Keep text
-                  <li><strong>Hourly Support Rates:</strong> $125/hour for computer assistance, configuration, and optimization services</li> // Keep text
-                  <li><strong>IT Consultation Services:</strong> $150/hour for expert IT consulting and strategy</li> // Keep text
-                </ul>
-                 <p className="text-gray-500 text-sm mt-4">Upfront, transparent pricing. Diagnostic assessment for a flat fee of $99. Hourly rates for assistance, configuration, and optimization at $125/hour. IT consultation at $150/hour. No hidden fees, just clear, competitive rates for New York IT services.</p> // Keep text
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Transparent Pricing */}
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <div className="flex justify-center mb-4">
+                <div className="text-primary">
+                  <svg className="w-12 h-12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 5V3C18 2.44772 17.5523 2 17 2H7C6.44772 2 6 2.44772 6 3V5" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                    <path d="M18 14V16C18 16.5523 17.5523 17 17 17H7C6.44772 17 6 16.5523 6 16V14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                    <path d="M11 22H13" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                    <path d="M12 17V22" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                    <rect x="2" y="5" width="20" height="9" rx="2" stroke="currentColor" strokeWidth="2"/>
+                    <path d="M12 8.5V10.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                    <path d="M10 10.5H14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                  </svg>
+                </div>
               </div>
-            </FadeIn>
+              
+              <h3 className="text-xl font-semibold mb-2 text-center">Transparent Pricing</h3>
+              
+              <div className="mt-4 space-y-3">
+                <div className="flex justify-between">
+                  <span className="font-medium">Diagnostic Assessment:</span>
+                  <span className="text-gray-700">$99</span>
+                </div>
+                <p className="text-sm text-gray-600">Flat fee for computer issue diagnostics</p>
+                
+                <div className="flex justify-between pt-2">
+                  <span className="font-medium">Hourly Support Rates:</span>
+                  <span className="text-gray-700">$125/hr</span>
+                </div>
+                <p className="text-sm text-gray-600">For computer assistance, configuration, and optimization services</p>
+                
+                <div className="flex justify-between pt-2">
+                  <span className="font-medium">IT Consultation:</span>
+                  <span className="text-gray-700">$150/hr</span>
+                </div>
+                <p className="text-sm text-gray-600">For expert IT consulting and strategy</p>
+              </div>
+              
+              <p className="text-gray-500 text-sm mt-4">
+                No hidden fees, just clear, competitive rates for New York IT services.
+              </p>
+            </div>
 
-            {/* Credentials */}
-             <FadeIn direction="up" delay={0.2}>
-               <div className="bg-gray-50 p-6 rounded-lg shadow-md h-full flex flex-col">
-                 <svg className="w-12 h-12 mx-auto mb-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2" /></svg> // Styled with primary color
-                <h3 className="text-xl font-semibold mb-2">Local & Certified</h3> // Keep text
-                 <div className="text-gray-600 flex-grow"> // Keep gray text
-                   <p>Your trusted New York computer experts.</p> // Keep text
-                   <p>Located at 123 Main Street, Hicksville, NY 11801.</p> // Keep text
-                   <p>Call us at (800) 386-5777 for certified and insured IT support.</p>
-                   <p className="mt-2">Proudly serving the New York community since 2015.</p> // Keep text
-                 </div>
-               </div>
-             </FadeIn>
+            {/* Local & Certified */}
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <div className="flex justify-center mb-4">
+                <div className="text-primary">
+                  <svg className="w-12 h-12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 12L11 14L15 10M12 3L13.9101 4.87127C14.8686 5.78334 16.3844 5.77668 17.3349 4.85657L19 3.23607L20.7639 5L19.1434 6.66513C18.2233 7.61563 18.2167 9.13139 19.1287 10.0899L21 12L19.1287 13.9101C18.2167 14.8686 18.2233 16.3844 19.1434 17.3349L20.7639 19L19 20.7639L17.3349 19.1434C16.3844 18.2233 14.8686 18.2167 13.9101 19.1287L12 21L10.0899 19.1287C9.13139 18.2167 7.61563 18.2233 6.66513 19.1434L5 20.7639L3.23607 19L4.85657 17.3349C5.77668 16.3844 5.78334 14.8686 4.87127 13.9101L3 12L4.87127 10.0899C5.78334 9.13139 5.77668 7.61563 4.85657 6.66513L3.23607 5L5 3.23607L6.66513 4.85657C7.61563 5.77668 9.13139 5.78334 10.0899 4.87127L12 3Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+              
+              <h3 className="text-xl font-semibold mb-4 text-center">Local & Certified</h3>
+              
+              <div className="space-y-4 text-center">
+                <p className="text-gray-700">Your trusted New York computer experts.</p>
+                
+                <div>
+                  <p className="text-gray-700">Located at:</p>
+                  <p className="font-medium">123 Main Street</p>
+                  <p className="font-medium">Hicksville, NY 11801</p>
+                </div>
+                
+                <div>
+                  <p className="text-gray-700">Call us at:</p>
+                  <p className="font-medium">(800) 386-5777</p>
+                </div>
+                
+                <p className="text-gray-700 pt-2">Proudly serving the New York community since 2015.</p>
+              </div>
+            </div>
 
-             {/* Disclaimer */}
-             <FadeIn direction="up" delay={0.3}>
-               <div className="bg-gray-50 p-6 rounded-lg shadow-md h-full flex flex-col">
-                 <svg className="w-12 h-12 mx-auto mb-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg> // Styled with primary color
-                <h3 className="text-xl font-semibold mb-2">Independent Service Provider</h3> // Keep text
-                <p className="text-gray-600 text-sm flex-grow"> // Keep gray text
-                  Independent and unbiased IT service provider. Smart Services IT offers expert tech assistance and guidance, independent of any hardware or software vendor affiliations. We provide unbiased recommendations based on industry best practices and tailored solutions for your specific needs in New York and beyond. // Keep text
-                </p>
-               </div>
-             </FadeIn>
+            {/* Independent Service Provider */}
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <div className="flex justify-center mb-4">
+                <div className="text-primary">
+                  <svg className="w-12 h-12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 12L11 14L15 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="2"/>
+                  </svg>
+                </div>
+              </div>
+              
+              <h3 className="text-xl font-semibold mb-4 text-center">Independent Service Provider</h3>
+              
+              <p className="text-gray-700">
+                Smart Services IT offers expert tech assistance and guidance, independent of any hardware or software vendor affiliations.
+              </p>
+              
+              <p className="text-gray-700 mt-4">
+                We provide unbiased recommendations based on industry best practices and tailored solutions for your specific needs in New York and beyond.
+              </p>
+            </div>
           </div>
         </div>
       </section>

@@ -1,15 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, LazyMotion, domAnimation, m } from "framer-motion";
+import { useState } from "react";
+import Link from "next/link";
 
 interface ServiceCardProps {
-  icon: string;
   title: string;
   description: string;
+  icon: string;
   features?: string[];
   className?: string;
-  onlyShowFeaturesOnHover?: boolean;
+  link?: string;
 }
 
 export default function ServiceCard({
@@ -18,93 +18,70 @@ export default function ServiceCard({
   description,
   features = [],
   className = "",
-  onlyShowFeaturesOnHover = true,
+  link = "/services"
 }: ServiceCardProps) {
   const [isHovered, setIsHovered] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  // Detect mobile devices on mount
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    // Check on initial load
-    checkMobile();
-
-    // Set up listener for window resize
-    window.addEventListener("resize", checkMobile);
-
-    // Clean up
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
+  
+  // Render the icon as text (emoji)
+  const renderIcon = () => {
+    return (
+      <div className="text-4xl mb-4">
+        {icon}
+      </div>
+    );
   };
-
-  const featureVariants = {
-    hidden: { opacity: 0, height: 0, marginTop: 0 },
-    visible: { opacity: 1, height: "auto", marginTop: 16 },
-  };
-
-  // For mobile devices, always show features regardless of hover state
-  const shouldShowFeatures =
-    features.length > 0 && (!onlyShowFeaturesOnHover || isHovered || isMobile);
 
   return (
-    <motion.div
-      className={`service-card bg-white rounded-xl p-6 shadow-lg ${className}`}
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      transition={{ duration: 0.3 }}
+    <div 
+      className={`bg-white p-6 rounded-lg shadow-md h-full flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <LazyMotion features={domAnimation}>
-        <m.div
-          className="service-icon text-4xl mb-4"
-          initial={{ opacity: 1 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.2 }}
-        >
-          {icon}
-        </m.div>
-      </LazyMotion>
-      <h3 className="text-xl font-bold mb-3 text-gray-900">{title}</h3>
+      {renderIcon()}
+      
+      <h3 className="text-xl font-bold mb-2">{title}</h3>
+      
       <p className="text-gray-600 mb-4">{description}</p>
-
-      {shouldShowFeatures && (
-        <motion.div
-          className="mt-4 space-y-2"
-          variants={featureVariants}
-          initial="hidden"
-          animate="visible"
-          transition={{ duration: 0.3 }}
-        >
+      
+      {features.length > 0 && (
+        <div className="mt-auto mb-4 space-y-2">
           {features.map((feature, index) => (
-            <div key={index} className="flex items-start gap-2">
-              <svg
-                className="h-5 w-5 text-blue-500 flex-shrink-0 mt-0.5"
-                viewBox="0 0 20 20"
-                fill="currentColor"
+            <div key={index} className="flex items-start">
+              <svg 
+                className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24" 
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <path
-                  fillRule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clipRule="evenodd"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
-              <span className="text-gray-700 text-sm md:text-base">
-                {feature}
-              </span>
+              <span className="text-gray-700">{feature}</span>
             </div>
           ))}
-        </motion.div>
+        </div>
       )}
-    </motion.div>
+      
+      <Link 
+        href={link}
+        className="inline-block text-primary hover:text-primary-dark mt-auto font-medium transition-colors flex items-center"
+      >
+        Learn More
+        <svg 
+          className="w-5 h-5 ml-1" 
+          fill="none" 
+          stroke="currentColor" 
+          viewBox="0 0 24 24" 
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+            strokeWidth={2} 
+            d="M14 5l7 7m0 0l-7 7m7-7H3" 
+          />
+        </svg>
+      </Link>
+    </div>
   );
 }

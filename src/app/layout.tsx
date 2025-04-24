@@ -3,9 +3,9 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import Link from "next/link";
 import Script from "next/script"; // Import the Script component
 import { Analytics } from "@vercel/analytics/react";
-import Navigation from "@/components/Navigation";
+import Header from "@/components/navigation/Header";
+import Footer from "@/components/navigation/Footer";
 import ChatBot from "@/components/ChatBot";
-import FooterMain from "@/components/footer/FooterMain"; // Import the new main footer component
 import { FormLoggerProvider } from "@/components/FormLogger";
 import "./globals.css";
 
@@ -20,11 +20,11 @@ const geistMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Long Beach IT Support & Computer Services | LB Computer Help",
+  title: "Hicksville IT Support & Computer Services | Smart Services IT",
   description:
-    "LB Computer Help provides expert IT support, computer repair, cybersecurity, and managed services in Long Beach and Los Angeles County for businesses and homes. Get fast, reliable tech help today!",
+    "Smart Services IT provides expert IT support, computer repair, cybersecurity, and managed services in Hicksville and surrounding New York areas for businesses and homes. Get fast, reliable tech help today!",
   keywords:
-    "Long Beach IT support, computer repair, managed services, cybersecurity, data recovery, network support, tech support, IT consulting, business IT support, residential computer services, Long Beach tech help, Los Angeles County IT services",
+    "Hicksville IT support, computer repair, managed services, cybersecurity, data recovery, network support, tech support, IT consulting, business IT support, residential computer services, New York tech help, New York IT services",
 };
 
 export default function RootLayout({
@@ -44,18 +44,18 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
-              "name": "LB Computer Help",
+              "name": "Smart Services IT",
               "image": "", // Add logo URL if available
-              "@id": "https://lbcomputerhelp.com",
-              "url": "https://lbcomputerhelp.com",
-              "telephone": "(213) 349-6790",
+              "@id": "https://smartservicesit.store",
+              "url": "https://smartservicesit.store",
+              "telephone": "(800) 386-5777",
               "priceRange": "$$ - $$$",
               "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "927 Magnolia Ave #2",
-                "addressLocality": "Long Beach",
-                "addressRegion": "CA",
-                "postalCode": "90813",
+                "streetAddress": "123 Main Street",
+                "addressLocality": "Hicksville",
+                "addressRegion": "NY",
+                "postalCode": "11801",
                 "addressCountry": "US"
               },
               "openingHoursSpecification": [
@@ -67,20 +67,19 @@ export default function RootLayout({
                 }
               ],
               "sameAs": [
-                "https://facebook.com/lbcomputerhelp",
-                "https://instagram.com/lbcomputerhelp"
+                "https://facebook.com/smartservicesit",
+                "https://instagram.com/smartservicesit"
               ]
             }),
           }}
         />
         <FormLoggerProvider>
-          <Navigation />
-          <main className="min-h-screen pt-20">{children}</main>
+          <Header />
+          <main className="min-h-screen">{children}</main>
 
           <ChatBot />
 
-          {/* Use the new FooterMain component */}
-          <FooterMain />
+          <Footer />
         </FormLoggerProvider>
 
         {/* Google tag (gtag.js) */}
