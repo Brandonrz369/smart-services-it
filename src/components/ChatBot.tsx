@@ -116,26 +116,26 @@ export default function ChatBot() {
 
       // Booking
       appointment:
-        "You can schedule an appointment through our online booking system at lbcomputerhelp.com/book, or call us at (213) 349-6790. Would you like me to direct you to our booking page?",
+        "You can schedule an appointment through our online booking system at smartservicesit.store/book, or call us at (800) 386-5777. Would you like me to direct you to our booking page?",
       schedule:
-        "To schedule an appointment, you can use our online booking system or call (213) 349-6790. We typically offer same-day appointments for urgent issues.",
-      book: "You can book an appointment through our website at lbcomputerhelp.com/book or call our office at (213) 349-6790. For urgent matters, calling is recommended.",
+        "To schedule an appointment, you can use our online booking system or call (800) 386-5777. We typically offer same-day appointments for urgent issues.",
+      book: "You can book an appointment through our website at smartservicesit.store/book or call our office at (800) 386-5777. For urgent matters, calling is recommended.",
       urgent:
-        "For urgent IT issues, please call us directly at (213) 349-6790. We offer emergency support and can often provide same-day service.",
+        "For urgent IT issues, please call us directly at (800) 386-5777. We offer emergency support and can often provide same-day service.",
 
       // Contact
       phone:
-        "You can reach us by phone at (213) 349-6790 during our business hours: Monday-Friday 6AM-6PM and Saturday 6AM-6PM.",
+        "You can reach us by phone at (800) 386-5777 during our business hours: Monday-Sunday 10AM-7PM.",
       email:
-        "You can email us at support@lbcomputerhelp.com. We typically respond to all inquiries within 1 business hour during operating hours.",
+        "You can email us at support@smartservicesit.store. We typically respond to all inquiries within 1 business hour during operating hours.",
       contact:
-        "The best ways to contact us are by phone at (213) 349-6790 or email at support@lbcomputerhelp.com. For urgent matters, calling is recommended.",
+        "The best ways to contact us are by phone at (800) 386-5777 or email at support@smartservicesit.store. For urgent matters, calling is recommended.",
       location:
-        "We're located at 927 Magnolia Ave #2, Long Beach, CA 90813. We also offer on-site services throughout Long Beach and Los Angeles County.",
+        "We're located at 454 S Broadway, Hicksville, NY 11801. We also offer on-site services in Hicksville and surrounding areas.",
       address:
-        "Our office is located at 927 Magnolia Ave #2, Long Beach, CA 90813. We're easily accessible from downtown Long Beach and provide service throughout the LA metro area.",
+        "Our office is located at 454 S Broadway, Hicksville, NY 11801. We provide service throughout Hicksville and surrounding areas.",
       hours:
-        "Our business hours are Monday-Friday 6AM-6PM and Saturday 6AM-6PM. We're closed on Sundays.",
+        "Our business hours are Monday-Sunday 10AM-7PM.",
     };
 
     try {
@@ -314,7 +314,7 @@ export default function ChatBot() {
       if (errorCount >= 3) {
         // Critical error - suggest direct contact
         errorMessage =
-          "I'm sorry, we're experiencing technical difficulties with our chat system. Please call us directly at (213) 349-6790 for immediate assistance, or email support@lbcomputerhelp.com.";
+          "I'm sorry, we're experiencing technical difficulties with our chat system. Please call us directly at (800) 386-5777 for immediate assistance, or email support@smartservicesit.store.";
       } else if (errorCount === 2) {
         // Second error - try to answer based on keywords in the user's question
         const lowerInput = userInput.toLowerCase();
@@ -326,7 +326,7 @@ export default function ChatBot() {
           lowerInput.includes("fee")
         ) {
           errorMessage =
-            "While I'm having some technical difficulties, I can tell you that our computer services range from $75-150/hour depending on complexity. Managed IT services start at $299/month. For a detailed quote, please call us at (213) 349-6790.";
+            "While I'm having some technical difficulties, I can tell you that our computer services range from $75-150/hour depending on complexity. Managed IT services start at $299/month. For a detailed quote, please call us at (800) 386-5777.";
         } else if (
           lowerInput.includes("location") ||
           lowerInput.includes("address") ||
@@ -340,16 +340,16 @@ export default function ChatBot() {
           lowerInput.includes("book")
         ) {
           errorMessage =
-            "I apologize for the technical difficulties. You can book an appointment through our online system at lbcomputerhelp.com/book or by calling (213) 349-6790.";
+            "I apologize for the technical difficulties. You can book an appointment through our online system at smartservicesit.store/book or by calling (800) 386-5777.";
         } else {
           // Generic second error message
           errorMessage =
-            "I'm still having trouble connecting. For immediate assistance, please call us at (213) 349-6790 or email support@lbcomputerhelp.com. Alternatively, you can try asking a simpler question.";
+            "I'm still having trouble connecting. For immediate assistance, please call us at (800) 386-5777 or email support@smartservicesit.store. Alternatively, you can try asking a simpler question.";
         }
       } else {
         // First error - generic message
         errorMessage =
-          "I'm having trouble connecting right now. Let me try to get back on track. Please try your question again, or you can contact our team directly at (213) 349-6790.";
+          "I'm having trouble connecting right now. Let me try to get back on track. Please try your question again, or you can contact our team directly at (800) 386-5777.";
       }
 
       // Add error message

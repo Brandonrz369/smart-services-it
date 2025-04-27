@@ -13,7 +13,7 @@ const caseStudies = [
     title: "Retail Network Infrastructure Upgrade",
     industry: "Retail",
     client: "Harbor View Shopping Center",
-    location: "Long Beach, CA",
+    location: "Hicksville, NY",
     challenge:
       "A multi-location retail chain with 6 stores across Southern California was experiencing frequent network outages and slow POS transactions. Their existing network infrastructure was over 8 years old, causing reliability issues during peak shopping hours. With outdated security measures, they were also concerned about PCI compliance and payment data security.",
     approach: [
@@ -248,7 +248,7 @@ const fullCaseStudies = [
     title: "Real Estate Mobile Workforce Solution",
     industry: "Real Estate",
     client: "Coastal Properties Group",
-    location: "Long Beach, CA",
+    location: "Hicksville, NY",
     challenge:
       "A growing real estate agency with 40 agents needed to equip their mobile workforce with secure, reliable access to property systems and documents while in the field. Agents were struggling with inconsistent access to MLS listings, client information, and document signing tools, resulting in delays and lost opportunities.",
     approach: [
@@ -573,7 +573,7 @@ export default function CaseStudyDetailPage() {
                     </p>
                     <div className="space-y-3">
                       <a
-                        href="tel:2133496790"
+                        href="tel:8003865777"
                         className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg font-medium flex items-center justify-center"
                       >
                         <svg
@@ -584,7 +584,7 @@ export default function CaseStudyDetailPage() {
                         >
                           <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                         </svg>
-                        (213) 349-6790
+                        (800) 386-5777
                       </a>
                       <a
                         href="/contact"
@@ -713,10 +713,10 @@ export default function CaseStudyDetailPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="tel:2133496790"
+              href="tel:8003865777"
               className="px-6 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-colors shadow-md"
             >
-              Call (213) 349-6790
+              Call (800) 386-5777
             </a>
             <a
               href="/contact"

@@ -78,7 +78,7 @@ export default function SimpleContactForm() {
           <input
             type="hidden"
             name="_next"
-            value="https://lbcomputerhelp.com/thanks"
+            value="https://smartservicesit.store/thanks"
           />
         )}
 

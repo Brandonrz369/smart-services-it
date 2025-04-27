@@ -52,7 +52,7 @@ export default function RootLayout({
               "priceRange": "$$ - $$$",
               "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "123 Main Street",
+                "streetAddress": "454 S Broadway",
                 "addressLocality": "Hicksville",
                 "addressRegion": "NY",
                 "postalCode": "11801",
@@ -61,9 +61,9 @@ export default function RootLayout({
               "openingHoursSpecification": [
                 {
                   "@type": "OpeningHoursSpecification",
-                  "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-                  "opens": "06:00",
-                  "closes": "18:00"
+                  "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+                  "opens": "10:00",
+                  "closes": "19:00"
                 }
               ],
               "sameAs": [

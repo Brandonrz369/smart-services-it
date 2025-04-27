@@ -447,7 +447,7 @@ export default function CaseStudiesPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="tel:2133496790"
+                href="tel:8003865777"
                 className="px-6 py-3 bg-white text-blue-700 font-bold rounded-lg hover:bg-blue-50 transition-colors shadow-md flex items-center justify-center"
               >
                 <svg
@@ -464,7 +464,7 @@ export default function CaseStudiesPage() {
                     d="M3 5a2 2 0 012-2h3.28a1 1 0 01.986.836l.74 4.435a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                   />
                 </svg>
-                Call (213) 349-6790
+                Call (800) 386-5777
               </a>
               <a
                 href="/contact"

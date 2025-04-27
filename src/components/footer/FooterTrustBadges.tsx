@@ -16,9 +16,9 @@ export default function FooterTrustBadges() {
       {/* Certified */}
       <div>
         <h4 className="font-semibold text-gray-100 mb-2">Local & Certified</h4>
-        <p className="text-gray-400">LB Computer Help</p>
-        <p className="text-gray-400">927 Magnolia Ave #2, Long Beach, CA 90813</p>
-        <p className="text-gray-400">Serving Long Beach Since 2018</p>
+        <p className="text-gray-400">Smart Services IT</p>
+        <p className="text-gray-400">454 S Broadway, Hicksville, NY 11801</p>
+        <p className="text-gray-400">Serving Hicksville & Nassau County Since 2018</p>
         <p className="text-gray-400 mt-1 font-medium">Fully Insured</p>
         {/* Add Certifications */}
       </div>
@@ -26,7 +26,7 @@ export default function FooterTrustBadges() {
       <div>
         <h4 className="font-semibold text-gray-100 mb-2">Independent Service Provider</h4>
         <p className="text-gray-400">
-          LB Computer Help is an independent company providing expert tech assistance. We are not affiliated with Microsoft, Apple, Dell, HP, or others. Recommendations are based on best practices and your needs.
+          Smart Services IT is an independent company providing expert tech assistance. We are not affiliated with Microsoft, Apple, Dell, HP, or others. Recommendations are based on best practices and your needs.
         </p>
       </div>
     </div>

@@ -143,7 +143,7 @@ export default function BookingPage() {
                         />
                       </svg>
                       <p className="text-gray-700 font-medium">
-                        (213) 349-6790
+                        (800) 386-5777
                       </p>
                     </div>
                     <div className="flex items-center">
@@ -161,7 +161,7 @@ export default function BookingPage() {
                         />
                       </svg>
                       <p className="text-gray-700 font-medium">
-                        support@lbcomputerhelp.com
+                        support@smartservicesit.store
                       </p>
                     </div>
                   </div>
@@ -201,7 +201,7 @@ export default function BookingPage() {
                   <div className="h-[700px]">
                     {/* Direct iframe solution for more reliable embedding */}
                     <iframe
-                      src="https://calendly.com/lbcomputerhelp-support/30min?embed=true&hide_gdpr_banner=1&background_color=ffffff&text_color=333333&primary_color=2563eb"
+                      src="https://calendly.com/smartservicesit/30min?embed=true&hide_gdpr_banner=1&background_color=ffffff&text_color=333333&primary_color=2563eb"
                       width="100%"
                       height="650px"
                       frameBorder="0"
@@ -282,7 +282,7 @@ export default function BookingPage() {
                 Emergency Support
               </Link>
               <Link
-                href="tel:2133496790"
+                href="tel:8003865777"
                 className="px-6 py-3 border-2 border-white text-white font-bold rounded-lg hover:bg-red-700 transition duration-300 flex items-center justify-center"
               >
                 <svg

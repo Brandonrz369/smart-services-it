@@ -27,7 +27,7 @@ export default function EmergencyPageClient() {
           </p>
           <div className="mt-8">
             <Link
-              href="tel:2133496790"
+              href="tel:8003865777"
               className="inline-flex items-center px-6 py-3 bg-white text-red-600 font-bold rounded-lg hover:bg-red-50 transition duration-300 text-lg"
             >
               <svg
@@ -44,7 +44,7 @@ export default function EmergencyPageClient() {
                   d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                 />
               </svg>
-              (213) 349-6790
+              (800) 386-5777
             </Link>
           </div>
         </div>
@@ -409,7 +409,7 @@ export default function EmergencyPageClient() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="tel:2133496790"
+                href="tel:8003865777"
                 className="px-6 py-3 bg-white text-red-600 font-bold rounded-lg hover:bg-red-50 transition duration-300 flex items-center justify-center text-lg"
               >
                 <svg
@@ -426,10 +426,10 @@ export default function EmergencyPageClient() {
                     d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                   />
                 </svg>
-                Call (213) 349-6790
+                Call (800) 386-5777
               </Link>
               <Link
-                href="sms:2133496790"
+                href="sms:8003865777"
                 className="px-6 py-3 border-2 border-white text-white font-bold rounded-lg hover:bg-red-700 transition duration-300 flex items-center justify-center text-lg"
               >
                 <svg

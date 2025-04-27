@@ -17,16 +17,21 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="w-full">
+    <header className="w-full header-component">
       {/* Top Bar */}
-      <div className="bg-primary text-white py-2 px-4 text-sm flex justify-between items-center">
+      <div className="bg-primary text-white py-2 px-8 text-sm flex justify-between items-center">
         <div className="flex items-center">
           <span className="font-medium mr-4">24/7 SUPPORT</span>
           <a 
             href="tel:8003865777" 
             className="flex items-center hover:underline"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg 
+              className="w-4 h-4 mr-2" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
             </svg>
             (800) 386-5777
@@ -37,7 +42,12 @@ export default function Header() {
             href="/emergency" 
             className="flex items-center hover:underline"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg 
+              className="w-4 h-4 mr-2" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
             </svg>
             Emergency Services
@@ -47,8 +57,8 @@ export default function Header() {
       </div>
 
       {/* Main Navigation */}
-      <nav className={`w-full bg-white py-4 px-4 transition-all duration-300 ${isScrolled ? 'shadow-md' : ''}`}>
-        <div className="container mx-auto flex justify-between items-center">
+      <nav className={`w-full bg-white py-4 transition-all duration-300 ${isScrolled ? 'shadow-md' : ''}`}>
+        <div className="max-w-full px-8 flex justify-between items-center">
           {/* Logo */}
           <Link href="/" className="text-primary text-2xl font-bold">
             Smart Services IT
@@ -59,7 +69,12 @@ export default function Header() {
             <div className="relative group">
               <button className="px-3 py-2 text-gray-700 hover:text-primary flex items-center">
                 Services
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg 
+                  className="w-4 h-4 ml-1" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
@@ -75,7 +90,12 @@ export default function Header() {
             <div className="relative group">
               <button className="px-3 py-2 text-gray-700 hover:text-primary flex items-center">
                 Resources
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg 
+                  className="w-4 h-4 ml-1" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
@@ -89,7 +109,12 @@ export default function Header() {
             <div className="relative group">
               <button className="px-3 py-2 text-gray-700 hover:text-primary flex items-center">
                 Company
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg 
+                  className="w-4 h-4 ml-1" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
@@ -117,7 +142,12 @@ export default function Header() {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden text-gray-600 focus:outline-none"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
               {isMobileMenuOpen ? (
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               ) : (
@@ -133,7 +163,12 @@ export default function Header() {
             <div className="py-2 border-b border-gray-200">
               <button className="w-full flex justify-between items-center py-2 px-4 text-left">
                 <span>Services</span>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
@@ -149,7 +184,12 @@ export default function Header() {
             <div className="py-2 border-b border-gray-200">
               <button className="w-full flex justify-between items-center py-2 px-4 text-left">
                 <span>Resources</span>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
@@ -163,7 +203,12 @@ export default function Header() {
             <div className="py-2 border-b border-gray-200">
               <button className="w-full flex justify-between items-center py-2 px-4 text-left">
                 <span>Company</span>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>

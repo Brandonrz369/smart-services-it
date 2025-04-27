@@ -5,33 +5,33 @@ import ResidentialBusinessClientPage from "@/components/ResidentialBusinessClien
 
 // Define Metadata for this specific page (Enhanced Semantic Scope)
 export const metadata = {
-  title: "Long Beach Computer Help | Device Assistance & Solutions | LB Computer Help",
+  title: "Solutions for Home and Office | Smart Services America", // Updated title
   description:
-    "Expert computer help in Long Beach. Diagnostics, configuration, optimization & consultation for Mac/PC issues: slow performance, screen problems, battery drain, data access, network setup & more. Transparent pricing.",
+    "Smart Services America offers expert technology solutions for home and office, from support to recommendations.", // Updated description
   keywords:
-    "long beach computer help, lb computer help near me, computer assistance Long Beach, device solutions Long Beach, macbook screen options Long Beach, laptop battery performance Long Beach, slow pc help Long Beach, data access consultation Long Beach, network setup Long Beach, local tech experts Long Beach, computer diagnostic pricing, hardware configuration Long Beach", // Added more keywords
+    "home technology solutions, office technology solutions, personal computer help, small business IT support, Smart Services America", // Updated keywords
 };
 
 // Schema Markup Component (Enhanced Scope)
 function ResidentialBusinessJsonLd() {
   const businessSchema = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: "LB Computer Help",
-    image: "", // Add logo URL if available
-    "@id": "https://lbcomputerhelp.com", // Use canonical URL
-    url: "https://lbcomputerhelp.com/residential-business", // URL of this specific page
-    telephone: "(213) 349-6790",
-    priceRange: "$$ - $$$", // General price range indication
+    "@type": "LocalBusiness", // Keep LocalBusiness type
+    name: "Smart Services America", // Updated name
+    image: "", // Add logo URL if available (update if needed)
+    "@id": "https://smartservicesit.store", // Updated ID
+    url: "https://smartservicesit.store", // Updated URL
+    telephone: "+1-800-386-5777", // Updated phone number
+    priceRange: "$$ - $$$", // Keep general price range for now
     address: {
       "@type": "PostalAddress",
-      streetAddress: "927 Magnolia Ave #2",
-      addressLocality: "Long Beach",
-      addressRegion: "CA",
-      postalCode: "90813",
-      addressCountry: "US",
+      streetAddress: "454 s Broadway", // Updated street address
+      addressLocality: "Hicksville", // Updated locality
+      addressRegion: "NY", // Updated region
+      postalCode: "11801", // Updated postal code
+      addressCountry: "US", // Keep country
     },
-    openingHoursSpecification: [
+    openingHoursSpecification: [ // Keep opening hours for now
       {
         "@type": "OpeningHoursSpecification",
         dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
@@ -39,79 +39,31 @@ function ResidentialBusinessJsonLd() {
         closes: "18:00",
       },
     ],
-    sameAs: [
-      "https://facebook.com/lbcomputerhelp",
-      "https://instagram.com/lbcomputerhelp",
+    sameAs: [ // Update social media links if available for Smart Services America
+      // "https://facebook.com/smartservicesamerica",
+      // "https://instagram.com/smartservicesamerica",
     ],
   };
 
-  // Revised Service Schemas
+  // Revised Service Schemas (Simplified based on smartservicesit.store categories)
   const serviceSchemas = [
     {
       "@context": "https://schema.org",
       "@type": "Service",
-      serviceType: "Hardware Diagnostic & Assessment",
-      description: "Identify issues with Mac/PC screens (including cracked/damaged displays, flickering, dimness), batteries, boot problems, or other components. Get clear options and pricing for solutions in Long Beach.", // Enhanced description
-      provider: { "@id": "https://lbcomputerhelp.com" },
-      areaServed: { "@type": "City", name: "Long Beach" },
-      offers: { "@type": "Offer", priceSpecification: { "@type": "PriceSpecification", price: "99", priceCurrency: "USD" } }
+      serviceType: "Home Technology Solutions", // Updated service type
+      description: "Solutions for personal use, covering a wide range of technologies, from speeding up your computer to setting up your smart TV, along with education and support tailored to your needs.", // Updated description
+      provider: { "@id": "https://smartservicesit.store" }, // Updated provider ID
+      areaServed: { "@type": "City", name: "Hicksville" }, // Updated area served
     },
     {
       "@context": "https://schema.org",
       "@type": "Service",
-      serviceType: "Component Configuration & Installation",
-      description: "Professional installation and configuration for compatible hardware components (e.g., memory, storage) to enhance performance or address specific issues.",
-      provider: { "@id": "https://lbcomputerhelp.com" },
-      areaServed: { "@type": "City", name: "Long Beach" },
+      serviceType: "Small Business IT Support", // Updated service type
+      description: "For small businesses and entrepreneurs, Smart Services America serves as your personal IT support team, offering fast, same-day service.", // Updated description
+      provider: { "@id": "https://smartservicesit.store" }, // Updated provider ID
+      areaServed: { "@type": "City", name: "Hicksville" }, // Updated area served
     },
-    {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      serviceType: "System Performance Optimization",
-      description: "Improve speed and battery life for your Mac or PC through expert optimization techniques and software configuration.",
-      provider: { "@id": "https://lbcomputerhelp.com" },
-      areaServed: { "@type": "City", name: "Long Beach" },
-    },
-     {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      serviceType: "Data Accessibility Consultation",
-      description: "Assistance and guidance for accessing files on malfunctioning devices. Includes data backup strategy advice.",
-      provider: { "@id": "https://lbcomputerhelp.com" },
-      areaServed: { "@type": "City", name: "Long Beach" },
-    },
-     {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      serviceType: "System Security Assessment & Cleanup Assistance",
-      description: "Assessment for security threats, malware checks, and assistance with system cleanup for enhanced protection.",
-      provider: { "@id": "https://lbcomputerhelp.com" },
-      areaServed: { "@type": "City", name: "Long Beach" },
-    },
-     {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      serviceType: "Network Setup & Configuration",
-      description: "Reliable setup, configuration, and optimization for home and small business Wi-Fi and wired networks.",
-      provider: { "@id": "https://lbcomputerhelp.com" },
-      areaServed: { "@type": "City", name: "Long Beach" },
-    },
-     {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      serviceType: "Software Configuration Assistance",
-      description: "Expert help with installing, configuring, or troubleshooting software applications and operating systems.",
-      provider: { "@id": "https://lbcomputerhelp.com" },
-      areaServed: { "@type": "City", name: "Long Beach" },
-    },
-     {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      serviceType: "IT Consulting & Guidance",
-      description: "Expert advice on managing device issues, security practices, and choosing the right technology solutions.",
-      provider: { "@id": "https://lbcomputerhelp.com" },
-      areaServed: { "@type": "City", name: "Long Beach" },
-    },
+    // Removed specific service schemas for simplicity, aligning with smartservicesit.store structure
   ];
 
   return (

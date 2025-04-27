@@ -1,4 +1,4 @@
-"use client"; // Mark as Client Component
+"use client";
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
@@ -6,7 +6,7 @@ import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import FloatingShapes from "@/components/FloatingShapes";
 import TypewriterEffect from "@/components/TypewriterEffect";
-import ServiceCard from "@/components/ServicesCard";
+import ServicesCard from "@/components/ServicesCard";
 import TestimonialCarousel, {
   Testimonial,
 } from "@/components/TestimonialCarousel";
@@ -14,14 +14,12 @@ import RevealText from "@/components/RevealText";
 import ParallaxEffect from "@/components/ParallaxEffect";
 import ServiceAssessmentModal from "@/components/ServiceAssessmentModal";
 
-// Declare gtag_report_conversion function for TypeScript
 declare global {
   interface Window {
     gtag_report_conversion: (url?: string) => void;
   }
 }
 
-// Define the interface for service data
 interface Service {
   title: string;
   description: string;
@@ -30,7 +28,6 @@ interface Service {
   category: string;
 }
 
-// Define the props for the client component
 interface HomePageClientProps {
   services: Service[];
   testimonials: Testimonial[];
@@ -40,22 +37,17 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
   const [isLoaded, setIsLoaded] = useState(false);
   const [serviceFilter, setServiceFilter] = useState("all");
   const [isAssessmentOpen, setIsAssessmentOpen] = useState(false);
-  const [formSubmitted, setFormSubmitted] = useState(false); // State for submission feedback
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [formSubmitted, setFormSubmitted] = useState(false);
   
-  // Slideshow images
   const heroImages = [
-    '/images/hero-background-new.png',
+    '/images/hero-background.jpg',
     '/images/hero-ab-test-smartservices-1.jpg',
-    '/images/hero-ab-test-smartservices-2.jpg',
-    '/images/hero-slideshow/slide1.png',
-    '/images/hero-slideshow/slide2.png'
+    '/images/hero-ab-test-smartservices-2.jpg'
   ];
 
-  // State to track if slideshow is paused
   const [isPaused, setIsPaused] = useState(false);
   
-  // Automatic slideshow with pause capability
   useEffect(() => {
     let slideshowTimer: NodeJS.Timeout;
     
@@ -64,7 +56,7 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
         setCurrentSlide((prevSlide) => 
           prevSlide === heroImages.length - 1 ? 0 : prevSlide + 1
         );
-      }, 5000); // Change slide every 5 seconds
+      }, 5000); // 5 seconds interval for slideshow
     }
     
     return () => {
@@ -72,39 +64,23 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
     };
   }, [isPaused, heroImages.length]);
 
-  // Handle page load animation
   useEffect(() => {
     setIsLoaded(true);
   }, []);
 
-  // Filter services based on selected category
   const filteredServices =
     serviceFilter === "all"
       ? services
       : services.filter((service) => service.category === serviceFilter);
 
-  // Handle form submission click
   const handleFormSubmitClick = () => {
-    setFormSubmitted(true); // Set submitted state
     if (typeof window.gtag_report_conversion === 'function') {
       window.gtag_report_conversion();
     }
-    // Note: Actual submission is handled by Formspree via form action
-    // We just provide feedback here.
+    setFormSubmitted(true);
   };
   
-  // Slideshow navigation functions
-  const goToNextSlide = () => {
-    setCurrentSlide((prev) => 
-      prev === heroImages.length - 1 ? 0 : prev + 1
-    );
-  };
-  
-  const goToPrevSlide = () => {
-    setCurrentSlide((prev) => 
-      prev === 0 ? heroImages.length - 1 : prev - 1
-    );
-  };
+  // Removed slide navigation functions since we only have one image
 
 
   return (
@@ -128,8 +104,8 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
               style={{
                 backgroundImage: `url('${image}')`,
                 mixBlendMode: "overlay",
-                opacity: currentSlide === index ? 0.35 : 0, // More transparent (0.35) and only show current slide
                 zIndex: currentSlide === index ? 1 : 0,
+                opacity: currentSlide === index ? 1 : 0
               }}
             ></div>
           ))}
@@ -139,21 +115,31 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
           
           {/* Navigation arrows */}
           <button 
-            onClick={goToPrevSlide}
+            onClick={() => setCurrentSlide(prev => prev === 0 ? heroImages.length - 1 : prev - 1)}
             className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-black/20 hover:bg-black/40 text-white rounded-full p-2 transition-all duration-200"
             aria-label="Previous slide"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
           
           <button 
-            onClick={goToNextSlide}
+            onClick={() => setCurrentSlide(prev => prev === heroImages.length - 1 ? 0 : prev + 1)}
             className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-black/20 hover:bg-black/40 text-white rounded-full p-2 transition-all duration-200"
             aria-label="Next slide"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
@@ -168,12 +154,22 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                 aria-label={isPaused ? "Play slideshow" : "Pause slideshow"}
               >
                 {isPaused ? (
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 ) : (
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 )}
@@ -226,7 +222,6 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
                       strokeLinecap="round"
@@ -270,7 +265,6 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
                         strokeLinecap="round"
@@ -290,7 +284,6 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
                         strokeLinecap="round"
@@ -337,14 +330,13 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                                 className="w-5 h-5 text-yellow-400"
                                 fill="currentColor"
                                 viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg"
                               >
                                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                               </svg>
                             ))}
                           </div>
                           <p className="text-sm text-gray-300">
-                            Trusted by businesses across New York and beyond
+                            Trusted by businesses across Hicksville, Nassau County, and all of Long Island
                           </p>
                         </div>
                       </div>
@@ -368,8 +360,8 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                           </p>
                         </div>
                         <div className="p-6">
-                          <form
-                            action="https://formspree.io/f/smartservicesit" 
+                          <form 
+                            action="https://formspree.io/f/xzzeddgr"
                             method="POST"
                           >
                             {/* Redirect back to our site after submission */}
@@ -426,8 +418,8 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                                   id="phone"
                                   name="phone"
                                   required
-                                  className="w-full border-gray-300 rounded-lg shadow-sm focus:border-primary focus:ring-primary" // Styled with primary focus color
-                                  placeholder="Your phone number" // Keep placeholder
+                                  className="w-full border-gray-300 rounded-lg shadow-sm focus:border-primary focus:ring-primary"
+                                  placeholder="Your phone number"
                                 />
                               </div>
 
@@ -443,7 +435,7 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                                   name="message"
                                   rows={3}
                                   required
-                                  className="w-full border-gray-300 rounded-lg shadow-sm focus:border-primary focus:ring-primary" // Styled with primary focus color
+                                  className="w-full border-gray-300 rounded-lg shadow-sm focus:border-primary focus:ring-primary"
                                   placeholder="Briefly describe your issue"
                                 ></textarea>
                               </div>
@@ -451,8 +443,8 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
 
                             <button
                               type="submit"
-                              className="mt-6 w-full bg-primary text-white py-3 px-4 rounded-lg font-semibold hover:bg-primary-dark transition-colors shadow-md" // Styled with primary color
                               onClick={handleFormSubmitClick}
+                              className="mt-6 w-full px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-primary-dark transition-all duration-300"
                             >
                               Submit Request
                             </button>
@@ -473,11 +465,9 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
             <div className="absolute bottom-10 left-0 right-0 flex justify-center">
               <div className="animate-bounce bg-white p-2 w-10 h-10 ring-1 ring-gray-900/5 shadow-lg rounded-full flex items-center justify-center">
                 <svg
-                  className="w-6 h-6 text-primary" // Styled with primary color
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
                     strokeLinecap="round"
@@ -501,7 +491,8 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
               <p className="text-gray-600 max-w-2xl mx-auto">
                 From hardware assistance to managed IT solutions, we provide
                 comprehensive tech services for businesses and individuals in
-                Hicksville, New York and surrounding areas.
+                Hicksville, Nassau County, Long Island, and surrounding areas
+                within 50 miles.
               </p>
             </FadeIn>
 
@@ -557,7 +548,6 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                   fill="none" 
                   stroke="currentColor" 
                   viewBox="0 0 24 24" 
-                  xmlns="http://www.w3.org/2000/svg"
                 >
                   <path 
                     strokeLinecap="round" 
@@ -585,7 +575,6 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                   fill="none" 
                   stroke="currentColor" 
                   viewBox="0 0 24 24" 
-                  xmlns="http://www.w3.org/2000/svg"
                 >
                   <path 
                     strokeLinecap="round" 
@@ -613,7 +602,6 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                   fill="none" 
                   stroke="currentColor" 
                   viewBox="0 0 24 24" 
-                  xmlns="http://www.w3.org/2000/svg"
                 >
                   <path 
                     strokeLinecap="round" 
@@ -641,7 +629,6 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                   fill="none" 
                   stroke="currentColor" 
                   viewBox="0 0 24 24" 
-                  xmlns="http://www.w3.org/2000/svg"
                 >
                   <path 
                     strokeLinecap="round" 
@@ -669,7 +656,6 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                   fill="none" 
                   stroke="currentColor" 
                   viewBox="0 0 24 24" 
-                  xmlns="http://www.w3.org/2000/svg"
                 >
                   <path 
                     strokeLinecap="round" 
@@ -697,7 +683,6 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                   fill="none" 
                   stroke="currentColor" 
                   viewBox="0 0 24 24" 
-                  xmlns="http://www.w3.org/2000/svg"
                 >
                   <path 
                     strokeLinecap="round" 
@@ -721,7 +706,6 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   strokeLinecap="round"
@@ -763,122 +747,98 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                 </h2>
                 <div className="prose prose-lg text-gray-600 max-w-none">
                   <p>
-                    Welcome to Smart Services IT, where technology meets personalized service. Based in Hicksville, New York, we are committed to delivering top-quality tech support and IT solutions to businesses and individuals alike. With a focus on reliability, efficiency, and customer satisfaction, we aim to provide services that empower our clients to navigate the digital world with ease.
+                    Welcome to Smart Services IT, where technology meets personalized service. Established in 2015 and based in Hicksville, New York, we are committed to delivering top-quality tech support and IT solutions to businesses and individuals across Nassau County, Long Island, and all areas within 50 miles of Hicksville. With over a decade of experience and a focus on reliability, efficiency, and customer satisfaction, we aim to provide services that empower our clients to navigate the digital world with ease.
                   </p>
                   <p>
-                    At Smart Services IT, we specialize in a range of IT services tailored to meet the unique needs of our clients. Whether it’s troubleshooting technical issues, setting up advanced systems, or providing ongoing IT support, our team of experts is here to ensure that your technology works seamlessly. We are passionate about solving complex tech problems while offering the best customer experience.
-                  </p> // Updated text content
+                    At Smart Services IT, we specialize in a range of IT services tailored to meet the unique needs of our clients. Whether it's troubleshooting technical issues, setting up advanced systems, or providing ongoing IT support, our team of experts is here to ensure that your technology works seamlessly. We are passionate about solving complex tech problems while offering the best customer experience.
+                  </p>
                   <p>
-                    Smart Services IT offers comprehensive IT support that’s more cost-effective than maintaining an in-house team. We’re here for you 24/7, delivering fast, reliable service. We respond within minutes, not hours or days, ensuring that your business operations remain smooth and uninterrupted. As an external team with diverse resources, we provide more reliability and flexibility than relying on a single in-house IT staff member.
-                  </p> // Updated text content
+                    Smart Services IT offers comprehensive IT support that's more cost-effective than maintaining an in-house team. We're here for you 24/7, delivering fast, reliable service. We respond within minutes, not hours or days, ensuring that your business operations remain smooth and uninterrupted. As an external team with diverse resources, we provide more reliability and flexibility than relying on a single in-house IT staff member.
+                  </p>
                 </div>
 
                 <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="flex items-center">
                     <div className="flex-shrink-0 mr-4">
-                      <div className="w-12 h-12 bg-primary-light rounded-full flex items-center justify-center"> // Styled with primary-light color
-                        <svg
-                          className="w-6 h-6 text-primary-dark" // Styled with primary-dark color
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M5 13l4 4L19 7"
-                          />
-                        </svg>
-                      </div>
+                      <svg
+                        className="w-6 h-6 text-primary" 
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
                     </div>
                     <div>
-                      <h3 className="font-semibold">Expertise</h3> // Updated text
-                      <p className="text-gray-500 text-sm"> // Keep gray text
-                        Our team brings years of experience and technical know-how to every job, ensuring that you get the best possible solutions. // Updated text
-                      </p>
+                      <p>Tailored IT solutions for your specific needs</p>
                     </div>
                   </div>
 
                   <div className="flex items-center">
                     <div className="flex-shrink-0 mr-4">
-                      <div className="w-12 h-12 bg-primary-light rounded-full flex items-center justify-center"> // Styled with primary-light color
-                        <svg
-                          className="w-6 h-6 text-primary-dark" // Styled with primary-dark color
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                          />
-                        </svg>
-                      </div>
+                      <svg
+                        className="w-6 h-6 text-primary"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                        />
+                      </svg>
                     </div>
                     <div>
-                      <h3 className="font-semibold">Customer-Centric Approach</h3> // Updated text
-                      <p className="text-gray-500 text-sm"> // Keep gray text
-                        We believe in building long-lasting relationships with our clients, offering personalized services tailored to their unique needs. // Updated text
-                      </p>
+                      <p>Secure and reliable services</p>
                     </div>
                   </div>
 
                   <div className="flex items-center">
                     <div className="flex-shrink-0 mr-4">
-                      <div className="w-12 h-12 bg-primary-light rounded-full flex items-center justify-center"> // Styled with primary-light color
-                        <svg
-                          className="w-6 h-6 text-primary-dark" // Styled with primary-dark color
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.161M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.161m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                          />
-                        </svg>
-                      </div>
+                      <svg
+                        className="w-6 h-6 text-primary"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.161M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.161m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                        />
+                      </svg>
                     </div>
                     <div>
-                      <h3 className="font-semibold">Prompt and Efficient Service</h3> // Updated text
-                      <p className="text-gray-500 text-sm"> // Keep gray text
-                        Whether it's a quick fix or a complex IT project, we work swiftly and efficiently to get you back on track. // Updated text
-                      </p>
+                      <p>Expert team at your service</p>
                     </div>
                   </div>
 
                   <div className="flex items-center">
                     <div className="flex-shrink-0 mr-4">
-                      <div className="w-12 h-12 bg-primary-light rounded-full flex items-center justify-center"> // Styled with primary-light color
-                        <svg
-                          className="w-6 h-6 text-primary-dark" // Styled with primary-dark color
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                          />
-                        </svg>
-                      </div>
+                      <svg
+                        className="w-6 h-6 text-primary"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                        />
+                      </svg>
                     </div>
                     <div>
-                      <h3 className="font-semibold">Affordable Solutions</h3> // Updated text
-                      <p className="text-gray-500 text-sm"> // Keep gray text
-                        High-quality tech support shouldn’t break the bank. We provide top-notch services at competitive prices. // Updated text
-                      </p>
+                      <p>Advanced security solutions</p>
                     </div>
                   </div>
                 </div>
@@ -922,7 +882,7 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                   </Link>
                   <Link
                     href="/services"
-                    className="px-6 py-3 bg-gray-200 text-gray-800 rounded-lg font-semibold hover:bg-gray-300 transition-all duration-300" // Keep gray button
+                    className="px-6 py-3 bg-white text-primary border border-primary rounded-lg font-semibold hover:bg-gray-100 transition-all duration-300"
                   >
                     View Services
                   </Link>
@@ -950,7 +910,12 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
             <div className="bg-white p-6 rounded-lg shadow-md">
               <div className="flex justify-center mb-4">
                 <div className="text-primary">
-                  <svg className="w-12 h-12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg 
+                    className="w-12 h-12" 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor"
+                  >
                     <path d="M18 5V3C18 2.44772 17.5523 2 17 2H7C6.44772 2 6 2.44772 6 3V5" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
                     <path d="M18 14V16C18 16.5523 17.5523 17 17 17H7C6.44772 17 6 16.5523 6 16V14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
                     <path d="M11 22H13" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
@@ -993,7 +958,12 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
             <div className="bg-white p-6 rounded-lg shadow-md">
               <div className="flex justify-center mb-4">
                 <div className="text-primary">
-                  <svg className="w-12 h-12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg 
+                    className="w-12 h-12" 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor"
+                  >
                     <path d="M9 12L11 14L15 10M12 3L13.9101 4.87127C14.8686 5.78334 16.3844 5.77668 17.3349 4.85657L19 3.23607L20.7639 5L19.1434 6.66513C18.2233 7.61563 18.2167 9.13139 19.1287 10.0899L21 12L19.1287 13.9101C18.2167 14.8686 18.2233 16.3844 19.1434 17.3349L20.7639 19L19 20.7639L17.3349 19.1434C16.3844 18.2233 14.8686 18.2167 13.9101 19.1287L12 21L10.0899 19.1287C9.13139 18.2167 7.61563 18.2233 6.66513 19.1434L5 20.7639L3.23607 19L4.85657 17.3349C5.77668 16.3844 5.78334 14.8686 4.87127 13.9101L3 12L4.87127 10.0899C5.78334 9.13139 5.77668 7.61563 4.85657 6.66513L3.23607 5L5 3.23607L6.66513 4.85657C7.61563 5.77668 9.13139 5.78334 10.0899 4.87127L12 3Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </div>
@@ -1023,7 +993,12 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
             <div className="bg-white p-6 rounded-lg shadow-md">
               <div className="flex justify-center mb-4">
                 <div className="text-primary">
-                  <svg className="w-12 h-12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg 
+                    className="w-12 h-12" 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor"
+                  >
                     <path d="M9 12L11 14L15 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="2"/>
                   </svg>
@@ -1064,10 +1039,9 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
               <FadeIn direction="right">
                 <div className="space-y-8">
                   <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 bg-primary rounded-full p-3"> // Styled with primary color
+                    <div className="flex-shrink-0 w-8 h-8">
                       <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5 text-white" // Keep white text
+                        className="w-8 h-8"
                         viewBox="0 0 20 20"
                         fill="currentColor"
                       >
@@ -1085,10 +1059,9 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 bg-primary rounded-full p-3"> // Styled with primary color
+                    <div className="flex-shrink-0 w-8 h-8">
                       <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5 text-white" // Keep white text
+                        className="w-8 h-8"
                         viewBox="0 0 20 20"
                         fill="currentColor"
                       >
@@ -1097,18 +1070,15 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                       </svg>
                     </div>
                     <div>
-                      <h3 className="font-semibold text-lg">Email</h3> // Keep text
-                      <p className="text-gray-300">
-                        support@smartservicesit.store // Keep text
-                      </p>
+                      <h3 className="font-semibold text-lg">Email</h3>
+                      <p className="text-gray-300">support@smartservicesit.store</p>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 bg-primary rounded-full p-3"> // Styled with primary color
+                    <div className="flex-shrink-0 w-8 h-8">
                       <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5 text-white" // Keep white text
+                        className="w-8 h-8"
                         viewBox="0 0 20 20"
                         fill="currentColor"
                       >
@@ -1120,20 +1090,19 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                       </svg>
                     </div>
                     <div>
-                      <h3 className="font-semibold text-lg">Address</h3> // Keep text
+                      <h3 className="font-semibold text-lg">Location</h3>
                       <p className="text-gray-300">
-                        123 Main Street
+                        454 S Broadway
                         <br />
-                        Hicksville, NY 11801 // Keep text
+                        Hicksville, NY 11801
                       </p>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 bg-primary rounded-full p-3"> // Styled with primary color
+                    <div className="flex-shrink-0 w-8 h-8">
                       <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5 text-white" // Keep white text
+                        className="w-8 h-8"
                         viewBox="0 0 20 20"
                         fill="currentColor"
                       >
@@ -1145,13 +1114,13 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                       </svg>
                     </div>
                     <div>
-                      <h3 className="font-semibold text-lg">Business Hours</h3> // Keep text
+                      <h3 className="font-semibold text-lg">Hours</h3>
                       <p className="text-gray-300">
-                        Monday-Friday: 6 AM - 6 PM
+                        Monday-Friday: 10 AM - 7 PM
                         <br />
-                        Saturday: 6 AM - 6 PM
+                        Saturday: 10 AM - 7 PM
                         <br />
-                        Sunday: Closed // Keep text
+                        Sunday: 10 AM - 7 PM
                       </p>
                     </div>
                   </div>
@@ -1162,9 +1131,11 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
             <div
               className={`bg-gray-800 rounded-xl p-8 shadow-lg transition-all duration-1000 delay-300 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
             >
-              <h3 className="text-2xl font-bold mb-6">Send us a message</h3> // Keep text
-
-              <form action="https://formspree.io/f/smartservicesit" method="POST"> // Keep form action
+              <form
+                action="https://formspree.io/f/xzzeddgr"
+                method="POST"
+                className="space-y-4"
+              >
                 {/* Redirect back to our site after submission */}
                 <input
                   type="hidden"
@@ -1176,33 +1147,33 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                   <div>
                     <label
                       htmlFor="contact_name"
-                      className="block text-sm font-medium text-gray-300 mb-1" // Keep gray text
+                      className="block text-sm font-medium text-gray-300 mb-1"
                     >
-                      Name // Keep text
+                      Name <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="text"
                       id="contact_name"
                       name="name"
                       required
-                      className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-primary" // Styled with primary focus color
-                      placeholder="Your name" // Keep placeholder
+                      className="w-full bg-gray-700 border-gray-600 text-white rounded-lg shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                      placeholder="Your name"
                     />
                   </div>
                   <div>
                     <label
                       htmlFor="contact_email"
-                      className="block text-sm font-medium text-gray-300 mb-1" // Keep gray text
+                      className="block text-sm font-medium text-gray-300 mb-1"
                     >
-                      Email // Keep text
+                      Email <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="email"
                       id="contact_email"
                       name="email"
                       required
-                      className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-primary" // Styled with primary focus color
-                      placeholder="Your email" // Keep placeholder
+                      className="w-full bg-gray-700 border-gray-600 text-white rounded-lg shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                      placeholder="Your email"
                     />
                   </div>
                 </div>
@@ -1210,69 +1181,68 @@ export default function HomePageClient({ services, testimonials }: HomePageClien
                 <div className="mb-4">
                   <label
                     htmlFor="contact_phone"
-                    className="block text-sm font-medium text-gray-300 mb-1" // Keep gray text
+                    className="block text-sm font-medium text-gray-300 mb-1"
                   >
-                    Phone // Keep text
+                    Phone <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="tel"
                     id="contact_phone"
                     name="phone"
                     required
-                    className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-primary" // Styled with primary focus color
-                      placeholder="Your phone number" // Keep placeholder
-                    />
-                  </div>
+                    className="w-full bg-gray-700 border-gray-600 text-white rounded-lg shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                    placeholder="Your phone number"
+                  />
+                </div>
 
-                  <div className="mb-4">
-                    <label
-                      htmlFor="contact_service"
-                      className="block text-sm font-medium text-gray-300 mb-1" // Keep gray text
-                    >
-                      Service Needed // Keep text
-                    </label>
-                    <select
-                      id="contact_service"
-                      name="service"
-                      required
-                      className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-primary" // Styled with primary focus color
-                    >
-                      <option value="">Select a service</option> // Keep options
-                      <option>Managed IT Services (MSP)</option>
-                      <option>Computer Services</option>
-                      <option>Network & Server Support</option>
-                      <option>Business IT Consulting</option>
-                      <option>Smartphone/Tablet Assistance</option>
-                      <option>Data Solutions</option>
-                      <option>Other</option>
-                    </select>
-                  </div>
-
-                  <div className="mb-4">
-                    <label
-                      htmlFor="contact_message"
-                      className="block text-sm font-medium text-gray-300 mb-1" // Keep gray text
-                    >
-                      Message // Keep text
-                    </label>
-                    <textarea
-                      id="contact_message"
-                      name="message"
-                      rows={4}
-                      required
-                      className="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-primary" // Styled with primary focus color
-                      placeholder="Describe your issue or question" // Keep placeholder
-                    ></textarea>
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="w-full bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-6 rounded-lg transition-all transform hover:scale-105 duration-300 flex items-center justify-center" // Styled with primary color
+                <div className="mb-4">
+                  <label
+                    htmlFor="contact_service"
+                    className="block text-sm font-medium text-gray-300 mb-1"
                   >
-                    Request IT Support // Keep button text
-                  </button>
-                </form>
-              </div>
+                    Service Needed <span className="text-red-500">*</span>
+                  </label>
+                  <select
+                    id="contact_service"
+                    name="service"
+                    required
+                    className="w-full bg-gray-700 border-gray-600 text-white rounded-lg shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                  >
+                    <option>Managed IT Services (MSP)</option>
+                    <option>Computer Services</option>
+                    <option>Network & Server Support</option>
+                    <option>Business IT Consulting</option>
+                    <option>Smartphone/Tablet Assistance</option>
+                    <option>Data Solutions</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+
+                <div className="mb-4">
+                  <label
+                    htmlFor="contact_message"
+                    className="block text-sm font-medium text-gray-300 mb-1"
+                  >
+                    Message <span className="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    id="contact_message"
+                    name="message"
+                    rows={4}
+                    required
+                    className="w-full bg-gray-700 border-gray-600 text-white rounded-lg shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                    placeholder="How can we help you?"
+                  ></textarea>
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300"
+                >
+                  Send Message
+                </button>
+              </form>
+            </div>
             </div>
           </div>
         </section>

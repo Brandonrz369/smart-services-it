@@ -77,10 +77,10 @@ export default function CalendlyWidget({
             Please try again later or contact us directly:
           </p>
           <a
-            href="tel:2133496790"
+            href="tel:8003865777"
             className="px-4 py-2 bg-blue-600 text-white rounded-lg inline-block"
           >
-            Call (213) 349-6790
+            Call (800) 386-5777
           </a>
         </div>
       ) : (

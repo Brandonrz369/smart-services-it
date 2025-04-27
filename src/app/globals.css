@@ -26,6 +26,12 @@ textarea {
   cursor: text;
 }
 
+/* Custom styles for header (non-aggressive) */
+.header-component {
+  position: relative;
+  z-index: 50;
+}
+
 /* Add an orange outline to the cursor instead for a more reliable approach */
 html {
   caret-color: #f97316;

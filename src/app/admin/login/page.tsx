@@ -12,7 +12,7 @@ export default function AdminLogin() {
 
   // Admin credentials (hardcoded for simplicity)
   // In a production app, you would verify against a secure backend
-  const ADMIN_PASSWORD = "LBComputer2024!";
+  const ADMIN_PASSWORD = "SmartServices2024!";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,7 +44,7 @@ export default function AdminLogin() {
       <div className="max-w-md w-full bg-white rounded-lg shadow-md overflow-hidden">
         <div className="bg-blue-600 px-6 py-8 text-white">
           <h1 className="text-2xl font-bold text-center">Admin Portal</h1>
-          <p className="text-blue-100 text-center mt-2">LB Computer Help</p>
+          <p className="text-blue-100 text-center mt-2">Smart Services IT</p>
         </div>
 
         <div className="p-6">

@@ -2,4 +2,4 @@ User-agent: *
 Disallow: /admin/
 Allow: /
 
-Sitemap: https://lbcomputerhelp.com/sitemap.xml
+Sitemap: https://smartservicesit.store/sitemap.xml

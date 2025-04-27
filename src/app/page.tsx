@@ -4,11 +4,11 @@ import type { Testimonial } from "@/components/TestimonialCarousel"; // Import T
 
 // Metadata for the Homepage (Remains in Server Component)
 export const metadata: Metadata = {
-  title: "LB Computer Help | Long Beach IT Support & Computer Services",
+  title: "Smart Services IT | Hicksville NY IT Support & Computer Services",
   description:
-    "Your trusted local source for computer services, IT support, managed services, and tech solutions in Long Beach, CA. Serving homes and businesses.",
+    "Your trusted source for computer services, IT support, managed services, and tech solutions in Hicksville, NY and surrounding areas including Nassau County and all of Long Island.",
   keywords:
-    "long beach computer help, lb computer help near me, computer assistance Long Beach, device solutions Long Beach, macbook screen options Long Beach, laptop battery performance Long Beach, slow pc help Long Beach, data access consultation Long Beach, network setup Long Beach, local tech experts Long Beach, computer diagnostic pricing, hardware configuration Long Beach",
+    "Hicksville IT support, Smart Services IT, computer repair NY, managed services NY, IT support Hicksville, IT support Nassau County, IT support Long Island, laptop repair Hicksville, business IT solutions, computer diagnostic pricing, hardware configuration, network setup New York, data recovery services",
 };
 
 // Define the interface for service data (can be moved to a shared types file)
@@ -29,17 +29,17 @@ function BusinessJsonLd() {
         __html: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "LocalBusiness",
-          name: "LB Computer Help",
+          name: "Smart Services IT",
           image: "", // Consider adding a logo URL here later
-          "@id": "https://lbcomputerhelp.com",
-          url: "https://lbcomputerhelp.com",
-          telephone: "(213) 349-6790",
+          "@id": "https://smartservicesit.store",
+          url: "https://smartservicesit.store",
+          telephone: "(800) 386-5777",
           address: {
             "@type": "PostalAddress",
-            streetAddress: "927 Magnolia Ave #2",
-            addressLocality: "Long Beach",
-            addressRegion: "CA",
-            postalCode: "90813",
+            streetAddress: "454 S Broadway",
+            addressLocality: "Hicksville",
+            addressRegion: "NY",
+            postalCode: "11801",
             addressCountry: "US",
           },
           openingHoursSpecification: [
@@ -69,9 +69,9 @@ function ServiceJsonLd() {
       "@context": "https://schema.org",
       "@type": "Service",
       serviceType: "Hardware Diagnostic & Assessment",
-      description: "Identify issues with Mac/PC screens, batteries, boot problems, or other components. Get clear options and pricing for solutions in Long Beach.",
-      provider: { "@id": "https://lbcomputerhelp.com" },
-      areaServed: { "@type": "City", name: "Long Beach" },
+      description: "Identify issues with Mac/PC screens, batteries, boot problems, or other components. Get clear options and pricing for solutions in Hicksville.",
+      provider: { "@id": "https://smartservicesit.store" },
+      areaServed: { "@type": "City", name: "Hicksville" },
       offers: { "@type": "Offer", priceSpecification: { "@type": "PriceSpecification", price: "99", priceCurrency: "USD" } }
     },
     {
@@ -79,40 +79,40 @@ function ServiceJsonLd() {
       "@type": "Service",
       serviceType: "System Performance Optimization",
       description: "Improve speed and battery life for your Mac or PC through expert optimization techniques and software configuration.",
-      provider: { "@id": "https://lbcomputerhelp.com" },
-      areaServed: { "@type": "City", name: "Long Beach" },
+      provider: { "@id": "https://smartservicesit.store" },
+      areaServed: { "@type": "City", name: "Hicksville" },
     },
      {
       "@context": "https://schema.org",
       "@type": "Service",
       serviceType: "Data Accessibility Consultation",
       description: "Assistance and guidance for accessing files on malfunctioning devices. Includes data backup strategy advice.",
-      provider: { "@id": "https://lbcomputerhelp.com" },
-      areaServed: { "@type": "City", name: "Long Beach" },
+      provider: { "@id": "https://smartservicesit.store" },
+      areaServed: { "@type": "City", name: "Hicksville" },
     },
      {
       "@context": "https://schema.org",
       "@type": "Service",
       serviceType: "System Security Assessment & Cleanup Assistance",
       description: "Assessment for security threats, malware checks, and assistance with system cleanup for enhanced protection.",
-      provider: { "@id": "https://lbcomputerhelp.com" },
-      areaServed: { "@type": "City", name: "Long Beach" },
+      provider: { "@id": "https://smartservicesit.store" },
+      areaServed: { "@type": "City", name: "Hicksville" },
     },
      {
       "@context": "https://schema.org",
       "@type": "Service",
       serviceType: "Network Setup & Configuration",
       description: "Reliable setup, configuration, and optimization for home and small business Wi-Fi and wired networks.",
-      provider: { "@id": "https://lbcomputerhelp.com" },
-      areaServed: { "@type": "City", name: "Long Beach" },
+      provider: { "@id": "https://smartservicesit.store" },
+      areaServed: { "@type": "City", name: "Hicksville" },
     },
      {
       "@context": "https://schema.org",
       "@type": "Service",
       serviceType: "Software Configuration Assistance",
       description: "Expert help with installing, configuring, or troubleshooting software applications and operating systems.",
-      provider: { "@id": "https://lbcomputerhelp.com" },
-      areaServed: { "@type": "City", name: "Long Beach" },
+      provider: { "@id": "https://smartservicesit.store" },
+      areaServed: { "@type": "City", name: "Hicksville" },
     },
   ];
 
@@ -134,7 +134,7 @@ export default function Home() {
   // Data defined in Server Component
   const testimonials: Testimonial[] = [
      {
-      text: "I am beyond impressed with the service I received from Brandon at LB Computer Help. He went above and beyond to find the perfect router for our office that could prioritize our fax machine and phones. Since the new setup, we've already noticed a significant improvement in call quality.",
+      text: "I am beyond impressed with the service I received from Smart Services IT. They went above and beyond to find the perfect router for our office that could prioritize our fax machine and phones. Since the new setup, we've already noticed a significant improvement in call quality.",
       name: "Alondra S.",
       role: "Office Manager",
       image: "/images/testimonials/client1.jpg",
@@ -155,7 +155,7 @@ export default function Home() {
       source: "facebook",
     },
     {
-      text: "I had such a great experience with LB Computer Help! My laptop was running super slow, and I needed it fixed ASAP. They were able to diagnose the issue quickly and optimize my system, making it run like new again. The service was fast, professional, and hassle-free.",
+      text: "I had such a great experience with Smart Services IT! My laptop was running super slow, and I needed it fixed ASAP. They were able to diagnose the issue quickly and optimize my system, making it run like new again. The service was fast, professional, and hassle-free.",
       name: "Judith C.",
       role: "Small Business Owner",
       image: "/images/testimonials/client4.jpg",
