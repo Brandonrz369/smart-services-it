@@ -66,16 +66,16 @@ export default function ResidentialBusinessClientPage(/* props: ResidentialBusin
 
   const testimonials: Testimonial[] = [
      {
-      text: "I am beyond impressed with the service I received from Smart Services IT. They went above and beyond to find the perfect router for our office that could prioritize our fax machine and phones. Since the new setup, we've already noticed a significant improvement in call quality.",
-      name: "Alondra S.",
-      role: "Office Manager",
+      text: "Our medical office relies heavily on our computer systems, and when our network had issues, Smart Services IT provided exceptional support. Alex arrived promptly, understood our HIPAA compliance requirements, and resolved our connectivity problems while ensuring all our sensitive patient data remained secure. The service was fast, professional, and reasonably priced.",
+      name: "Dr. Emily P.",
+      role: "Healthcare Professional",
       image: "/images/testimonials/client1.jpg",
       source: "google",
     },
     {
-      text: "I had such a great experience with Smart Services IT! My laptop was running super slow, and I needed it fixed ASAP. They were able to diagnose the issue quickly and optimize my system, making it run like new again. The service was fast, professional, and hassle-free.",
-      name: "Judith C.",
-      role: "Small Business Owner",
+      text: "Smart Services IT saved my small accounting business during tax season! Our main workstation was infected with ransomware, and I was panicking about losing client data. They responded within 30 minutes of my call, worked after hours to clean the system, and recovered all our files. I've since recommended them to several colleagues.",
+      name: "Robert C.",
+      role: "CPA & Business Owner",
       image: "/images/testimonials/client4.jpg",
       source: "nextdoor",
     },
